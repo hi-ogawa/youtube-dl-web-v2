@@ -1,0 +1,31 @@
+{
+  "short_name": "youtube-dl-web",
+  "name": "youtube-dl-web",
+  "icons": [
+    {
+      "src": "/_copy/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/_copy/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "share_target": {
+    "action": "/share-target",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "share-target-title",
+      "text": "share-target-text",
+      "url": "share-target-url"
+    }
+  }
+}

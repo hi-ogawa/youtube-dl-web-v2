@@ -1,0 +1,34 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "run-p rakkas:dev tsc:dev",
+    "rakkas:dev": "rakkas --no-clearScreen --port 3435",
+    "rakkas:build": "rakkas build",
+    "tsc": "tsc",
+    "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
+    "release": "vercel deploy --prebuilt .",
+    "release:production": "vercel deploy --prebuilt . --prod"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.3.4",
+    "@tanstack/react-query-devtools": "^4.3.5",
+    "comlink": "^4.3.1",
+    "lodash": "^4.17.21",
+    "rakkasjs": "next",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-hook-form": "^7.35.0",
+    "react-hot-toast": "^2.4.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^1.0.2",
+    "@types/lodash": "^4.14.186",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "vite": "^3.1.1",
+    "vite-plugin-windicss": "^1.8.8",
+    "windicss": "^3.5.6"
+  }
+}
