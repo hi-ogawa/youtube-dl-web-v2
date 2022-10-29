@@ -2,11 +2,12 @@
   "type": "module",
   "scripts": {
     "dev": "run-p rakkas:dev tsc:dev",
-    "build": "run-s rakkas:build",
+    "build": "run-s rakkas:build fix-vercel-output",
     "rakkas:dev": "rakkas --no-clearScreen --port 3435",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
+    "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",
     "release": "vercel deploy --prebuilt .",
     "release:production": "vercel deploy --prebuilt . --prod"
   },
