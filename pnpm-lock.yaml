@@ -22,6 +22,7 @@ importers:
 
   packages/app:
     specifiers:
+      '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
       '@tanstack/react-query': ^4.3.4
       '@tanstack/react-query-devtools': ^4.3.5
       '@tsconfig/strictest': ^1.0.2
@@ -41,6 +42,7 @@ importers:
       windicss: ^3.5.6
       zod: ^3.19.1
     dependencies:
+      '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
       '@tanstack/react-query': 4.13.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
       comlink: 4.3.1
@@ -433,6 +435,10 @@ packages:
     dependencies:
       '@hattip/core': 0.0.19
       node-fetch-native: 0.1.8
+    dev: false
+
+  /@hiogawa/ffmpeg-experiment/1.0.0-pre.1:
+    resolution: {integrity: sha512-67rlm68E7vAHLdOhXQ5bvcEqdXfWo14DYzmaqP6IleKWoaVagh/z4p6oHCyyWLO+OSs5waTBV3NXZMkFNTHkGA==}
     dev: false
 
   /@humanwhocodes/config-array/0.11.7:

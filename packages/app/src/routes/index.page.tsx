@@ -10,10 +10,18 @@ import { DownloadProgress, download } from "../utils/download";
 import { formatBytes } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
+import { ProcessFileArg, processFile, useWorker } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
+import { fetchProxy, useFetchProxy } from "./api/proxy.api";
 
 export default function Page() {
+  const workerQuery = useWorker({
+    onError: () => {
+      toast.error("failed to load wasm");
+    },
+  });
+
   const idForm = useForm({
     defaultValues: {
       id: "",
@@ -38,6 +46,10 @@ export default function Page() {
           >
             <GitHub className="w-6 h-6" />
           </a>
+          <span className="flex-1"></span>
+          {workerQuery.isLoading && (
+            <div className="w-6 h-6 spinner" title="loading wasm..." />
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <span>Video ID</span>
@@ -71,6 +83,8 @@ export default function Page() {
 //
 
 function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
+  const workerQuery = useWorker();
+
   // filter only webm audio
   const formats = sortBy(
     videoInfo.formats.filter(
@@ -88,12 +102,27 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       embedThumbnail: true,
     },
   });
+  const { title, artist, album, embedThumbnail } = form.watch();
 
   const [downloadStream, setDownloadStream] =
     React.useState<ReadableStream<DownloadProgress>>();
 
-  const [downloadUrl, setDownloadUrl] = React.useState<string>();
   const [downloadProgress, setDownloadProgress] = React.useState<number>();
+
+  const thumbnailQuery = useFetchProxy(
+    { url: getThumbnailUrl(videoInfo.id) },
+    {
+      onError: () => {
+        toast.error("failed to fetch thumbnail data");
+      },
+    }
+  );
+
+  const handleDownload = form.handleSubmit((data) => {
+    tinyassert(data.format_id);
+    setDownloadProgress(0);
+    setDownloadStream(download(videoInfo, data.format_id));
+  });
 
   useReadableStream({
     stream: downloadStream,
@@ -102,41 +131,36 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         return;
       }
       const { result, offset, total } = res.value;
-      if (offset === total) {
-        const url = URL.createObjectURL(new Blob([result]));
-        setDownloadUrl(url);
-      }
       setDownloadProgress(offset / total);
+      fetchProxy;
+      if (offset === total) {
+        processFileMutation.mutate({
+          audio: result,
+          image: (embedThumbnail && thumbnailQuery.data) || undefined,
+          title,
+          artist,
+          album,
+        });
+      }
     },
     onError: () => {
-      toast.error("failed to download", { id: "downloadStream:onError" });
+      toast.error("failed to download", { id: "useReadableStream.onError" });
     },
   });
 
-  const downloadQuery = useMutation(
-    async (format_id?: string) => {
-      tinyassert(format_id);
-      return download(videoInfo, format_id);
+  const processFileMutation = useMutation(
+    async (arg: ProcessFileArg) => {
+      tinyassert(workerQuery.isSuccess);
+      return processFile(workerQuery.data, arg);
     },
     {
-      onSuccess: (stream) => {
-        if (downloadUrl) {
-          URL.revokeObjectURL(downloadUrl);
-        }
-        setDownloadProgress(0);
-        setDownloadStream(stream);
-      },
       onError: () => {
-        toast.error("failed to download", { id: "downloadQuery:onError" });
+        toast.error("failed to create an opus file", {
+          id: "processFileMutation.onError",
+        });
       },
     }
   );
-
-  React.useEffect(() => {
-    if (downloadUrl) {
-      URL.revokeObjectURL(downloadUrl);
-    }
-  }, []);
 
   return (
     <>
@@ -176,19 +200,30 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
-        <input type="checkbox" {...form.register("embedThumbnail")} />
+        <input
+          type="checkbox"
+          {...form.register("embedThumbnail")}
+          disabled={!thumbnailQuery.isSuccess}
+        />
       </div>
-      {!downloadUrl && (
+      {!processFileMutation.isSuccess && (
         <button
           className="p-1 border bg-gray-300 filter transition duration-200 hover:brightness-95 disabled:(pointer-events-none text-gray-500 bg-gray-200)"
-          onClick={form.handleSubmit((data) =>
-            downloadQuery.mutate(data.format_id)
-          )}
-          disabled={!isNil(downloadProgress)}
+          onClick={() => handleDownload()}
+          disabled={
+            !workerQuery.isSuccess ||
+            processFileMutation.isLoading ||
+            !isNil(downloadProgress)
+          }
         >
           <div className="flex justify-center items-center relative">
-            {isNil(downloadProgress) && <span>Download</span>}
-            {!isNil(downloadProgress) && <span>Downloading...</span>}
+            {!processFileMutation.isLoading && isNil(downloadProgress) && (
+              <span>Download</span>
+            )}
+            {!processFileMutation.isLoading && !isNil(downloadProgress) && (
+              <span>Downloading...</span>
+            )}
+            {processFileMutation.isLoading && <span>Processing...</span>}
             {!isNil(downloadProgress) && (
               <RadialProgress
                 progress={downloadProgress}
@@ -199,11 +234,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           </div>
         </button>
       )}
-      {downloadUrl && (
+      {processFileMutation.isSuccess && (
         <a
           className="p-1 border bg-blue-300 filter transition duration-200 hover:brightness-95 cursor-pointer"
-          href={downloadUrl}
-          download={"test.opus"}
+          href={processFileMutation.data.url}
+          download={processFileMutation.data.name}
         >
           <div className="flex justify-center items-center relative">
             <span>Finished!</span>
