@@ -14,6 +14,7 @@ import { ProcessFileArg, processFile, useWorker } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
 import { fetchProxy, useFetchProxy } from "./api/proxy.api";
+import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export default function Page() {
   const workerQuery = useWorker({
@@ -22,17 +23,29 @@ export default function Page() {
     },
   });
 
-  const idForm = useForm({
+  const form = useForm({
     defaultValues: {
       id: "",
     },
   });
+
   const metadataQuery = useMetadata({
-    onSuccess: () => {},
     onError: () => {
       toast.error("failed to fetch video info");
     },
   });
+
+  // handle share
+  React.useEffect(() => {
+    if (window.location.href) {
+      const url = new URL(window.location.href);
+      const id = url.searchParams.get(SHARE_TARGET_PARAMS.text);
+      if (id) {
+        form.setValue("id", id);
+        metadataQuery.mutate({ id });
+      }
+    }
+  }, []);
 
   return (
     <div className="h-full flex flex-col items-center">
@@ -55,14 +68,14 @@ export default function Page() {
           <span>Video ID</span>
           <form
             className="flex items-center relative"
-            onSubmit={idForm.handleSubmit((data) => {
+            onSubmit={form.handleSubmit((data) => {
               metadataQuery.mutate(data);
             })}
           >
             <input
               className="border px-1 w-full"
               placeholder="ID or URL"
-              {...idForm.register("id")}
+              {...form.register("id")}
             />
             {metadataQuery.isLoading && (
               <div className="absolute right-4 w-4 h-4 spinner"></div>
