@@ -11,7 +11,7 @@ export const SHARE_TARGET_PARAMS = {
 export function get() {
   return json({
     short_name: "youtube-dl-web-v2",
-    name: "youtube-dl-web-v2",
+    name: "Youtube DL Web",
     icons: [
       {
         src: ICON192_URL,
