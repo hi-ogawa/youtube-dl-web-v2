@@ -1,6 +1,7 @@
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
+import { tinyassert } from "../../utils/tinyassert";
 
 // simple proxy to fetch image data
 
@@ -39,6 +40,7 @@ export function useFetchProxy(
     queryKey: [useFetchProxy.name, req],
     queryFn: async () => {
       const res = await fetchProxy(req);
+      tinyassert(res.ok);
       const buf = await res.arrayBuffer();
       return new Uint8Array(buf);
     },
