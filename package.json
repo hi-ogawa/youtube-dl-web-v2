@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
     "tsc": "tsc -b packages/app",
     "lint": "run-s prettier eslint",
     "lint:check": "run-s prettier:check eslint:check",

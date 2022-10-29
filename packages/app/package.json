@@ -2,6 +2,7 @@
   "type": "module",
   "scripts": {
     "dev": "run-p rakkas:dev tsc:dev",
+    "build": "run-s rakkas:build",
     "rakkas:dev": "rakkas --no-clearScreen --port 3435",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
