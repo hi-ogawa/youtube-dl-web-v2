@@ -2,6 +2,8 @@
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r build",
+    "release": "pnpm -r release",
+    "release:production": "pnpm -r release:production",
     "tsc": "tsc -b packages/app",
     "lint": "run-s prettier eslint",
     "lint:check": "run-s prettier:check eslint:check",

@@ -54,7 +54,7 @@ export default function Page() {
           <h1 className="text-2xl">Youtube DL Web</h1>
           <a
             className="flex items-center"
-            href="https://github.com/hi-ogawa/youtube-dl-web"
+            href="https://github.com/hi-ogawa/youtube-dl-web-v2"
             target="_blank"
           >
             <GitHub className="w-6 h-6" />
