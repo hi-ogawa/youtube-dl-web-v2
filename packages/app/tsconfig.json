@@ -4,6 +4,7 @@
   "compilerOptions": {
     "exactOptionalPropertyTypes": false, // too strict
     "noUncheckedIndexedAccess": false, // too strict
+    "checkJs": false,
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",

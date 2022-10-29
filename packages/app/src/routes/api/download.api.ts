@@ -3,6 +3,8 @@ import { z } from "zod";
 import { tinyassert } from "../../utils/tinyassert";
 import { fetchVideoInfo } from "../../utils/youtube-utils";
 
+// proxy youtube's media data
+
 const DOWNLOAD_REQUEST_SCHEME = z.object({
   id: z.string(),
   format_id: z.string(),
