@@ -64,24 +64,33 @@ export default function Page() {
             <div className="w-6 h-6 spinner" title="loading wasm..." />
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <span>Video ID</span>
-          <form
-            className="flex items-center relative"
-            onSubmit={form.handleSubmit((data) => {
-              metadataQuery.mutate(data);
-            })}
-          >
+        <form
+          className="flex flex-col gap-4"
+          onSubmit={form.handleSubmit((data) => {
+            metadataQuery.mutate(data);
+          })}
+        >
+          <div className="flex flex-col gap-2">
+            <span>Video ID</span>
             <input
-              className="border px-1 w-full"
+              className="input px-1"
               placeholder="ID or URL"
               {...form.register("id")}
             />
-            {metadataQuery.isLoading && (
-              <div className="absolute right-4 w-4 h-4 spinner"></div>
-            )}
-          </form>
-        </div>
+          </div>
+          <button
+            className="p-1 btn btn-default"
+            disabled={metadataQuery.isLoading}
+          >
+            <div className="flex justify-center items-center relative">
+              <span>Search</span>
+              {metadataQuery.isLoading && (
+                <div className="absolute right-4 w-4 h-4 spinner"></div>
+              )}
+            </div>
+          </button>
+        </form>
+        <div className="border-t m-1"></div>
         {!metadataQuery.isSuccess && <MainFormSkelton />}
         {metadataQuery.isSuccess && (
           <MainForm videoInfo={metadataQuery.data.videoInfo} />
@@ -184,10 +193,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
-        <select
-          className="border px-1 bg-white"
-          {...form.register("format_id")}
-        >
+        <select className="input px-1" {...form.register("format_id")}>
           {formats.map(
             (f) =>
               f.filesize && (
@@ -200,16 +206,16 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </div>
       <div className="flex flex-col gap-2">
         <span>Title</span>
-        <input className="border px-1" {...form.register("title")} />
+        <input className="input px-1" {...form.register("title")} />
       </div>
       {/* TODO: save history for quick input */}
       <div className="flex flex-col gap-2">
         <span>Artist</span>
-        <input className="border px-1" {...form.register("artist")} />
+        <input className="input px-1" {...form.register("artist")} />
       </div>
       <div className="flex flex-col gap-2">
         <span>Album</span>
-        <input className="border px-1" {...form.register("album")} />
+        <input className="input px-1" {...form.register("album")} />
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
@@ -221,7 +227,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </div>
       {!processFileMutation.isSuccess && (
         <button
-          className="p-1 border bg-gray-300 filter transition duration-200 hover:brightness-95 disabled:(pointer-events-none text-gray-500 bg-gray-200)"
+          className="p-1 btn btn-primary"
           onClick={() => handleDownload()}
           disabled={
             !workerQuery.isSuccess ||
@@ -240,8 +246,8 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             {!isNil(downloadProgress) && (
               <RadialProgress
                 progress={downloadProgress}
-                className="absolute right-2 w-6 h-6 text-blue-600"
-                classNameBackCircle="text-blue-300"
+                className="absolute right-2 w-6 h-6 text-gray-500"
+                classNameBackCircle="text-gray-50"
               />
             )}
           </div>
@@ -249,11 +255,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       )}
       {processFileMutation.isSuccess && (
         <a
-          className="p-1 border bg-blue-300 filter transition duration-200 hover:brightness-95 cursor-pointer"
+          className="p-1 btn btn-primary"
           href={processFileMutation.data.url}
           download={processFileMutation.data.name}
         >
-          <div className="flex justify-center items-center relative">
+          <div className="flex justify-center items-center">
             <span>Finished!</span>
           </div>
         </a>
@@ -274,31 +280,26 @@ function MainFormSkelton() {
       />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
-        <select className="border px-1" disabled></select>
+        <select className="input px-1" disabled></select>
       </div>
       <div className="flex flex-col gap-2">
         <span>Title</span>
-        <input className="border px-1" disabled />
+        <input className="input px-1" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>Artist</span>
-        <input className="border px-1" disabled />
+        <input className="input px-1" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>Album</span>
-        <input className="border px-1" disabled />
+        <input className="input px-1" disabled />
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
         <input type="checkbox" disabled />
       </div>
-      <button
-        className="p-1 border bg-gray-300 filter transition duration-200 hover:brightness-95 disabled:(pointer-events-none text-gray-500 bg-gray-200)"
-        disabled
-      >
-        <div className="flex justify-center items-center relative">
-          Download
-        </div>
+      <button className="p-1 btn btn-primary" disabled>
+        Download
       </button>
     </>
   );
