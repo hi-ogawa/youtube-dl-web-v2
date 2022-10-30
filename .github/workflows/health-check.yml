@@ -1,0 +1,16 @@
+name: health-check
+"on":
+  schedule:
+    - cron: "*/30 * * * *"
+jobs:
+  health-check:
+    runs-on: ubuntu-20.04
+    container:
+      image: badouralix/curl-jq
+    steps:
+      - name: GET /healthz
+        run: |
+          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/healthz
+      - name: POST /api/metadata
+        run: |
+          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/api/metadata --data-binary '{ "id": "https://www.youtube.com/watch?v=rv4wf7bzfFE" }' | jq -r --exit-status '.videoInfo.title'
