@@ -86,6 +86,7 @@ export default function Page() {
               className="input px-1"
               placeholder="ID or URL"
               {...form.register("id")}
+              aria-invalid={metadataQuery.isError}
             />
           </div>
           <button

@@ -17,18 +17,44 @@ export default defineConfig({
       primary: c.blue[500],
       primaryHover: c.blue[400],
       primaryActive: c.blue[600],
+      primaryOutline: c.blue[100],
       primaryContent: "white",
+      error: c.red[500],
+      errorOutline: c.red[100],
     },
   },
+  variants: [
+    {
+      // e.g. aria-invalid:border-error
+      match: (input) => {
+        const match = input.match(/^(aria-invalid:)/);
+        if (match) {
+          return {
+            matcher: input.slice(match[1].length),
+            selector: (s) => `${s}[aria-invalid="true"]`,
+          };
+        }
+        return undefined;
+      },
+    },
+  ],
   shortcuts: {
     spinner: `
       animate-spin
       rounded-full
       border-2 border-gray-500 border-t-gray-300 border-l-gray-300
     `,
+    // https://ant.design/components/input/
     input: `
+      outline-none
+      transition duration-200
       border bg-white border-gray-300 disabled:(bg-gray-100 border-gray-200)
+      not-disabled:hover:border-primary
+      not-disabled:focus:(border-primary ring-2 ring-primary-outline)
+      aria-invalid:!border-error
+      aria-invalid:focus:(ring-2 !ring-error-outline)
     `,
+    // https://ant.design/components/button/
     btn: `
       cursor-pointer
       transition duration-200
