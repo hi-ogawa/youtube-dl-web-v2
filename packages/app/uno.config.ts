@@ -25,6 +25,7 @@ export default defineConfig({
   },
   variants: [
     {
+      // https://github.com/unocss/unocss/blob/f4954d2a2b2a3dc4ad32d1ea098aab07596c55b1/packages/preset-mini/src/_variants/pseudo.ts
       // e.g. aria-invalid:border-error
       match: (input) => {
         const match = input.match(/^(aria-invalid:)/);
