@@ -13,7 +13,7 @@ import { useReadableStream } from "../utils/use-readable-stream";
 import { ProcessFileArg, processFile, useWorker } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
-import { fetchProxy, useFetchProxy } from "./api/proxy.api";
+import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export default function Page() {
