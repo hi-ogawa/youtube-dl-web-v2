@@ -109,5 +109,4 @@ class Cli {
   }
 }
 
-// main
 main();

@@ -1,0 +1,793 @@
+{"id":"545CwHi0zb8","title":"スカイラインファンファーレ！","artist":"Appare!"}
+{"id":"tGjzjsX3dnw","title":"ダフネ","artist":"Appare!"}
+{"id":"XLBRlzejHPQ","title":"流星ボーイ","artist":"Berryz工房"}
+{"id":"kfa8lRGgcCg","title":"Hey！ビヨンダ","artist":"BEYOOOOONDS"}
+{"id":"hYw4OJ6c160","title":"恋のおスイング","artist":"BEYOOOOONDS"}
+{"id":"PXRONpN5WuI","title":"伸びしろ~Beyond the World~","artist":"BEYOOOOONDS"}
+{"id":"r2-Fv3iXX6w","title":"こんなハズジャナカッター！","artist":"BEYOOOOONDS"}
+{"id":"Cj2pZcTGZWU","title":"元年バンジージャンプ","artist":"BEYOOOOONDS"}
+{"id":"g3mChOHf_IA","title":"虎視タンタ・ターン","artist":"BEYOOOOONDS"}
+{"id":"hmkR3gmJh7w","title":"Chaka Kahn \"I Feel For You / Ain't Nobody\"","artist":"Andrew Gouche"}
+{"id":"24ECUWXeIkc","title":"高輪ゲートウェイ駅ができる頃には","artist":"BEYOOOOONDS - Chica#Tetsu"}
+{"id":"lPSbmC2OxEE","title":"Direct Flyte (feat. Victor Wooten)","artist":"Cory Wong"}
+{"id":"nLFR0KweC50","title":"Here To Stay (feat. Larry Carlton)","artist":"Cory Wong"}
+{"id":"aV5SKaiBaCk","title":"ソラシド〜ねえねえ〜","artist":"伊勢鈴蘭, 西田汐里"}
+{"id":"fQBRaixMHx8","title":"悲しきヘブン","artist":"段原瑠々, 山﨑夢羽"}
+{"id":"JAE5i0ly_iQ","title":"悲しきヘブン","artist":"段原瑠々, 井上玲音"}
+{"id":"pIIrJUIc85s","title":"糸島Distance","artist":"佐藤優樹, 平山遊季"}
+{"id":"PI0W8t3Inr8","title":"次の角を曲がれ","artist":"℃-ute"}
+{"id":"OA5VHIV823A","title":"嵐を起こすんだ Exciting Fight！","artist":"℃-ute"}
+{"id":"lsCI0ZhXQDU","title":"dearest.","artist":"松浦亜弥"}
+{"id":"KjVGJ3YFDc8","title":"Baby (Justin Bieber cover)","artist":"Dirty Loops"}
+{"id":"p56ahCk49ss","title":"Breakdown","artist":"Dirty Loops"}
+{"id":"-UBcxKiS550","title":"Follow The Light (Dirty Loops & Cory Wong)","artist":"Dirty Loops"}
+{"id":"m34byl2BT1o","title":"Thriller (Dirty Loops & Cory Wong)","artist":"Dirty Loops"}
+{"id":"tjaLOk1_aRg","title":"TURBO (Cory Wong & Dirty Loops)","artist":"Dirty Loops"}
+{"id":"utn6TnORINM","title":"Hit Me","artist":"Dirty Loops"}
+{"id":"rV9uCmlMQ1c","title":"Next To You","artist":"Dirty Loops"}
+{"id":"gYc5zrXC52k","title":"Rock You","artist":"Dirty Loops"}
+{"id":"aYYFmp9NBTk","title":"SONGS FOR LOVERS - COFFEE BREAK IS OVER","artist":"Dirty Loops"}
+{"id":"r_GTgpdoCh0","title":"Work Shit Out","artist":"Dirty Loops"}
+{"id":"PDKecPtliGU","title":"World On Fire","artist":"Dirty Loops"}
+{"id":"u2kNaK8_mj0","title":"愛のダイビング","artist":"Juice=Juice"}
+{"id":"IvyAieDrM1c","title":"Future Smile","artist":"Juice=Juice"}
+{"id":"U3mzFnWPbFM","title":"G.O.A.T","artist":"Juice=Juice"}
+{"id":"JzDQj4X17gI","title":"KEEP ON 上昇志向！！","artist":"Juice=Juice"}
+{"id":"r6jgorV8opk","title":"禁断少女","artist":"Juice=Juice"}
+{"id":"ZBBuxJlEM-U","title":"Noctiluca","artist":"Juice=Juice"}
+{"id":"bhaFyIiDWzs","title":"Poppin' Love","artist":"Juice=Juice"}
+{"id":"TMSSo3SUvEU","title":"素直に甘えて","artist":"Juice=Juice"}
+{"id":"9Rx9_hxK8hE","title":"TOKYOグライダー","artist":"Juice=Juice"}
+{"id":"tj8EFzQZuIk","title":"Vivid Midnight","artist":"Juice=Juice"}
+{"id":"xgoVNqwh1wY","title":"イニミニマニモ～恋のライバル宣言～","artist":"Juice=Juice"}
+{"id":"CUd41WXhvTI","title":"生まれたてのBaby Love","artist":"Juice=Juice"}
+{"id":"rh8eeteWbHc","title":"ロマンスの途中","artist":"Juice=Juice"}
+{"id":"4sO4_dLLeGM","title":"全部賭けてGO!!","artist":"Juice=Juice"}
+{"id":"_qJDCuFvZGE","title":"イケナイコト","artist":"NMB48"}
+{"id":"ryOTsKLfW6c","title":"お祭りデビューだぜ！","artist":"OCHA NORMA"}
+{"id":"V5KzwNfox3I","title":"恋のクラウチングスタート","artist":"OCHA NORMA"}
+{"id":"_-ikM9KJp3o","title":"素肌は熱帯夜","artist":"OCHA NORMA"}
+{"id":"P0oau18RIyg","title":"愛して 愛して 後一分","artist":"平山遊季, 小田さくら"}
+{"id":"I0_PagqBphg","title":"Mon Amour","artist":"Juice=Juice"}
+{"id":"b2_CJ_nx-l4","title":"3 on E (feat. Antwaun Stanley)","artist":"VULFPECK"}
+{"id":"qTUnDV3MgVQ","title":"Animal Spirits","artist":"VULFPECK"}
+{"id":"le0BLAEO93g","title":"Dean Town","artist":"VULFPECK"}
+{"id":"rhxQoDlt2AU","title":"Dean Town (Live at Madison Square Garden)","artist":"VULFPECK"}
+{"id":"Nq5LMGtBmis","title":"It Gets Funkier IV (feat. Louis Cole)","artist":"VULFPECK"}
+{"id":"to22meUpSEI","title":"Lost My Treble Long Ago","artist":"VULFPECK"}
+{"id":"uUyuGjLy4BQ","title":"My First Car","artist":"VULFPECK"}
+{"id":"dpskVzLN1CI","title":"starry wink*","artist":"アップアップガールズ（２）"}
+{"id":"uSUX0TcW4Ys","title":"Sun!×3　","artist":"アップアップガールズ（２）"}
+{"id":"__3IGlZUYz4","title":"U（２）Zone LINE","artist":"アップアップガールズ（２）"}
+{"id":"Y9pUL88JkKM","title":"だれだって、アイドル。","artist":"アップアップガールズ（２）"}
+{"id":"fVc_dtUfIXQ","title":"ぱーれぇ～","artist":"アップアップガールズ（２）"}
+{"id":"dXmLteCgaEY","title":"恋はアップ（２）Summer","artist":"アップアップガールズ（２）"}
+{"id":"mD_iI6KIP4M","title":"手さぐりLovin'ぎゅー","artist":"アップアップガールズ（２）"}
+{"id":"njCe2i91kWo","title":"46億年LOVE","artist":"アンジュルム"}
+{"id":"_GVCnlEixeo","title":"人生、すなわちパンタ・レイ","artist":"アンジュルム"}
+{"id":"MeQ2HaltdXo","title":"Piece of Peace～しあわせのパズル～","artist":"アンジュルム"}
+{"id":"L-SAgT_z4II","title":"はっきりしようぜ","artist":"アンジュルム"}
+{"id":"2oT_uhQgJ6k","title":"ハデにやっちゃいな！","artist":"アンジュルム"}
+{"id":"b6cdiBR1Y3U","title":"ミラー・ミラー","artist":"アンジュルム"}
+{"id":"4BDBEpKH4zI","title":"君だけじゃないさ...friends(2018アコースティックVer.)","artist":"アンジュルム"}
+{"id":"KCQT4STlXz0","title":"大器晩成","artist":"アンジュルム"}
+{"id":"0oxunqtBHNk","title":"悔しいわ","artist":"アンジュルム"}
+{"id":"fhLy9Vsu7VQ","title":"愛されルート A or B？","artist":"アンジュルム"}
+{"id":"wlYP2Dowojg","title":"愛すべきべき Human Life","artist":"アンジュルム"}
+{"id":"Efgif63EmnU","title":"愛・魔性","artist":"アンジュルム"}
+{"id":"6yO9GUyMz0s","title":"臥薪嘗胆","artist":"アンジュルム"}
+{"id":"p6DPJ2h6VIU","title":"限りあるMoment","artist":"アンジュルム"}
+// こぶしファクトリー - Come with me Lyrics (Color Coded JPN_ROM_ENG)
+{"id":"gpDnYWzgjRM","title":"Kobushi Factory (こぶしファクトリー) - Come with me Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 2 years ago 4 minutes, 23 seconds 78,699 views","artist":""}
+{"id":"VaO8RNXIpeI","title":"[SUB ESP] Kobushi Factory - Come with me (こぶしファクトリー『Come with me』) by nijikaism 2 years ago 4 minutes, 24 seconds 18,550 views","artist":""}
+{"id":"pNfp9vbAH2o","title":"【カラオケ】 Come with me ／ こぶしファクトリー by ミルヒーオケ 1 year ago 4 minutes, 23 seconds 9,304 views","artist":""}
+{"id":"L-OGIeAq4LY","title":"Kobushi Factory (こぶしファクトリー) - Suki Kamo Shirenai (好きかもしれない) Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 2 years ago 4 minutes, 7 seconds 186,060 views","artist":""}
+{"id":"1NxAGDi4zUI","title":"こぶしファクトリー -『サンバ！ こぶしジャネイロ』Lyrics (Color Coded JPN/ROM/ENG) by Reinachan 2 years ago 3 minutes, 38 seconds 1,696 views","artist":""}
+// こぶしファクトリー - Go To The Top!!
+{"id":"T3uF1z-8OoI","title":"こぶしファクトリー - Go To THE TOP!! by 浦島次郎 4 years ago 3 minutes, 35 seconds 65,114 views","artist":""}
+{"id":"adpCo12YRg0","title":"こぶしファクトリー《アカペラ＆ボイパ》GO TO THE TOP!! by OMAKE CHANNEL 3 years ago 6 minutes, 58 seconds 747,385 views","artist":""}
+{"id":"ecPh0_6wQfU","title":"こぶしファクトリー - GO TO THE TOP!! by 浦島次郎 5 years ago 3 minutes, 33 seconds 27,154 views","artist":""}
+{"id":"FWDD8bVzvuc","title":"こぶしファクトリー 『GO TO THE TOP!!』歌詞付き by PON 。 5 years ago 3 minutes, 33 seconds 19,727 views","artist":""}
+{"id":"TjK1hpt20l4","title":"GO TO THE TOP！！／こぶしファクトリー THE GIRLS LIVE 54 by mo om4 3 years ago 3 minutes, 50 seconds 6,850 views","artist":""}
+// こぶしファクトリー  Unlucky no Jijou (アンラッキーの事情)
+{"id":"7PpMBgCn-Ww","title":"Kobushi Factory (こぶしファクトリー) - Unlucky no Jijou (アンラッキーの事情) Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 2 years ago 4 minutes, 27 seconds 25,094 views","artist":""}
+{"id":"OoTkCPmFgdY","title":"アンラッキーの事情 by 道重一筋GDS. 2 years ago 4 minutes, 27 seconds 28,013 views","artist":""}
+{"id":"f2adTPsCU1A","title":"『アンラッキーの事情』こぶしファクトリー by JPch H!P MUSIC MOVIES 4 weeks ago 4 minutes, 26 seconds 966 views","artist":""}
+{"id":"DcW03L53pAE","title":"Kobushi Factory - Unlucky no Jijou by JYP Hello! Project 2 years ago 4 minutes, 25 seconds 3,963 views","artist":""}
+{"id":"kosBHq_A5n0","title":"『アンラッキーの事情』井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 1 month ago 4 minutes, 27 seconds 3,230 views","artist":""}
+// こぶしファクトリー『チョット愚直に！猪突猛進』(Magnolia Factory [Foolishly Honest! Impulsive Actions!]) (Promotion Edit)
+{"id":"GPFwLgz_Tz4","title":"こぶしファクトリー『チョット愚直に！猪突猛進』(Magnolia Factory [Foolishly Honest! Impulsive Actions!]) (Promotion Edit) by こぶしファクトリー 6 years ago 4 minutes, 6 seconds 3,061,308 views","artist":""}
+{"id":"qNceMYQV8Pg","title":"『チョット愚直に！猪突猛進』こぶしファクトリー by JPch H!P MUSIC MOVIES 4 weeks ago 2 minutes, 48 seconds 3,020 views","artist":""}
+{"id":"mCn0evjcrjU","title":"こぶしファクトリー『チョット愚直に！猪突猛進』(Magnolia Factory [Foolishly Honest! Impulsive Actions!]) 浜浦彩乃 Solo by Erik Devine 5 years ago 7 minutes, 24 seconds 103 views","artist":""}
+{"id":"tAuh8Qw6330","title":"こぶしファクトリー『チョット愚直に！猪突猛進』(Magnolia Factory [Foolishly Honest! Impulsive Actions!]) 浜浦彩乃 Solo by Erik Devine 5 years ago 7 minutes, 42 seconds 123 views","artist":""}
+{"id":"TuxG7EAo7F8","title":"こぶしファクトリー『チョット愚直に！猪突猛進』(Magnolia Factory [Foolishly Honest! Impulsive Actions!]) 浜浦彩乃 Solo by Erik Devine 5 years ago 7 minutes, 15 seconds 117 views","artist":""}
+// こぶしファクトリー『ナセバナル』(Magnolia Factory[Where there is a will, there is a way.])(Promotion Edit)
+{"id":"C4TcG1-45f0","title":"こぶしファクトリー『ナセバナル』(Magnolia Factory[Where there is a will, there is a way.])(Promotion Edit) by こぶしファクトリー 4 years ago 4 minutes, 23 seconds 460,895 views","artist":""}
+{"id":"lt7rh0z49q8","title":"20180730_こぶしファクトリー_ナセバナル by HP堂 1 month ago 3 minutes, 1 second 402 views","artist":""}
+{"id":"bn_2v0XaON0","title":"こぶしファクトリー『きっと私は』(Magnolia Factory[I must be…])(Promotion Edit) by こぶしファクトリー 4 years ago 5 minutes, 23 seconds 664,314 views","artist":""}
+{"id":"aqmnY2L_sSk","title":"こぶしファクトリー『エエジャナイカ ニンジャナイカ』(Magnolia Factory[Eejanaika Ninjanaika])(Promotion Edit) by こぶしファクトリー 5 years ago 4 minutes, 9 seconds 434,460 views","artist":""}
+{"id":"Z6kxNroDSeY","title":"こぶしファクトリー『ナセバナル』ボーカルREC合成 by tikibun 4 years ago 3 minutes, 28 seconds 25,234 views","artist":""}
+// こぶしファクトリー『バッチ来い青春！』(Magnolia Factory [Hey Youth, Come At Me!]) (Promotion Edit)
+{"id":"UtjqUqT_uiQ","title":"こぶしファクトリー『バッチ来い青春！』(Magnolia Factory [Hey Youth, Come At Me!]) (Promotion Edit) by こぶしファクトリー 6 years ago 4 minutes, 44 seconds 721,918 views","artist":""}
+{"id":"loRcDerdGtA","title":"2016夏OTODAMA_17『バッチ来い青春！』こぶしファクトリー by Hello ! Wota 5 years ago 5 minutes, 35 seconds 27,871 views","artist":""}
+{"id":"PvYc2iVtyMY","title":"こぶしファクトリー　藤井梨央　「バッチ来い青春！」 by 玲奈ちゃん 5 years ago 37 seconds 482 views","artist":""}
+{"id":"YjDqrUVuOOE","title":"【清水佐紀・鈴木愛理】バッチ来い青春!【Juice=Juice・こぶしファクトリー】 by 夜末阿良々木 4 years ago 3 minutes, 29 seconds 12,426 views","artist":""}
+{"id":"bLa9cfwS1KU","title":"こぶしファクトリー「バッチ来い青春！」[Kobushi Factory (Bacchikoi Seishun! )] - Tokyo Idol Festival Sky Stage 2016 by ひまちゃん 6 years ago 4 minutes, 45 seconds 9,599 views","artist":""}
+// こぶしファクトリー『ラーメン大好き小泉さんの唄』(Magnolia Factory [A song of ramen loving girl Ms.Koizumi]) (Promotion Edit)
+{"id":"Mo6IhS3nAK8","title":"こぶしファクトリー『ラーメン大好き小泉さんの唄』(Magnolia Factory [A song of ramen loving girl Ms.Koizumi]) (Promotion Edit) by こぶしファクトリー 7 years ago 4 minutes, 13 seconds 1,257,943 views","artist":""}
+{"id":"-DkAP3m9jRY","title":"『ラーメン大好き小泉さんの唄』こぶしファクトリー by JPch H!P MUSIC MOVIES 4 weeks ago 2 minutes, 8 seconds 624 views","artist":""}
+{"id":"HnAkvp_5NhY","title":"こぶしファクトリー『ラーメン大好き小泉さんの唄』(Magnolia Factory [A song of ramen loving girl Ms.Koizumi]) (Promo by Frederick Dieguez 5 years ago 4 minutes, 55 seconds 143 views","artist":""}
+{"id":"l6Zg7cG9FOY","title":"こぶしファクトリー 「ラーメン大好き小泉さんの唄」 by Hello Online 4 years ago 3 minutes 6,750 views","artist":""}
+{"id":"hZ7b2BOl4e8","title":"こぶしファクトリー  ｢ ラーメン大好き小泉さんの唄 ｣ （The Girls Live 20151102） by ハロちゃん寝る 6 years ago 3 minutes, 58 seconds 26,463 views","artist":""}
+// こぶしファクトリー『念には念（念入りVer.）』(Magnolia Factory [Be Double Sure (with ”NEN” Ver.)]) (Promotion Edit)
+{"id":"960j3j-XR4g","title":"こぶしファクトリー『念には念（念入りVer.）』(Magnolia Factory [Be Double Sure (with ”NEN” Ver.)]) (Promotion Edit) by こぶしファクトリー 7 years ago 3 minutes, 46 seconds 2,250,201 views","artist":""}
+{"id":"qewjCkIITqM","title":"こぶしファクトリー 「念には念 念入り Ver 」 by Hello Online 4 years ago 2 minutes, 32 seconds 17,280 views","artist":""}
+{"id":"3dkSJ0apSL4","title":"『念には念（念入りVer.）』こぶしファクトリー by JPch H!P MUSIC MOVIES 4 weeks ago 3 minutes, 40 seconds 1,589 views","artist":""}
+{"id":"FIaVK6uViWA","title":"念には念（念入り Ver．）／こぶしファクトリー　2018ハロ！FES by m yoko yoko 1 year ago 2 minutes, 33 seconds 53,744 views","artist":""}
+{"id":"mh7kpsslCPQ","title":"こぶしファクトリー『ドスコイ！ケンキョにダイタン』(Magnolia Factory [Dosukoi! Humble but Bold]) (Promotion Edit) by こぶしファクトリー 7 years ago 4 minutes, 1 second 1,921,838 views","artist":""}
+// こぶしファクトリー『押忍！こぶし魂』(Magnolia Factory [Osu! Soul of Kobushi]) (Promotion Edit)
+{"id":"sRnDU6GQpvk","title":"こぶしファクトリー『押忍！こぶし魂』(Magnolia Factory [Osu! Soul of Kobushi]) (Promotion Edit) by こぶしファクトリー 6 years ago 3 minutes, 32 seconds 1,315,531 views","artist":""}
+{"id":"Dnz5tEDoq9g","title":"こぶしファクトリー『押忍！こぶし魂』(Magnolia Factory [Osu! Soul of Kobushi]) (Promotion Edit) by 1,000,000 5 years ago 3 minutes, 30 seconds 406 views","artist":""}
+{"id":"C4MK3Yt43DE","title":"Kobushi Factory - Osu! Kobushi Tamashii by JYP Hello! Project 1 year ago 3 minutes, 26 seconds 403 views","artist":""}
+{"id":"iFOrxa-ryf8","title":"こぶしファクトリー「押忍！こぶし魂」[Kobushi Factory (Osu! Kobushi Tamashii)] - Hello! Project Hina Fest 2016 by ひまちゃん 6 years ago 3 minutes, 25 seconds 83,749 views","artist":""}
+{"id":"Ai3CeY44xPY","title":"Kobushi Factory (こぶしファクトリー) - Osu! Kobushi Tamashii (押忍！こぶし魂) Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 2 years ago 3 minutes, 26 seconds 3,655 views","artist":""}
+// こぶしファクトリー『桜ナイトフィーバー』(Magnolia Factory [Cherry Blossom Night Fever]) (Promotion Edit)
+{"id":"s2XR65k3ptc","title":"こぶしファクトリー『桜ナイトフィーバー』(Magnolia Factory [Cherry Blossom Night Fever]) (Promotion Edit) by こぶしファクトリー 6 years ago 5 minutes, 8 seconds 1,373,148 views","artist":""}
+{"id":"snCBCj5zGLg","title":"こぶしファクトリー『桜ナイトフィーバー』(Magnolia Factory [Cherry Blossom Night Fever]) (Promotion Edit) by Erik Devine 5 years ago 9 minutes, 15 seconds 106 views","artist":""}
+{"id":"bjCJPFgY7X0","title":"こぶしファクトリー 「桜ナイトフィバー」(Cherry Blossom Night Fever) PV撮影 (The Girls Live 20160314) by ハローちゃん寝る Ⅰ 6 years ago 5 minutes, 18 seconds 1,269 views","artist":""}
+{"id":"eREDWW-GiLc","title":"こぶしファクトリー『桜ナイトフィーバー』(Magnolia Factory [Cherry Blossom Night Fever]) 小川麗奈 Solo Ver. by Jeff Day 5 years ago 9 minutes, 12 seconds 83 views","artist":""}
+{"id":"YE0jngo3PU4","title":"Kobushi Factory / Cherry Blossom Night Fever by UTA MARO 6 years ago 4 minutes, 3 seconds 362 views","artist":""}
+// つばきファクトリー - Hyoumenchouryoku _Surface Tension_
+{"id":"0-zbPeFQ8Kg","title":"Tsubaki Factory - Hyoumenchouryoku ~Surface Tension~ by JYP Hello! Project 1 year ago 4 minutes, 22 seconds 28,210 views","artist":""}
+{"id":"nhTnXhfyY38","title":"Tsubaki Factory- Hyoumen Chouryoku ~Surface Tension~ (English Subbed) by Margie GiGi 4 3 years ago 4 minutes, 22 seconds 8,705 views","artist":""}
+{"id":"rzFHPTFdpdM","title":"『表面張力～Surface Tension～』つばきファクトリー/CAMELLIA FACTORY by JPch H!P MOVIES Camellia Factory & BEYOOOOONDS 6 months ago 4 minutes, 22 seconds 8,669 views","artist":""}
+{"id":"U4OCLJh1pdU","title":"4K　つばきファクトリー  表面張力 ～Surface Tension～ ～ 今夜だけ浮かれたかった (MCカット)  '18秋  歌詞付 by helper119 3 years ago 9 minutes, 37 seconds 522,733 views","artist":""}
+{"id":"8A_EfDxw_UY","title":"4K　つばきファクトリー  表面張力 ～Surface Tension～ ～ ハッピークラッカー ～ 今夜だけ浮かれたかった  '19春  歌詞付 by helper119 3 years ago 12 minutes, 10 seconds 130,400 views","artist":""}
+// つばきファクトリー - Kanousei no Concerto
+{"id":"D-QFZxRmuFk","title":"Tsubaki Factory (つばきファクトリー) - Kanousei no Concerto (可能性のコンチェルト) - Lyrics (歌詞歌割:日本語/English) by Project 9:10 2 years ago 3 minutes, 24 seconds 14,029 views","artist":""}
+{"id":"jGH2MdEgV0s","title":"Tsubaki Factory - Kanousei no Concerto by JYP Hello! Project 1 year ago 3 minutes, 25 seconds 3,048 views","artist":""}
+{"id":"DhNfuzVlyvI","title":"つばきファクトリー「可能性のコンチェルト」 by Lauralee Hodapp 2 years ago 6 minutes, 5 seconds 5,385 views","artist":""}
+{"id":"kMK1mSOwx6Q","title":"つばきファクトリー「可能性のコンチェルト」楽器レコーディング by アプカミ 3 years ago 10 minutes, 42 seconds 75,942 views","artist":""}
+{"id":"O9u275RahN0","title":"つばきファクトリー／可能性のコンチェルト by カメリア_CH 4 months ago 2 minutes, 24 seconds 367 views","artist":""}
+// つばきファクトリー『就活センセーション』(Camellia Factory[Job hunting sensation])(Promotion Edit)
+{"id":"zLpHLcsSIik","title":"つばきファクトリー『就活センセーション』(Camellia Factory[Job hunting sensation])(Promotion Edit) by つばきファクトリー 5 years ago 4 minutes, 37 seconds 1,180,217 views","artist":""}
+{"id":"sfHRnLMvksA","title":"つばきファクトリー『就活センセーション』(Job Hunting Sensation) DANCE SHOT VER. by ACCEL Art 5 years ago 4 minutes, 44 seconds 18,168 views","artist":""}
+{"id":"fxZzZFQWbaY","title":"つばきファクトリー　「就活センセーション」 by BOMB BOMB 4 years ago 4 minutes, 36 seconds 101,827 views","artist":""}
+{"id":"E8Y7QBhU6Co","title":"つばきファクトリー『今夜だけ浮かれたかった』(Camellia Factory[Only for tonight, I wanted to be playful])(Promotion Edit) by つばきファクトリー 4 years ago 3 minutes, 59 seconds 5,024,737 views","artist":""}
+{"id":"h87iJHhyfnw","title":"つばきファクトリー／就活センセーション by カメリア_CH 4 months ago 3 minutes, 31 seconds 391 views","artist":""}
+// つばきファクトリー『意識高い乙女のジレンマ』(Camellia Factory [The dilemma of a girl who’s self-aware.])(Promotion Edit)
+{"id":"eUgU09siffs","title":"つばきファクトリー『意識高い乙女のジレンマ』(Camellia Factory [The dilemma of a girl who’s self-aware.])(Promotion Edit) by つばきファクトリー 2 years ago 4 minutes, 19 seconds 913,389 views","artist":""}
+{"id":"YH_rK7ZBXy8","title":"Tsubaki Factory (つばきファクトリー) - Ishiki Takai Otome no Dilemma (意識高い乙女のジレンマ) Lyrics (歌詞歌割:日本語/English) by Project 9:10 2 years ago 4 minutes, 4 seconds 10,441 views","artist":""}
+{"id":"VcCna3eew40","title":"意識高い乙女のジレンマ by mo om7 2 months ago 4 minutes, 5 seconds 400 views","artist":""}
+{"id":"sEhng5ZfWyY","title":"Tsubaki Factory - Ishiki Takai Otome No Dilemma (Dance Shot Ver.) by Katy Correa 2 years ago 4 minutes, 19 seconds 13,784 views","artist":""}
+{"id":"AV-yDvNfNpI","title":"意識高い乙女のジレンマ／ハロコン by Lauralee Hodapp 2 years ago 6 minutes, 43 seconds 10,939 views","artist":""}
+// つばきファクトリー - 愛は今、愛を求めてる (Ai wa Ima, Ai wo Motometeru)【2nd STEP】
+{"id":"n--IthOLaEM","title":"つばきファクトリー (Tsubaki Factory) - 愛は今、愛を求めてる (Ai wa Ima, Ai wo Motometeru)【2nd STEP】 by H!P Songs 2 1 year ago 3 minutes, 51 seconds 12,546 views","artist":""}
+{"id":"jSGnX4UrLxI","title":"Tsubaki Factory - Ai wa Ima, Ai wo Motometeru by JYP Hello! Project 1 year ago 3 minutes, 50 seconds 12,429 views","artist":""}
+{"id":"dPNS9x4LbxM","title":"つばきファクトリー -『愛は今、愛を求めてる』Lyrics (Color Coded JPN/ROM/ENG) by Reinachan 7 months ago 3 minutes, 49 seconds 1,064 views","artist":""}
+{"id":"qltMOO4XpVE","title":"Tsubaki Factory- Ai wa Ima, Ai wo Motometeru (English Subbed) by Margie GiGi 4 1 year ago 3 minutes, 50 seconds 832 views","artist":""}
+{"id":"5yah5XG5Pz4","title":"『愛は今、愛を求めてる』つばきファクトリー/CAMELLIA FACTORY by JPch H!P MOVIES Camellia Factory & BEYOOOOONDS 6 months ago 3 minutes, 52 seconds 3,257 views","artist":""}
+// つばきファクトリー『春恋歌』(Camellia Factory[A Spring Love Song])(Promotion Edit)
+{"id":"kTCgEAmrmh4","title":"つばきファクトリー『春恋歌』(Camellia Factory[A Spring Love Song])(Promotion Edit) by つばきファクトリー 4 years ago 4 minutes, 41 seconds 1,306,597 views","artist":""}
+{"id":"GmLHc88yCkk","title":"4K　つばきファクトリー  春恋歌  '19春  歌詞付 by helper119 3 years ago 4 minutes, 37 seconds 81,421 views","artist":""}
+{"id":"pho7z6zlYS8","title":"春恋歌 by mo om7 2 months ago 4 minutes, 37 seconds 85 views","artist":""}
+{"id":"ayUTzBlFEqQ","title":"『春恋歌』つばきファクトリー/CAMELLIA FACTORY by JPch H!P MUSIC MOVIES 9 months ago 4 minutes, 34 seconds 1,617 views","artist":""}
+{"id":"KYRnRFD3EY8","title":"つばきファクトリー『低温火傷』(Camellia Factory [Low-Temperature Burn])(Promotion Edit) by つばきファクトリー 4 years ago 3 minutes, 54 seconds 3,132,452 views","artist":""}
+// ハロプロ研修生 43度
+{"id":"Lk917d1qWrI","title":"【ハロ！ステ#275】ハロプロ研修生「43度」(6/9 Zepp Tokyo) by rock1114 4 years ago 3 minutes, 40 seconds 126,682 views","artist":""}
+{"id":"p46-Fq0OTF4","title":"ハロプロ研修生『43度』 by 412 pinkairin 4 years ago 3 minutes, 39 seconds 36,832 views","artist":""}
+{"id":"8R1Zn1u4Ku0","title":"ハロプロ研修生☆スタジオライブ！43度～Crying ～愛あらばITS ALL RIGHT by なちゅめPro 2 years ago 11 minutes 53,222 views","artist":""}
+{"id":"1-6A5wjJvN0","title":"43℃ ハロプロ研修生 (2020) by kuzirasaigon 2 years ago 3 minutes, 39 seconds 41,506 views","artist":""}
+{"id":"9_DMOgdir3M","title":"ハロプロ研修生「悪いヒト」(中野サンプラザ) 2020.01.04 by はーCh. 2 years ago 4 minutes, 3 seconds 64,459 views","artist":""}
+// ハロプロ研修生 - Say! Hello!
+{"id":"JEp85TCIZQ4","title":"Say!Hello!　「Let's say “Hello!”／ハロプロ研修生」 by だんぱ 7 years ago 4 minutes, 24 seconds 129,604 views","artist":""}
+{"id":"EVMN1SQjbIU","title":"ハロプロ研修生「Say! Hello!」(Zepp Tokyo) 2016.12.18 by はーCh. 5 years ago 4 minutes, 32 seconds 66,396 views","artist":""}
+{"id":"UqBk00yZ348","title":"ハロプロ研修生　Say! Hello! by オドリストしょーま 5 years ago 4 minutes, 24 seconds 53,179 views","artist":""}
+{"id":"uqAz5L7p3Vw","title":"220330【ハロ！ステ#420】ハロプロ研修生 - Sey! Hello! by 浦島次郎 7 months ago 2 minutes, 52 seconds 6,805 views","artist":""}
+{"id":"_4nww-s_q_c","title":"ハロプロ研修生/こぶし発表会、カントリー・ガールズツアー、アンジュルムコメント、モー娘。'16韓国/生物のお時間！鈴木ヘアアレンジ MC：森戸知沙希・田口夏実【ハロ！ステ#201】 by ハロ！ステ 5 years ago 59 minutes 215,116 views","artist":""}
+// ハロプロ研修生『きみの登場』
+{"id":"aho8k9PhZQM","title":"ハロプロ研修生『きみの登場』 by ハロプロ研修生 1 year ago 3 minutes, 56 seconds 477,231 views","artist":""}
+{"id":"4Vg4yKVGUw8","title":"ハロプロ研修生　「きみの登場（7人ver.）」 by BOMB BOMB 1 year ago 3 minutes, 54 seconds 59,763 views","artist":""}
+{"id":"RdN1RlnhzuY","title":"ハロプロ研修生  きみの登場 by Milk Jam 1 year ago 3 minutes, 57 seconds 21,761 views","artist":""}
+{"id":"XysGHGySVyY","title":"【ハロプロ研修生】きみの登場 by どいちゅうた 4 months ago 3 minutes, 57 seconds 10,582 views","artist":""}
+{"id":"fiMaMvldmfI","title":"『きみの登場』ハロプロ研修生 by JPch H!P MUSIC MOVIES 2 weeks ago 3 minutes, 51 seconds 3,851 views","artist":""}
+// モーニング娘。'16『泡沫サタデーナイト！』(Morning Musume。'16[Ephemeral Saturday Night]) (Promotion Edit)
+{"id":"IiV-aaLo9SM","title":"モーニング娘。'16『泡沫サタデーナイト！』(Morning Musume。'16[Ephemeral Saturday Night]) (Promotion Edit) by モーニング娘。 6 years ago 3 minutes, 59 seconds 14,414,920 views","artist":""}
+{"id":"vZSmjqh8KBk","title":"61st [泡沫サタデーナイト!] [Utakatta Saturday Night!] - Morning Musume '16 (CC/Lyrics on screen) by Baican Pop 6 years ago 3 minutes, 49 seconds 95,268 views","artist":""}
+{"id":"t550PE9h0N4","title":"8K モーニング娘 16 泡沫サタデーナイト/Morning Musume 16 Ephemeral Saturday Night!  2016 SUMMER ~Rainbow Carnival~ by Morning Musume 8K 2022 3 months ago 3 minutes, 53 seconds 769 views","artist":""}
+{"id":"57bTNDzB_nA","title":"モーニング娘。'16 - Utakata Saturday Night! (泡沫サタデーナイト!) Lyrics(Color Coded JPN/ROM/ENG) by Reinachan 3 years ago 3 minutes, 49 seconds 11,304 views","artist":""}
+{"id":"pTQz8rfFBRQ","title":"Morning Musume '16 (モーニング娘。'16) Utakata Saturday Night // Colour Coded Lyrics by IshidaAyumiIsLife :3 3 years ago 3 minutes, 51 seconds 5,105 views","artist":""}
+// モーニング娘。'17『BRAND NEW MORNING』(Morning Musume。'17[BRAND NEW MORNING])(Promotion Edit)
+{"id":"2Z-3jHbbcZU","title":"モーニング娘。'17『BRAND NEW MORNING』(Morning Musume。'17[BRAND NEW MORNING])(Promotion Edit) by モーニング娘。 5 years ago 4 minutes, 33 seconds 6,017,212 views","artist":""}
+{"id":"1rf6vJawspQ","title":"4K　BRAND NEW MORNING  '17春  歌詞付 by helper119 1 year ago 6 minutes, 10 seconds 133,084 views","artist":""}
+{"id":"Pqc3Z1K6KW0","title":"モーニング娘。'17　｢BRAND NEW MORNING」 by ぽくぽく 5 years ago 3 minutes, 11 seconds 890,727 views","artist":""}
+{"id":"XdV88f-OxCA","title":"モーニング娘。'17『ジェラシー ジェラシー』(Morning Musume。'17[Jealousy Jealousy])(Promotion Edit) by モーニング娘。 5 years ago 4 minutes, 43 seconds 4,609,147 views","artist":""}
+{"id":"yFZq-hLhrvA","title":"Morning Musume '17 (モーニング娘。'17) - BRAND NEW MORNING Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 3 years ago 4 minutes, 21 seconds 23,085 views","artist":""}
+// モーニング娘。'22『I WISH』Promotion Edit
+{"id":"GzSzUhUPNdI","title":"モーニング娘。'22『I WISH』Promotion Edit by モーニング娘。 7 months ago 5 minutes, 1 second 1,870,822 views","artist":""}
+{"id":"Z14RBgUB8MI","title":"ヲタクの感想文です by しょこってり 1 day ago 57 seconds 9,433 views","artist":""}
+{"id":"Irdlydtwb-k","title":"モーニング娘。'22 × モーニング娘。(2000)『I WISH』重ね合わせ by tikibun 7 months ago 4 minutes, 59 seconds 112,975 views","artist":""}
+{"id":"2aMN-3GSJ38","title":"【継承】モーニング娘。'22版『I WISH』の新作MVを初見リアクション！！圧倒的歴史に声が出なくなる。。。 by Midnight坊主。 7 months ago 9 minutes, 23 seconds 11,195 views","artist":""}
+{"id":"u5R9KXOJBqY","title":"モーニング娘。'22 ♪I Wish('21 Xmas edit)＝貴殿的管#324 by Tail Of Name 7 months ago 5 minutes, 8 seconds 653 views","artist":""}
+// モーニング娘。'22『大・人生 Never Been Better!』Promotion Edit
+{"id":"B-xPswM-cvs","title":"モーニング娘。'22『大・人生 Never Been Better!』Promotion Edit by モーニング娘。 5 months ago 4 minutes, 58 seconds 942,850 views","artist":""}
+{"id":"f_hqHCvX46w","title":"モーニング娘。22　大・人生Never Beet Better! by icyao 3 months ago 5 minutes 8,143 views","artist":""}
+{"id":"75PQO-s83kc","title":"モーニング娘。'22『Chu Chu Chu 僕らの未来』Promotion Edit by モーニング娘。 5 months ago 4 minutes, 36 seconds 1,664,750 views","artist":""}
+{"id":"XO6SWAQXLds","title":"モーニング娘。'22 大・人生 Never Been Better! (ダンスショットバージョン) by Juan's Music Videos 3 months ago 4 minutes, 56 seconds 4,561 views","artist":""}
+{"id":"_t5azmqSWpI","title":"モーニング娘。22　大・人生　Never Been Better！ 2 by icyao 1 month ago 5 minutes 38,456 views","artist":""}
+// モーニング娘。 『AS FOR ONE DAY』 (MV)
+{"id":"sf2rstEzbFI","title":"モーニング娘。 『AS FOR ONE DAY』 (MV) by モーニング娘。 12 years ago 4 minutes, 21 seconds 2,111,159 views","artist":""}
+{"id":"q6mtHeY4Y48","title":"Morning Musume (モーニング娘。) - AS FOR ONE DAY Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 3 years ago 4 minutes, 17 seconds 19,232 views","artist":""}
+{"id":"s68UL1y17UY","title":"AS FOR ONE DAY (2003 LIVE) by testrooms1 5 years ago 4 minutes, 13 seconds 53,002 views","artist":""}
+{"id":"FjZDqpIGU1w","title":"AS FOR ONE DAY / モーニング娘。(モーニング娘。コンサートツアー2003春NON STOP！) by ハロプロ my love ♡ 2 years ago 4 minutes, 17 seconds 3,531 views","artist":""}
+{"id":"l7ej9o3o68M","title":"モーニング娘。 『Do it! Now』 (MV) by モーニング娘。 12 years ago 4 minutes, 30 seconds 7,443,866 views","artist":""}
+// モーニング娘。 『Do it! Now』 (MV)
+{"id":"l7ej9o3o68M","title":"モーニング娘。 『Do it! Now』 (MV) by モーニング娘。 12 years ago 4 minutes, 30 seconds 7,443,866 views","artist":""}
+{"id":"kjPkXXlUPGo","title":"Do it! Now／モーニング娘。 (2002) by old_MM 6 months ago 3 minutes, 37 seconds 13,312 views","artist":""}
+{"id":"O_8O8LtFe5U","title":"Do It Now / モーニング娘。(Hello! Project 2007 Winter～ワンダフルハーツ乙女Gocoro～) by ハロプロ my love ♡ 1 year ago 3 minutes, 36 seconds 9,239 views","artist":""}
+{"id":"4JVP9lIDwV0","title":"Do it! Now / モーニング娘。(モーニング娘。CONCERT TOUR 2003 15人でNON STOP!) by ハロプロ my love ♡ 2 years ago 3 minutes, 40 seconds 4,397 views","artist":""}
+{"id":"0EhQNNbJHkk","title":"Do It Now! / モーニング娘。(Hello! Project 2003 Winter 楽しんじゃってます!) by ハロプロ my love ♡ 2 years ago 3 minutes, 39 seconds 5,180 views","artist":""}
+// モーニング娘。- Inspiration!
+{"id":"4QBiVLwIiyw","title":"Morning Musume (モーニング娘。) Inspiration! // Colour Coded Lyrics by IshidaAyumiIsLife :3 2 years ago 4 minutes, 18 seconds 72,643 views","artist":""}
+{"id":"0VCnKUhyOao","title":"モーニング娘。'17 インスピレーション！ at モーニング娘。’17 コンサートツアー春～THE INSPIRATION!～ 日本武道館 20170623 by Hello LIVE 5 years ago 4 minutes, 35 seconds 102,969 views","artist":""}
+{"id":"NNj7u9s8Dio","title":"「インスピレーション！」　モーニング娘。 by dokomademoHP 10 years ago 3 minutes, 17 seconds 270,193 views","artist":""}
+{"id":"dM677bEGfEs","title":"モーニング娘。 メドレー by この感動を「共有」したい 4 years ago 11 minutes, 18 seconds 204,442 views","artist":""}
+{"id":"bmvxmTQsFUk","title":"インスピレーション！/ モーニング娘。(from ライブレボリューション21 春〜大阪城ホール最終日〜) by ハロプロ my love ♡ 2 years ago 3 minutes, 20 seconds 9,772 views","artist":""}
+// モーニング娘。 『LOVEマシーン』 (MV)
+{"id":"6A7j6eryPV4","title":"モーニング娘。 『LOVEマシーン』 (MV) by モーニング娘。 12 years ago 5 minutes, 27 seconds 20,147,512 views","artist":""}
+{"id":"cabzEHGQoHs","title":"PVモーニング娘。   LOVEマシーン完全Full ver by あの頃のハロプロfan 1 year ago 9 minutes, 32 seconds 1,170 views","artist":""}
+{"id":"p-kBWkg1rlQ","title":"モーニング娘。 ASAYAN LOVEマシーン PV完全初公開 by ケンタロス 3 years ago 23 minutes 93,758 views","artist":""}
+{"id":"H4ZJfBhA5Lk","title":"モーニング娘。 ASAYAN LOVEマシーンPV撮影裏等 by ケンタロス 3 years ago 32 minutes 38,586 views","artist":""}
+{"id":"yvDnWNlWN1A","title":"LOVEマシーン / モーニング娘。(GREEN LIVE) by ハロプロ my love ♡ 1 year ago 5 minutes, 55 seconds 5,016 views","artist":""}
+// モーニング娘。 『Memory 青春の光』 (MV)
+{"id":"YLBP_NHK3Mo","title":"モーニング娘。 『Memory 青春の光』 (MV) by モーニング娘。 12 years ago 5 minutes, 3 seconds 4,294,741 views","artist":""}
+{"id":"eLWmWlM7JvM","title":"モーニング娘。 『Memory 青春の光』 1999 by にゃんダム 6 years ago 5 minutes, 24 seconds 225,101 views","artist":""}
+{"id":"sqC78H82j6U","title":"抱いてHOLD ON ME! / モーニング娘。(from モーニング娘｡Memory〜青春の光〜Tour 1999 4 18) by ハロプロ my love ♡ 2 years ago 4 minutes, 31 seconds 1,952 views","artist":""}
+{"id":"uhx3nvWimDI","title":"サマーナイトタウン / モーニング娘。(from モーニング娘｡Memory〜青春の光〜Tour 1999.4.18) by ハロプロ my love ♡ 3 years ago 3 minutes, 54 seconds 3,986 views","artist":""}
+{"id":"jmAOnwR733A","title":"Memory 青春の光／モーニング娘。 (1999) by old_MM 7 months ago 2 minutes, 30 seconds 6,866 views","artist":""}
+// モーニング娘。 - Silver no Udedokei (シルバーの腕時計) Lyrics (Color Coded JPN_ROM_ENG)
+{"id":"Dezqb8l98aI","title":"Morning Musume (モーニング娘。) - Silver no Udedokei (シルバーの腕時計) Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 3 years ago 5 minutes, 51 seconds 100,264 views","artist":""}
+{"id":"Mxq8jOG0yZk","title":"シルバーの腕時計 | カラーコードの歌詞 | Silver no Udedokei (Silver Wristwatch) | Colour Code Lyrics by Project Douzo! 8 years ago 5 minutes, 48 seconds 100,643 views","artist":""}
+{"id":"m9fwEex7J2I","title":"シルバーの腕時計 生田・加賀ver（Rap. 譜久村横山） by kame 4 years ago 3 minutes, 36 seconds 70,296 views","artist":""}
+{"id":"xeowp_Tk5_4","title":"【歌詞付・ENG】モーニング娘。'20 佐藤優樹 「シルバーの腕時計」 by ちゃんまー 2 years ago 3 minutes, 46 seconds 122,295 views","artist":""}
+{"id":"tRNqK18rvQU","title":"8K モーニング娘 17 シルバーの腕時計/Morning Musume 17 Silver Watches (Sing 譜久村聖 横山玲奈  Rap 生田衣梨奈 加賀楓) by Morning Musume 8K 2022 7 months ago 4 minutes, 10 seconds 1,501 views","artist":""}
+// モーニング娘。 - The Matenerou Show (The 摩天楼ショー) Lyrics (Color Coded JPN_ROM_ENG)
+{"id":"upW4yFgzkHI","title":"Morning Musume (モーニング娘。) - The Matenerou Show (The 摩天楼ショー) Lyrics (Color Coded JPN/ROM/ENG) by エル。Ele 3 years ago 5 minutes, 15 seconds 43,556 views","artist":""}
+{"id":"swYQnicvYZE","title":"モーニング娘。 - The Matenrou Show [The 摩天楼ショー]  Lyrics (Color Coded JPN/ROM/ENG) by Reinachan 3 years ago 5 minutes, 15 seconds 1,418 views","artist":""}
+{"id":"BZNBDYmAPJA","title":"Morning Musume (モーニング娘。) The Matenrou Show // Colour Coded Lyrics by IshidaAyumiIsLife :3 8 months ago 5 minutes, 20 seconds 1,678 views","artist":""}
+{"id":"_gbN3uznjwk","title":"The摩天楼ショー | カラーコードの歌詞 | The Matenrou Show (The Skyscraper Show) | Colour Code Lyrics by Project Douzo! 8 years ago 5 minutes, 15 seconds 14,572 views","artist":""}
+{"id":"8nWxsNVHXdk","title":"The摩天楼ショー (TYPE 0) | カラーコードの歌詞 | The Matenrou Show (TYPE 0) | Colour Code Lyrics by Project Douzo! 8 years ago 5 minutes, 15 seconds 10,836 views","artist":""}
+// モーニング娘。 『ザ☆ピース！』 (MV)
+{"id":"-3RyqCAJkRU","title":"モーニング娘。 『ザ☆ピ〜ス！』 (MV) by モーニング娘。 12 years ago 5 minutes, 34 seconds 12,711,093 views","artist":""}
+{"id":"VzVVvusiTww","title":"01年モーニング娘。7月ザ☆ピ〜ス! (フルコーラス) by Hiro 2 5 years ago 5 minutes, 26 seconds 9,697,043 views","artist":""}
+{"id":"2P-LpDF8QgY","title":"モーニング娘。 ザ☆ピ～ス! by JIANJIE8712 13 years ago 5 minutes, 35 seconds 10,884 views","artist":""}
+{"id":"aajoq3BuNP4","title":"01年モーニング娘。7月ザ☆ピ〜ス!PV撮影 by Hiro 2 5 years ago 7 minutes, 30 seconds 282,006 views","artist":""}
+{"id":"I_zmewdR-b8","title":"モーニング娘。 『そうだ！We're ALIVE』 (MV) by モーニング娘。 12 years ago 5 minutes 5,241,256 views","artist":""}
+// モーニング娘。 『そうだ！We're ALIVE』 (MV)
+{"id":"I_zmewdR-b8","title":"モーニング娘。 『そうだ！We're ALIVE』 (MV) by モーニング娘。 12 years ago 5 minutes 5,241,256 views","artist":""}
+{"id":"3XSJnamAtzg","title":"(2002.02.20)モーニング娘｡「そうだ!We're ALIVE」 by SENNINHA0321 9 years ago 4 minutes, 55 seconds 2,658,253 views","artist":""}
+{"id":"cHkBxCSqWMI","title":"モーニング娘。 『そうだ！We're ALIVE』 (MV) by Otis Patter 5 years ago 8 minutes, 51 seconds 152 views","artist":""}
+{"id":"5ggRxOPKwjA","title":"02年モーニング娘。2月そうだ! We're ALIVE(フルコーラス ver.)と PV撮影 by Hiro 2 5 years ago 9 minutes, 30 seconds 113,558 views","artist":""}
+{"id":"_FpN9kFiMX0","title":"そうだ!We're ALIVE / ハロー!プロジェクト (Hello! Project 2006 Winter～全員集GO！～) by ハロプロ my love ♡ 1 year ago 6 minutes, 21 seconds 2,202 views","artist":""}
+// モーニング娘。 『ハッピーサマーウェディング』 (MV)
+{"id":"Dh695gSiwo8","title":"モーニング娘。 『ハッピーサマーウェディング』 (MV) by モーニング娘。 12 years ago 4 minutes, 50 seconds 16,427,826 views","artist":""}
+{"id":"A4MNhPU_qIE","title":"ハッピーサマーウェディング／モーニング娘。 (2001) by old_MM 6 months ago 4 minutes, 48 seconds 35,182 views","artist":""}
+{"id":"hWcsBPpPJmc","title":"00年モーニング娘。4月ハピサマ4期初レコーディング by Hiro 2 2 years ago 20 minutes 612,625 views","artist":""}
+{"id":"x4UHhy96UDs","title":"ハッピーサマーウェディング / モーニング娘。(from ライブレボリューション21 春〜大阪城ホール最終日〜) by ハロプロ my love ♡ 2 years ago 5 minutes, 4 seconds 3,551 views","artist":""}
+{"id":"FSGlWYemwEA","title":"ハッピーサマーウェディング／モーニング娘。 (2000) by old_MM 6 months ago 3 minutes, 6 seconds 12,068 views","artist":""}
+// モーニング娘。 『リゾナント ブルー』 (MV)
+{"id":"sEwZx9GOSmc","title":"モーニング娘。 『リゾナント ブルー』 (MV) by モーニング娘。 11 years ago 5 minutes, 2 seconds 4,206,565 views","artist":""}
+{"id":"RNQdHuLVtJk","title":"モーニング娘。『リゾナント ブルー』 (Night Scene Ver.) by モーニング娘。 11 years ago 5 minutes, 6 seconds 111,451 views","artist":""}
+{"id":"ba7DBW4YnIE","title":"モーニング娘。『リゾナント ブルー』 (Another Ver.) by モーニング娘。 11 years ago 5 minutes, 21 seconds 52,172 views","artist":""}
+{"id":"-lBcWKY8y3M","title":"モーニング娘。'17  『シャボン玉』『リゾナントブルー』 『好きだな君が』『ロボキッス』 辻希美 高橋愛 道重さゆみ 田中れいな by 早安少女組。'22 4 years ago 7 minutes, 28 seconds 3,321,234 views","artist":""}
+{"id":"2Bp9uGNT0i8","title":"モーニング娘。『リゾナント ブルー』 （One Cut Dance Ver.) by モーニング娘。 11 years ago 4 minutes, 59 seconds 715,240 views","artist":""}
+// モーニング娘。 『恋愛レボリューション21』  (MV)
+{"id":"D_xkQAxyf-o","title":"モーニング娘。 『恋愛レボリューション21』  (MV) by モーニング娘。 12 years ago 4 minutes, 54 seconds 30,272,583 views","artist":""}
+{"id":"4B3HszdrRoA","title":"(2000.12.23) モーニング娘。｢恋愛レボリューション21｣ by SENNINHA0321 9 years ago 3 minutes, 14 seconds 3,061,260 views","artist":""}
+{"id":"eDzmzzTJLO8","title":"恋愛レボリューション/ドリームモーニング娘 by hideki77 7 years ago 3 minutes, 26 seconds 582,669 views","artist":""}
+{"id":"jzDRo-rqplo","title":"恋愛レボリューション21 PVメイキング by vette azumi 2 years ago 8 minutes, 55 seconds 109 views","artist":""}
+{"id":"664Z8aTTBKA","title":"00年モーニング娘。12月恋愛レボリューション21 by Hiro 2 5 years ago 3 minutes, 15 seconds 1,019,126 views","artist":""}
+// モーニング娘。 『笑顔YESヌード』 (MV)
+{"id":"UjmEOAyxKE0","title":"モーニング娘。 『笑顔YESヌード』 (MV) by モーニング娘。 12 years ago 4 minutes, 18 seconds 1,915,929 views","artist":""}
+{"id":"vbPE8aEkEps","title":"モーニング娘｡『笑顔YESヌード』 by HP堂 13 days ago 2 minutes, 34 seconds 451 views","artist":""}
+{"id":"YIZPmClKsqM","title":"モーニング娘。 『泣いちゃうかも』 (MV) by モーニング娘。 11 years ago 4 minutes, 42 seconds 1,992,193 views","artist":""}
+{"id":"JOb_HWct4Xo","title":"モーニング娘。'22 『笑顔YESヌード 』CONCERT TOUR 2022 SPRING～Never Been Better!～ by 早安少女組。'22 3 months ago 3 minutes 503,295 views","artist":""}
+{"id":"2GBXfwBYmaU","title":"4K　元気＋ ～ 笑顔YESヌード (さゆっ さゆっ 入り)  '07春  歌詞付 by helper119 3 years ago 9 minutes, 25 seconds 35,070 views","artist":""}
+// 「井上玲音がJuice=Juiceの歌を・・・」#04
+{"id":"mX7lMG1gpUw","title":"「井上玲音がJuice=Juiceの歌を・・・」#04 by Juice=Juice 2 years ago 2 minutes, 43 seconds 304,014 views","artist":""}
+{"id":"0k0va5iLhAI","title":"「井上玲音がJuice=Juiceの歌を・・・」#05 by Juice=Juice 2 years ago 2 minutes, 45 seconds 349,193 views","artist":""}
+{"id":"6myl2IftM-M","title":"「井上玲音がJuice=Juiceの歌を・・・」#06 by Juice=Juice 2 years ago 3 minutes, 11 seconds 294,951 views","artist":""}
+{"id":"nwKSpboKKQ8","title":"【 こぶしファクトリー 】れい令和！井上玲音 ソロパート集 by エビねこ 3 years ago 3 minutes, 5 seconds 37,351 views","artist":""}
+{"id":"cd3Y3j5LrKY","title":"「井上玲音がJuice=Juiceの歌を・・・」#08 by Juice=Juice 2 years ago 2 minutes, 51 seconds 435,086 views","artist":""}
+// 「井上玲音がJuice=Juiceの歌を・・・」#06
+{"id":"6myl2IftM-M","title":"「井上玲音がJuice=Juiceの歌を・・・」#06 by Juice=Juice 2 years ago 3 minutes, 11 seconds 294,951 views","artist":""}
+{"id":"a3m9-r_svzI","title":"「井上玲音がJuice=Juiceの歌を・・・」#07 by Juice=Juice 2 years ago 3 minutes, 21 seconds 332,763 views","artist":""}
+{"id":"cd3Y3j5LrKY","title":"「井上玲音がJuice=Juiceの歌を・・・」#08 by Juice=Juice 2 years ago 2 minutes, 51 seconds 435,086 views","artist":""}
+{"id":"0k0va5iLhAI","title":"「井上玲音がJuice=Juiceの歌を・・・」#05 by Juice=Juice 2 years ago 2 minutes, 45 seconds 349,193 views","artist":""}
+{"id":"VDzq3ewYX_A","title":"『好きかもしれない』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 4 minutes, 6 seconds 3,145 views","artist":""}
+// 「井上玲音がJuice=Juiceの歌を・・・」#07
+{"id":"a3m9-r_svzI","title":"「井上玲音がJuice=Juiceの歌を・・・」#07 by Juice=Juice 2 years ago 3 minutes, 21 seconds 332,763 views","artist":""}
+{"id":"cd3Y3j5LrKY","title":"「井上玲音がJuice=Juiceの歌を・・・」#08 by Juice=Juice 2 years ago 2 minutes, 51 seconds 435,086 views","artist":""}
+{"id":"VDzq3ewYX_A","title":"『好きかもしれない』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 4 minutes, 6 seconds 3,145 views","artist":""}
+{"id":"ozCCnReak_k","title":"「井上玲音がJuice=Juiceの歌を・・・」#03 by Juice=Juice 2 years ago 2 minutes, 59 seconds 263,134 views","artist":""}
+{"id":"0k0va5iLhAI","title":"「井上玲音がJuice=Juiceの歌を・・・」#05 by Juice=Juice 2 years ago 2 minutes, 45 seconds 349,193 views","artist":""}
+// 「井上玲音がJuice=Juiceの歌を・・・」#08
+{"id":"cd3Y3j5LrKY","title":"「井上玲音がJuice=Juiceの歌を・・・」#08 by Juice=Juice 2 years ago 2 minutes, 51 seconds 435,086 views","artist":""}
+{"id":"a3m9-r_svzI","title":"「井上玲音がJuice=Juiceの歌を・・・」#07 by Juice=Juice 2 years ago 3 minutes, 21 seconds 332,763 views","artist":""}
+{"id":"VDzq3ewYX_A","title":"『好きかもしれない』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 4 minutes, 6 seconds 3,145 views","artist":""}
+{"id":"FAfEebngSC8","title":"「井上玲音がJuice=Juiceの歌を・・・」音質加工メドレー by hello music 1 year ago 17 minutes 1,423 views","artist":""}
+{"id":"0k0va5iLhAI","title":"「井上玲音がJuice=Juiceの歌を・・・」#05 by Juice=Juice 2 years ago 2 minutes, 45 seconds 349,193 views","artist":""}
+// 宇宙でLa Ta Ta _ 高木紗友希・上國料萌衣
+{"id":"iSTh17VkzUA","title":"宇宙でLa Ta Ta / 高木紗友希・上國料萌衣 by aosatana 1 year ago 3 minutes, 14 seconds 416,418 views","artist":""}
+{"id":"AGqVbMXF-tk","title":"奇跡のコラボ！高木紗友希×上國料萌衣『宇宙でLa TA TA』 by おでんくん 6 months ago 3 minutes, 2 seconds 269 views","artist":""}
+{"id":"ihOc5iB3iuM","title":"[Hirose Ayaka] Uchuu de La Ta Ta [Kobushi Factory] by 85 84 3 years ago 3 minutes, 19 seconds 84,854 views","artist":""}
+{"id":"OiTtwT9MZhQ","title":"【さゆき無双 vs 全ハロプロ】 Juice=Juice『Magic of Love 』番外編　Hello! Project 2020 Winter オオトリ by おでんくん 8 months ago 3 minutes, 17 seconds 3,224 views","artist":""}
+{"id":"uHuToRz65CE","title":"宇宙でLa Ta Ta / 太陽とシスコムーン by nekoxwqe 15 years ago 4 minutes, 27 seconds 871,599 views","artist":""}
+// 小片リサ『どっち』Promotion Edit
+{"id":"Nr9y0AsU0qs","title":"小片リサ『どっち』Music Video by M-line Music 1 month ago 4 minutes, 1 second 61,154 views","artist":""}
+{"id":"AG5LrQr82h8","title":"小片リサ『Kitty』Music Video by M-line Music 2 weeks ago 3 minutes, 53 seconds 38,541 views","artist":""}
+{"id":"I13zmc2aa0s","title":"【アプカミ#295】小片リサ「どっち」MV撮影メイキング・「Never Never know～コメ派とパン派のラブウォーズ～」島倉りかREC・「アイドル天職音頭」豫風瑠乃 MC : 山﨑夢羽 平井美葉 by アプカミ 3 weeks ago 37 minutes 30,647 views","artist":""}
+{"id":"3SJgvwkJ1p4","title":"【M-line Music#59】小片リサ「どっち」MV初公開！！/「新芽」「高輪ゲートウェイ駅ができる頃には」LIVE/ 矢島舞美ディナーショー/「カリーナノッテ」/  MC 小片リサ・田﨑あさひ by M-line Music 1 month ago 32 minutes 22,079 views","artist":""}
+{"id":"qcMibJlOqB4","title":"小片リサ COTTON CLUB 純情cm by おがたさんかわいい 4 months ago 4 minutes, 34 seconds 16,422 views","artist":""}
+// 小片リサ  宇宙でLa Ta Ta
+{"id":"vNR6uICic8c","title":"小片リサ COTTON CLUB 宇宙でLa Ta Ta by おがたさんかわいい 3 months ago 4 minutes, 25 seconds 5,327 views","artist":""}
+{"id":"q5tRVzxanOI","title":"【M-line Music#48】ハロプロキッズ20周年 未公開トーク/「宇宙でLa Ta Ta」「君だけじゃないさfriends」「若者ブランド」LIVE/悪嬢転生コメント MC小片リサ・田﨑あさひ by M-line Music 3 months ago 35 minutes 38,808 views","artist":""}
+{"id":"uHuToRz65CE","title":"宇宙でLa Ta Ta / 太陽とシスコムーン by nekoxwqe 15 years ago 4 minutes, 27 seconds 871,599 views","artist":""}
+{"id":"iXvWFlScMf8","title":"Taiyo & Ciscomoon - talk + Uchuu de La Ta Ta 1999.07.25 by akaji04 11 years ago 10 minutes, 58 seconds 147,314 views","artist":""}
+{"id":"ZrpzO_wbxKY","title":"「Magic of Love」鈴木愛理・宮本佳林・小片リサ・Bitter ＆ Sweet・竹内朱莉　M line Special 2021〜Make a Wish!〜 by ポジティブりかろー 1 year ago 5 minutes, 5 seconds 62,815 views","artist":""}
+// 東京女子流 A New Departure
+{"id":"DgtlkkVXmqY","title":"A New Departure by TOKYO GIRLS’ STYLE東京女子流 6 minutes, 9 seconds 1,354 views","artist":""}
+{"id":"gKdMgx7Fl7o","title":"2014.12.30 東京女子流「A New Departure」 @大阪BIG CAT by tgs kurayan 7 years ago 6 minutes, 13 seconds 4,343 views","artist":""}
+{"id":"dLhd7hObJGs","title":"東京女子流　 A New Departure×５つ数えれば君の夢 by yuya watanabe 7 years ago 6 minutes, 28 seconds 9,085 views","artist":""}
+{"id":"5Y5UwP_s4IY","title":"2014.12.28 東京女子流「A New Departure」 @ラゾーナ川崎 by tgs kurayan 7 years ago 6 minutes, 17 seconds 4,377 views","artist":""}
+{"id":"aQpWT5T5mqg","title":"東京女子流 / Stay with me by avex 7 years ago 7 minutes, 22 seconds 192,648 views","artist":""}
+// 東京女子流 Attack Hyper Beat POP
+{"id":"g8PMlMMqaSY","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part10〜Attack Hyper Beat POP〜 by avex 4 years ago 4 minutes, 19 seconds 33,193 views","artist":""}
+{"id":"kxM3dJhQacY","title":"Attack Hyper Beat POP by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 12 seconds 27,103 views","artist":""}
+{"id":"ZF4GVyr0n1E","title":"東京女子流　Attack Hyper Beat POP by Save idol music 8 months ago 4 minutes, 15 seconds 584 views","artist":""}
+{"id":"2UEMVhOsNzE","title":"東京女子流 with 大原優乃 - Attack Hyper Beat POP by 日向逸夫 4 years ago 4 minutes, 17 seconds 25,572 views","artist":""}
+{"id":"Rl7e_edEtPU","title":"東京女子流 / キラリ☆ by avex 12 years ago 5 minutes, 57 seconds 892,404 views","artist":""}
+// 東京女子流 - Count Three -New Vocal -
+{"id":"nQSuMIiAgoY","title":"『豪の部屋』山邊未夢、東京女子流デビュー当時からの歴史を振り返る！グループ解散危機やTIF史上に残る名シーンの話など。 by SHOWROOM 1 year ago 2 hours 13,048 views","artist":""}
+{"id":"4z97dXADdJk","title":"東京女子流 / Hello, Goodbye by avex 1 year ago 4 minutes, 18 seconds 114,181 views","artist":""}
+{"id":"7IIRPs1eQhY","title":"東京女子流 / Limited addiction by avex 6 years ago 5 minutes, 18 seconds 23,117 views","artist":""}
+{"id":"yduuHMe1KQ8","title":"東京女子流 / ヒマワリと星屑 by avex 12 years ago 4 minutes, 37 seconds 931,560 views","artist":""}
+{"id":"DgIw6pDMpK8","title":"東京女子流 / 追憶 -Single Version-(Short Ver.) by avex 10 years ago 5 minutes, 37 seconds 482,533 views","artist":""}
+// 東京女子流  days ～キミだけがいない街～
+{"id":"S5pI6EkoVvg","title":"東京女子流 / days 〜キミだけがいない街〜（2022.1.18出演 「WONDER WHEEL」） by TOKYO GIRLS’ STYLE東京女子流 9 months ago 4 minutes, 52 seconds 42,343 views","artist":""}
+{"id":"zph8v41p4HA","title":"days 〜キミだけがいない街〜 -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 8 months ago 4 minutes, 46 seconds 10,282 views","artist":""}
+{"id":"hLz5HQeNed0","title":"東京女子流　days ～キミだけがいない街～ by Save idol music 7 months ago 4 minutes, 47 seconds 1,607 views","artist":""}
+{"id":"LsfMs3wamqY","title":"【4K：Binaural】東京女子流　days ～キミだけがいない街～ by Save idol music 2 months ago 9 minutes, 45 seconds 888 views","artist":""}
+{"id":"ntIsEqpnWqA","title":"TOKYO GIRLS’ STYLE (東京女子流) - days ～キミだけがいない街～ (IFADWORLD Remix) by IFAD WORLD 7 months ago 3 minutes, 48 seconds 739 views","artist":""}
+// 東京女子流 - Dear mama
+{"id":"r-4tqThJhbo","title":"東京女子流 / Dear mama (「 東京女子流 12th Anniversary Live *物語の1ページ*」より） by TOKYO GIRLS’ STYLE東京女子流 5 months ago 5 minutes, 24 seconds 13,153 views","artist":""}
+{"id":"3aiCHqekxCU","title":"東京女子流 - Dear mama (Official Lyric Video) by TOKYO GIRLS’ STYLE東京女子流 6 months ago 5 minutes, 2 seconds 14,556 views","artist":""}
+{"id":"kZTAc3X5blA","title":"東京女子流　Dear mama by Save idol music 6 months ago 4 minutes, 42 seconds 2,185 views","artist":""}
+{"id":"Eak-w0M-QVk","title":"Dear mama Ⅳ - 涙のレコーディング by TOKYO GIRLS’ STYLE東京女子流 6 months ago 1 minute, 26 seconds 2,182 views","artist":""}
+{"id":"-Q1JlRzDoro","title":"Dear mama Ⅴ - 庄司芽生からママへ by TOKYO GIRLS’ STYLE東京女子流 6 months ago 4 minutes, 56 seconds 1,602 views","artist":""}
+// 東京女子流 - Don't Be Cruel (野音 Again) _ Tokyo Girls Style
+{"id":"nbQ-td4zSAE","title":"[4K] 東京女子流 - Don't Be Cruel (野音 Again) / Tokyo Girls Style by idol 4K 5 years ago 4 minutes, 38 seconds 6,970 views","artist":""}
+{"id":"XFvGynQmyKI","title":"[4K] 東京女子流 - ふたりきり (野音 Again) / Tokyo Girls' Style - Futarikiri by idol 4K 5 years ago 5 minutes, 14 seconds 41,504 views","artist":""}
+{"id":"Yp0OtGiqWhE","title":"東京女子流 // Don't Be Cruel by ButaUsagi101 10 years ago 4 minutes, 37 seconds 3,052 views","artist":""}
+{"id":"o_y4epllvSw","title":"[4K] 東京女子流 - それでいいじゃん (野音 Again) / Tokyo Girls' Style - Sore De Ii Jyan by idol 4K 5 years ago 5 minutes, 38 seconds 45,102 views","artist":""}
+{"id":"v79nhoNCvMs","title":"[4K] 東京女子流 - 鼓動の秘密 (野音 Again) / Tokyo Girls' Style - Kodou no Himitsu by idol 4K 5 years ago 3 minutes, 46 seconds 61,205 views","artist":""}
+// 東京女子流 existence
+{"id":"BGf7PVOwm54","title":"existence（東京女子流 5周年LIVEより）[2015.12.16 OnSale Blu-ray / DVD] by TOKYO GIRLS’ STYLE東京女子流 6 years ago 4 minutes, 15 seconds 71,759 views","artist":""}
+{"id":"2cNeCQDSGWE","title":"existence by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 13 seconds 1,542 views","artist":""}
+{"id":"8_JtfYKILtg","title":"加速度 by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 36 seconds 4,742 views","artist":""}
+{"id":"_xmkJxs3sKk","title":"東京女子流 20141102 existence by Hakey Word 7 years ago 4 minutes, 14 seconds 2,125 views","artist":""}
+{"id":"FOLTBsDt6es","title":"東京女子流 - existence by Deon Bean 2 years ago 4 minutes, 10 seconds 189 views","artist":""}
+// 東京女子流 GAME
+{"id":"OZZ3EWhDY60","title":"GAME by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 26 seconds 1,912 views","artist":""}
+{"id":"u8r5EEDPxHs","title":"GAME / 東京女子流 by daisuke arai 1 year ago 4 minutes, 31 seconds 1,134 views","artist":""}
+{"id":"BXDi-ND08gc","title":"【流TUBE #30】ゲーム実況第2弾‼「HEAVE HO」に挑戦‼ by TOKYO GIRLS’ STYLE東京女子流 1 year ago 16 minutes 3,834 views","artist":""}
+{"id":"xOQBPM16wWg","title":"【流TUBE #72】ひとみゆでホラーゲームやってみた👻 by TOKYO GIRLS’ STYLE東京女子流 6 months ago 14 minutes, 29 seconds 2,684 views","artist":""}
+{"id":"9vLqCoORPHI","title":"【流TUBE #40】ゲーム実況第3弾「ジョガーノート」🎮 by TOKYO GIRLS’ STYLE東京女子流 1 year ago 11 minutes, 23 seconds 2,794 views","artist":""}
+// 東京女子流  illusion
+{"id":"ZCznEAYOYYE","title":"東京女子流 / illusion(STARTING OVER! \"DISCOGRAPHY\" CASE OF TGS Live ver.) by avex 3 years ago 5 minutes, 5 seconds 11,326 views","artist":""}
+{"id":"aLaoD2zAe4k","title":"illusion by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 4 seconds 4,723 views","artist":""}
+{"id":"C-weBIf-jec","title":"山邊未夢　illusion(東京女子流プチライブAug.08,2021) by Save idol music 1 year ago 5 minutes, 6 seconds 537 views","artist":""}
+{"id":"ozUrd1kykoQ","title":"illusion (TJO & YUSUKE from BLU-SWING Remix) by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 48 seconds 2,222 views","artist":""}
+{"id":"_w58ydHKVTg","title":"東京女子流 / フライデーナイト -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 10 days ago 4 minutes 4,852 views","artist":""}
+// 東京女子流 _ Liar
+{"id":"zac2Cq23gDo","title":"東京女子流 / Liar by avex 6 years ago 4 minutes, 24 seconds 35,660 views","artist":""}
+{"id":"9JAnvRCp0J0","title":"東京女子流 / Liar (Short ver.) by avex 11 years ago 3 minutes, 14 seconds 434,223 views","artist":""}
+{"id":"76T9GY42wU8","title":"Liar（RE:NDZ Remix） from Tokyo Girls' Style × Maltine Records by TOKYO GIRLS’ STYLE東京女子流 10 years ago 4 minutes, 24 seconds 61,153 views","artist":""}
+{"id":"eAq6rK2mqGA","title":"東京女子流＊「Liar」@LIVE*032 by TokyoGirlsStyleCh 10 years ago 4 minutes, 23 seconds 5,179 views","artist":""}
+{"id":"7IIRPs1eQhY","title":"東京女子流 / Limited addiction by avex 6 years ago 5 minutes, 18 seconds 23,117 views","artist":""}
+// 東京女子流 _ Limited addiction
+{"id":"X8VX6_mRABs","title":"東京女子流 / Limited addiction by avex 11 years ago 5 minutes, 18 seconds 1,740,773 views","artist":""}
+{"id":"jcDtBPc39qo","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part4〜Limited addiction〜 by avex 4 years ago 5 minutes, 4 seconds 30,333 views","artist":""}
+{"id":"cq9j0X-qYcA","title":"東京女子流＊Limited addiction Tokyo Idol Fes.2011 by YA TAKA 7 months ago 5 minutes, 3 seconds 338 views","artist":""}
+{"id":"C969v2303Rc","title":"Limited addiction (オト盤収録ver.) by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 9 seconds 1,489 views","artist":""}
+{"id":"tIix6cYw9SM","title":"東京女子流 Limited addiction （「横浜BLITZ五番勝負！」より） by MrCatsFoot 10 years ago 5 minutes, 18 seconds 8,752 views","artist":""}
+// 東京女子流 _ Love like candy floss
+{"id":"fKvVpRbU5Cg","title":"東京女子流 / Love like candy floss by avex 11 years ago 4 minutes, 51 seconds 559,356 views","artist":""}
+{"id":"37MQNGQCILY","title":"東京女子流　Love like candy floss by Save idol music 1 year ago 3 minutes, 54 seconds 1,639 views","artist":""}
+{"id":"Fx2BSmosCsM","title":"東京女子流   Love like candy floss  [LIVE] by klaha111 11 years ago 2 minutes, 37 seconds 2,920 views","artist":""}
+{"id":"DxPVx-8cfG8","title":"SweetS - Love like candy floss [PV] HD by zonu1980 13 years ago 4 minutes, 15 seconds 328,477 views","artist":""}
+{"id":"h1t52kxJZBc","title":"【練習用動画】Love like candy floss のペンライト演出 by TOKYO GIRLS’ STYLE東京女子流 7 years ago 2 minutes, 7 seconds 9,798 views","artist":""}
+// 東京女子流  Mine
+{"id":"wv3g50bkAEw","title":"Mine by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 4 seconds 643 views","artist":""}
+{"id":"bt9yMqUOFgw","title":"Mine / 東京女子流 @TGS LIVE 2017 in 台北 by burned salmon 3 years ago 4 minutes, 3 seconds 883 views","artist":""}
+{"id":"XCzdW-z1ZSU","title":"東京女子流「Killing Me Softly」MV by TOKYO GIRLS’ STYLE東京女子流 8 years ago 3 minutes, 58 seconds 170,956 views","artist":""}
+{"id":"Jf2EomI1Pho","title":"東京女子流 / ミルフィーユ \"Version Cool\" by TOKYO GIRLS’ STYLE東京女子流 5 years ago 4 minutes, 10 seconds 482,799 views","artist":""}
+{"id":"giDkXuxZQtI","title":"東京女子流 「深海」Hi-ra Mix dance&lyrics by TOKYO GIRLS’ STYLE東京女子流 6 years ago 5 minutes, 53 seconds 169,573 views","artist":""}
+// 東京女子流 Overnight Sensation ～時代はあなたに委ねてる～
+{"id":"kaERv3Griak","title":"Overnight Sensation ～時代はあなたに委ねてる～ by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 19 seconds 1,083 views","artist":""}
+{"id":"uUzuXbcEyHw","title":"Tokyo Girls' Style -- Overnight Sensation ~時代はあなたに委ねてる~ (TRF Cover) by populadymusic 9 years ago 5 minutes, 20 seconds 4,021 views","artist":""}
+{"id":"zSs775pYNbc","title":"TRF / Overnight Sensation ～時代はあなたに委ねてる～ by avex 13 years ago 5 minutes, 1 second 5,684,887 views","artist":""}
+{"id":"_Z1iaIYMU0s","title":"TRF / Overnight Sensation ～時代はあなたに委ねてる～ （TRF 20th Anniversary Tour） by avex 9 years ago 5 minutes, 12 seconds 2,254,452 views","artist":""}
+{"id":"2sBE1CDhKA0","title":"Overnight Sensation ~時代はあなたに委ねてる~（東京女子流）　cover by Fujimon335 3 months ago 5 minutes, 23 seconds 161 views","artist":""}
+// 東京女子流 pale blue nocturne
+{"id":"e2uXEtV75yM","title":"pale blue nocturne by TOKYO GIRLS’ STYLE東京女子流 4 minutes 1,457 views","artist":""}
+{"id":"9pxqXEU8et8","title":"20141220 東京女子流 CONCERT＊06 - pale blue nocturne by 黃王子 7 years ago 3 minutes, 58 seconds 1,086 views","artist":""}
+{"id":"EO-HsY64sM4","title":"pale blue nocturne (TGS43) by Deon Bean 2 years ago 3 minutes, 45 seconds 36 views","artist":""}
+{"id":"xoA7K5vNKNc","title":"pale_blue_nocturne / 東京女子流 by daisuke arai 1 year ago 4 minutes 597 views","artist":""}
+{"id":"B3UR-t6bEMI","title":"pale blue nocturne （東京女子流）弾いてみた　guitar cover by Fujimon335 2 years ago 4 minutes, 7 seconds 449 views","artist":""}
+// 東京女子流 Regret.
+{"id":"DvAEb8pEPSA","title":"Regret. by TOKYO GIRLS’ STYLE東京女子流 6 minutes, 25 seconds 2,377 views","artist":""}
+{"id":"y5xqFZtXmjo","title":"東京女子流「Regret.」 by 谷村雄二 9 years ago 6 minutes, 28 seconds 3,821 views","artist":""}
+{"id":"VDGvAf3XDKE","title":"[4K] 東京女子流 - 運命 (野音 Again) / Tokyo Girls' Style - Unmei by idol 4K 5 years ago 5 minutes, 27 seconds 18,714 views","artist":""}
+{"id":"xkHnnbCl8Ns","title":"東京女子流 / Regret. / Drum Cover by akihiro miyahara 6 years ago 6 minutes, 30 seconds 1,950 views","artist":""}
+{"id":"sB1XWFwIrSA","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part5〜鼓動の秘密〜 by avex 4 years ago 3 minutes, 47 seconds 25,545 views","artist":""}
+// 東京女子流  Sparkle
+{"id":"2qao1uponwg","title":"東京女子流＊「Sparkle」(TGS20) ＠横浜BLITZ 120313 by TokyoGirlsStyleCh 10 years ago 6 minutes, 7 seconds 8,182 views","artist":""}
+{"id":"Ixu_7pTP_2M","title":"Sparkle by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 49 seconds 1,614 views","artist":""}
+{"id":"vMckMBcy200","title":"東京女子流 / Sparkle / Drum Cover by akihiro miyahara 6 years ago 5 minutes, 51 seconds 1,699 views","artist":""}
+{"id":"zac2Cq23gDo","title":"東京女子流 / Liar by avex 6 years ago 4 minutes, 24 seconds 35,660 views","artist":""}
+{"id":"fUUs628fY6o","title":"東京女子流 「Sparkle」 (TGS20) by MrCatsFoot 10 years ago 2 minutes, 15 seconds 4,646 views","artist":""}
+// 東京女子流 - Viva La 恋心 (Official Music Video)
+{"id":"tfC6IrqZZXM","title":"東京女子流 - Viva La 恋心 (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 3 months ago 5 minutes, 1 second 84,068 views","artist":""}
+{"id":"Tx7uS9asfNY","title":"東京女子流 - Viva La 恋心 (Official Dance Lyric Video) by TOKYO GIRLS’ STYLE東京女子流 3 months ago 4 minutes, 56 seconds 22,449 views","artist":""}
+{"id":"cqEsZkrTkzo","title":"東京女子流 「Viva La 恋心」ダンス動画　振付/DA PUMP KENZO by DA PUMP KENZO 3 months ago 5 minutes, 5 seconds 25,311 views","artist":""}
+{"id":"j-bI9cwspKs","title":"【4K+Binaural】東京女子流　Viva La 恋心 by Save idol music 2 months ago 5 minutes, 1 second 1,328 views","artist":""}
+{"id":"5XQuTcFk1XA","title":"東京女子流 - Viva La 恋心 【海外の反応】 // 外国人の反応 日本語字幕付き // LOVE PEACE & POSITIVITY // CITYPOP WEEK by POLAROID P 2 months ago 10 minutes, 27 seconds 13,097 views","artist":""}
+// 東京女子流 W.M.A.D
+{"id":"OKfd_cG4lxA","title":"東京女子流/W.M.A.D by ごっちゃん 10 years ago 3 minutes, 43 seconds 22,511 views","artist":""}
+{"id":"s78JgW-LvbQ","title":"東京女子流＊「W.M.A.D」(TGS12) ＠横浜BLITZ 120313 by TokyoGirlsStyleCh 10 years ago 3 minutes, 50 seconds 8,344 views","artist":""}
+{"id":"giDkXuxZQtI","title":"東京女子流 「深海」Hi-ra Mix dance&lyrics by TOKYO GIRLS’ STYLE東京女子流 6 years ago 5 minutes, 53 seconds 169,573 views","artist":""}
+{"id":"LIJ628KwQek","title":"東京女子流 / リフレクション by avex 3 years ago 5 minutes, 14 seconds 70,942 views","artist":""}
+{"id":"APXfSSvpnkY","title":"東京女子流 / サヨナラ、ありがとう。 by avex 11 years ago 6 minutes, 57 seconds 317,970 views","artist":""}
+// 東京女子流  ガールズトーク
+{"id":"cAZd6bG2xVc","title":"ガールズトーク by TOKYO GIRLS’ STYLE東京女子流 3 minutes, 52 seconds 6,798 views","artist":""}
+{"id":"FFYcEytrYfk","title":"[試作]東京女子流　ストロベリーフロート(TIF2021) by Save idol music 9 months ago 8 minutes, 28 seconds 2,729 views","artist":""}
+{"id":"6dh_HLzf33A","title":"東京女子流 / ワ.ガ.マ.マ. - MURO’s KG Remix by avex 1 year ago 4 minutes, 46 seconds 55,805 views","artist":""}
+{"id":"nW4PAMy6UcI","title":"東京女子流 - ストロベリーフロート (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 1 year ago 4 minutes, 41 seconds 96,699 views","artist":""}
+{"id":"KZwP6203c_w","title":"東京女子流 / ワ.ガ.マ.マ. (Live Version) by TOKYO GIRLS’ STYLE東京女子流 1 year ago 3 minutes, 32 seconds 23,954 views","artist":""}
+// 東京女子流  キミニヲクル
+{"id":"rfCnAeVgSW0","title":"東京女子流 / キミニヲクル by avex 2 years ago 4 minutes, 2 seconds 39,680 views","artist":""}
+{"id":"liQMn7bydzc","title":"東京女子流　キミニオクル(TIF2020) by Save idol music 1 year ago 9 minutes, 20 seconds 2,570 views","artist":""}
+{"id":"ElpB-iQMJ7Q","title":"東京女子流　キミニオクル by Save idol music 9 months ago 3 minutes, 59 seconds 802 views","artist":""}
+{"id":"8nTMrbIwA2Q","title":"東京女子流   / 「キミ二ヲクル」 Dance Practice ver.　※social distancing by TOKYO GIRLS’ STYLE東京女子流 1 year ago 3 minutes, 57 seconds 7,756 views","artist":""}
+{"id":"oUqy2FzEmPs","title":"東京女子流 / 雨と雫 （2月10日発売『Hello, Goodbye』収録のライブ映像「 東京女子流 10th Anniversary Live～*キミニヲクル*～」より） by TOKYO GIRLS’ STYLE東京女子流 1 year ago 4 minutes, 30 seconds 31,808 views","artist":""}
+// 東京女子流  コーナーカット・メモリーズ
+{"id":"9Uw5MpCz0FA","title":"東京女子流 - コーナーカット・メモリーズ (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 2 months ago 3 minutes, 45 seconds 210,638 views","artist":""}
+{"id":"yZ2_e6VZeto","title":"東京女子流 / コーナーカット・メモリーズ -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 1 month ago 3 minutes, 47 seconds 5,023 views","artist":""}
+{"id":"H1kuZUodV3M","title":"【Binaural】東京女子流　コーナーカット・メモリーズ by Save idol music 2 months ago 14 minutes, 7 seconds 1,042 views","artist":""}
+{"id":"Sk6BKZtOO5c","title":"東京女子流　20220805 by 未設定 2 months ago 48 minutes 7,452 views","artist":""}
+{"id":"52Eb1bMCt8w","title":"東京女子流 - コーナーカット・メモリーズ【Guitar Solo cover】 by WHITEのギターちゃんねる!! 2 months ago 57 seconds 287 views","artist":""}
+// 東京女子流  この雨が上がっても
+{"id":"J-DgRylFbfM","title":"東京女子流 / この雨が上がっても -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 1 month ago 4 minutes, 38 seconds 6,736 views","artist":""}
+{"id":"_o1hzgiG33w","title":"東京女子流　22.08.28 by 未設定 2 months ago 19 minutes 4,192 views","artist":""}
+{"id":"9Uw5MpCz0FA","title":"東京女子流 - コーナーカット・メモリーズ (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 2 months ago 3 minutes, 45 seconds 210,638 views","artist":""}
+{"id":"rzK8OvFxWoY","title":"夢の中に連れてって -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 8 months ago 5 minutes, 32 seconds 14,068 views","artist":""}
+{"id":"tCcEbye6wuU","title":"東京女子流 / 鼓動の秘密 by avex 11 years ago 4 minutes, 7 seconds 2,090,829 views","artist":""}
+// 東京女子流 - ずっと忘れない。 (野音 Again) _ Tokyo Girls Style - Zutto Wasurenai
+{"id":"e1h33seYFLI","title":"[4K] 東京女子流 - ずっと忘れない。 (野音 Again) / Tokyo Girls Style - Zutto Wasurenai by idol 4K 5 years ago 4 minutes, 54 seconds 12,649 views","artist":""}
+{"id":"bgs8MrBuee0","title":"ずっと　忘れない。(TGS36) by Deon Bean 2 years ago 4 minutes, 47 seconds 55 views","artist":""}
+{"id":"O3fwYez35po","title":"ずっと 忘れない。 by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 53 seconds 2,551 views","artist":""}
+{"id":"01FjAmrskbU","title":"Tokyo Girls' Style ずっと　忘れない by computers24 7 years ago 4 minutes, 55 seconds 108 views","artist":""}
+{"id":"RgZfLlfqb1s","title":"東京女子流 - ずっと 忘れない by Deon Bean 2 years ago 4 minutes, 45 seconds 87 views","artist":""}
+// 東京女子流  ストロベリーフロート (Official Music Video)
+{"id":"nW4PAMy6UcI","title":"東京女子流 - ストロベリーフロート (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 1 year ago 4 minutes, 41 seconds 96,699 views","artist":""}
+{"id":"FFYcEytrYfk","title":"[試作]東京女子流　ストロベリーフロート(TIF2021) by Save idol music 9 months ago 8 minutes, 28 seconds 2,729 views","artist":""}
+{"id":"Eb4Q8jtIPS8","title":"東京女子流 / ストロベリーフロート Teaser by TOKYO GIRLS’ STYLE東京女子流 1 year ago 20 seconds 8,212 views","artist":""}
+{"id":"6dh_HLzf33A","title":"東京女子流 / ワ.ガ.マ.マ. - MURO’s KG Remix by avex 1 year ago 4 minutes, 46 seconds 55,805 views","artist":""}
+{"id":"VfGa6giB-YI","title":"メイキング・オブ・ストロベリーフロート by TOKYO GIRLS’ STYLE東京女子流 1 year ago 24 minutes 6,061 views","artist":""}
+// 東京女子流 - それでいいじゃん (野音 Again) _ Tokyo Girls' Style - Sore De Ii Jyan
+{"id":"o_y4epllvSw","title":"[4K] 東京女子流 - それでいいじゃん (野音 Again) / Tokyo Girls' Style - Sore De Ii Jyan by idol 4K 5 years ago 5 minutes, 38 seconds 45,102 views","artist":""}
+{"id":"A84I-w7qV9Y","title":"それでいいじゃん by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 28 seconds 1,840 views","artist":""}
+{"id":"VDGvAf3XDKE","title":"[4K] 東京女子流 - 運命 (野音 Again) / Tokyo Girls' Style - Unmei by idol 4K 5 years ago 5 minutes, 27 seconds 18,714 views","artist":""}
+{"id":"iZ8aXrGzbLU","title":"東京女子流 日比谷野音 2014 digest 大切な言葉 / Tokyo Girls' Style Taisetsu na Kotoba Hibiya Yaon 2014 by KilikiaDark TGS 8 years ago 5 minutes, 6 seconds 29,231 views","artist":""}
+{"id":"XFvGynQmyKI","title":"[4K] 東京女子流 - ふたりきり (野音 Again) / Tokyo Girls' Style - Futarikiri by idol 4K 5 years ago 5 minutes, 14 seconds 41,504 views","artist":""}
+// 東京女子流 ディスコード
+{"id":"U4ld4XK4bWU","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part2〜ディスコード〜 by avex 4 years ago 5 minutes, 14 seconds 36,129 views","artist":""}
+{"id":"Au1de9ZM6FY","title":"トランスフォーマープライム EDテーマ「ディスコード」 by ユーゴ 4 years ago 4 minutes, 58 seconds 113,898 views","artist":""}
+{"id":"O9_qB4DTlvA","title":"ディスコード by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 58 seconds 12,310 views","artist":""}
+{"id":"XgqNwSw6UJ8","title":"東京女子流/ディスコード by ごっちゃん 10 years ago 4 minutes, 58 seconds 72,647 views","artist":""}
+{"id":"hWUnZzoAFmc","title":"東京女子流 - ディスコード by Deon Bean 2 years ago 4 minutes, 53 seconds 407 views","artist":""}
+// 東京女子流 _ ヒマワリと星屑
+{"id":"yduuHMe1KQ8","title":"東京女子流 / ヒマワリと星屑 by avex 12 years ago 4 minutes, 37 seconds 931,560 views","artist":""}
+{"id":"IjN-HjrfhVs","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part7〜ヒマワリと星屑〜 by avex 4 years ago 4 minutes, 24 seconds 21,270 views","artist":""}
+{"id":"oVY9myi5jJU","title":"東京女子流 with 大原優乃 - ヒマワリと星屑 by 日向逸夫 4 years ago 4 minutes, 22 seconds 29,762 views","artist":""}
+{"id":"YLDKiUTx7U8","title":"東京女子流 / ヒマワリと星屑 -English Version- by avex 3 years ago 4 minutes, 59 seconds 1,781 views","artist":""}
+{"id":"ZSmNDh7phu4","title":"ヒマワリと星屑 / 東京女子流 by Deon Bean 2 years ago 4 minutes, 18 seconds 345 views","artist":""}
+// 東京女子流 ふたりきり
+{"id":"XFvGynQmyKI","title":"[4K] 東京女子流 - ふたりきり (野音 Again) / Tokyo Girls' Style - Futarikiri by idol 4K 5 years ago 5 minutes, 14 seconds 41,504 views","artist":""}
+{"id":"uJpBskmvrTI","title":"ふたりきり by TOKYO GIRLS’ STYLE東京女子流 9 years ago 5 minutes, 14 seconds 41,218 views","artist":""}
+{"id":"G-8s6vTprj4","title":"東京女子流 / 約束 by avex 6 years ago 6 minutes, 3 seconds 18,863 views","artist":""}
+{"id":"MvlDjWyswhw","title":"ふたりきり by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 11 seconds 1,752 views","artist":""}
+{"id":"9LZKcbHgkc8","title":"ふたりきり by TOKYO GIRLS’ STYLE東京女子流 7 minutes, 37 seconds 231 views","artist":""}
+// 東京女子流 - ふたりきり (野音 Again) _ Tokyo Girls' Style - Futarikiri
+{"id":"XFvGynQmyKI","title":"[4K] 東京女子流 - ふたりきり (野音 Again) / Tokyo Girls' Style - Futarikiri by idol 4K 5 years ago 5 minutes, 14 seconds 41,504 views","artist":""}
+{"id":"fPljq65w0Cc","title":"Tokyo Girls' Style Live digest Futarikiri + MC / 東京女子流 ふたりきり by KilikiaDark TGS 8 years ago 6 minutes, 48 seconds 3,690 views","artist":""}
+{"id":"iZ8aXrGzbLU","title":"東京女子流 日比谷野音 2014 digest 大切な言葉 / Tokyo Girls' Style Taisetsu na Kotoba Hibiya Yaon 2014 by KilikiaDark TGS 8 years ago 5 minutes, 6 seconds 29,231 views","artist":""}
+{"id":"VDGvAf3XDKE","title":"[4K] 東京女子流 - 運命 (野音 Again) / Tokyo Girls' Style - Unmei by idol 4K 5 years ago 5 minutes, 27 seconds 18,714 views","artist":""}
+{"id":"nbQ-td4zSAE","title":"[4K] 東京女子流 - Don't Be Cruel (野音 Again) / Tokyo Girls Style by idol 4K 5 years ago 4 minutes, 38 seconds 6,970 views","artist":""}
+// 東京女子流 フライデーナイト
+{"id":"_w58ydHKVTg","title":"東京女子流 / フライデーナイト -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 10 days ago 4 minutes 4,852 views","artist":""}
+{"id":"cqEsZkrTkzo","title":"東京女子流 「Viva La 恋心」ダンス動画　振付/DA PUMP KENZO by DA PUMP KENZO 3 months ago 5 minutes, 5 seconds 25,311 views","artist":""}
+{"id":"tfC6IrqZZXM","title":"東京女子流 - Viva La 恋心 (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 3 months ago 5 minutes, 1 second 84,068 views","artist":""}
+{"id":"Sk6BKZtOO5c","title":"東京女子流　20220805 by 未設定 2 months ago 48 minutes 7,452 views","artist":""}
+{"id":"2pIjwI8D6JI","title":"フライデーナイト（東京女子流）Ba.&Gt. Cover by Fujimon335 2 months ago 3 minutes, 57 seconds 324 views","artist":""}
+// 東京女子流 ゆうやけハナビ
+{"id":"7oe6Z44q7H0","title":"ゆうやけハナビ by TOKYO GIRLS’ STYLE東京女子流 3 minutes, 52 seconds 2,200 views","artist":""}
+{"id":"i4Zgzj4g9-4","title":"東京女子流 with 大原優乃 さん - ゆうやけハナビ by Deon Bean 2 years ago 3 minutes, 48 seconds 307 views","artist":""}
+{"id":"GST2VPRRcgk","title":"東京女子流　　「ゆうやけハナビ」 by opunass 9 years ago 4 minutes, 1 second 9,330 views","artist":""}
+{"id":"tMeHyLnCQBw","title":"東京女子流 「ゆうやけハナビ」(TGS06) ＠横浜BLITZ 20110823 by TokyoGirlsStyleCh 11 years ago 4 minutes, 4 seconds 5,849 views","artist":""}
+{"id":"h-1hIj6oAbE","title":"ゆうやけハナビ（banvox Remix)  from Tokyo Girls' Style × Maltine Records by TOKYO GIRLS’ STYLE東京女子流 10 years ago 3 minutes, 50 seconds 18,307 views","artist":""}
+// 東京女子流  僕の手紙
+{"id":"ZMErG_Z8Eck","title":"東京女子流＊「僕の手紙」(TGS15) ＠横浜BLITZ 120313 by TokyoGirlsStyleCh 10 years ago 6 minutes, 8 seconds 5,645 views","artist":""}
+{"id":"zmYEmsqeJR0","title":"僕の手紙 by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 54 seconds 3,650 views","artist":""}
+{"id":"GDVLjuZUNX8","title":"東京女子流/僕の手紙 by ごっちゃん 11 years ago 5 minutes, 45 seconds 68,393 views","artist":""}
+{"id":"wt253f31fNI","title":"東京女子流 「僕の手紙」(TGS15) ＠横浜BLITZ 20110823 by TokyoGirlsStyleCh 11 years ago 6 minutes, 13 seconds 5,592 views","artist":""}
+{"id":"l0ZwYQfkCgc","title":"僕の手紙 by Deon Bean 2 years ago 5 minutes, 52 seconds 22 views","artist":""}
+// 東京女子流  僕は嘘つき
+{"id":"Wp1IJGfyinA","title":"僕は嘘つき by TOKYO GIRLS’ STYLE東京女子流 3 minutes, 29 seconds 3,287 views","artist":""}
+{"id":"vZ2jdfejg5E","title":"【Binaural】東京女子流　僕は嘘つき（リリイベ） by Save idol music 1 month ago 7 minutes, 49 seconds 481 views","artist":""}
+{"id":"ErJ0_aTIv1E","title":"東京女子流 / 僕は嘘つき -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 7 days ago 3 minutes, 29 seconds 2,820 views","artist":""}
+{"id":"aQpWT5T5mqg","title":"東京女子流 / Stay with me by avex 7 years ago 7 minutes, 22 seconds 192,648 views","artist":""}
+{"id":"4z97dXADdJk","title":"東京女子流 / Hello, Goodbye by avex 1 year ago 4 minutes, 18 seconds 114,181 views","artist":""}
+// 東京女子流  十字架
+{"id":"syIIuML5fWk","title":"東京女子流 / 十字架 ～映画「学校の怪談 -呪いの言霊-」 Ver.～ by avex 3 years ago 5 minutes, 13 seconds 10,912 views","artist":""}
+{"id":"5QjACk4qM6g","title":"東京女子流 / 16th Single「十字架 〜映画「学校の怪談 -呪いの言霊-」Ver.〜」MV+SPOT by avex 8 years ago 4 minutes, 36 seconds 283,747 views","artist":""}
+{"id":"204kl7ftiE8","title":"十字架 by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 38 seconds 2,740 views","artist":""}
+{"id":"Ivr8TUvo-oI","title":"東京女子流 / ダンス&リリックビデオ「Never ever (TJO & YUSUKE from BLU-SWING Remix)」19thシングル 6.24 On Sale by avex 7 years ago 4 minutes, 47 seconds 279,457 views","artist":""}
+{"id":"Xh-gkfy3wbs","title":"東京女子流 / Partition Love by avex 6 years ago 5 minutes, 32 seconds 64,145 views","artist":""}
+// 東京女子流  夢の中に連れてって
+{"id":"S17s6vYsGSE","title":"東京女子流 / 夢の中に連れてって（2022.1.18出演 「WONDER WHEEL」） by TOKYO GIRLS’ STYLE東京女子流 9 months ago 5 minutes, 20 seconds 22,274 views","artist":""}
+{"id":"rzK8OvFxWoY","title":"夢の中に連れてって -Dance Practice- by TOKYO GIRLS’ STYLE東京女子流 8 months ago 5 minutes, 32 seconds 14,068 views","artist":""}
+{"id":"AuqLEk8WoFs","title":"東京女子流　夢の中に連れてって by Save idol music 5 months ago 5 minutes, 5 seconds 1,391 views","artist":""}
+{"id":"S5pI6EkoVvg","title":"東京女子流 / days 〜キミだけがいない街〜（2022.1.18出演 「WONDER WHEEL」） by TOKYO GIRLS’ STYLE東京女子流 9 months ago 4 minutes, 52 seconds 42,343 views","artist":""}
+{"id":"nW4PAMy6UcI","title":"東京女子流 - ストロベリーフロート (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 1 year ago 4 minutes, 41 seconds 96,699 views","artist":""}
+// 東京女子流  大切な言葉
+{"id":"7ptqkAGKQZo","title":"アニメ「はなかっぱ」エンディングテーマ『大切な言葉』ダンス映像 by TOKYO GIRLS’ STYLE東京女子流 10 years ago 5 minutes, 25 seconds 435,771 views","artist":""}
+{"id":"eJ_pvFj-tpk","title":"DANCING MEIBE【TGS 22 大切な言葉】 by TOKYO GIRLS’ STYLE東京女子流 2 years ago 5 minutes, 26 seconds 30,882 views","artist":""}
+{"id":"iZ8aXrGzbLU","title":"東京女子流 日比谷野音 2014 digest 大切な言葉 / Tokyo Girls' Style Taisetsu na Kotoba Hibiya Yaon 2014 by KilikiaDark TGS 8 years ago 5 minutes, 6 seconds 29,231 views","artist":""}
+{"id":"aXM1AmGKhdQ","title":"大切な言葉 by TOKYO GIRLS’ STYLE東京女子流 5 minutes 1,266 views","artist":""}
+{"id":"Z7Cvgw5R8_M","title":"東京女子流　「大切な言葉」 by opunass 9 years ago 5 minutes, 18 seconds 41,383 views","artist":""}
+// 東京女子流 幻
+{"id":"C9WfzjaYsUk","title":"幻 by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 1 second 2,116 views","artist":""}
+{"id":"7R5b8ZmmWss","title":"【流TUBE #28】検証‼持ち歌なら1人でも歌い切れるでしょう⁉️~後編~ by TOKYO GIRLS’ STYLE東京女子流 1 year ago 11 minutes, 51 seconds 5,279 views","artist":""}
+{"id":"aLaoD2zAe4k","title":"illusion by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 4 seconds 4,723 views","artist":""}
+{"id":"DdS3oN0E5uk","title":"東京女子流 / ラストロマンス by avex 4 years ago 3 minutes, 9 seconds 215,451 views","artist":""}
+{"id":"CbE5nNLb4x4","title":"東京女子流 / 『LIVE AT BUDOKAN 2012』 Part3〜Bad Flower〜 by avex 4 years ago 5 minutes, 53 seconds 21,523 views","artist":""}
+// 東京女子流 月とサヨウナラ
+{"id":"DbQM8GRkr-M","title":"東京女子流 / 月とサヨウナラ(STARTING OVER! \"DISCOGRAPHY\" CASE OF TGS Live ver.) by avex 3 years ago 5 minutes, 32 seconds 12,179 views","artist":""}
+{"id":"GwyLrIsuw4w","title":"月とサヨウナラ by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 30 seconds 1,243 views","artist":""}
+{"id":"pB3IKEfS6wo","title":"20141220 東京女子流 CONCERT＊06 - 月とサヨウナラ by 黃王子 7 years ago 5 minutes, 33 seconds 2,061 views","artist":""}
+{"id":"APXfSSvpnkY","title":"東京女子流 / サヨナラ、ありがとう。 by avex 11 years ago 6 minutes, 57 seconds 317,970 views","artist":""}
+{"id":"t0FJBzJG_XI","title":"東京女子流「月とサヨウナラ」(アコースティックカバー)/ Tokyo Girls' Style \"Tsuki to Sayonara\" by うたたねりんご Official Channel 7 years ago 4 minutes, 11 seconds 1,093 views","artist":""}
+// 東京女子流  月の気まぐれ
+{"id":"5PknPajBAvM","title":"月の気まぐれ by TOKYO GIRLS’ STYLE東京女子流 5 minutes 1,165 views","artist":""}
+{"id":"9Uw5MpCz0FA","title":"東京女子流 - コーナーカット・メモリーズ (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 2 months ago 3 minutes, 45 seconds 210,638 views","artist":""}
+{"id":"DbQM8GRkr-M","title":"東京女子流 / 月とサヨウナラ(STARTING OVER! \"DISCOGRAPHY\" CASE OF TGS Live ver.) by avex 3 years ago 5 minutes, 32 seconds 12,179 views","artist":""}
+{"id":"bgxem_hWXmE","title":"【流TUBE #78】東京女子流12周年ライブ - making movie 後編 by TOKYO GIRLS’ STYLE東京女子流 5 months ago 33 minutes 4,586 views","artist":""}
+{"id":"lnuB5g__SE4","title":"東京女子流 / 新曲「Say long goodbye」初披露+HARDBOILED NIGHT 第5夜「Promised Land 約束の地」告知映像 by avex 8 years ago 6 minutes, 55 seconds 41,987 views","artist":""}
+// 東京女子流 眩暈 feat. バニラビーンズ
+{"id":"26VLaszNd_s","title":"東京女子流 「眩暈」 feat. バニラビーンズ (TGS19) by MrCatsFoot 10 years ago 5 minutes, 6 seconds 11,720 views","artist":""}
+{"id":"qyydynyXG-c","title":"東京女子流/眩暈 feat.バニラビーンズ by ごっちゃん 10 years ago 4 minutes, 50 seconds 4,834 views","artist":""}
+{"id":"l4FFB60vHnw","title":"眩暈 feat. バニラビーンズ by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 50 seconds 869 views","artist":""}
+{"id":"bTmW15a8nEE","title":"東京女子流＊「眩暈 feat. バニラビーンズ」(TGS19) ＠横浜BLITZ 120313 by TokyoGirlsStyleCh 10 years ago 5 minutes, 5 seconds 10,217 views","artist":""}
+{"id":"XFvGynQmyKI","title":"[4K] 東京女子流 - ふたりきり (野音 Again) / Tokyo Girls' Style - Futarikiri by idol 4K 5 years ago 5 minutes, 14 seconds 41,504 views","artist":""}
+// 東京女子流 _ 約束 -Short ver.-
+{"id":"6ulpBqZkT2I","title":"約束 -Acoustic Ver.- by TOKYO GIRLS’ STYLE東京女子流 5 minutes, 56 seconds 166 views","artist":""}
+{"id":"9Uw5MpCz0FA","title":"東京女子流 - コーナーカット・メモリーズ (Official Music Video) by TOKYO GIRLS’ STYLE東京女子流 2 months ago 3 minutes, 45 seconds 210,638 views","artist":""}
+{"id":"MHiXPokHoC0","title":"東京女子流 高知 by YA TAKA 7 months ago 1 hour, 51 minutes 298 views","artist":""}
+{"id":"WW3WT1wuelY","title":"pain (TGS35) by Deon Bean 2 years ago 5 minutes, 34 seconds 50 views","artist":""}
+{"id":"4QC4IKTDbJU","title":"existence (TGS42) 初披露 by Deon Bean 2 years ago 4 minutes, 7 seconds 5 views","artist":""}
+// 東京女子流  薔薇の緊縛
+{"id":"Y-RIUV5NvPE","title":"東京女子流 / 「薔薇の緊縛」Dance Practice ver.　※social distancing by TOKYO GIRLS’ STYLE東京女子流 1 year ago 5 minutes, 45 seconds 17,177 views","artist":""}
+{"id":"ZaA1Jss0NNM","title":"東京女子流　薔薇の緊縛（＠JAM2020） by Save idol music 1 year ago 10 minutes, 35 seconds 1,629 views","artist":""}
+{"id":"75q_YK8PBkw","title":"東京女子流 - 薔薇の緊縛 (Full Version) (avex SPライブ急遽アンコール) (10周年シングル) by Deon Bean 2 years ago 6 minutes, 3 seconds 1,165 views","artist":""}
+{"id":"IrXOef4bq7g","title":"東京女子流 - 薔薇の緊縛 by Deon Bean 2 years ago 5 minutes, 35 seconds 406 views","artist":""}
+{"id":"vTJdXTDjBvw","title":"薔薇の緊縛 introduction by TOKYO GIRLS’ STYLE東京女子流 1 minute, 40 seconds 2,907 views","artist":""}
+// 東京女子流 _ 運命 -MV Short ver. + 30secSPOT-
+{"id":"uP8nX5Ci7kE","title":"東京女子流 / 1st BEST ALBUM \"キラリ☆\"  30sec.SPOT by TOKYO GIRLS’ STYLE東京女子流 7 years ago 31 seconds 4,298 views","artist":""}
+{"id":"B_5J1erbVPc","title":"東京女子流 6/4発売 4thアルバム\"Killing Me Softly\"SPOT 30秒発売前 by TOKYO GIRLS’ STYLE東京女子流 8 years ago 31 seconds 10,935 views","artist":""}
+{"id":"fH_qUCH37LQ","title":"東京女子流 2ndアルバム「Limited addiction」30秒SPOT by TOKYO GIRLS’ STYLE東京女子流 10 years ago 35 seconds 13,673 views","artist":""}
+{"id":"Rx898dZRWiM","title":"東京女子流 10th Single「追憶 -Single Version- / 大切な言葉」30秒SPOT by TOKYO GIRLS’ STYLE東京女子流 10 years ago 31 seconds 26,809 views","artist":""}
+{"id":"YfzHmyykPgs","title":"8/31発売 20thSingle「深海」30sec SPOT CM by TOKYO GIRLS’ STYLE東京女子流 6 years ago 31 seconds 8,692 views","artist":""}
+// 東京女子流 - 運命 (野音 Again) _ Tokyo Girls' Style - Unmei
+{"id":"VDGvAf3XDKE","title":"[4K] 東京女子流 - 運命 (野音 Again) / Tokyo Girls' Style - Unmei by idol 4K 5 years ago 5 minutes, 27 seconds 18,714 views","artist":""}
+{"id":"nbQ-td4zSAE","title":"[4K] 東京女子流 - Don't Be Cruel (野音 Again) / Tokyo Girls Style by idol 4K 5 years ago 4 minutes, 38 seconds 6,970 views","artist":""}
+{"id":"Vhbq65WcH3o","title":"東京女子流 / 運命 -MV Short ver. + 30secSPOT- by avex 9 years ago 5 minutes, 1 second 330,733 views","artist":""}
+{"id":"iZ8aXrGzbLU","title":"東京女子流 日比谷野音 2014 digest 大切な言葉 / Tokyo Girls' Style Taisetsu na Kotoba Hibiya Yaon 2014 by KilikiaDark TGS 8 years ago 5 minutes, 6 seconds 29,231 views","artist":""}
+{"id":"e1h33seYFLI","title":"[4K] 東京女子流 - ずっと忘れない。 (野音 Again) / Tokyo Girls Style - Zutto Wasurenai by idol 4K 5 years ago 4 minutes, 54 seconds 12,649 views","artist":""}
+// 東京女子流  雨と雫
+{"id":"oUqy2FzEmPs","title":"東京女子流 / 雨と雫 （2月10日発売『Hello, Goodbye』収録のライブ映像「 東京女子流 10th Anniversary Live～*キミニヲクル*～」より） by TOKYO GIRLS’ STYLE東京女子流 1 year ago 4 minutes, 30 seconds 31,808 views","artist":""}
+{"id":"RE9SCu51cqU","title":"雨と雫 by TOKYO GIRLS’ STYLE東京女子流 4 minutes, 32 seconds 3,361 views","artist":""}
+{"id":"0odcAN1p_kU","title":"東京女子流　雨と雫(RIF) by Save idol music 7 months ago 4 minutes, 28 seconds 582 views","artist":""}
+{"id":"2c9x4E8Ju1M","title":"君の名は。× 雨と雫（東京女子流）/ yourname × ame to shizuku (Tokyo Girls' Style) by yuya watanabe 3 years ago 4 minutes, 42 seconds 880 views","artist":""}
+{"id":"mNMmhd8-cwo","title":"東京女子流 - 雨と雫［M］ by 音藝 1 year ago 4 minutes, 36 seconds 86 views","artist":""}
+// 柏木ひなた「Take your Original」 Live at Zepp DiverCity 2021.3.29
+{"id":"2RS4E1V3yIA","title":"【ソロライブ】柏木ひなた「Take your Original」 Live at Zepp DiverCity 2021.3.29 by エビ中のエビちゃんねる! 1 year ago 4 minutes, 8 seconds 62,151 views","artist":""}
+{"id":"6B3Frx_xCAs","title":"【ソロライブ】柏木ひなた「月と太陽」 Live at Zepp DiverCity 2021.3.29 by エビ中のエビちゃんねる! 1 year ago 4 minutes, 33 seconds 37,640 views","artist":""}
+{"id":"4Q7-gDdQ6Fs","title":"【ソロライブ】柏木ひなた「光年の愛」 Live at Zepp DiverCity 2021.3.29 by エビ中のエビちゃんねる! 1 year ago 5 minutes, 45 seconds 52,042 views","artist":""}
+{"id":"ZJMoXBuyN_Y","title":"【ソロライブ】柏木ひなた「イート・ザ・大目玉」 Live at Zepp DiverCity 2021.3.29 by エビ中のエビちゃんねる! 1 year ago 4 minutes, 27 seconds 71,042 views","artist":""}
+{"id":"mjC5JmxUOFI","title":"【ソロライブ】「Hinata Kashiwagi birthday solo live “Next to you”」 by エビ中のエビちゃんねる! 1 year ago 10 minutes 53,904 views","artist":""}
+// 柏木ひなた【ソロライブ】「Anytime, Anywhere」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」
+{"id":"bNCCguzRzL8","title":"【ソロライブ】「Anytime, Anywhere」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」 by エビ中のエビちゃんねる! 3 months ago 4 minutes, 11 seconds 37,928 views","artist":""}
+{"id":"cSY9yru_RHE","title":"【ソロライブ】「星の数え方」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」 by エビ中のエビちゃんねる! 3 months ago 6 minutes, 19 seconds 34,139 views","artist":""}
+{"id":"bSLGYAkEmsk","title":"【ソロライブ】「愛のレンタル」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」 by エビ中のエビちゃんねる! 3 months ago 4 minutes, 57 seconds 34,047 views","artist":""}
+{"id":"iAZXDiGPRc0","title":"柏木ひなた／柏木ひなた生誕ソロライブ「-Interlude-」コメント動画 by スターダストオフィシャル 9 months ago 1 minute, 41 seconds 1,266 views","artist":""}
+{"id":"lHhd64oS6cU","title":"【ライブ】「Anytime, Anywhere」 from 大学芸会2021～Reboot～ × 360 Reality Audio | スペシャルビデオ by エビ中のエビちゃんねる! 7 months ago 4 minutes, 22 seconds 65,793 views","artist":""}
+// 柏木ひなた 愛のレンタル
+{"id":"II5ph3I2P-g","title":"愛のレンタル / 柏木ひなた by KikiMegami 1 year ago 4 minutes, 58 seconds 87,506 views","artist":""}
+{"id":"bSLGYAkEmsk","title":"【ソロライブ】「愛のレンタル」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」 by エビ中のエビちゃんねる! 3 months ago 4 minutes, 57 seconds 34,047 views","artist":""}
+{"id":"r2QJcH1FYtQ","title":"【ライブ】愛のレンタル Live at バンドのみんなと大学芸会2019 エビ中のフルバッテリー・サラウンド by エビ中のエビちゃんねる! 10 months ago 4 minutes, 49 seconds 227,476 views","artist":""}
+{"id":"SNBxrXzNte4","title":"「愛のレンタル」私立恵比寿中学　曇天〜曲繋ぎあり by エビのmix 1 year ago 5 minutes, 19 seconds 92,889 views","artist":""}
+{"id":"OzfD7FmTJQs","title":"愛のレンタル/マカロニえんぴつ Ainorentaru/Makaronienpitsu by 啐薆 1 year ago 4 minutes, 14 seconds 2,655,331 views","artist":""}
+// 植村あかり 『想いあふれて』 Akari Uemura
+{"id":"xEhE3ui7TVI","title":"『想いあふれて』植村あかり（Juice=Juice/ジュースジュース） by JPch H!P MUSIC MOVIES 9 months ago 3 minutes, 30 seconds 684 views","artist":""}
+{"id":"wK-acFBcivQ","title":"植村あかり/Akari Uemura『Gravure selection』#1 Full HD 1080p by JPch H!P GRAVURE 1 year ago 14 minutes, 18 seconds 13,749 views","artist":""}
+{"id":"yC7M5zRr20U","title":"植村あかり/Akari Uemura『AKARI Ⅲ』 #2 by JPch H!P GRAVURE 2 years ago 7 minutes, 39 seconds 358,492 views","artist":""}
+{"id":"V4ODwPUBVR4","title":"植村あかり/Akari Uemura『Gravure selection』#2 Full HD 1080p by JPch H!P GRAVURE 1 year ago 10 minutes, 29 seconds 13,138 views","artist":""}
+{"id":"ptHs1OxU2xs","title":"植村あかり/Akari Uemura『AKARI』 by JPch H!P GRAVURE 2 years ago 15 minutes 54,445 views","artist":""}
+// 植村あかり - 青春のカスタード
+{"id":"siigJv4ik7M","title":"植村あかり - 青春のカスタード by becker Kenfryz 2 years ago 3 minutes, 10 seconds 4,456 views","artist":""}
+{"id":"ZgbJd129vLA","title":"モー娘。'15新曲Dance Shot公開！ひなフェス(J=J、アンジュルム、ハロプロ)、℃-ute池袋、小川ヘアアレンジ MC:佐藤優樹・植村あかり【ハロ！ステ#112】 by ハロ！ステ 7 years ago 47 minutes 292,204 views","artist":""}
+{"id":"cxswtsJgiwQ","title":"Juice=Juice 植村あかりバースデーイベント2017 #5 by JPch H!P MOVIES Juice=Juice 10 months ago 15 minutes 502 views","artist":""}
+{"id":"sEROHOHIw9U","title":"Juice=Juice 植村あかりバースデーイベント2017 #2 by JPch H!P MOVIES Juice=Juice 10 months ago 14 minutes, 41 seconds 822 views","artist":""}
+{"id":"10z15LIl18k","title":"Juice=Juice 植村あかり×稲場愛香FCイベント2021 ～あーりー♡まなかん～ #1 Full HD 1080p by JPch H!P MOVIES Juice=Juice 3 months ago 12 minutes, 20 seconds 1,154 views","artist":""}
+// 段原瑠々・井上玲音  Come with me
+{"id":"aaZfwDikHmU","title":"『Come with me』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 4 minutes, 20 seconds 2,428 views","artist":""}
+{"id":"VDzq3ewYX_A","title":"『好きかもしれない』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 4 minutes, 6 seconds 3,145 views","artist":""}
+{"id":"Yta182Q0IUI","title":"『好きって言ってよ』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 2 minutes, 43 seconds 4,639 views","artist":""}
+{"id":"iIrJxZ7ibdw","title":"『秋麗』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 2 minutes, 53 seconds 2,457 views","artist":""}
+{"id":"JAE5i0ly_iQ","title":"『悲しきヘブン』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 37 seconds 4,371 views","artist":""}
+// 段原瑠々・井上玲音   愛・愛・傘
+{"id":"kTViAd7CN7M","title":"『愛・愛・傘』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 54 seconds 2,030 views","artist":""}
+{"id":"hgkMI1bTTlQ","title":"『雨の降らない星では愛せないだろう？』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 48 seconds 1,770 views","artist":""}
+{"id":"iU3FFL2NMDM","title":"『表面張力〜Surface Tention〜』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 14 seconds 3,474 views","artist":""}
+{"id":"0uximFcJQWI","title":"DOWN TOWN / 金澤朋子・段原瑠々・松永里愛・井上玲音 by Hello ! MM 8 months ago 4 minutes, 20 seconds 5,296 views","artist":""}
+{"id":"Yta182Q0IUI","title":"『好きって言ってよ』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 2 minutes, 43 seconds 4,639 views","artist":""}
+// 段原瑠々・井上玲音 - 愛・愛・傘
+{"id":"kTViAd7CN7M","title":"『愛・愛・傘』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 54 seconds 2,030 views","artist":""}
+{"id":"hgkMI1bTTlQ","title":"『雨の降らない星では愛せないだろう？』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 48 seconds 1,770 views","artist":""}
+{"id":"Yta182Q0IUI","title":"『好きって言ってよ』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 2 minutes, 43 seconds 4,639 views","artist":""}
+{"id":"iU3FFL2NMDM","title":"『表面張力〜Surface Tention〜』段原瑠々・井上玲音 (Juice=Juice) by JPch H!P MUSIC MOVIES 3 weeks ago 3 minutes, 14 seconds 3,474 views","artist":""}
+{"id":"e-jmVm2rpeU","title":"[Juice=Juice] 秋麗 ー 稲場愛香、段原瑠々、井上玲音 mixed ver. by まなるるれい 4 weeks ago 2 minutes, 56 seconds 3,705 views","artist":""}
+// 私立恵比寿中学「Anytime, Anywhere」 【リリックビデオ】
+{"id":"27E_ayxny1M","title":"【MV】私立恵比寿中学「Anytime, Anywhere」 【リリックビデオ】 by エビ中のエビちゃんねる! 10 months ago 3 minutes, 49 seconds 115,495 views","artist":""}
+{"id":"KwpuLS1m27s","title":"【エビ中】 Anytime Anywhere ／ 私立恵比寿中学　歌割り&リリック動画（修正版）　エビ中 by 乙MUSIC LAB. 10 months ago 3 minutes, 53 seconds 2,582 views","artist":""}
+{"id":"aw-gd8JfPGA","title":"【ライブ】Anytime, Anywhere Live at 大学芸会2021～Reboot～ by エビ中のエビちゃんねる! 8 months ago 4 minutes, 15 seconds 198,019 views","artist":""}
+{"id":"SVrsm4CuUUU","title":"【エビ中】 私立恵比寿中学 『Anytime Anywhere』 Rock ver.   Extreme Lyric Movie  　歌詞　歌割り　リリック by 乙MUSIC LAB. 7 months ago 3 minutes, 54 seconds 1,462 views","artist":""}
+{"id":"0rlG9iMLg10","title":"私立恵比寿中学 × 僕の心のヤバイやつ/Anytime, Anywhere by エビ中のエビちゃんねる! 6 months ago 4 minutes 89,459 views","artist":""}
+// 私立恵比寿中学  HOT UP!!! from 大学芸会2021～Reboot～ × 360 Reality Audio _ スペシャルビデオ
+{"id":"mUMxRPCp-Gs","title":"【ライブ】HOT UP!!! from 大学芸会2021～Reboot～ × 360 Reality Audio | スペシャルビデオ by エビ中のエビちゃんねる! 7 months ago 4 minutes, 58 seconds 131,711 views","artist":""}
+{"id":"lHhd64oS6cU","title":"【ライブ】「Anytime, Anywhere」 from 大学芸会2021～Reboot～ × 360 Reality Audio | スペシャルビデオ by エビ中のエビちゃんねる! 7 months ago 4 minutes, 22 seconds 65,793 views","artist":""}
+{"id":"SoiH3nj6UOs","title":"【ライブ】イヤフォン・ライオット from 大学芸会2021～Reboot～ × 360 Reality Audio | スペシャルビデオ by エビ中のエビちゃんねる! 7 months ago 4 minutes, 17 seconds 78,477 views","artist":""}
+{"id":"EVH5od8PMEg","title":"ハイタテキ!/私立恵比寿中学　歌割り動画 by おもちえび 1 year ago 4 minutes, 40 seconds 2,953 views","artist":""}
+{"id":"zUMP5I15mPg","title":"【MV】私立恵比寿中学「シュガーグレーズ」 × 360 Reality Audio | スペシャルビデオ by エビ中のエビちゃんねる! 2 months ago 3 minutes, 39 seconds 323,216 views","artist":""}
+// 私立恵比寿中学  HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖
+{"id":"4PZc22ulzac","title":"【ライブ】HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 9 months ago 4 minutes, 45 seconds 229,361 views","artist":""}
+{"id":"qSA2Lu7E9hI","title":"【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖 by エビ中のエビちゃんねる! 10 months ago 4 minutes, 25 seconds 273,564 views","artist":""}
+{"id":"ra9GywhArXE","title":"【ライブ】青い青い星の名前 Live at  エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 3 seconds 137,058 views","artist":""}
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+{"id":"UpyBDloOKks","title":"【ライブ】ハイタテキ！ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 6 months ago 4 minutes, 38 seconds 137,013 views","artist":""}
+// 私立恵比寿中学  SHAKE! SHAKE! Live at 私立恵比寿中学 バンドのみんなと大学芸会2020 エビ中とニューガムラッド
+{"id":"N4dTo7AQ3Z4","title":"【ライブ】SHAKE! SHAKE! Live at 私立恵比寿中学 バンドのみんなと大学芸会2020 エビ中とニューガムラッド by エビ中のエビちゃんねる! 9 months ago 3 minutes, 15 seconds 73,456 views","artist":""}
+{"id":"szDNbTjPuEA","title":"【ライブ】私立恵比寿中学バンドのみんなと大学芸会2020 エビ中とニューガムラッド by エビ中のエビちゃんねる! 1 year ago 17 minutes 166,506 views","artist":""}
+{"id":"2gKDj6b_m0A","title":"【ライブ】ジャンプ Live at バンドのみんなと大学芸会2020エビ中とニューガムラッド by エビ中のエビちゃんねる! 1 year ago 4 minutes, 29 seconds 34,391 views","artist":""}
+{"id":"nchoiFUZRFo","title":"【ライブ】ポップコーントーン（with たむらぱん）  Live at 私立恵比寿中学 バンドのみんなと大学芸会2020エビ中とニューガムラッド by エビ中のエビちゃんねる! 5 months ago 4 minutes, 42 seconds 50,306 views","artist":""}
+{"id":"4zouoqPpUeA","title":"【ライブ】曇天 Live at  私立恵比寿中学 バンドのみんなと大学芸会2019 エビ中のフルバッテリー・サラウンド by エビ中のエビちゃんねる! 8 months ago 4 minutes, 10 seconds 57,748 views","artist":""}
+// 私立恵比寿中学 「イエローライト」(THE FIRST PERFORMANCE)
+{"id":"4T4XXYB0Bbg","title":"【ライブ】私立恵比寿中学 with たむらぱん 「イエローライト」(THE FIRST PERFORMANCE) by エビ中のエビちゃんねる! 1 year ago 4 minutes, 46 seconds 301,186 views","artist":""}
+{"id":"UScs-mgTSzs","title":"私立恵比寿中学【イエローライト(9人ver.)】歌詞付き/歌割り by さそり座の中学生 6 months ago 4 minutes, 32 seconds 7,942 views","artist":""}
+{"id":"yxzI6HHfiZw","title":"蛍の光(9人ver.) / 私立恵比寿中学 by ebinomix 10 months ago 3 minutes, 25 seconds 28,893 views","artist":""}
+{"id":"etyVpYBrB5c","title":"私立恵比寿中学 1st ワンマン LIVE DVD Disk 1 Full video by haru gott 3 years ago 1 hour, 57 minutes 1,063 views","artist":""}
+{"id":"1x09bfO1ybU","title":"【ライブ】「私立恵比寿中学オンライン学芸会～all of our playlist～」 by エビ中のエビちゃんねる! 2 years ago 10 minutes, 7 seconds 123,187 views","artist":""}
+// 私立恵比寿中学  「オメカシ・フィーバー」コール練習動画
+{"id":"uWEcvd7wk3U","title":"【ライブ】私立恵比寿中学 「オメカシ・フィーバー」コール練習動画 by エビ中のエビちゃんねる! 2 years ago 4 minutes, 13 seconds 437,521 views","artist":""}
+{"id":"p3DdBjike9A","title":"星葉明日香が歌うオメカシ・フィーバー、コール練習動画（アカペラ） by スターリーフ 2 years ago 3 minutes, 51 seconds 228 views","artist":""}
+{"id":"_fn7nZGhzc4","title":"【エビ中】 私立恵比寿中学 『オメカシフィーバー』　妄想 MV　中山莉子 by 乙MUSIC LAB. 1 month ago 4 minutes, 1 second 756 views","artist":""}
+{"id":"bIM-V_PYFVU","title":"険しめな中山莉子さん（かわいい） by sa sa 1 year ago 26 seconds 4,314 views","artist":""}
+{"id":"dABR5dAG3lQ","title":"明日もきっとオメカシフィーバー by エビのmix 1 year ago 8 minutes, 3 seconds 17,114 views","artist":""}
+// 私立恵比寿中学  スターダストライト（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020
+{"id":"15lqQg52IRY","title":"【ライブ】スターダストライト（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 5 months ago 6 minutes, 31 seconds 43,055 views","artist":""}
+{"id":"FUtIOsJHhko","title":"【ライブ】まっすぐ（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 8 months ago 6 minutes, 18 seconds 118,240 views","artist":""}
+{"id":"qG0nKg-jIQk","title":"【ライブ】星の数え方　Live at エビ中 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 9 months ago 6 minutes, 33 seconds 139,309 views","artist":""}
+{"id":"mO8U8w-h9DU","title":"スターダストライト（ちゅうおんver.)/私立恵比寿中学【ソロギター】 by エビスギター 1 year ago 4 minutes, 37 seconds 171 views","artist":""}
+{"id":"dY832hpIswk","title":"【イヤホン推奨】スターダストライト / 私立恵比寿中学【2019-2021】 by ebinomix 2 weeks ago 5 minutes, 3 seconds 2,102 views","artist":""}
+// 私立恵比寿中学  ハイタテキ！ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018
+{"id":"UpyBDloOKks","title":"【ライブ】ハイタテキ！ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 6 months ago 4 minutes, 38 seconds 137,013 views","artist":""}
+{"id":"4PZc22ulzac","title":"【ライブ】HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 9 months ago 4 minutes, 45 seconds 229,361 views","artist":""}
+{"id":"SjpQrFZKzE8","title":"【ライブ】禁断のカルマ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 5 months ago 5 minutes, 29 seconds 110,727 views","artist":""}
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+{"id":"Zot6KDEiCGw","title":"【ライブ】夏だぜジョニー Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 5 months ago 5 minutes, 4 seconds 44,507 views","artist":""}
+// 私立恵比寿中学「ハッピーエンドとそれから」
+{"id":"Rxy4IG9xkx0","title":"【MV】私立恵比寿中学「ハッピーエンドとそれから」 by エビ中のエビちゃんねる! 7 months ago 5 minutes, 4 seconds 495,497 views","artist":""}
+{"id":"sh18iHPwuBQ","title":"【歌割り】私立恵比寿中学 ハッピーエンドとそれから by きなこもち*スタプラ 7 months ago 5 minutes 10,828 views","artist":""}
+{"id":"6PUu4OHX6YE","title":"ハッピーエンドとそれから/私立恵比寿中学/歌ってみた by 星野日奈 6 months ago 4 minutes, 35 seconds 776 views","artist":""}
+{"id":"tTeIXMofp-g","title":"【エビ中】 メンバーダンス集 『ハッピーエンドとそれから』　私立恵比寿中学 by 乙MUSIC LAB. 7 months ago 2 minutes, 27 seconds 10,667 views","artist":""}
+{"id":"50v5K3fErgs","title":"私立恵比寿中学10th Anniversary Tour 2022～drawer～ ツアーファイナルに密着 by エビ中のエビちゃんねる! 3 months ago 12 minutes, 48 seconds 36,747 views","artist":""}
+// 私立恵比寿中学「ヘロー」
+{"id":"04Y9MYTUNz8","title":"【MV】私立恵比寿中学「ヘロー」 by エビ中のエビちゃんねる! 2 months ago 4 minutes, 5 seconds 226,830 views","artist":""}
+{"id":"5jdurVk4UCc","title":"私立恵比寿中学【ヘロー】歌詞付き/歌割り by さそり座の中学生 2 months ago 3 minutes, 52 seconds 8,599 views","artist":""}
+{"id":"TnqW5GkR534","title":"【テレビ初披露】青春ゾンビィィズ💜💚💗🧡💛💙❤️💚🤍9人全員✨私立恵比寿中学 by あや 2 months ago 2 minutes, 44 seconds 45,377 views","artist":""}
+{"id":"PzBys7QaQ-U","title":"【エビ中】ヘロー/私立恵比寿中学 by ny. 1 month ago 3 minutes, 50 seconds 3,297 views","artist":""}
+{"id":"3LOmnPGNai0","title":"harha - ヘロー　(LYRIC VIDEO)  [セルフカバー] by harha 5 days ago 3 minutes, 52 seconds 860 views","artist":""}
+// 私立恵比寿中学  まっすぐ（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 (1)
+{"id":"FUtIOsJHhko","title":"【ライブ】まっすぐ（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 8 months ago 6 minutes, 18 seconds 118,240 views","artist":""}
+{"id":"15lqQg52IRY","title":"【ライブ】スターダストライト（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 5 months ago 6 minutes, 31 seconds 43,055 views","artist":""}
+{"id":"qG0nKg-jIQk","title":"【ライブ】星の数え方　Live at エビ中 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 9 months ago 6 minutes, 33 seconds 139,309 views","artist":""}
+{"id":"mzqpKWKe5HE","title":"つなぎからのまっすぐ エビ中 by さとうきび 5 years ago 6 minutes, 29 seconds 276,778 views","artist":""}
+{"id":"SrweC5cg5YA","title":"【歌割り】私立恵比寿中学 まっすぐ by きなこもち*スタプラ 1 year ago 6 minutes, 16 seconds 35,064 views","artist":""}
+// 私立恵比寿中学 【ライブ】Jamp Live at Shiritsu Ebisu Chugaku Concept Live 〜MOVE〜
+{"id":"ZcvlLwkTgRg","title":"【ライブ】Jamp Live at Shiritsu Ebisu Chugaku Concept Live 〜MOVE〜 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 34 seconds 17,844 views","artist":""}
+{"id":"lejWdl1xINY","title":"やついフェス ジャンプ 私立恵比寿中学 by 砂肝 2 years ago 4 minutes, 35 seconds 18,628 views","artist":""}
+{"id":"vn1Uqidg4ZM","title":"20210607大宮ソニックシティ　エビ中「私立恵比寿中学 Concept Live ～MOVE～」独占生中継 by もふもふ 6 months ago 1 hour, 59 minutes 20,834 views","artist":""}
+{"id":"01-5tSd5vqM","title":"【ライブ】ジャンプ Live at 私立恵比寿中学 Concept Live 〜MOVE〜 by エビ中のエビちゃんねる! 1 year ago 5 minutes, 28 seconds 162,444 views","artist":""}
+{"id":"vnLQh8AXIC0","title":"【ライブ】ジャンプ Live at バンドのみんなと大学芸会2019エビ中のフルバッテリー・サラウンド by エビ中のエビちゃんねる! 2 years ago 5 minutes, 5 seconds 650,968 views","artist":""}
+// 私立恵比寿中学 【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+{"id":"pBGarK551aM","title":"【ライブ】君のままで Live at  エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 2 seconds 141,497 views","artist":""}
+{"id":"UpyBDloOKks","title":"【ライブ】ハイタテキ！ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 6 months ago 4 minutes, 38 seconds 137,013 views","artist":""}
+{"id":"qSA2Lu7E9hI","title":"【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖 by エビ中のエビちゃんねる! 10 months ago 4 minutes, 25 seconds 273,564 views","artist":""}
+{"id":"4PZc22ulzac","title":"【ライブ】HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 9 months ago 4 minutes, 45 seconds 229,361 views","artist":""}
+// 私立恵比寿中学 【ライブ】イート・ザ・大目玉 Live at  私立恵比寿中学 バンドのみんなと大学芸会2019 エビ中のフルバッテリー・サラウンド
+{"id":"Olgj0UbVZuw","title":"【ライブ】イート・ザ・大目玉 Live at  私立恵比寿中学 バンドのみんなと大学芸会2019 エビ中のフルバッテリー・サラウンド by エビ中のエビちゃんねる! 7 months ago 4 minutes, 7 seconds 92,306 views","artist":""}
+{"id":"4zouoqPpUeA","title":"【ライブ】曇天 Live at  私立恵比寿中学 バンドのみんなと大学芸会2019 エビ中のフルバッテリー・サラウンド by エビ中のエビちゃんねる! 8 months ago 4 minutes, 10 seconds 57,748 views","artist":""}
+{"id":"FhxyKxkksnQ","title":"「イート・ザ・大目玉 」私立恵比寿中学 by エビのmix 1 year ago 3 minutes, 56 seconds 32,063 views","artist":""}
+{"id":"ZJMoXBuyN_Y","title":"【ソロライブ】柏木ひなた「イート・ザ・大目玉」 Live at Zepp DiverCity 2021.3.29 by エビ中のエビちゃんねる! 1 year ago 4 minutes, 27 seconds 71,042 views","artist":""}
+{"id":"f5at9dM2RFM","title":"【エビ中 秋田分校2018】『イート・ザ・大目玉』 by 星の屑の記憶 1 year ago 4 minutes, 2 seconds 12,361 views","artist":""}
+// 私立恵比寿中学 【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖
+{"id":"qSA2Lu7E9hI","title":"【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖 by エビ中のエビちゃんねる! 10 months ago 4 minutes, 25 seconds 273,564 views","artist":""}
+{"id":"4PZc22ulzac","title":"【ライブ】HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 9 months ago 4 minutes, 45 seconds 229,361 views","artist":""}
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+{"id":"ra9GywhArXE","title":"【ライブ】青い青い星の名前 Live at  エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 3 seconds 137,058 views","artist":""}
+{"id":"o6B3gPbbafs","title":"私立恵比寿中学『紅の詩』ファミえん2017 (1.25x再生推奨) by れいはる 4 years ago 5 minutes, 39 seconds 95,155 views","artist":""}
+// 私立恵比寿中学  君のままで Live at  エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018
+{"id":"pBGarK551aM","title":"【ライブ】君のままで Live at  エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 2 seconds 141,497 views","artist":""}
+{"id":"Zot6KDEiCGw","title":"【ライブ】夏だぜジョニー Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 5 months ago 5 minutes, 4 seconds 44,507 views","artist":""}
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+{"id":"qSA2Lu7E9hI","title":"【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖 by エビ中のエビちゃんねる! 10 months ago 4 minutes, 25 seconds 273,564 views","artist":""}
+{"id":"UpyBDloOKks","title":"【ライブ】ハイタテキ！ Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 6 months ago 4 minutes, 38 seconds 137,013 views","artist":""}
+// 私立恵比寿中学 _ 星の数え方
+{"id":"qG0nKg-jIQk","title":"【ライブ】星の数え方　Live at エビ中 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 9 months ago 6 minutes, 33 seconds 139,309 views","artist":""}
+{"id":"MGtNtWG-zyQ","title":"【歌割り】私立恵比寿中学 星の数え方 by きなこもち*スタプラ 1 year ago 5 minutes, 25 seconds 66,579 views","artist":""}
+{"id":"zyU1jG-robY","title":"星の数え方 with 秋田県高校合同合唱団 2019年10月19日 by おいこうや 2 years ago 5 minutes, 43 seconds 11,998 views","artist":""}
+{"id":"cSY9yru_RHE","title":"【ソロライブ】「星の数え方」 from 「柏木ひなた生誕ソロライブ『-Interlude-』」 by エビ中のエビちゃんねる! 3 months ago 6 minutes, 19 seconds 34,139 views","artist":""}
+{"id":"vgb846VOQug","title":"【エビ中】 私立恵比寿中学 『エビ中の美しいハーモニー』　星の数え方 by 乙MUSIC LAB. 6 months ago 2 minutes, 22 seconds 6,518 views","artist":""}
+// 私立恵比寿中学  星の数え方　Live at エビ中 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 (1)
+{"id":"qG0nKg-jIQk","title":"【ライブ】星の数え方　Live at エビ中 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 9 months ago 6 minutes, 33 seconds 139,309 views","artist":""}
+{"id":"FUtIOsJHhko","title":"【ライブ】まっすぐ（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 8 months ago 6 minutes, 18 seconds 118,240 views","artist":""}
+{"id":"15lqQg52IRY","title":"【ライブ】スターダストライト（ちゅうおん ver.） Live at 秋麗と轡虫と音楽のこだま 題して「ちゅうおん」2020 by エビ中のエビちゃんねる! 5 months ago 6 minutes, 31 seconds 43,055 views","artist":""}
+{"id":"MGtNtWG-zyQ","title":"【歌割り】私立恵比寿中学 星の数え方 by きなこもち*スタプラ 1 year ago 5 minutes, 25 seconds 66,579 views","artist":""}
+{"id":"ZFda1u3sycQ","title":"「星の数え方」　私立恵比寿中学 by エビのmix 1 year ago 5 minutes, 29 seconds 17,979 views","artist":""}
+// 私立恵比寿中学  自由へ道連れ from 椎名林檎トリビュートアルバム「アダムとイヴの林檎」
+{"id":"ERtAI8L3Y5g","title":"【ライブ】自由へ道連れ from 椎名林檎トリビュートアルバム「アダムとイヴの林檎」 by エビ中のエビちゃんねる! 4 years ago 4 minutes, 26 seconds 2,495,031 views","artist":""}
+{"id":"jTrJg8jyYzQ","title":"私立恵比寿中学 - 自由へ道連れ(椎名林檎トリビュート・アルバム『アダムとイヴの林檎』より) by エビ中のエビちゃんねる! 4 years ago 56 seconds 324,683 views","artist":""}
+{"id":"UQAz6TCLDlA","title":"私立恵比寿中学『自由へ道連れ』 Shiritsu Ebisu Chugaku - Jiyuu e Michidzure (Collateral Damage) by Taiyou Scandalous 7 months ago 3 minutes, 29 seconds 2,459 views","artist":""}
+{"id":"B_hLfhccYf0","title":"椎名林檎 - 自由へ道連れ by 椎名林檎 9 years ago 3 minutes, 45 seconds 7,952,363 views","artist":""}
+{"id":"lvjsR1tS7zo","title":"宇多田ヒカル&小袋成彬 - 丸ノ内サディスティック(椎名林檎トリビュート・アルバム『アダムとイヴの林檎』より) by Sony Music (Japan) 4 years ago 1 minute, 1 second 746,979 views","artist":""}
+// 私立恵比寿中学  青い青い星の名前 Live at  エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖
+{"id":"ra9GywhArXE","title":"【ライブ】青い青い星の名前 Live at  エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 3 seconds 137,058 views","artist":""}
+{"id":"qSA2Lu7E9hI","title":"【ライブ】紅の詩 Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 in 山中湖 by エビ中のエビちゃんねる! 10 months ago 4 minutes, 25 seconds 273,564 views","artist":""}
+{"id":"4PZc22ulzac","title":"【ライブ】HOT UP!!! Live at エビ中 夏のファミリー遠足 略してファミえん 令和元年 ㏌ 山中湖 by エビ中のエビちゃんねる! 9 months ago 4 minutes, 45 seconds 229,361 views","artist":""}
+{"id":"pBGarK551aM","title":"【ライブ】君のままで Live at  エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 8 months ago 4 minutes, 2 seconds 141,497 views","artist":""}
+{"id":"J0qd4ziQ-Eo","title":"【ライブ】YELL Live at エビ中 夏のファミリー遠足 略してファミえん in 山中湖2018 by エビ中のエビちゃんねる! 10 months ago 5 minutes, 10 seconds 241,471 views","artist":""}
+// 私立恵比寿中学「青春ゾンビィィズ」
+{"id":"8lWoKIYp4Fo","title":"【MV】私立恵比寿中学「青春ゾンビィィズ」 by エビ中のエビちゃんねる! 5 months ago 4 minutes, 34 seconds 274,423 views","artist":""}
+{"id":"TnqW5GkR534","title":"【テレビ初披露】青春ゾンビィィズ💜💚💗🧡💛💙❤️💚🤍9人全員✨私立恵比寿中学 by あや 2 months ago 2 minutes, 44 seconds 45,377 views","artist":""}
+{"id":"8f3kdFtJ1ZI","title":"【エビ中】 『青春ゾンビィィズ』　妄想 MV　私立恵比寿中学　新曲 by 乙MUSIC LAB. 5 months ago 4 minutes, 13 seconds 12,616 views","artist":""}
+{"id":"dV4TwdLCd3s","title":"私立恵比寿中学【青春ゾンビィィズ】歌詞付き/歌割り by さそり座の中学生 4 months ago 4 minutes, 12 seconds 4,853 views","artist":""}
+{"id":"50v5K3fErgs","title":"私立恵比寿中学10th Anniversary Tour 2022～drawer～ ツアーファイナルに密着 by エビ中のエビちゃんねる! 3 months ago 12 minutes, 48 seconds 36,747 views","artist":""}
+// 音楽ガッタス  青春のカスタード
+{"id":"d_ikifXT73k","title":"「青春のカスタード (音楽ガッタス)」 吉澤ひとみ 里田まい by m7s10daa33v2 13 years ago 4 minutes, 31 seconds 92,376 views","artist":""}
+{"id":"5FsDvu73lqg","title":"青春のカスタード by GRMN08 13 years ago 4 minutes, 31 seconds 22,874 views","artist":""}
+{"id":"Cw11v29Ht2w","title":"青春のカスタード/音楽ガッタス guitar cover by 小林ファンキ風格 1 year ago 1 minute, 47 seconds 999 views","artist":""}
+{"id":"VUK6Tor6XGc","title":"ONGAKU GATAS リゾナント ブルー by nise51 10 years ago 2 minutes, 33 seconds 20,487 views","artist":""}
+{"id":"siigJv4ik7M","title":"植村あかり - 青春のカスタード by becker Kenfryz 2 years ago 3 minutes, 10 seconds 4,456 views","artist":""}
