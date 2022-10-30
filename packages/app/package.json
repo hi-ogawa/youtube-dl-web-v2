@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "run-p rakkas:dev tsc:dev",
     "build": "run-s rakkas:build fix-vercel-output",
-    "rakkas:dev": "rakkas --no-clearScreen --port 3435",
+    "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
