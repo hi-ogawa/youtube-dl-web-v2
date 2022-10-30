@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "run-p rakkas:dev tsc:dev",
     "build": "run-s rakkas:build fix-vercel-output",
-    "rakkas:dev": "rakkas --no-clearScreen --port 3435",
+    "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
@@ -30,8 +30,12 @@
     "@types/lodash": "^4.14.186",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
-    "vite": "^3.1.1",
-    "vite-plugin-windicss": "^1.8.8",
-    "windicss": "^3.5.6"
+    "@unocss/preset-uno": "^0.46.1",
+    "@unocss/reset": "^0.46.1",
+    "@unocss/transformer-directives": "^0.46.1",
+    "@unocss/transformer-variant-group": "^0.46.1",
+    "@unocss/vite": "^0.46.1",
+    "unocss": "^0.46.1",
+    "vite": "^3.1.1"
   }
 }

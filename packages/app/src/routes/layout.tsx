@@ -4,8 +4,6 @@ import { Head } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
-import "virtual:windi.css";
-import "../styles/index.css";
 
 export default function Layout(props: React.PropsWithChildren) {
   return (

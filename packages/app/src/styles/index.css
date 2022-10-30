@@ -2,5 +2,5 @@
 html,
 body,
 #root {
-  @apply h-full bg-gray-100;
+  --at-apply: "h-full bg-white";
 }

@@ -24,10 +24,10 @@ export function RadialProgress(props: {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="4"
       strokeLinecap="butt"
     >
-      <circle className={props.classNameBackCircle} cx="12" cy="12" r="10" />
+      <circle className={props.classNameBackCircle} cx="12" cy="12" r="9" />
       <circle
         className={cls(
           props.classNameFrontCircle,
@@ -36,7 +36,7 @@ export function RadialProgress(props: {
         transform="rotate(-90 12 12)"
         cx="12"
         cy="12"
-        r="10"
+        r="9"
         strokeDasharray={`${dashLength} ${GAP_LENGTH}`}
         pathLength={PATH_LENGTH}
       />
