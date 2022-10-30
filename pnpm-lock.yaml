@@ -35,6 +35,7 @@ importers:
       '@unocss/transformer-variant-group': ^0.46.1
       '@unocss/vite': ^0.46.1
       comlink: ^4.3.1
+      esbuild-register: ^3.3.3
       lodash: ^4.17.21
       rakkasjs: next
       react: ^18.2.0
@@ -42,6 +43,7 @@ importers:
       react-feather: ^2.0.10
       react-hook-form: ^7.35.0
       react-hot-toast: ^2.4.0
+      undici: ^5.12.0
       unocss: ^0.46.1
       vite: ^3.1.1
       zod: ^3.19.1
@@ -68,6 +70,8 @@ importers:
       '@unocss/transformer-directives': 0.46.1
       '@unocss/transformer-variant-group': 0.46.1
       '@unocss/vite': 0.46.1_vite@3.2.0
+      esbuild-register: 3.3.3
+      undici: 5.12.0
       unocss: 0.46.1_vite@3.2.0
       vite: 3.2.0
 
@@ -1720,6 +1724,12 @@ packages:
     os: [openbsd]
     requiresBuild: true
     optional: true
+
+  /esbuild-register/3.3.3:
+    resolution: {integrity: sha512-eFHOkutgIMJY5gc8LUp/7c+LLlDqzNi9T6AwCZ2WKKl3HmT+5ef3ZRyPPxDOynInML0fgaC50yszPKfPnjC0NQ==}
+    peerDependencies:
+      esbuild: '>=0.12 <1'
+    dev: true
 
   /esbuild-sunos-64/0.14.54:
     resolution: {integrity: sha512-28GZ24KmMSeKi5ueWzMcco6EBHStL3B6ubM7M51RmPwXQGLe0teBGJocmWhgwccA1GeFXqxzILIxXpHbl9Q/Kw==}
