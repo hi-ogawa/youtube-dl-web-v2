@@ -154,7 +154,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       }
       const { result, offset, total } = res.value;
       setDownloadProgress(offset / total);
-      fetchProxy;
       if (offset === total) {
         processFileMutation.mutate({
           audio: result,
@@ -163,6 +162,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           artist,
           album,
         });
+        toast.success("successfully downloaded");
       }
     },
     onError: () => {
@@ -185,7 +185,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   );
 
   return (
-    <>
+    <form className="flex flex-col gap-4" onSubmit={handleDownload}>
       <VideoCard
         imageUrl={getThumbnailUrl(videoInfo.id)}
         title={videoInfo.title}
@@ -206,16 +206,28 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </div>
       <div className="flex flex-col gap-2">
         <span>Title</span>
-        <input className="input px-1" {...form.register("title")} />
+        <input
+          className="input px-1"
+          {...form.register("title")}
+          onKeyDown={ignoreFormEnter}
+        />
       </div>
       {/* TODO: save history for quick input */}
       <div className="flex flex-col gap-2">
         <span>Artist</span>
-        <input className="input px-1" {...form.register("artist")} />
+        <input
+          className="input px-1"
+          {...form.register("artist")}
+          onKeyDown={ignoreFormEnter}
+        />
       </div>
       <div className="flex flex-col gap-2">
         <span>Album</span>
-        <input className="input px-1" {...form.register("album")} />
+        <input
+          className="input px-1"
+          {...form.register("album")}
+          onKeyDown={ignoreFormEnter}
+        />
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
@@ -228,7 +240,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       {!processFileMutation.isSuccess && (
         <button
           className="p-1 btn btn-primary"
-          onClick={() => handleDownload()}
           disabled={
             !workerQuery.isSuccess ||
             processFileMutation.isLoading ||
@@ -264,8 +275,15 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           </div>
         </a>
       )}
-    </>
+    </form>
   );
+}
+
+function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 }
 
 function MainFormSkelton() {
