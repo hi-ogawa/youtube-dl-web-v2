@@ -9,7 +9,7 @@ export default function Layout(props: React.PropsWithChildren) {
   return (
     <>
       <Head>
-        <title>youtube-dl-web</title>
+        <title>Youtube DL Web</title>
         <link rel="icon" href={ICON_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="manifest" href="/manifest.json" />
