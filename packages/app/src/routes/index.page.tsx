@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { isNil, sortBy } from "lodash";
+import { navigate } from "rakkasjs";
 import React from "react";
 import { GitHub } from "react-feather";
 import { useForm } from "react-hook-form";
@@ -31,7 +32,9 @@ export default function Page() {
 
   const metadataQuery = useMetadata({
     onError: () => {
-      toast.error("failed to fetch video info");
+      toast.error("failed to fetch video info", {
+        id: "metadataQuery.onError",
+      });
     },
   });
 
@@ -42,7 +45,14 @@ export default function Page() {
       const id = url.searchParams.get(SHARE_TARGET_PARAMS.text);
       if (id) {
         form.setValue("id", id);
-        metadataQuery.mutate({ id });
+        metadataQuery.mutate(
+          { id },
+          {
+            onSettled: () => {
+              navigate("/", { replace: true });
+            },
+          }
+        );
       }
     }
   }, []);
