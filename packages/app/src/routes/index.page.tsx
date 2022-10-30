@@ -126,6 +126,13 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     (f) => f.filesize
   ).reverse();
 
+  React.useEffect(() => {
+    if (formats.length === 0) {
+      // haven't seen such case but it might be possible
+      toast.error("unsupported video (valid audio format is not found)");
+    }
+  }, [formats]);
+
   const form = useForm({
     defaultValues: {
       format_id: formats[0]?.format_id,

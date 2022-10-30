@@ -4,7 +4,7 @@ import { tinyassert } from "./tinyassert";
 // https://github.com/ytdl-org/youtube-dl/blob/9aa8e5340f3d5ece372b983f8e399277ca1f1fe4/youtube_dl/extractor/youtube.py#L1819-L1830
 export interface FormatInfo {
   url: string;
-  filesize: number | null;
+  filesize?: number;
   format_id: string;
   format_note: string;
   ext: string;
@@ -60,7 +60,12 @@ const RAW_INFO_SCHEMA = z.object({
         mimeType: z.string(),
         width: z.number().optional(),
         height: z.number().optional(),
-        contentLength: z.string().refine((s) => s.match(/^\d+$/)),
+        // TODO: support undefined contentLength
+        contentLength: z
+          .string()
+          .refine((s) => s.match(/^\d+$/))
+          .transform(Number)
+          .optional(),
       })
       .array(),
   }),
@@ -75,7 +80,7 @@ export async function fetchVideoInfo(videoId: string): Promise<VideoInfo> {
     uploader: p.videoDetails.author,
     formats: p.streamingData.adaptiveFormats.map((f) => ({
       url: f.url,
-      filesize: Number(f.contentLength),
+      filesize: f.contentLength,
       format_id: f.itag.toString(),
       format_note: f.mimeType,
       ext: f.mimeType.split(";")[0]!.split("/")[1]!,
