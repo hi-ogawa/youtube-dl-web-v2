@@ -76,7 +76,7 @@
 {"id":"Efgif63EmnU","title":"愛・魔性","artist":"アンジュルム"}
 {"id":"6yO9GUyMz0s","title":"臥薪嘗胆","artist":"アンジュルム"}
 {"id":"p6DPJ2h6VIU","title":"限りあるMoment","artist":"アンジュルム"}
-# // こぶしファクトリー - Go To The Top!!
+{"id":"DZgGcSbwrTE","title":"Go To The Top!!","artist":"こぶしファクトリー"}
 {"id":"gpDnYWzgjRM","title":"Come with me","artist":"こぶしファクトリー"}
 {"id":"7PpMBgCn-Ww","title":"アンラッキーの事情","artist":"こぶしファクトリー"}
 {"id":"GPFwLgz_Tz4","title":"チョット愚直に！猪突猛進","artist":"こぶしファクトリー"}
@@ -92,9 +92,9 @@
 {"id":"eUgU09siffs","title":"意識高い乙女のジレンマ","artist":"つばきファクトリー"}
 {"id":"n--IthOLaEM","title":"愛は今、愛を求めてる","artist":"つばきファクトリー"}
 {"id":"kTCgEAmrmh4","title":"春恋歌","artist":"つばきファクトリー"}
-# {"id":"p46-Fq0OTF4","title":"43度","artist":"ハロプロ研修生"}
-# {"id":"JEp85TCIZQ4","title":"Say!Hello!","artist":"ハロプロ研修生"}
-# {"id":"aho8k9PhZQM","title":"きみの登場","artist":"ハロプロ研修生"}
+{"id":"p46-Fq0OTF4","title":"43度","artist":"ハロプロ研修生"}
+{"id":"JEp85TCIZQ4","title":"Say!Hello!","artist":"ハロプロ研修生"}
+{"id":"aho8k9PhZQM","title":"きみの登場","artist":"ハロプロ研修生"}
 {"id":"IiV-aaLo9SM","title":"泡沫サタデーナイト！","artist":"モーニング娘。"}
 {"id":"GzSzUhUPNdI","title":"I WISH","artist":"モーニング娘。"}
 {"id":"B-xPswM-cvs","title":"大・人生 Never Been Better!","artist":"モーニング娘。"}
@@ -110,21 +110,21 @@
 {"id":"UjmEOAyxKE0","title":"笑顔YESヌード","artist":"モーニング娘。"}
 {"id":"4QBiVLwIiyw","title":"Inspiration!","artist":"モーニング娘。"}
 {"id":"upW4yFgzkHI","title":"The 摩天楼ショー","artist":"モーニング娘。"}
-# {"id":"mX7lMG1gpUw","title":"「井上玲音がJuice=Juiceの歌を・・・」#04","artist":"Juice=Juice"}
-# {"id":"6myl2IftM-M","title":"「井上玲音がJuice=Juiceの歌を・・・」#06","artist":"Juice=Juice"}
-# {"id":"a3m9-r_svzI","title":"「井上玲音がJuice=Juiceの歌を・・・」#07","artist":"Juice=Juice"}
-# {"id":"cd3Y3j5LrKY","title":"「井上玲音がJuice=Juiceの歌を・・・」#08","artist":"Juice=Juice"}
+{"id":"mX7lMG1gpUw","title":"素直に甘えて (井上玲音がJuice=Juiceの歌を・・・)","artist":"Juice=Juice"}
+{"id":"6myl2IftM-M","title":"ロマンスの途中 (井上玲音がJuice=Juiceの歌を・・・)","artist":"Juice=Juice"}
+{"id":"a3m9-r_svzI","title":"微炭酸 (井上玲音がJuice=Juiceの歌を・・・)","artist":"Juice=Juice"}
+{"id":"cd3Y3j5LrKY","title":"好きって言ってよ (井上玲音がJuice=Juiceの歌を・・・)","artist":"Juice=Juice"}
 {"id":"iSTh17VkzUA","title":"宇宙でLa Ta Ta","artist":"高木紗友希, 上國料萌衣"}
 {"id":"Nr9y0AsU0qs","title":"どっち","artist":"小片リサ"}
 {"id":"vNR6uICic8c","title":"宇宙でLa Ta Ta","artist":"小片リサ"}
-# // 東京女子流 - Count Three -New Vocal -
-# // 東京女子流  days ～キミだけがいない街～
-# // 東京女子流 W.M.A.D
-# // 東京女子流  この雨が上がっても
-# // 東京女子流 フライデーナイト
-# // 東京女子流  夢の中に連れてって
-# // 東京女子流  薔薇の緊縛
-# // 東京女子流 _ 運命 -MV Short ver. + 30secSPOT-
+{"id":"bmxnZ-aXIaA","title":"Count Three","artist":"東京女子流"}
+{"id":"-iv7UqoqdhU","title":"days ~キミだけがいない街~","artist":"東京女子流"}
+{"id":"2s8pOnfG2pM","title":"W.M.A.D","artist":"東京女子流"}
+{"id":"X9orizcVJ9I","title":"この雨が上がっても","artist":"東京女子流"}
+{"id":"WchStcXLrvE","title":"Hello, Goodbye","artist":"東京女子流"}
+{"id":"bm1vmwh04gM","title":"フライデーナイト","artist":"東京女子流"}
+{"id":"j5aO-J-TYA0","title":"夢の中に連れてって","artist":"東京女子流"}
+{"id":"AYRKfeRTyHc","title":"薔薇の緊縛","artist":"東京女子流"}
 {"id":"3aiCHqekxCU","title":"Dear mama","artist":"東京女子流"}
 {"id":"DgtlkkVXmqY","title":"A New Departure","artist":"東京女子流"}
 {"id":"kxM3dJhQacY","title":"Attack Hyper Beat POP","artist":"東京女子流"}
