@@ -30,6 +30,17 @@ done | tee videos.txt
 # manually pick and update the metadata
 cp videos.txt videos.final.txt
 
-# TODO download the final video list
-# pnpm ts ./src/misc/cli.ts --id https://www.youtube.com/watch?v=fnWoFuh7ZuA --artist "Snarky Puppy" --title "Bet" --out test.opus
+# download the final video list
+mkdir -p misc/data
+grep -v '^#' videos.final.txt | while read -r line; do
+  id="$(echo "$line" | jq -r '.id')"
+  title="$(echo "$line" | jq -r '.title')"
+  artist="$(echo "$line" | jq -r '.artist')"
+  filename="$artist - $title.opus"
+  filename="${filename//\//\\/}"
+  echo "::"
+  echo ":: $filename"
+  echo "::"
+  pnpm -s ts ./src/misc/cli.ts --id "$id" --artist "$artist" --title "$title" --out "misc/data/$filename"
+done
 ```
