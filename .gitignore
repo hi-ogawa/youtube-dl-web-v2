@@ -2,3 +2,4 @@ node_modules
 build
 dist
 .vercel
+packages/app/misc/data
