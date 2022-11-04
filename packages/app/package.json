@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
     "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",
-    "ts": "node --experimental-loader ./src/misc/ts-loader.mjs -r esbuild-register",
+    "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "release": "vercel deploy --prebuilt .",
     "release:production": "vercel deploy --prebuilt . --prod"
   },
