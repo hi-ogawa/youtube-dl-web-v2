@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@hiogawa/ffmpeg": "workspace:*",
-    "@hiogawa/ffmpeg-experiment": "1.0.0-pre.1",
     "@hiogawa/flac-picture": "workspace:*",
     "@tanstack/react-query": "^4.3.4",
     "@tanstack/react-query-devtools": "^4.3.5",

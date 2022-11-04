@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { isNil, sortBy } from "lodash";
+import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { GitHub } from "react-feather";
@@ -11,19 +11,13 @@ import { DownloadProgress, download } from "../utils/download";
 import { formatBytes } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
-import { ProcessFileArg, processFile, useWorker } from "../utils/worker-client";
+import { webmToOpus } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export default function Page() {
-  const workerQuery = useWorker({
-    onError: () => {
-      toast.error("failed to load wasm");
-    },
-  });
-
   const form = useForm({
     defaultValues: {
       id: "",
@@ -69,10 +63,6 @@ export default function Page() {
           >
             <GitHub className="w-6 h-6" />
           </a>
-          <span className="flex-1"></span>
-          {workerQuery.isLoading && (
-            <div className="w-6 h-6 spinner" title="loading wasm..." />
-          )}
         </div>
         <form
           className="flex flex-col gap-4"
@@ -116,8 +106,6 @@ export default function Page() {
 //
 
 function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
-  const workerQuery = useWorker();
-
   // filter only webm audio
   const formats = sortBy(
     videoInfo.formats.filter(
@@ -190,8 +178,13 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const processFileMutation = useMutation(
     async (arg: ProcessFileArg) => {
-      tinyassert(workerQuery.isSuccess);
-      return processFile(workerQuery.data, arg);
+      const metadata = pick(arg, ["title", "artist", "album"]);
+      const output = await webmToOpus(arg.audio, metadata, arg.image);
+      const url = URL.createObjectURL(new Blob([output]));
+      const name =
+        ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
+          "download") + ".opus";
+      return { url, name };
     },
     {
       onError: () => {
@@ -258,11 +251,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       {!processFileMutation.isSuccess && (
         <button
           className="p-1 btn btn-primary"
-          disabled={
-            !workerQuery.isSuccess ||
-            processFileMutation.isLoading ||
-            !isNil(downloadProgress)
-          }
+          disabled={processFileMutation.isLoading || !isNil(downloadProgress)}
         >
           <div className="flex justify-center items-center relative">
             {!processFileMutation.isLoading && isNil(downloadProgress) && (
@@ -295,6 +284,14 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       )}
     </form>
   );
+}
+
+interface ProcessFileArg {
+  audio: Uint8Array;
+  image?: Uint8Array;
+  title?: string;
+  artist?: string;
+  album?: string;
 }
 
 function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {

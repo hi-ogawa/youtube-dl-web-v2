@@ -61,7 +61,7 @@ export async function run(options: RunOptions): Promise<RunResult> {
     FS.writeFile(path, data);
   }
 
-  // invoke main and wait until finish
+  // invoke ffmpeg main and wait until finish
   callMain(options.arguments);
   const exitCode = await exitCodePromise;
   const outFiles: FileInfo[] = [];

@@ -1,17 +1,17 @@
 {
   "name": "@hiogawa/ffmpeg",
-  "version": "1.0.0-pre.0",
+  "version": "1.0.0-pre.2",
   "type": "commonjs",
   "main": "./build/esbuild/index.cjs",
   "types": "./build/tsc/index.d.ts",
   "files": [
-    "build/esbuild/wrapper.cjs",
-    "build/tsc/wrapper.dts",
+    "build/esbuild/index.cjs",
+    "build/tsc/index.d.ts",
     "build/ffmpeg/wasm-release/ffmpeg_g.js",
     "build/ffmpeg/wasm-release/ffmpeg_g.wasm",
     "build/ffmpeg/wasm-release/ffmpeg_g.worker.js"
   ],
-  "license": "MIT",
+  "license": "LGPLv2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/hi-ogawa/youtube-dl-web-v2",
@@ -20,10 +20,11 @@
   "scripts": {
     "build": "run-s build:wasm build:js build:dts",
     "build:wasm": "pnpm docker-emscripten bash misc/ffmpeg-build-wasm.sh",
-    "build:js": "esbuild ./src/index.ts --outdir=build/esbuild --bundle --format=cjs --platform=node",
+    "build:js": "esbuild ./src/index.ts --outdir=build/esbuild --bundle --format=cjs --out-extension:.js=.cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "docker-emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
     "docker-emscripten:clean": "docker-compose down -v --remove-orphans",
+    "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "release": "npm publish --access public"
   },
   "devDependencies": {

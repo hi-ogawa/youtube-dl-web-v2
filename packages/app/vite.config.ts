@@ -8,8 +8,10 @@ export default defineConfig({
     sourcemap: true,
   },
   plugins: [unocss(), rakkas({ adapter: "vercel" })],
-  worker: {
-    // workaround for iife worker bug with `?url` https://github.com/vitejs/vite/issues/9879
-    format: "es",
+  server: {
+    headers: {
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-embedder-policy": "require-corp",
+    },
   },
 });

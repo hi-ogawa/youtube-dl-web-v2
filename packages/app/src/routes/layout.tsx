@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head } from "rakkasjs";
+import { Head, HeadersFunction } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
@@ -18,6 +18,16 @@ export default function Layout(props: React.PropsWithChildren) {
     </>
   );
 }
+
+// COOP/COEP headers for emscripten multi threading (SharedArrayBuffer)
+export const headers: HeadersFunction = () => {
+  return {
+    headers: {
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-embedder-policy": "require-corp",
+    },
+  };
+};
 
 //
 // providers
