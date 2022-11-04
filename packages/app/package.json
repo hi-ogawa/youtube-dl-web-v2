@@ -1,9 +1,10 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "run-p rakkas:dev tsc:dev",
-    "build": "run-s rakkas:build fix-vercel-output",
+    "dev": "pnpm build:worker && run-p rakkas:dev tsc:dev",
+    "build": "run-s build:worker build:app",
     "build:worker": "esbuild ./src/worker/ffmpeg.ts --bundle --outdir=./src/worker/build",
+    "build:app": "run-s rakkas:build fix-vercel-output",
     "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
