@@ -168,7 +168,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           artist,
           album,
         });
-        toast.success("successfully downloaded");
       }
     },
     onError: () => {
@@ -187,6 +186,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       return { url, name };
     },
     {
+      onSuccess: () => {
+        toast.success("successfully downloaded");
+      },
       onError: () => {
         toast.error("failed to create an opus file", {
           id: "processFileMutation.onError",

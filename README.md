@@ -5,6 +5,7 @@ git submodule init --update
 
 # development
 pnpm i
+pnpm build:deps
 pnpm dev
 
 # deploy

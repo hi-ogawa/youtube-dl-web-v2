@@ -4,6 +4,7 @@ import { Head, HeadersFunction } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
+import { WORKER_ASSET_URLS } from "../utils/worker-client";
 
 export default function Layout(props: React.PropsWithChildren) {
   return (
@@ -13,6 +14,10 @@ export default function Layout(props: React.PropsWithChildren) {
         <link rel="icon" href={ICON_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="manifest" href="/manifest.json" />
+        {/* it doesn't have to be so high priority, but don't want to spend time fetching them during instantiating emscripten module */}
+        {WORKER_ASSET_URLS.map((href) => (
+          <link key={href} rel="prefetch" href={href} />
+        ))}
       </Head>
       <AppProvider>{props.children}</AppProvider>
     </>
