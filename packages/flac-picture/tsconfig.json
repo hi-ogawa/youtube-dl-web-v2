@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/strictest",
+  "include": ["src"],
+  "compilerOptions": {
+    "checkJs": false,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2021",
+    "lib": ["es2021"]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@hiogawa/flac-picture",
+  "version": "1.0.0-pre.0",
+  "type": "module",
+  "main": "./build/index.mjs",
+  "types": "./build/index.d.js",
+  "files": [
+    "build/*"
+  ],
+  "bin": "./bin/cli.mjs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hi-ogawa/youtube-dl-web-v2",
+    "directory": "packages/flac-picture"
+  },
+  "scripts": {
+    "cli": "pnpm -s ts ./src/cli.ts",
+    "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
+    "dev": "run-p build:dev tsc:dev",
+    "build": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build --format=esm --platform=node --out-extension:.js=.mjs",
+    "build:dev": "pnpm build --watch",
+    "tsc": "tsc -b",
+    "tsc:dev": "tsc -b -w --preserveWatchOutput",
+    "test": "vitest",
+    "test:e2e": "bash misc/e2e.sh",
+    "release": "npm publish --access public"
+  },
+  "devDependencies": {
+    "@hiogawa/base64": "1.0.0-alpha.1"
+  }
+}
