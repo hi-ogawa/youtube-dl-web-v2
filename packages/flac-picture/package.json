@@ -1,16 +1,16 @@
 {
   "name": "@hiogawa/flac-picture",
-  "version": "1.0.0-pre.2",
-  "type": "module",
-  "main": "./build/esbuild/index.mjs",
+  "version": "1.0.0-pre.3",
+  "type": "commonjs",
+  "main": "./build/esbuild/index.js",
   "types": "./build/tsc/index.d.js",
   "files": [
-    "bin/cli.mjs",
-    "build/esbuild/index.mjs",
-    "build/esbuild/cli.mjs",
+    "bin/cli.js",
+    "build/esbuild/index.js",
+    "build/esbuild/cli.js",
     "build/tsc/index.d.ts"
   ],
-  "bin": "./bin/cli.mjs",
+  "bin": "./bin/cli.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "dev": "run-p build:dev tsc:dev",
     "build": "run-s build:js build:dts",
-    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=esm --platform=node --out-extension:.js=.mjs",
+    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=esm --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "tsc": "tsc -b",
     "tsc:dev": "tsc -b -w --preserveWatchOutput",
