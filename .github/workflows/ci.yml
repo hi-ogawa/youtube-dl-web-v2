@@ -13,5 +13,6 @@ jobs:
           node-version: 16
       - run: pnpm i --frozen-lockfile
       - run: pnpm lint:check
+      - run: pnpm build:deps
       - run: pnpm tsc
       - run: pnpm build
