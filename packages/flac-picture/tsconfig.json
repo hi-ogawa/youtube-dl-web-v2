@@ -2,6 +2,9 @@
   "extends": "@tsconfig/strictest",
   "include": ["src"],
   "compilerOptions": {
+    "outDir": "build/tsc",
+    "declaration": true,
+    "declarationMap": true,
     "checkJs": false,
     "noEmit": true,
     "module": "esnext",

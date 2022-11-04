@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "run-p rakkas:dev tsc:dev",
     "build": "run-s rakkas:build fix-vercel-output",
+    "build:worker": "esbuild ./src/worker/ffmpeg.ts --bundle --outdir=./src/worker/build",
     "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "@hiogawa/ffmpeg-experiment": "1.0.0-pre.1",
+    "@hiogawa/flac-picture": "workspace:*",
     "@tanstack/react-query": "^4.3.4",
     "@tanstack/react-query-devtools": "^4.3.5",
     "comlink": "^4.3.1",

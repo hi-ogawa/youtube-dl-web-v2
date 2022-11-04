@@ -31,6 +31,7 @@ importers:
   packages/app:
     specifiers:
       '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
+      '@hiogawa/flac-picture': workspace:*
       '@tanstack/react-query': ^4.3.4
       '@tanstack/react-query-devtools': ^4.3.5
       '@types/lodash': ^4.14.186
@@ -55,6 +56,7 @@ importers:
       zod: ^3.19.1
     dependencies:
       '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
+      '@hiogawa/flac-picture': link:../flac-picture
       '@tanstack/react-query': 4.13.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
       comlink: 4.3.1
@@ -1255,7 +1257,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
 
   /consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
