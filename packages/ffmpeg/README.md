@@ -1,3 +1,9 @@
 # ffmpeg
 
-TODO: move wasm package from https://github.com/hi-ogawa/ffmpeg-experiment
+based on https://github.com/hi-ogawa/ffmpeg-experiment
+
+```sh
+pnpm build
+pnpm test  # TODO
+pnpm release
+```
