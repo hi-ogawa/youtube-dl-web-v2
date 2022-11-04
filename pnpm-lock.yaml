@@ -31,7 +31,6 @@ importers:
   packages/app:
     specifiers:
       '@hiogawa/ffmpeg': workspace:*
-      '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
       '@hiogawa/flac-picture': workspace:*
       '@tanstack/react-query': ^4.3.4
       '@tanstack/react-query-devtools': ^4.3.5
@@ -57,7 +56,6 @@ importers:
       zod: ^3.19.1
     dependencies:
       '@hiogawa/ffmpeg': link:../ffmpeg
-      '@hiogawa/ffmpeg-experiment': 1.0.0-pre.1
       '@hiogawa/flac-picture': link:../flac-picture
       '@tanstack/react-query': 4.13.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
@@ -478,10 +476,6 @@ packages:
   /@hiogawa/base64/1.0.0-alpha.1:
     resolution: {integrity: sha512-yG+NVJYFslbJhz/qufBbSehnuGL4u9D3OPx6+2cqoqEwYqKIrED77bUHy7WbJKKyiB38YM6t1I2buJWaatuv8w==}
     dev: true
-
-  /@hiogawa/ffmpeg-experiment/1.0.0-pre.1:
-    resolution: {integrity: sha512-67rlm68E7vAHLdOhXQ5bvcEqdXfWo14DYzmaqP6IleKWoaVagh/z4p6oHCyyWLO+OSs5waTBV3NXZMkFNTHkGA==}
-    dev: false
 
   /@humanwhocodes/config-array/0.11.7:
     resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
