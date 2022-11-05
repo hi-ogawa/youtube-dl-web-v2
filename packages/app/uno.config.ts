@@ -12,6 +12,7 @@ export default defineConfig({
   // https://github.com/chakra-ui/chakra-ui/blob/8705372a014bfd7073fe8012a46d7aa22904370b/packages/components/theme/src/semantic-tokens.ts
   // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
   // https://daisyui.com/docs/colors/
+  // https://code.visualstudio.com/api/references/theme-color
   theme: {
     colors: {
       primary: c.blue[500],
@@ -59,17 +60,21 @@ export default defineConfig({
     btn: `
       cursor-pointer
       transition duration-200
-      border
       disabled:(cursor-not-allowed opacity-50)
     `,
+    "btn-ghost": `
+      not-disabled:hover:(text-primary-hover)
+      not-disabled:active:(text-primary-active)
+    `,
     "btn-default": `
-      border-current
+      border border-current
       not-disabled:hover:(text-primary-hover border-primary-hover)
       not-disabled:active:(text-primary-active border-primary-active)
     `,
     "btn-primary": `
       text-primary-content
-      bg-primary border-primary
+      bg-primary
+      border border-primary
       not-disabled:hover:(bg-primary-hover border-primary-hover)
       not-disabled:active:(bg-primary-active border-primary-active)
     `,

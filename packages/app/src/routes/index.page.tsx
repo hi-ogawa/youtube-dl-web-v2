@@ -2,7 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
-import { GitHub } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
@@ -52,18 +51,8 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="h-full flex flex-col items-center">
+    <main className="flex flex-col items-center">
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
-        <div className="flex items-center gap-3">
-          <h1 className="text-2xl">Youtube DL Web</h1>
-          <a
-            className="flex items-center"
-            href="https://github.com/hi-ogawa/youtube-dl-web-v2"
-            target="_blank"
-          >
-            <GitHub className="w-6 h-6" />
-          </a>
-        </div>
         <form
           className="flex flex-col gap-4"
           onSubmit={form.handleSubmit((data) => {
@@ -97,7 +86,7 @@ export default function Page() {
           <MainForm videoInfo={metadataQuery.data.videoInfo} />
         )}
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -236,7 +225,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           onKeyDown={ignoreFormEnter}
         />
       </div>
-      {/* TODO: save history for quick input */}
       <div className="flex flex-col gap-2">
         <span>Artist</span>
         <input

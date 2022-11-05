@@ -1,9 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head, HeadersFunction } from "rakkasjs";
+import { Head, HeadersFunction, Link, useLocation } from "rakkasjs";
 import React from "react";
+import { GitHub, Home, Menu } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
+import { Drawer } from "../components/drawer";
+import { usePrevious } from "../utils/use-previous";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 
 export default function Layout(props: React.PropsWithChildren) {
@@ -19,8 +22,57 @@ export default function Layout(props: React.PropsWithChildren) {
           <link key={href} rel="prefetch" href={href} />
         ))}
       </Head>
-      <AppProvider>{props.children}</AppProvider>
+      <AppProvider>
+        <PageHeader />
+        {props.children}
+      </AppProvider>
     </>
+  );
+}
+
+function PageHeader() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  // auto close on nav change
+  const location = useLocation();
+  const prev = usePrevious(location.pending);
+  React.useEffect(() => {
+    if (!prev && location.pending) {
+      setMenuOpen(false);
+    }
+  }, [location.pending]);
+
+  return (
+    <header className="flex items-center gap-3 px-6 py-2 shadow-sm border-b">
+      <button className="p-1 btn btn-ghost" onClick={() => setMenuOpen(true)}>
+        <Menu className="w-5 h-5" />
+      </button>
+      <div className="text-lg">Youtube DL Web</div>
+      <span className="flex-1"></span>
+      <a
+        className="flex items-center btn btn-ghost"
+        href="https://github.com/hi-ogawa/youtube-dl-web-v2"
+        target="_blank"
+      >
+        <GitHub className="w-5 h-5" />
+      </a>
+      <Drawer open={menuOpen} onClose={() => setMenuOpen(false)}>
+        <div className="flex flex-col gap-2">
+          <div className="pl-6 py-2">
+            <button
+              className="p-1 btn btn-ghost"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+          <Link className="pl-7 flex items-center gap-3 btn btn-ghost" href="/">
+            <Home className="w-5 h-5" />
+            Home
+          </Link>
+        </div>
+      </Drawer>
+    </header>
   );
 }
 
