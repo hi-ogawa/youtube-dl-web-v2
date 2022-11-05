@@ -128,9 +128,12 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       artist: videoInfo.artist ?? videoInfo.uploader,
       album: videoInfo.album,
       embedThumbnail: true,
+      startTime: undefined as undefined | string,
+      endTime: undefined as undefined | string,
     },
   });
-  const { title, artist, album, embedThumbnail } = form.watch();
+  const { title, artist, album, embedThumbnail, startTime, endTime } =
+    form.watch();
 
   const [downloadStream, setDownloadStream] =
     React.useState<ReadableStream<DownloadProgress>>();
@@ -167,6 +170,8 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           title: title?.trim(),
           artist: artist?.trim(),
           album: album?.trim(),
+          startTime: startTime?.trim(),
+          endTime: endTime?.trim(),
         });
       }
     },
@@ -178,7 +183,13 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   const processFileMutation = useMutation(
     async (arg: ProcessFileArg) => {
       const metadata = pick(arg, ["title", "artist", "album"]);
-      const output = await webmToOpus(arg.audio, metadata, arg.image);
+      const output = await webmToOpus(
+        arg.audio,
+        metadata,
+        arg.startTime,
+        arg.endTime,
+        arg.image
+      );
       const url = URL.createObjectURL(new Blob([output]));
       const name =
         ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
@@ -242,6 +253,24 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           onKeyDown={ignoreFormEnter}
         />
       </div>
+      <div className="flex flex-col gap-2">
+        <span>Start Time</span>
+        <input
+          className="input px-1"
+          placeholder="hh:mm:ss"
+          {...form.register("startTime")}
+          onKeyDown={ignoreFormEnter}
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <span>End Time</span>
+        <input
+          className="input px-1"
+          placeholder="hh:mm:ss"
+          {...form.register("endTime")}
+          onKeyDown={ignoreFormEnter}
+        />
+      </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
         <input
@@ -294,6 +323,8 @@ interface ProcessFileArg {
   title?: string;
   artist?: string;
   album?: string;
+  startTime?: string;
+  endTime?: string;
 }
 
 function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -328,6 +359,14 @@ function MainFormSkelton() {
       <div className="flex flex-col gap-2">
         <span>Album</span>
         <input className="input px-1" disabled />
+      </div>
+      <div className="flex flex-col gap-2">
+        <span>Start Time</span>
+        <input className="input px-1" placeholder="hh:mm:ss" disabled />
+      </div>
+      <div className="flex flex-col gap-2">
+        <span>End Time</span>
+        <input className="input px-1" placeholder="hh:mm:ss" disabled />
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>

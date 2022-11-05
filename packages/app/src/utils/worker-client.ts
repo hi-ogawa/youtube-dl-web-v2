@@ -18,6 +18,8 @@ export const WORKER_ASSET_URLS = [
 export async function webmToOpus(
   webm: Uint8Array,
   metadata: Record<string, string>,
+  startTime?: string,
+  endTime?: string,
   jpeg?: Uint8Array
 ): Promise<Uint8Array> {
   const worker = new Worker(WORKER_URL);
@@ -29,6 +31,8 @@ export async function webmToOpus(
       FFMPEG_WORKER_URL,
       webm,
       metadata,
+      startTime,
+      endTime,
       jpeg
     );
     return output;
