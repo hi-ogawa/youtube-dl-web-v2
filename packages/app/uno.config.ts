@@ -60,17 +60,21 @@ export default defineConfig({
     btn: `
       cursor-pointer
       transition duration-200
-      border
       disabled:(cursor-not-allowed opacity-50)
     `,
+    "btn-ghost": `
+      not-disabled:hover:(text-primary-hover)
+      not-disabled:active:(text-primary-active)
+    `,
     "btn-default": `
-      border-current
+      border border-current
       not-disabled:hover:(text-primary-hover border-primary-hover)
       not-disabled:active:(text-primary-active border-primary-active)
     `,
     "btn-primary": `
       text-primary-content
-      bg-primary border-primary
+      bg-primary
+      border border-primary
       not-disabled:hover:(bg-primary-hover border-primary-hover)
       not-disabled:active:(bg-primary-active border-primary-active)
     `,

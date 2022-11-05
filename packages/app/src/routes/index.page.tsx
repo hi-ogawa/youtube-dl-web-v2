@@ -51,7 +51,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="h-full flex flex-col items-center">
+    <main className="flex flex-col items-center">
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
         <form
           className="flex flex-col gap-4"
