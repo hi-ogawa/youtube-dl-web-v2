@@ -2,6 +2,7 @@ import { run } from "@hiogawa/ffmpeg";
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
 import { expose } from "comlink";
 import _ from "lodash";
+import { booleanGuard } from "../utils/boolean-guard";
 import { tinyassert } from "../utils/tinyassert";
 
 export type { FFmpegWorker };
@@ -18,6 +19,8 @@ class FFmpegWorker {
     // arguments
     webm: Uint8Array,
     metadata: Record<string, string>,
+    startTime?: string,
+    endTime?: string,
     jpeg?: Uint8Array
   ): Promise<Uint8Array> {
     // import emscripten module
@@ -28,7 +31,9 @@ class FFmpegWorker {
     // setup "-metadata" arguments
     const metadataArgs: string[] = [];
     for (const [k, v] of Object.entries(metadata)) {
-      metadataArgs.push("-metadata", `${k}=${v}`);
+      if (v) {
+        metadataArgs.push("-metadata", `${k}=${v}`);
+      }
     }
     if (jpeg) {
       const encodedJpeg = encode(jpeg);
@@ -38,20 +43,27 @@ class FFmpegWorker {
       );
     }
 
+    //
     // run ffmpeg cli
+    //
+
+    // prettier-ignore
+    const ffmpegArguments: string[] = [
+      "-hide_banner",
+      "-i", IN_FILE,
+      "-c", "copy",
+      ...metadataArgs,
+      startTime && ["-ss", startTime],
+      endTime && ["-to", endTime],
+      OUT_FILE,
+    ].flat().filter(booleanGuard);
+
     const result = await run({
       initModule,
       moduleUrl,
       wasmUrl,
       workerUrl,
-      // prettier-ignore
-      arguments: [
-        "-hide_banner",
-        "-i", IN_FILE,
-        "-c", "copy",
-        ...metadataArgs,
-        OUT_FILE,
-      ],
+      arguments: ffmpegArguments,
       inFiles: [
         {
           path: IN_FILE,
