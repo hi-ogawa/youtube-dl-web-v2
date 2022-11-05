@@ -164,9 +164,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         processFileMutation.mutate({
           audio: result,
           image: (embedThumbnail && thumbnailQuery.data) || undefined,
-          title,
-          artist,
-          album,
+          title: title?.trim(),
+          artist: artist?.trim(),
+          album: album?.trim(),
         });
       }
     },
