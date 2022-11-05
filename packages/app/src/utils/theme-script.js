@@ -6,7 +6,7 @@
  * @returns {boolean}
  */
 function __getTheme() {
-  return window.localStorage.getItem("theme");
+  return window.localStorage.getItem("theme") || "light";
 }
 
 /**
