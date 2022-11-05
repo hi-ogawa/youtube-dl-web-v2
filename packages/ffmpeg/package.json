@@ -28,8 +28,6 @@
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "docker-emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
     "docker-emscripten:clean": "docker-compose down -v --remove-orphans",
-    "test": "pnpm ts ./src/cli.ts -i=../flac-picture/misc/test.webm:/in.webm -o=test.opus:/out.opus -- -i /in.webm -c copy -metadata title=hello /out.opus",
-    "test:bin": "./bin/cli.cjs -i=../flac-picture/misc/test.webm:/in.webm -o=test.opus:/out.opus -- -i /in.webm -c copy -metadata title=hello /out.opus",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "release": "npm publish --access public"
   },
