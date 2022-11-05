@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import process from "node:process";
 import { run } from "@hiogawa/ffmpeg";
 import { encode } from "@hiogawa/flac-picture";
@@ -82,17 +83,14 @@ async function webmToOpus(
   const OUT_FILE = "/out.opus";
 
   // run ffmpeg main
+  const modulePath = require.resolve(
+    "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js"
+  );
   const result = await run({
-    initModule: require("@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js"),
-    moduleUrl: require.resolve(
-      "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js"
-    ),
-    wasmUrl: require.resolve(
-      "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.wasm"
-    ),
-    workerUrl: require.resolve(
-      "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.worker.js"
-    ),
+    initModule: require(modulePath),
+    moduleUrl: modulePath,
+    wasmUrl: path.join(modulePath, "..", "ffmpeg_g.wasm"),
+    workerUrl: path.join(modulePath, "..", "ffmpeg_g.worker.js"),
     arguments: [
       "-hide_banner",
       "-i",
