@@ -2,6 +2,8 @@
   "extends": "@tsconfig/strictest",
   "include": ["src"],
   "compilerOptions": {
+    "outDir": "build/tsc",
+    "declaration": true,
     "exactOptionalPropertyTypes": false, // too strict
     "noUncheckedIndexedAccess": false, // too strict
     "checkJs": false,
@@ -9,8 +11,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es2021",
-    "lib": ["es2021", "dom", "WebWorker.ImportScripts"],
-    "types": ["vite/client"],
-    "jsx": "react-jsx"
+    "lib": ["es2021"],
+    "types": ["@types/node"]
   }
 }

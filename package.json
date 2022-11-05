@@ -1,10 +1,15 @@
 {
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
-    "release": "pnpm -r release",
-    "release:production": "pnpm -r release:production",
-    "tsc": "tsc -b packages/app",
+    "dev": "pnpm -C packages/app build",
+    "build": "pnpm -C packages/app build",
+    "build:flac-picture": "pnpm -C packages/flac-picture build",
+    "build:ffmpeg": "pnpm -C packages/ffmpeg build",
+    "build:deps": "run-s build:flac-picture build:ffmpeg",
+    "build:all": "run-s build:deps build",
+    "release": "pnpm -C packages/app release",
+    "release:production": "pnpm -C packages/app release:production",
+    "tsc": "tsc -b packages/app packages/flac-picture packages/ffmpeg",
+    "test": "pnpm -r test",
     "lint": "run-s prettier eslint",
     "lint:check": "run-s prettier:check eslint:check",
     "prettier": "prettier -w --cache .",
@@ -13,13 +18,17 @@
     "eslint:check": "eslint . --cache --cache-location node_modules/.cache/.eslintcache --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
+    "@tsconfig/strictest": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
+    "esbuild": "^0.15.13",
+    "esbuild-register": "^3.3.3",
     "eslint": "^8.20.0",
     "eslint-plugin-import": "^2.26.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "vitest": "^0.24.5"
   },
   "volta": {
     "node": "16.18.0"

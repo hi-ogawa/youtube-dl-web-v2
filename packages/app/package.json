@@ -1,19 +1,22 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "run-p rakkas:dev tsc:dev",
-    "build": "run-s rakkas:build fix-vercel-output",
+    "dev": "pnpm build:worker && run-p rakkas:dev tsc:dev",
+    "build": "run-s build:worker build:app",
+    "build:worker": "esbuild ./src/worker/ffmpeg.ts --bundle --outdir=./src/worker/build",
+    "build:app": "run-s rakkas:build fix-vercel-output",
     "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
     "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",
-    "ts": "node --experimental-loader ./src/misc/ts-loader.mjs -r esbuild-register",
+    "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "release": "vercel deploy --prebuilt .",
     "release:production": "vercel deploy --prebuilt . --prod"
   },
   "dependencies": {
-    "@hiogawa/ffmpeg-experiment": "1.0.0-pre.1",
+    "@hiogawa/ffmpeg": "workspace:*",
+    "@hiogawa/flac-picture": "workspace:*",
     "@tanstack/react-query": "^4.3.4",
     "@tanstack/react-query-devtools": "^4.3.5",
     "comlink": "^4.3.1",
@@ -27,7 +30,6 @@
     "zod": "^3.19.1"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^1.0.2",
     "@types/lodash": "^4.14.186",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
@@ -36,7 +38,6 @@
     "@unocss/transformer-directives": "^0.46.1",
     "@unocss/transformer-variant-group": "^0.46.1",
     "@unocss/vite": "^0.46.1",
-    "esbuild-register": "^3.3.3",
     "undici": "^5.12.0",
     "unocss": "^0.46.1",
     "vite": "^3.1.1"

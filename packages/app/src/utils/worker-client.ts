@@ -1,46 +1,38 @@
-import { UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { Remote, wrap } from "comlink";
-import _, { pick } from "lodash";
-import type { WorkerImpl } from "./worker-impl";
-import WorkerConstructor from "./worker-impl?worker";
+import FFMPEG_MODULE_URL from "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js?url";
+import FFMPEG_WASM_URL from "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.wasm?url";
+import FFMPEG_WORKER_URL from "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.worker.js?url";
+import { wrap } from "comlink";
+import _ from "lodash";
 
-export const getWorker = _.memoize(async () => {
-  const worker = wrap<WorkerImpl>(new WorkerConstructor());
-  await worker.initialize();
-  return worker;
-});
+import WORKER_URL from "../worker/build/ffmpeg.js?url";
+import type { FFmpegWorker } from "../worker/ffmpeg";
 
-export function useWorker(options?: UseQueryOptions<Remote<WorkerImpl>>) {
-  return useQuery({
-    queryKey: [useWorker.name],
-    queryFn: () => getWorker(),
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    ...options,
-  });
-}
+// prefetch assets before instantiating emscripten worker
+export const WORKER_ASSET_URLS = [
+  WORKER_URL,
+  FFMPEG_MODULE_URL,
+  FFMPEG_WORKER_URL,
+  FFMPEG_WASM_URL,
+];
 
-export interface ProcessFileArg {
-  audio: Uint8Array;
-  image?: Uint8Array;
-  title?: string;
-  artist?: string;
-  album?: string;
-}
-
-export async function processFile(
-  worker: Remote<WorkerImpl>,
-  arg: ProcessFileArg
-): Promise<{ url: string; name: string }> {
-  const output = await worker.convert({
-    data: arg.audio,
-    outFormat: "opus",
-    picture: arg.image,
-    metadata: pick(arg, "title", "artist", "album"),
-  });
-  const url = URL.createObjectURL(new Blob([output]));
-  const name =
-    ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
-      "download") + ".opus";
-  return { url, name };
+export async function webmToOpus(
+  webm: Uint8Array,
+  metadata: Record<string, string>,
+  jpeg?: Uint8Array
+): Promise<Uint8Array> {
+  const worker = new Worker(WORKER_URL);
+  try {
+    const workerImpl = wrap<FFmpegWorker>(worker);
+    const output = await workerImpl.webmToOpus(
+      FFMPEG_MODULE_URL,
+      FFMPEG_WASM_URL,
+      FFMPEG_WORKER_URL,
+      webm,
+      metadata,
+      jpeg
+    );
+    return output;
+  } finally {
+    worker.terminate();
+  }
 }

@@ -2,3 +2,9 @@ node_modules
 build
 dist
 .vercel
+*.webm
+*.opus
+*.jpg
+!packages/flac-picture/misc/test.jpg
+!packages/flac-picture/misc/test.opus
+!packages/flac-picture/misc/test.webm

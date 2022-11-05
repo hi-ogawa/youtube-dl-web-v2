@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/strictest",
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "build/tsc",
+    "declaration": true,
+    "declarationMap": true,
+    "checkJs": false,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2021",
+    "lib": ["es2021"]
+  }
+}

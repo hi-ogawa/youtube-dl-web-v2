@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 7
@@ -13,5 +15,7 @@ jobs:
           node-version: 16
       - run: pnpm i --frozen-lockfile
       - run: pnpm lint:check
+      - run: pnpm build:deps
       - run: pnpm tsc
+      - run: pnpm test
       - run: pnpm build

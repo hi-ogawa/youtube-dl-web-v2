@@ -1,6 +1,8 @@
 import fs from "node:fs";
+import path from "node:path";
 import process from "node:process";
-import init, { ModuleExports } from "@hiogawa/ffmpeg-experiment";
+import { run } from "@hiogawa/ffmpeg";
+import { encode } from "@hiogawa/flac-picture";
 import { maxBy } from "lodash";
 import undici from "undici";
 import { tinyassert } from "../utils/tinyassert";
@@ -10,19 +12,7 @@ import {
   parseVideoId,
 } from "../utils/youtube-utils";
 
-// run as commonjs via esbuild-register and ts-esm-loader
-tinyassert(typeof require !== "undefined");
-
-const WASM_PATH = require.resolve(
-  "@hiogawa/ffmpeg-experiment/build/index.wasm"
-);
-
-let Module: ModuleExports;
-
 async function main() {
-  // initialize wasm
-  Module = await init({ locateFile: () => WASM_PATH });
-
   // patch global
   (globalThis as any).fetch ??= undici.fetch;
 
@@ -63,37 +53,70 @@ async function main() {
   const image = new Uint8Array(await resImage.arrayBuffer());
 
   // encode cover art
-  const encoded = Module.encodePictureMetadata(createVector(image));
+  const encoded = encode(image);
 
   // convert to opus with metadata
   console.error(":: converting to opus...");
-  const output = Module.convert(
-    createVector(data),
-    "opus",
-    createStringMap({
-      title,
-      artist,
-      METADATA_BLOCK_PICTURE: encoded,
-    })
-  );
-  await fs.promises.writeFile(outFile, output.view());
+  const output = await webmToOpus(data, {
+    title,
+    artist,
+    METADATA_BLOCK_PICTURE: encoded,
+  });
+
+  // write output
+  await fs.promises.writeFile(outFile, output);
 }
 
-function createVector(data: Uint8Array) {
-  const vector = new Module.Vector();
-  vector.resize(data.length, 0);
-  vector.view().set(data);
-  return vector;
-}
-
-function createStringMap(record: object) {
-  const stringMap = new Module.StringMap();
-  for (const [k, v] of Object.entries(record)) {
+async function webmToOpus(
+  webm: Uint8Array,
+  metadata: Partial<Record<string, string>>
+): Promise<Uint8Array> {
+  // setup "-metadata" arguments
+  const metadataArgs: string[] = [];
+  for (const [k, v] of Object.entries(metadata)) {
     if (typeof v === "string") {
-      stringMap.set(k, v);
+      metadataArgs.push("-metadata", `${k}=${v}`);
     }
   }
-  return stringMap;
+
+  const IN_FILE = "/in.webm";
+  const OUT_FILE = "/out.opus";
+
+  // run ffmpeg main
+  const modulePath = require.resolve(
+    "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js"
+  );
+  const result = await run({
+    initModule: require(modulePath),
+    moduleUrl: modulePath,
+    wasmUrl: path.join(modulePath, "..", "ffmpeg_g.wasm"),
+    workerUrl: path.join(modulePath, "..", "ffmpeg_g.worker.js"),
+    arguments: [
+      "-hide_banner",
+      "-i",
+      IN_FILE,
+      "-c",
+      "copy",
+      ...metadataArgs,
+      OUT_FILE,
+    ],
+    inFiles: [
+      {
+        path: IN_FILE,
+        data: webm,
+      },
+    ],
+    outFiles: [
+      {
+        path: OUT_FILE,
+      },
+    ],
+  });
+
+  tinyassert(result.exitCode === 0);
+  const output = result.outFiles.find((f) => f.path === OUT_FILE);
+  tinyassert(output);
+  return output.data;
 }
 
 //
