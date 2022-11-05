@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, HeadersFunction } from "rakkasjs";
 import React from "react";
+import { GitHub, Menu } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
@@ -19,8 +20,30 @@ export default function Layout(props: React.PropsWithChildren) {
           <link key={href} rel="prefetch" href={href} />
         ))}
       </Head>
-      <AppProvider>{props.children}</AppProvider>
+      <AppProvider>
+        <PageHeader />
+        {props.children}
+      </AppProvider>
     </>
+  );
+}
+
+function PageHeader() {
+  return (
+    <header className="flex items-center gap-4 px-6 py-2 shadow-sm border-b">
+      <button className="p-1 btn btn-default !border-none">
+        <Menu className="w-5 h-5" />
+      </button>
+      <div className="text-lg">Youtube DL Web</div>
+      <span className="flex-1"></span>
+      <a
+        className="flex items-center transition duration-200 hover:text-primary-hover"
+        href="https://github.com/hi-ogawa/youtube-dl-web-v2"
+        target="_blank"
+      >
+        <GitHub className="w-5 h-5" />
+      </a>
+    </header>
   );
 }
 
