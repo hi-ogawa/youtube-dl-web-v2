@@ -3,8 +3,28 @@ import transformerDirectives from "@unocss/transformer-directives";
 import transformerVariantGroup from "@unocss/transformer-variant-group";
 import { defineConfig } from "unocss";
 
-const preset = presetUno();
-const c = preset.theme?.colors as any;
+// see packages/app/src/styles/index.css
+const semanticTokens = [
+  "base",
+  "baseDisabled",
+  "baseOutline",
+  "baseOutlineDisabled",
+  "baseSplit",
+  "baseContent",
+  "baseContentSecondary",
+  "primary",
+  "primaryHover",
+  "primaryActive",
+  "primaryOutline",
+  "primaryContent",
+  "error",
+  "errorOutline",
+];
+
+const colors = Object.fromEntries(
+  // e.g. "primary": "var(--color-primary)"
+  semanticTokens.map((t) => [t, `var(--color-${t})`])
+);
 
 export default defineConfig({
   // color system ideas
@@ -14,15 +34,7 @@ export default defineConfig({
   // https://daisyui.com/docs/colors/
   // https://code.visualstudio.com/api/references/theme-color
   theme: {
-    colors: {
-      primary: c.blue[500],
-      primaryHover: c.blue[400],
-      primaryActive: c.blue[600],
-      primaryOutline: c.blue[100],
-      primaryContent: "white",
-      error: c.red[500],
-      errorOutline: c.red[100],
-    },
+    colors,
   },
   variants: [
     {
@@ -50,7 +62,8 @@ export default defineConfig({
     input: `
       outline-none
       transition duration-200
-      border bg-white border-gray-300 disabled:(bg-gray-100 border-gray-200)
+      bg-base border border-base-outline
+      disabled:(bg-base-disabled border-base-outline-disabled)
       not-disabled:hover:border-primary
       not-disabled:focus:(border-primary ring-2 ring-primary-outline)
       aria-invalid:!border-error
@@ -67,7 +80,7 @@ export default defineConfig({
       not-disabled:active:(text-primary-active)
     `,
     "btn-default": `
-      border border-current
+      border border-baseOutline
       not-disabled:hover:(text-primary-hover border-primary-hover)
       not-disabled:active:(text-primary-active border-primary-active)
     `,
@@ -79,6 +92,6 @@ export default defineConfig({
       not-disabled:active:(bg-primary-active border-primary-active)
     `,
   },
-  presets: [preset],
+  presets: [presetUno()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
 });

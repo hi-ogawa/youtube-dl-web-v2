@@ -1,8 +1,6 @@
 import type React from "react";
-import { cls } from "../utils/misc";
 
 export function VideoCard(props: {
-  className?: string;
   imageUrl: string;
   title: React.ReactNode;
   uploader: React.ReactNode;
@@ -18,7 +16,7 @@ export function VideoCard(props: {
 
   return (
     <div
-      className={cls(props.className, "relative w-full flex border bg-white")}
+      className="relative w-full flex border bg-base"
       style={{ aspectRatio: "36 / 9" }}
     >
       <div className="flex-none w-[44%] relative aspect-video overflow-hidden">
@@ -31,7 +29,9 @@ export function VideoCard(props: {
       </div>
       <div className="grow p-2 flex flex-col relative text-sm">
         <div className="line-clamp-2 mb-2">{props.title}</div>
-        <div className="line-clamp-1 text-gray-600 pr-8">{props.uploader}</div>
+        <div className="line-clamp-1 text-base-content-secondary pr-8">
+          {props.uploader}
+        </div>
       </div>
     </div>
   );

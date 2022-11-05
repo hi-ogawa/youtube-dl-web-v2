@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "pnpm -C packages/app build",
+    "dev": "pnpm -C packages/app dev",
     "build": "pnpm -C packages/app build",
     "build:flac-picture": "pnpm -C packages/flac-picture build",
     "build:ffmpeg": "pnpm -C packages/ffmpeg build",
