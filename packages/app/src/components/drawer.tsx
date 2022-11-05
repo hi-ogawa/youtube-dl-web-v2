@@ -40,13 +40,20 @@ export function Drawer(props: {
         <RemoveScroll className="fixed inset-0 overflow-hidden">
           <Transition.Child
             // requires absolute width
-            className="transition duration-300 transform w-[200px] h-full bg-white shadow"
+            className="transition duration-300 transform w-[200px] h-full bg-white shadow-lg"
             enterFrom="translate-x-[-100%]"
             enterTo="translate-x-[0]"
             leaveFrom="translate-x-[0]"
             leaveTo="translate-x-[-100%]"
           >
-            <div {...getFloatingProps({ ref: floating })}>{props.children}</div>
+            <div
+              {...getFloatingProps({
+                ref: floating,
+                className: "w-full h-full",
+              })}
+            >
+              {props.children}
+            </div>
           </Transition.Child>
         </RemoveScroll>
       </Transition>
