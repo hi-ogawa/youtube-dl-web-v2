@@ -9,7 +9,7 @@
     "release": "pnpm -C packages/app release",
     "release:production": "pnpm -C packages/app release:production",
     "tsc": "tsc -b packages/app packages/flac-picture packages/ffmpeg",
-    "test": "pnpm -r test run",
+    "test": "pnpm -r test",
     "lint": "run-s prettier eslint",
     "lint:check": "run-s prettier:check eslint:check",
     "prettier": "prettier -w --cache .",

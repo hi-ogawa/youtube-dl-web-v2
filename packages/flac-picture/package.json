@@ -26,7 +26,8 @@
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "tsc": "tsc -b",
     "tsc:dev": "tsc -b -w --preserveWatchOutput",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:dev": "vitest",
     "test:e2e": "bash misc/e2e.sh",
     "release": "npm publish --access public"
   },
