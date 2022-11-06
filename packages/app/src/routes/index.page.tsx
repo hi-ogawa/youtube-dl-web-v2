@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { VideoCard } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
-import { formatBytes } from "../utils/misc";
+import { formatBytes, ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
@@ -313,13 +313,6 @@ interface ProcessFileArg {
   album?: string;
   startTime?: string;
   endTime?: string;
-}
-
-function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    e.stopPropagation();
-  }
 }
 
 function MainFormSkelton() {

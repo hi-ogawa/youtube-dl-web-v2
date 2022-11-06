@@ -1,3 +1,12 @@
+import type React from "react";
+
+export function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+}
+
 const BYTE_UNITS: [number, string][] = [
   [10 ** 9, "GB"],
   [10 ** 6, "MB"],
