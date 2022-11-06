@@ -40,3 +40,26 @@ export async function webmToOpus(
     worker.terminate();
   }
 }
+
+// TODO
+export async function runTransform(
+  file: File,
+  metadata: Record<string, any>,
+  startTime?: string,
+  endTime?: string,
+  jpeg?: Uint8Array
+): Promise<Uint8Array> {
+  const worker = new Worker(WORKER_URL);
+  try {
+    const workerImpl = wrap<FFmpegWorker>(worker);
+    workerImpl;
+    file.name;
+    metadata;
+    startTime;
+    endTime;
+    jpeg;
+    return new Uint8Array();
+  } finally {
+    worker.terminate();
+  }
+}
