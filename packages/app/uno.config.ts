@@ -17,12 +17,6 @@ const mapping = themeSrc
   .map((m) => m.split(":").map((s) => s.trim()));
 
 export default defineConfig({
-  // color system ideas
-  // https://github.com/chakra-ui/chakra-ui-docs/blob/3660460dcb617a256fa7ed754358f241101cdbe2/theme.ts#L6-L19
-  // https://github.com/chakra-ui/chakra-ui/blob/8705372a014bfd7073fe8012a46d7aa22904370b/packages/components/theme/src/semantic-tokens.ts
-  // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-  // https://daisyui.com/docs/colors/
-  // https://code.visualstudio.com/api/references/theme-color
   theme: {
     colors: Object.fromEntries(mapping),
   },
