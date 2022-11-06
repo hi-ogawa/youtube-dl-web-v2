@@ -39,11 +39,7 @@ importers:
       '@types/lodash': ^4.14.186
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
-      '@unocss/preset-uno': ^0.46.1
       '@unocss/reset': ^0.46.1
-      '@unocss/transformer-directives': ^0.46.1
-      '@unocss/transformer-variant-group': ^0.46.1
-      '@unocss/vite': ^0.46.1
       comlink: ^4.3.1
       lodash: ^4.17.21
       rakkasjs: next
@@ -78,11 +74,7 @@ importers:
       '@types/lodash': 4.14.186
       '@types/react': 18.0.23
       '@types/react-dom': 18.0.7
-      '@unocss/preset-uno': 0.46.1
       '@unocss/reset': 0.46.1
-      '@unocss/transformer-directives': 0.46.1
-      '@unocss/transformer-variant-group': 0.46.1
-      '@unocss/vite': 0.46.1_vite@3.2.0
       undici: 5.12.0
       unocss: 0.46.1_vite@3.2.0
       vite: 3.2.0

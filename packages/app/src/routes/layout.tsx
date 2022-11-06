@@ -2,11 +2,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, HeadersFunction, Link, useLocation } from "rakkasjs";
 import React from "react";
-import { GitHub, Home, Menu } from "react-feather";
+import { GitHub, Home, Menu, Moon, Sun } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
 import { Drawer } from "../components/drawer";
+import THEME_SCRIPT from "../utils/theme-script.js?raw";
 import { usePrevious } from "../utils/use-previous";
+import { useThemeState } from "../utils/use-theme-state";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 
 export default function Layout(props: React.PropsWithChildren) {
@@ -14,13 +16,14 @@ export default function Layout(props: React.PropsWithChildren) {
     <>
       <Head>
         <title>Youtube DL Web</title>
-        <link rel="icon" href={ICON_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href={ICON_URL} />
         <link rel="manifest" href="/manifest.json" />
         {/* it doesn't have to be so high priority, but don't want to spend time fetching them during instantiating emscripten module */}
         {WORKER_ASSET_URLS.map((href) => (
           <link key={href} rel="prefetch" href={href} />
         ))}
+        <script>{THEME_SCRIPT}</script>
       </Head>
       <AppProvider>
         <PageHeader />
@@ -42,15 +45,17 @@ function PageHeader() {
     }
   }, [location.pending]);
 
+  // shadow color taken from https://ant.design/components/overview/
   return (
-    <header className="flex items-center gap-3 px-6 py-2 shadow-sm border-b">
+    <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button className="p-1 btn btn-ghost" onClick={() => setMenuOpen(true)}>
         <Menu className="w-5 h-5" />
       </button>
       <div className="text-lg">Youtube DL Web</div>
       <span className="flex-1"></span>
+      <ThemeButton />
       <a
-        className="flex items-center btn btn-ghost"
+        className="flex items-center btn btn-ghost pl-1"
         href="https://github.com/hi-ogawa/youtube-dl-web-v2"
         target="_blank"
       >
@@ -73,6 +78,25 @@ function PageHeader() {
         </div>
       </Drawer>
     </header>
+  );
+}
+
+function ThemeButton() {
+  const [theme, setTheme] = useThemeState();
+  return (
+    <button
+      className="flex items-center btn btn-ghost"
+      disabled={!theme}
+      onClick={() => {
+        setTheme(theme === "dark" ? "light" : "dark");
+      }}
+    >
+      {theme === "dark" ? (
+        <Sun className="w-5 h-5" />
+      ) : (
+        <Moon className="w-5 h-5" />
+      )}
+    </button>
   );
 }
 

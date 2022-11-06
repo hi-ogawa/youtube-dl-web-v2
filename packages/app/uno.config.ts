@@ -1,28 +1,24 @@
-import presetUno from "@unocss/preset-uno";
-import transformerDirectives from "@unocss/transformer-directives";
-import transformerVariantGroup from "@unocss/transformer-variant-group";
-import { defineConfig } from "unocss";
+// @ts-ignore
+import fs from "node:fs";
+import {
+  defineConfig,
+  presetUno,
+  transformerDirectives,
+  transformerVariantGroup,
+} from "unocss";
 
-const preset = presetUno();
-const c = preset.theme?.colors as any;
+// extract mapping from comments in theme.css
+const themeSrc: string = fs.readFileSync("./src/styles/theme.css", "utf-8");
+const mapping = themeSrc
+  .split("-- MAPPING START --")[1]
+  .split("-- MAPPING END --")[0]
+  .trim()
+  .split("\n")
+  .map((m) => m.split(":").map((s) => s.trim()));
 
 export default defineConfig({
-  // color system ideas
-  // https://github.com/chakra-ui/chakra-ui-docs/blob/3660460dcb617a256fa7ed754358f241101cdbe2/theme.ts#L6-L19
-  // https://github.com/chakra-ui/chakra-ui/blob/8705372a014bfd7073fe8012a46d7aa22904370b/packages/components/theme/src/semantic-tokens.ts
-  // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-  // https://daisyui.com/docs/colors/
-  // https://code.visualstudio.com/api/references/theme-color
   theme: {
-    colors: {
-      primary: c.blue[500],
-      primaryHover: c.blue[400],
-      primaryActive: c.blue[600],
-      primaryOutline: c.blue[100],
-      primaryContent: "white",
-      error: c.red[500],
-      errorOutline: c.red[100],
-    },
+    colors: Object.fromEntries(mapping),
   },
   variants: [
     {
@@ -50,7 +46,8 @@ export default defineConfig({
     input: `
       outline-none
       transition duration-200
-      border bg-white border-gray-300 disabled:(bg-gray-100 border-gray-200)
+      bg-base border border-base-outline
+      disabled:(bg-base-disabled border-base-outline-disabled)
       not-disabled:hover:border-primary
       not-disabled:focus:(border-primary ring-2 ring-primary-outline)
       aria-invalid:!border-error
@@ -67,7 +64,7 @@ export default defineConfig({
       not-disabled:active:(text-primary-active)
     `,
     "btn-default": `
-      border border-current
+      border border-base-outline
       not-disabled:hover:(text-primary-hover border-primary-hover)
       not-disabled:active:(text-primary-active border-primary-active)
     `,
@@ -79,6 +76,6 @@ export default defineConfig({
       not-disabled:active:(bg-primary-active border-primary-active)
     `,
   },
-  presets: [preset],
+  presets: [presetUno()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
 });
