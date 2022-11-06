@@ -64,7 +64,7 @@ export default defineConfig({
       not-disabled:active:(text-primary-active)
     `,
     "btn-default": `
-      border border-baseOutline
+      border border-base-outline
       not-disabled:hover:(text-primary-hover border-primary-hover)
       not-disabled:active:(text-primary-active border-primary-active)
     `,
