@@ -21,8 +21,8 @@ const semanticTokens = [
   "errorOutline",
 ];
 
+// { "base": "var(--color-base)", ... }
 const colors = Object.fromEntries(
-  // e.g. "primary": "var(--color-primary)"
   semanticTokens.map((t) => [t, `var(--color-${t})`])
 );
 
