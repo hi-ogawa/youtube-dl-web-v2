@@ -1,3 +1,5 @@
+// @ts-ignore
+import fs from "node:fs";
 import {
   defineConfig,
   presetUno,
@@ -5,28 +7,14 @@ import {
   transformerVariantGroup,
 } from "unocss";
 
-// see packages/app/src/styles/index.css
-const semanticTokens = [
-  "base",
-  "baseDisabled",
-  "baseOutline",
-  "baseOutlineDisabled",
-  "baseSplit",
-  "baseContent",
-  "baseContentSecondary",
-  "primary",
-  "primaryHover",
-  "primaryActive",
-  "primaryOutline",
-  "primaryContent",
-  "error",
-  "errorOutline",
-];
-
-// { "base": "var(--color-base)", ... }
-const colors = Object.fromEntries(
-  semanticTokens.map((t) => [t, `var(--color-${t})`])
-);
+// extract mapping from comments in theme.css
+const themeSrc: string = fs.readFileSync("./src/styles/theme.css", "utf-8");
+const mapping = themeSrc
+  .split("-- MAPPING START --")[1]
+  .split("-- MAPPING END --")[0]
+  .trim()
+  .split("\n")
+  .map((m) => m.split(":").map((s) => s.trim()));
 
 export default defineConfig({
   // color system ideas
@@ -36,7 +24,7 @@ export default defineConfig({
   // https://daisyui.com/docs/colors/
   // https://code.visualstudio.com/api/references/theme-color
   theme: {
-    colors,
+    colors: Object.fromEntries(mapping),
   },
   variants: [
     {

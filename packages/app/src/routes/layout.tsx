@@ -46,7 +46,7 @@ function PageHeader() {
   }, [location.pending]);
 
   return (
-    <header className="flex items-center gap-3 px-6 py-2 shadow-sm border-b">
+    <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button className="p-1 btn btn-ghost" onClick={() => setMenuOpen(true)}>
         <Menu className="w-5 h-5" />
       </button>
