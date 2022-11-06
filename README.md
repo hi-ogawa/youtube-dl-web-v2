@@ -13,7 +13,7 @@ pnpm build
 pnpm release:production
 ```
 
-![image](https://user-images.githubusercontent.com/4232207/200108858-a16a39dc-aeb0-4008-a805-af945205272c.png)
+![image](https://user-images.githubusercontent.com/4232207/200155612-321994f9-eb15-4a93-be5c-8a009d007d2c.png)
 
 ## references
 
