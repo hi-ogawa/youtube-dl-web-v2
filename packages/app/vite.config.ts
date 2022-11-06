@@ -1,5 +1,5 @@
-import unocss from "@unocss/vite";
 import rakkas from "rakkasjs/vite-plugin";
+import unocss from "unocss/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({

@@ -36,11 +36,7 @@
     "@types/lodash": "^4.14.186",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
-    "@unocss/preset-uno": "^0.46.1",
     "@unocss/reset": "^0.46.1",
-    "@unocss/transformer-directives": "^0.46.1",
-    "@unocss/transformer-variant-group": "^0.46.1",
-    "@unocss/vite": "^0.46.1",
     "undici": "^5.12.0",
     "unocss": "^0.46.1",
     "vite": "^3.1.1"

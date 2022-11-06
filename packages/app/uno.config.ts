@@ -1,7 +1,9 @@
-import presetUno from "@unocss/preset-uno";
-import transformerDirectives from "@unocss/transformer-directives";
-import transformerVariantGroup from "@unocss/transformer-variant-group";
-import { defineConfig } from "unocss";
+import {
+  defineConfig,
+  presetUno,
+  transformerDirectives,
+  transformerVariantGroup,
+} from "unocss";
 
 // see packages/app/src/styles/index.css
 const semanticTokens = [
