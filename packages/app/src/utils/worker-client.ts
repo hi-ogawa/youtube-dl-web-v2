@@ -41,6 +41,22 @@ export async function webmToOpus(
   }
 }
 
+export async function extractCoverArt(opus: Uint8Array): Promise<Uint8Array> {
+  const worker = new Worker(WORKER_URL);
+  try {
+    const workerImpl = wrap<FFmpegWorker>(worker);
+    const output = await workerImpl.extractCoverArt(
+      FFMPEG_MODULE_URL,
+      FFMPEG_WASM_URL,
+      FFMPEG_WORKER_URL,
+      opus
+    );
+    return output;
+  } finally {
+    worker.terminate();
+  }
+}
+
 // TODO
 export async function runTransform(
   file: File,

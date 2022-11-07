@@ -3,9 +3,10 @@ import type { PreloadFunction } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
-import { runTransform } from "../utils/worker-client";
+import { extractCoverArt, runTransform } from "../utils/worker-client";
 
 interface FormType {
   fileList?: FileList;
@@ -33,7 +34,10 @@ export default function Page() {
 
   const probeMutation = useMutation(
     async (file: File) => {
-      file;
+      const data = new Uint8Array(await file.arrayBuffer());
+      const output = await extractCoverArt(data);
+      const thumbnailUrl = URL.createObjectURL(new Blob([output]));
+      return { thumbnailUrl };
     },
     {
       onSuccess: () => {
@@ -141,7 +145,16 @@ export default function Page() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <span>Thumbnail</span>
+            <span>Embed Thumbnail</span>
+            <div className="flex justify-center p-1">
+              <img
+                src={
+                  probeMutation.isSuccess
+                    ? probeMutation.data?.thumbnailUrl
+                    : PLACEHOLDER_IMAGE
+                }
+              />
+            </div>
           </div>
           <button
             className="p-1 btn btn-primary"
