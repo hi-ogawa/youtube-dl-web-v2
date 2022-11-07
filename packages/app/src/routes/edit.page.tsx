@@ -6,7 +6,11 @@ import toast from "react-hot-toast";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
-import { extractCoverArt, runTransform } from "../utils/worker-client";
+import {
+  extractCoverArt,
+  extractMetadata,
+  webmToOpus,
+} from "../utils/worker-client";
 
 interface FormType {
   fileList?: FileList;
@@ -20,6 +24,7 @@ interface FormType {
 export default function Page() {
   const form = useForm<FormType>();
   const { fileList, title, artist, album, startTime, endTime } = form.watch();
+  const [jpeg, setJpeg] = React.useState<Uint8Array>();
 
   //
   // initialize form by reading metadata
@@ -35,13 +40,17 @@ export default function Page() {
   const probeMutation = useMutation(
     async (file: File) => {
       const data = new Uint8Array(await file.arrayBuffer());
-      const output = await extractCoverArt(data);
-      const thumbnailUrl = URL.createObjectURL(new Blob([output]));
-      return { thumbnailUrl };
+      const jpeg = await extractCoverArt(data);
+      const thumbnailUrl = URL.createObjectURL(new Blob([jpeg]));
+      const metadata = await extractMetadata(data);
+      return { jpeg, thumbnailUrl, metadata };
     },
     {
-      onSuccess: () => {
-        // TODO
+      onSuccess: (data) => {
+        setJpeg(data.jpeg);
+        for (const key of ["title", "artist", "album"] as const) {
+          form.setValue(key, data.metadata[key]);
+        }
       },
       onError: () => {
         form.setValue("fileList", undefined);
@@ -55,15 +64,16 @@ export default function Page() {
   //
   // convert file
   //
-  const runTransformMutation = useMutation(
+  const processFileMutation = useMutation(
     async () => {
       tinyassert(file);
-      const output = await runTransform(
-        file,
-        { title, artist, album, startTime, endTime },
+      const webm = new Uint8Array(await file.arrayBuffer());
+      const output = await webmToOpus(
+        webm,
+        { title, artist, album },
         startTime,
         endTime,
-        undefined
+        jpeg
       );
       const url = URL.createObjectURL(new Blob([output]));
       const name =
@@ -89,16 +99,21 @@ export default function Page() {
         <form
           className="flex flex-col gap-4"
           onSubmit={form.handleSubmit(() => {
-            runTransformMutation.mutate();
+            processFileMutation.mutate();
           })}
         >
           <div className="flex flex-col gap-2">
-            <span>
-              Input File{" "}
-              <span className="text-sm text-base-content-secondary">
-                (.opus)
+            <div className="flex items-center gap-2">
+              <span>
+                Input File{" "}
+                <span className="text-sm text-base-content-secondary">
+                  (.opus)
+                </span>
               </span>
-            </span>
+              {probeMutation.isLoading && (
+                <div className="spinner w-4 h-4"></div>
+              )}
+            </div>
             <input type="file" {...form.register("fileList")} />
           </div>
           <div className="border-t m-1"></div>
@@ -147,21 +162,42 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Embed Thumbnail</span>
             <div className="flex justify-center p-1">
-              <img
-                src={
-                  probeMutation.isSuccess
-                    ? probeMutation.data?.thumbnailUrl
-                    : PLACEHOLDER_IMAGE
-                }
-              />
+              <div className="relative aspect-video overflow-hidden w-[300px] max-w-[95%]">
+                <img
+                  className="absolute transform top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                  src={
+                    probeMutation.isSuccess
+                      ? probeMutation.data?.thumbnailUrl
+                      : PLACEHOLDER_IMAGE
+                  }
+                />
+              </div>
             </div>
           </div>
-          <button
-            className="p-1 btn btn-primary"
-            disabled={!file || runTransformMutation.isLoading}
-          >
-            Convert
-          </button>
+          {!processFileMutation.isSuccess && (
+            <button
+              className="p-1 btn btn-primary"
+              disabled={!file || processFileMutation.isLoading}
+            >
+              <div className="flex justify-center items-center relative">
+                <span>Convert</span>
+                {processFileMutation.isLoading && (
+                  <div className="absolute right-4 w-4 h-4 spinner"></div>
+                )}
+              </div>
+            </button>
+          )}
+          {processFileMutation.isSuccess && (
+            <a
+              className="p-1 btn btn-primary"
+              href={processFileMutation.data.url}
+              download={processFileMutation.data.name}
+            >
+              <div className="flex justify-center items-center">
+                <span>Finished!</span>
+              </div>
+            </a>
+          )}
         </form>
       </div>
     </main>

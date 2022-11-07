@@ -17,7 +17,7 @@ export const WORKER_ASSET_URLS = [
 
 export async function webmToOpus(
   webm: Uint8Array,
-  metadata: Record<string, string>,
+  metadata: Record<string, string | undefined>,
   startTime?: string,
   endTime?: string,
   jpeg?: Uint8Array
@@ -57,24 +57,26 @@ export async function extractCoverArt(opus: Uint8Array): Promise<Uint8Array> {
   }
 }
 
-// TODO
-export async function runTransform(
-  file: File,
-  metadata: Record<string, any>,
-  startTime?: string,
-  endTime?: string,
-  jpeg?: Uint8Array
-): Promise<Uint8Array> {
+export async function extractMetadata(
+  opus: Uint8Array
+): Promise<Record<string, string>> {
   const worker = new Worker(WORKER_URL);
   try {
     const workerImpl = wrap<FFmpegWorker>(worker);
-    workerImpl;
-    file.name;
-    metadata;
-    startTime;
-    endTime;
-    jpeg;
-    return new Uint8Array();
+    const output = await workerImpl.extractMetadata(
+      FFMPEG_MODULE_URL,
+      FFMPEG_WASM_URL,
+      FFMPEG_WORKER_URL,
+      opus
+    );
+    const metadata: Record<string, string> = {};
+    for (const line of output.trim().split("\n")) {
+      if (line.includes("=")) {
+        const [k, v] = line.split("=");
+        metadata[k] = v;
+      }
+    }
+    return metadata;
   } finally {
     worker.terminate();
   }

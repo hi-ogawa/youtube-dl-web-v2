@@ -18,8 +18,8 @@ bash misc/ffmpeg-configure.sh "/app/build/ffmpeg/wasm-release" --prefix="/app/bu
   --target-os=none --arch=x86_32 \
   --disable-autodetect --disable-everything --disable-asm --disable-doc --disable-stripping \
   --enable-protocol=file \
-  --enable-demuxer=webm_dash_manifest,ogg,mjpeg \
-  --enable-muxer=opus,mjpeg \
+  --enable-demuxer=webm_dash_manifest,ogg,mjpeg,ffmetadata \
+  --enable-muxer=opus,mjpeg,ffmetadata \
   --enable-encoder=opus \
   --enable-decoder=opus
 
