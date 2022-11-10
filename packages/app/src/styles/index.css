@@ -4,7 +4,11 @@
 html,
 body,
 #root {
-  --at-apply: "h-full bg-base text-base-content";
+  --at-apply: "h-full";
+}
+
+body {
+  --at-apply: "bg-base text-base-content";
 }
 
 /*  */
@@ -14,4 +18,13 @@ body,
 ::before,
 ::after {
   --at-apply: "border-color-base-split";
+}
+
+/*  */
+/* reduce flickering when switching theme */
+/*  */
+body,
+header,
+.border-t {
+  --at-apply: "transition";
 }

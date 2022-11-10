@@ -45,7 +45,7 @@ export default defineConfig({
     // https://ant.design/components/input/
     input: `
       outline-none
-      transition duration-200
+      transition
       bg-base border border-base-outline
       disabled:(bg-base-disabled border-base-outline-disabled)
       not-disabled:hover:border-primary
@@ -56,7 +56,7 @@ export default defineConfig({
     // https://ant.design/components/button/
     btn: `
       cursor-pointer
-      transition duration-200
+      transition
       disabled:(cursor-not-allowed opacity-50)
     `,
     "btn-ghost": `

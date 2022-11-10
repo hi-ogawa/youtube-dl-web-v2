@@ -31,7 +31,7 @@ export function RadialProgress(props: {
       <circle
         className={cls(
           props.classNameFrontCircle,
-          "transition-[stroke-dasharray] transition-duration-200"
+          "transition-[stroke-dasharray]"
         )}
         transform="rotate(-90 12 12)"
         cx="12"

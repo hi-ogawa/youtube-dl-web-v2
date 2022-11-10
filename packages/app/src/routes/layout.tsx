@@ -1,8 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head, HeadersFunction, Link, useLocation } from "rakkasjs";
+import {
+  Head,
+  HeadersFunction,
+  LayoutProps,
+  Link,
+  useLocation,
+} from "rakkasjs";
 import React from "react";
-import { GitHub, Home, Menu, Moon, Sun } from "react-feather";
+import { Edit, GitHub, Home, Menu, Moon, Sun } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
 import { Drawer } from "../components/drawer";
@@ -11,7 +17,7 @@ import { usePrevious } from "../utils/use-previous";
 import { useThemeState } from "../utils/use-theme-state";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 
-export default function Layout(props: React.PropsWithChildren) {
+export default function Layout(props: LayoutProps) {
   return (
     <>
       <Head>
@@ -26,14 +32,15 @@ export default function Layout(props: React.PropsWithChildren) {
         <script>{THEME_SCRIPT}</script>
       </Head>
       <AppProvider>
-        <PageHeader />
+        <PageHeader {...props} />
         {props.children}
       </AppProvider>
     </>
   );
 }
 
-function PageHeader() {
+function PageHeader(props: LayoutProps) {
+  const title = (props.meta["title"] as string) || "Youtube DL Web";
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   // auto close on nav change
@@ -51,7 +58,7 @@ function PageHeader() {
       <button className="p-1 btn btn-ghost" onClick={() => setMenuOpen(true)}>
         <Menu className="w-5 h-5" />
       </button>
-      <div className="text-lg">Youtube DL Web</div>
+      <div className="text-lg">{title}</div>
       <span className="flex-1"></span>
       <ThemeButton />
       <a
@@ -71,10 +78,22 @@ function PageHeader() {
               <Menu className="w-5 h-5" />
             </button>
           </div>
-          <Link className="pl-7 flex items-center gap-3 btn btn-ghost" href="/">
-            <Home className="w-5 h-5" />
-            Home
-          </Link>
+          <div className="flex flex-col gap-4">
+            <Link
+              className="pl-7 flex items-center gap-3 btn btn-ghost"
+              href="/"
+            >
+              <Home className="w-5 h-5" />
+              Home
+            </Link>
+            <Link
+              className="pl-7 flex items-center gap-3 btn btn-ghost"
+              href="/edit"
+            >
+              <Edit className="w-5 h-5" />
+              Edit
+            </Link>
+          </div>
         </div>
       </Drawer>
     </header>
