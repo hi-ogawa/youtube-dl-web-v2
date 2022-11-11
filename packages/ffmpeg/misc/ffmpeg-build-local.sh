@@ -3,7 +3,7 @@ set -eu -o pipefail
 
 if test -z "${no_configure:-}"; then
   echo ":: [configure]"
-  bash misc/ffmpeg-configure.sh "$PWD/build/ffmpeg/local" --prefix="$PWD/build/ffmpeg/local" \
+  bash misc/ffmpeg-configure.sh "$PWD/build/ffmpeg/local" --prefix="$PWD/build/ffmpeg/local/prefix" \
     --disable-autodetect --disable-everything --disable-asm --disable-doc --disable-stripping \
     --enable-protocol=file \
     --enable-demuxer=webm_dash_manifest,ogg,mjpeg,ffmetadata \

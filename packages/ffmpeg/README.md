@@ -15,3 +15,49 @@ bash misc/ffmpeg-build-local.sh
 
 ffmpeg -i in.mp4 -f ffmetadata in.txt
 ```
+
+```sh
+# download test files (webm and jpg)
+youtube-dl -f 251 -o test.webm https://www.youtube.com/watch?v=le0BLAEO93g
+wget -O test.jpg https://i.ytimg.com/vi/le0BLAEO93g/maxresdefault.jpg
+
+#
+# native build
+#
+bash misc/ffmpeg-configure.sh "$PWD/build/native/ffmpeg" --prefix="$PWD/build/native/ffmpeg/prefix" \
+  --disable-autodetect --disable-everything --disable-asm --disable-doc \
+  --enable-protocol=file \
+  --enable-demuxer=webm_dash_manifest,ogg \
+  --enable-muxer=opus \
+  --enable-encoder=opus \
+  --enable-decoder=opus
+make -j -C build/native/ffmpeg install
+
+cmake . -B build/native/Debug -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/native/Debug
+./build/native/Debug/ex00 --in test.webm --out test.opus --start-time 10 --end-time 21
+
+#
+# emscripten build inside docker
+#
+pnpm emscripten bash misc/ffmpeg-configure.sh "/app/build/emscripten/ffmpeg" --prefix="/app/build/emscripten/ffmpeg/prefix" \
+  --enable-cross-compile \
+  --cc=/emsdk/upstream/emscripten/emcc \
+  --cxx=/emsdk/upstream/emscripten/em++ \
+  --ar=/emsdk/upstream/emscripten/emar \
+  --ld=/emsdk/upstream/emscripten/emcc \
+  --nm=/emsdk/upstream/bin/llvm-nm \
+  --ranlib=/emsdk/upstream/emscripten/emranlib \
+  --target-os=none --arch=x86_32 \
+  --disable-autodetect --disable-everything --disable-asm --disable-doc --disable-programs \
+  --enable-demuxer=webm_dash_manifest,ogg \
+  --enable-muxer=opus \
+  --enable-encoder=opus \
+  --enable-decoder=opus
+pnpm emscripten make -j -C build/emscripten/ffmpeg install
+
+# Debug build is too slow
+pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+pnpm emscripten cmake --build build/emscripten/Release
+pnpm ts ./src/cpp/ex00-emscripten-cli.ts --module build/emscripten/Release/ex00-emscripten.js --in test.webm --out test.opus --start-time 10 --end-time 21
+```

@@ -23,12 +23,14 @@
   },
   "scripts": {
     "build": "run-s build:wasm build:js build:dts",
-    "build:wasm": "pnpm docker-emscripten bash misc/ffmpeg-build-wasm.sh",
+    "build:wasm": "pnpm emscripten bash misc/ffmpeg-build-wasm.sh",
     "build:js": "esbuild ./src/index.ts ./src/cli.ts --outdir=build/esbuild --bundle --format=cjs --out-extension:.js=.cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
-    "docker-emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
-    "docker-emscripten:clean": "docker-compose down -v --remove-orphans",
+    "emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
+    "emscripten:clean": "docker-compose down -v --remove-orphans",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
+    "lint": "clang-format -style=file -i $(find src -type f -name '*.cpp' -o -name '*.hpp')",
+    "lint:check": "clang-format -style=file --dry-run --Werror $(find src -type f -name '*.cpp' -o -name '*.hpp')",
     "release": "npm publish --access public"
   },
   "devDependencies": {

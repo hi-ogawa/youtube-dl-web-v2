@@ -6,7 +6,7 @@ set -eu -o pipefail
 #   PTHREAD_POOL_SIZE_STRICT=0 (allow on-demand thread creation)
 
 echo ":: [configure]"
-bash misc/ffmpeg-configure.sh "/app/build/ffmpeg/wasm-release" --prefix="/app/build/ffmpeg/wasm-release" \
+bash misc/ffmpeg-configure.sh "/app/build/ffmpeg/wasm-release" --prefix="/app/build/ffmpeg/wasm-release/prefix" \
   --enable-cross-compile \
   --cc=/emsdk/upstream/emscripten/emcc \
   --cxx=/emsdk/upstream/emscripten/em++ \
