@@ -2,7 +2,7 @@ import React from "react";
 import { useHydrated } from "./use-hydrated";
 
 export function useThemeState() {
-  const hydrated = useHydrated() && typeof window !== "undefined";
+  const hydrated = useHydrated();
   const [state, setState] = React.useState(
     hydrated ? __getTheme : () => undefined
   );
