@@ -1,3 +1,6 @@
 [submodule "packages/ffmpeg/third_party/FFmpeg"]
 	path = packages/ffmpeg/third_party/FFmpeg
 	url = git@github.com:FFmpeg/FFmpeg.git
+[submodule "packages/ffmpeg/third_party/json"]
+	path = packages/ffmpeg/third_party/json
+	url = git@github.com:nlohmann/json.git

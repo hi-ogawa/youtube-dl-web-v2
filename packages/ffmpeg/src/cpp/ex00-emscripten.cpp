@@ -19,4 +19,5 @@ EMSCRIPTEN_BINDINGS(ex_00) {
   register_map<std::string, std::string>("embind_StringMap");
 
   function("embind_convert", &ex00_impl::convert);
+  function("embind_extractMetadata", &ex00_impl::extractMetadata);
 }

@@ -4,10 +4,10 @@ import process from "node:process";
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
 import { tinyassert } from "../tinyassert";
 
-async function main() {
-  // argparse
-  const cli = new Cli(process.argv.slice(2));
-  const modulePath = cli.getArgument("--module");
+const DEFAULT_MODULE_PATH = "build/emscripten/Release/ex00-emscripten.js";
+
+async function mainConvert(cli: Cli) {
+  const modulePath = cli.getArgument("--module") ?? DEFAULT_MODULE_PATH;
   const inFile = cli.getArgument("--in");
   const outFile = cli.getArgument("--out");
   const title = cli.getArgument("--title");
@@ -15,7 +15,6 @@ async function main() {
   const thumbnail = cli.getArgument("--thumbnail");
   const startTime = Number(cli.getArgument("--start-time") ?? -1);
   const endTime = Number(cli.getArgument("--end-time") ?? -1);
-  tinyassert(modulePath);
   tinyassert(inFile);
   tinyassert(outFile);
 
@@ -50,6 +49,35 @@ async function main() {
   await fs.promises.writeFile(outFile, outData.view());
 }
 
+async function mainExtractMetadata(cli: Cli) {
+  const modulePath = cli.getArgument("--module") ?? DEFAULT_MODULE_PATH;
+  const inFile = cli.getArgument("--in");
+  tinyassert(inFile);
+
+  // initialize emscritpen module
+  const init: EmscriptenInit = require(path.resolve(modulePath));
+  const Module: EmscriptenModule = await init();
+
+  // read data
+  const inData = new Module.embind_Vector();
+  await readFileToVector(inData, inFile);
+
+  // process
+  const outData = Module.embind_extractMetadata(inData);
+  console.log(outData);
+}
+
+async function main() {
+  const cli = new Cli(process.argv.slice(2));
+  if (process.argv[2] === "convert") {
+    return mainConvert(cli);
+  }
+  if (process.argv[2] === "extract-metadata") {
+    return mainExtractMetadata(cli);
+  }
+  process.exit(-1);
+}
+
 //
 // utils
 //
@@ -73,6 +101,7 @@ interface EmscriptenModule {
     start_time: number,
     end_time: number
   ) => EmbindVector;
+  embind_extractMetadata: (in_data: EmbindVector) => string;
 }
 
 type EmscriptenInit = (options?: {}) => Promise<EmscriptenModule>;

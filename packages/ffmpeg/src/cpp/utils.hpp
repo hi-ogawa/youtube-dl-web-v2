@@ -95,16 +95,6 @@ void writeFile(const std::string& filename, const std::vector<uint8_t>& data) {
 struct Cli {
   const int argc;
   const char** argv;
-  std::vector<std::string> flags = {};
-
-  std::string help() {
-    std::ostringstream ostr;
-    ostr << argv[0];
-    for (auto flag : flags) {
-      ostr << " (" << flag << " ?)";
-    }
-    return ostr.str();
-  }
 
   template <typename T>
   T parse(const char* s) {
@@ -120,7 +110,6 @@ struct Cli {
 
   template <typename T = std::string>
   std::optional<T> argument(const std::string& flag) {
-    flags.push_back(flag);
     for (auto i = 1; i < argc; i++) {
       if (argv[i] == flag && i + 1 < argc) {
         return std::optional{parse<T>(argv[i + 1])};

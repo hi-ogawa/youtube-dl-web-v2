@@ -1,13 +1,12 @@
-#pragma once
-
 // - [x] copy audio stream (e.g. webm to opus)
 // - [x] filter by selected timestamp range
 // - [x] embed metadata
 // - [x] embed thumbnail
-// - [ ] extract metadata
+// - [x] extract metadata
 // - [ ] extract thumbnail
 
 #include <cstring>
+#include <nlohmann/json.hpp>
 #include <optional>
 #include "utils-ffmpeg.hpp"
 #include "utils.hpp"
@@ -128,6 +127,49 @@ std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
 
   // return vector
   return output_.output_;
+}
+
+std::string extractMetadata(const std::vector<uint8_t>& in_data) {
+  // input context
+  BufferInput input_{in_data};
+  AVFormatContext* ifmt_ctx_ = avformat_alloc_context();
+  ASSERT(ifmt_ctx_);
+  DEFER {
+    avformat_close_input(&ifmt_ctx_);
+  };
+  ifmt_ctx_->pb = input_.avio_ctx_;
+  ifmt_ctx_->flags |= AVFMT_FLAG_CUSTOM_IO;
+
+  ASSERT(avformat_open_input(&ifmt_ctx_, NULL, NULL, NULL) == 0);
+  ASSERT(avformat_find_stream_info(ifmt_ctx_, NULL) == 0);
+
+  auto result = nlohmann::json::object(
+      {{"format_name", ifmt_ctx_->iformat->name},
+       {"duration", ifmt_ctx_->duration},
+       {"bit_rate", ifmt_ctx_->bit_rate},
+       {"metadata", utils_ffmpeg::mapFromAVDictionary(ifmt_ctx_->metadata)},
+       {"streams", nlohmann::json::array()}});
+
+  for (unsigned int i = 0; i < ifmt_ctx_->nb_streams; i++) {
+    auto stream = ifmt_ctx_->streams[i];
+    auto streamInfo = nlohmann::json::object(
+        {{"type", nullptr},
+         {"codec", nullptr},
+         {"metadata", utils_ffmpeg::mapFromAVDictionary(stream->metadata)}});
+
+    const AVCodec* codec = avcodec_find_decoder(stream->codecpar->codec_id);
+    if (codec) {
+      streamInfo["codec"] = codec->name;
+      auto type_string =
+          codec ? av_get_media_type_string(codec->type) : nullptr;
+      if (type_string) {
+        streamInfo["type"] = type_string;
+      }
+    }
+    result["streams"].push_back(streamInfo);
+  }
+
+  return result.dump(2);
 }
 
 }  // namespace ex00_impl
