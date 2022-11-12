@@ -7,14 +7,10 @@ pnpm build
 pnpm release
 
 # cli
-ffmpeg-emscripten -i=../flac-picture/misc/test.webm:/in.webm -o=test.opus:/out.opus -- -i /in.webm -c copy -metadata title=hello /out.opus
-
-# native build
-bash misc/ffmpeg-build-local.sh
-./build/ffmpeg/local/ffmpeg -h
-
-ffmpeg -i in.mp4 -f ffmetadata in.txt
+ffmpeg-emscripten -i=./test.webm:/in.webm -o=test.out.opus:/out.opus -- -i /in.webm -c copy -metadata title=hello /out.opus
 ```
+
+## development
 
 ```sh
 # download test files (webm and jpg)
@@ -22,7 +18,7 @@ youtube-dl -f 251 -o test.webm https://www.youtube.com/watch?v=le0BLAEO93g
 wget -O test.jpg https://i.ytimg.com/vi/le0BLAEO93g/maxresdefault.jpg
 
 #
-# native build
+# native build (easier to debug)
 #
 bash misc/ffmpeg-configure.sh "$PWD/build/native/ffmpeg" --prefix="$PWD/build/native/ffmpeg/prefix" \
   --disable-autodetect --disable-everything --disable-asm --disable-doc \
@@ -42,21 +38,7 @@ cmake --build build/native/Debug
 #
 # emscripten build inside docker
 #
-pnpm emscripten bash misc/ffmpeg-configure.sh "/app/build/emscripten/ffmpeg" --prefix="/app/build/emscripten/ffmpeg/prefix" \
-  --enable-cross-compile \
-  --cc=/emsdk/upstream/emscripten/emcc \
-  --cxx=/emsdk/upstream/emscripten/em++ \
-  --ar=/emsdk/upstream/emscripten/emar \
-  --ld=/emsdk/upstream/emscripten/emcc \
-  --nm=/emsdk/upstream/bin/llvm-nm \
-  --ranlib=/emsdk/upstream/emscripten/emranlib \
-  --target-os=none --arch=x86_32 \
-  --disable-autodetect --disable-everything --disable-asm --disable-doc --disable-programs \
-  --enable-demuxer=webm_dash_manifest,ogg,mjpeg \
-  --enable-muxer=opus,mjpeg \
-  --enable-encoder=opus,mjpeg \
-  --enable-decoder=opus,mjpeg
-pnpm emscripten make -j -C build/emscripten/ffmpeg install
+pnpm emscripten bash misc/ffmpeg-build-wasm.sh
 
 # Debug build is too slow
 pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake

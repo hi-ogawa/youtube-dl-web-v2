@@ -102,13 +102,7 @@ function getFFmepgModulePath(): string {
   } else {
     throw new Error("getFFmepgModulePath failure");
   }
-  return path.join(
-    packageDir,
-    "build",
-    "ffmpeg",
-    "wasm-release",
-    "ffmpeg_g.js"
-  );
+  return path.join(packageDir, "build", "emscripten", "ffmpeg", "ffmpeg_g.js");
 }
 
 main();

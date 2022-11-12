@@ -11,9 +11,9 @@
     "build/tsc/cpp/ex00-emscripten-types.d.ts",
     "build/emscripten/Release/ex00-emscripten.js",
     "build/emscripten/Release/ex00-emscripten.wasm",
-    "build/ffmpeg/wasm-release/ffmpeg_g.js",
-    "build/ffmpeg/wasm-release/ffmpeg_g.wasm",
-    "build/ffmpeg/wasm-release/ffmpeg_g.worker.js"
+    "build/emscripten/ffmpeg/ffmpeg_g.js",
+    "build/emscripten/ffmpeg/ffmpeg_g.wasm",
+    "build/emscripten/ffmpeg/ffmpeg_g.worker.js"
   ],
   "bin": {
     "ffmpeg-emscripten": "./bin/cli.cjs"
@@ -25,8 +25,9 @@
     "directory": "packages/ffmpeg"
   },
   "scripts": {
-    "build": "run-s build:wasm build:js build:dts",
-    "build:wasm": "pnpm emscripten bash misc/ffmpeg-build-wasm.sh",
+    "build": "run-s build:emscripten:ffmpeg build:emscripten:examples build:js build:dts",
+    "build:emscripten:ffmpeg": "pnpm emscripten bash misc/ffmpeg-build-emscripten.sh",
+    "build:emscripten:examples": "pnpm emscripten bash misc/cmake-emscripten.sh",
     "build:js": "esbuild ./src/index.ts ./src/cli.ts --outdir=build/esbuild --bundle --format=cjs --out-extension:.js=.cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",

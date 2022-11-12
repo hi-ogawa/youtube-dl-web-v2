@@ -84,7 +84,7 @@ async function webmToOpus(
 
   // run ffmpeg main
   const modulePath = require.resolve(
-    "@hiogawa/ffmpeg/build/ffmpeg/wasm-release/ffmpeg_g.js"
+    "@hiogawa/ffmpeg/build/emscripten/ffmpeg/ffmpeg_g.js"
   );
   const result = await run({
     initModule: require(modulePath),

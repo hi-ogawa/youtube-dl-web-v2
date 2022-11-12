@@ -5,8 +5,10 @@ set -eu -o pipefail
 #   PROXY_TO_PTHREAD=1 (non blocking thread creation (otherwise program hangs))
 #   PTHREAD_POOL_SIZE_STRICT=0 (allow on-demand thread creation)
 
+build_dir="/app/build/emscripten/ffmpeg"
+
 echo ":: [configure]"
-bash misc/ffmpeg-configure.sh "/app/build/ffmpeg/wasm-release" --prefix="/app/build/ffmpeg/wasm-release/prefix" \
+bash misc/ffmpeg-configure.sh "$build_dir" --prefix="$build_dir/prefix" \
   --enable-cross-compile \
   --cc=/emsdk/upstream/emscripten/emcc \
   --cxx=/emsdk/upstream/emscripten/em++ \
@@ -18,10 +20,10 @@ bash misc/ffmpeg-configure.sh "/app/build/ffmpeg/wasm-release" --prefix="/app/bu
   --target-os=none --arch=x86_32 \
   --disable-autodetect --disable-everything --disable-asm --disable-doc --disable-stripping \
   --enable-protocol=file \
-  --enable-demuxer=webm_dash_manifest,ogg,mjpeg,ffmetadata \
-  --enable-muxer=opus,mjpeg,ffmetadata \
-  --enable-encoder=opus \
-  --enable-decoder=opus
+  --enable-demuxer=webm_dash_manifest,ogg,mjpeg \
+  --enable-muxer=opus,mjpeg \
+  --enable-encoder=opus,mjpeg \
+  --enable-decoder=opus,mjpeg
 
 echo ":: [make]"
-make -j -C build/ffmpeg/wasm-release EXESUF=.js
+make -j -C "$build_dir" install EXESUF=.js
