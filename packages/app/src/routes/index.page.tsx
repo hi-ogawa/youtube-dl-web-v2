@@ -356,9 +356,12 @@ function MainFormSkelton() {
   );
 }
 
-// remount on videoId change (use `key={props.videoId}`)
+// TODO: for simplicity, remount on videoId change (use `key={props.videoId}`)
+// TODO: spinner
 function VideoPlayer(props: { videoId: string }) {
   const [refCallback, player] = usePlayer(props.videoId);
+
+  // TODO: set startTime/endTime based on current player time
   console.log(player?.getCurrentTime());
 
   return (
