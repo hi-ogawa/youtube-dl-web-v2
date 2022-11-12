@@ -2,7 +2,7 @@ import EMSCRIPTEN_MODULE_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00
 import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.wasm?url";
 import { wrap } from "comlink";
 import _ from "lodash";
-import WORKER_URL from "../worker/build/ffmpeg-v2.js?url";
+import WORKER_URL from "../worker/build/ffmpeg.js?url";
 import type { FFmpegWorker } from "../worker/ffmpeg";
 import { tinyassert } from "./tinyassert";
 

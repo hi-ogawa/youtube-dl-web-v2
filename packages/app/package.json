@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "clean": "rm -rf src/worker/build dist .vercel/output",
     "dev": "pnpm build:worker && run-p rakkas:dev tsc:dev",
     "build": "run-s build:worker build:app",
     "build:worker": "esbuild ./src/worker/ffmpeg.ts --bundle --outdir=./src/worker/build",

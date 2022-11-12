@@ -25,6 +25,7 @@
     "directory": "packages/ffmpeg"
   },
   "scripts": {
+    "clean": "rm -rf build",
     "build": "run-s build:emscripten:ffmpeg build:emscripten:examples build:js build:dts",
     "build:emscripten:ffmpeg": "pnpm emscripten bash misc/ffmpeg-build-emscripten.sh",
     "build:emscripten:examples": "pnpm emscripten bash misc/cmake-emscripten.sh",

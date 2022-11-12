@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "clean": "pnpm -r clean",
     "dev": "pnpm -C packages/app dev",
     "build": "pnpm -C packages/app build",
     "build:flac-picture": "pnpm -C packages/flac-picture build",

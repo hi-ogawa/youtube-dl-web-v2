@@ -18,6 +18,7 @@
     "directory": "packages/flac-picture"
   },
   "scripts": {
+    "clean": "rm -rf build",
     "cli": "pnpm -s ts ./src/cli.ts",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "dev": "run-p build:dev tsc:dev",
