@@ -33,8 +33,9 @@
     "emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
     "emscripten:clean": "docker-compose down -v --remove-orphans",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
-    "lint": "clang-format -style=file -i $(find src -type f -name '*.cpp' -o -name '*.hpp')",
-    "lint:check": "clang-format -style=file --dry-run --Werror $(find src -type f -name '*.cpp' -o -name '*.hpp')",
+    "clang": "DOCKER_USER=$(id -u):$(id -g) docker-compose run clang",
+    "lint": "pnpm clang clang-format -style=file -i $(find src -type f -name '*.cpp' -o -name '*.hpp')",
+    "lint:check": "pnpm clang clang-format -style=file --dry-run --Werror $(find src -type f -name '*.cpp' -o -name '*.hpp')",
     "release": "npm publish --access public"
   },
   "devDependencies": {
