@@ -1,9 +1,9 @@
-// - [x] copy audio stream (e.g. webm to opus)
+// - [x] remux (e.g. webm to opus)
 // - [x] filter by selected timestamp range
 // - [x] embed metadata
 // - [x] embed thumbnail
 // - [x] extract metadata
-// - [ ] extract thumbnail
+// - [x] extract thumbnail
 
 #include <cstring>
 #include <nlohmann/json.hpp>
@@ -23,6 +23,7 @@ namespace ex00_impl {
 using utils_ffmpeg::BufferInput;
 using utils_ffmpeg::BufferOutput;
 
+// demux to single stream
 std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
                              const std::string& out_format,
                              const std::map<std::string, std::string>& metadata,
@@ -56,19 +57,26 @@ std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
   };
   ofmt_ctx_->pb = output_.avio_ctx_;
 
+  // for now only allow single media type container (e.g. opus, mjpeg)
+  ASSERT(ofmt_ctx_->oformat->audio_codec == AV_CODEC_ID_NONE ||
+         ofmt_ctx_->oformat->video_codec == AV_CODEC_ID_NONE);
+  AVMediaType out_media_type =
+      ofmt_ctx_->oformat->video_codec == AV_CODEC_ID_NONE ? AVMEDIA_TYPE_AUDIO
+                                                          : AVMEDIA_TYPE_VIDEO;
+
   // write metadata
   for (auto [k, v] : metadata) {
     av_dict_set(&ofmt_ctx_->metadata, k.c_str(), v.c_str(), 0);
   }
 
-  // input audio stream
+  // input stream
   auto stream_index =
-      av_find_best_stream(ifmt_ctx_, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
+      av_find_best_stream(ifmt_ctx_, out_media_type, -1, -1, NULL, 0);
   ASSERT(stream_index >= 0);
   AVStream* in_stream = ifmt_ctx_->streams[stream_index];
   ASSERT(in_stream);
 
-  // output audio stream
+  // output stream
   AVStream* out_stream = avformat_new_stream(ofmt_ctx_, nullptr);
   ASSERT(out_stream);
   ASSERT(avcodec_parameters_copy(out_stream->codecpar, in_stream->codecpar) >=
@@ -100,6 +108,10 @@ std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
   // copy packets with timestamp filtering
   std::vector<uint8_t> result;
   while (av_read_frame(ifmt_ctx_, pkt) >= 0) {
+    if (pkt->stream_index != stream_index) {
+      av_packet_unref(pkt);
+      continue;
+    }
     if (end_time >= 0) {
       if (pkt->pts >= end_time_tb) {
         av_packet_unref(pkt);
@@ -114,7 +126,6 @@ std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
       pkt->pts -= start_time_tb;
       pkt->dts -= start_time_tb;
     }
-    ASSERT(pkt->stream_index == stream_index);
     pkt->stream_index = out_stream->index;
     av_packet_rescale_ts(pkt, in_stream->time_base, out_stream->time_base);
     ASSERT(av_interleaved_write_frame(ofmt_ctx_, pkt) == 0);

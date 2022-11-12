@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <optional>
@@ -116,6 +117,44 @@ struct Cli {
       }
     }
     return {};
+  }
+};
+
+//
+// subprocess
+//
+
+std::vector<uint8_t> readFileDescriptor(std::FILE* fp) {
+  std::vector<std::vector<uint8_t>> chunks;
+  constexpr size_t CHUNK_SIZE = 1 << 10;
+  while (true) {
+    auto& chunk = chunks.emplace_back();
+    chunk.resize(CHUNK_SIZE);
+    auto read_size = std::fread(chunk.data(), sizeof(uint8_t), CHUNK_SIZE, fp);
+    if (read_size < CHUNK_SIZE) {
+      chunk.resize(read_size);
+      break;
+    }
+  }
+  ASSERT(std::feof(fp));
+
+  std::vector<uint8_t> output;
+  for (auto& chunk : chunks) {
+    output.insert(output.end(), chunk.begin(), chunk.end());
+  }
+  return output;
+}
+
+struct Subprocess {
+  // https://docs.python.org/3/library/subprocess.html#subprocess.check_output
+  // https://pubs.opengroup.org/onlinepubs/009696799/functions/popen.html
+  static std::vector<uint8_t> checkOutput(const std::string& command) {
+    std::FILE* fp = popen(command.c_str(), "r");
+    ASSERT(fp);
+    auto output = readFileDescriptor(fp);
+    int status = pclose(fp);
+    ASSERT(status != -1);
+    return output;
   }
 };
 

@@ -10,6 +10,7 @@ async function mainConvert(cli: Cli) {
   const modulePath = cli.getArgument("--module") ?? DEFAULT_MODULE_PATH;
   const inFile = cli.getArgument("--in");
   const outFile = cli.getArgument("--out");
+  const outFormat = cli.getArgument("--out-format");
   const title = cli.getArgument("--title");
   const artist = cli.getArgument("--artist");
   const thumbnail = cli.getArgument("--thumbnail");
@@ -17,6 +18,7 @@ async function mainConvert(cli: Cli) {
   const endTime = Number(cli.getArgument("--end-time") ?? -1);
   tinyassert(inFile);
   tinyassert(outFile);
+  tinyassert(outFormat);
 
   // initialize emscritpen module
   const init: EmscriptenInit = require(path.resolve(modulePath));
@@ -41,7 +43,7 @@ async function mainConvert(cli: Cli) {
 
   const outData = Module.embind_convert(
     inData,
-    "opus",
+    outFormat,
     metadata,
     startTime,
     endTime
