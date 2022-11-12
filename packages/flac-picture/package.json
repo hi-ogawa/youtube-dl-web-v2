@@ -1,6 +1,6 @@
 {
   "name": "@hiogawa/flac-picture",
-  "version": "1.0.0-pre.3",
+  "version": "1.0.0-pre.5",
   "type": "commonjs",
   "main": "./build/esbuild/index.js",
   "types": "./build/tsc/index.d.js",
@@ -18,11 +18,12 @@
     "directory": "packages/flac-picture"
   },
   "scripts": {
+    "clean": "rm -rf build",
     "cli": "pnpm -s ts ./src/cli.ts",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "dev": "run-p build:dev tsc:dev",
     "build": "run-s build:js build:dts",
-    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=esm --platform=node",
+    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "tsc": "tsc -b",
     "tsc:dev": "tsc -b -w --preserveWatchOutput",
@@ -32,6 +33,7 @@
     "release": "npm publish --access public"
   },
   "devDependencies": {
-    "@hiogawa/base64": "1.0.0-alpha.1"
+    "@hiogawa/base64": "1.0.0-alpha.1",
+    "@types/node": "^16"
   }
 }

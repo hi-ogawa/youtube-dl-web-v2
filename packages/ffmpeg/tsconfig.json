@@ -4,6 +4,7 @@
   "compilerOptions": {
     "outDir": "build/tsc",
     "declaration": true,
+    "declarationMap": true,
     "exactOptionalPropertyTypes": false, // too strict
     "noUncheckedIndexedAccess": false, // too strict
     "checkJs": false,

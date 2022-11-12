@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/packages/ffmpeg/third_party/json",
+        "${workspaceFolder}/packages/ffmpeg/third_party/FFmpeg"
+      ],
+      "compileCommands": "${workspaceFolder}/packages/ffmpeg/build/native/Debug/compile_commands.json",
+      "defines": [],
+      "compilerPath": "/usr/bin/clang",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-clang-x64"
+    }
+  ],
+  "version": 4
+}

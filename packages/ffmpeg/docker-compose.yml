@@ -11,5 +11,13 @@ services:
       - ./:/app
       - emscripten-cache:/emsdk/upstream/emscripten/cache
 
+  # fix version to use clang-format
+  clang:
+    image: silkeh/clang:14-stretch
+    user: ${DOCKER_USER:-1000:1000}
+    working_dir: /app
+    volumes:
+      - ./:/app
+
 volumes:
   emscripten-cache:

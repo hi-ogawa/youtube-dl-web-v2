@@ -8,10 +8,4 @@ export default defineConfig({
     sourcemap: true,
   },
   plugins: [unocss(), rakkas({ adapter: "vercel" })],
-  server: {
-    headers: {
-      "cross-origin-opener-policy": "same-origin",
-      "cross-origin-embedder-policy": "require-corp",
-    },
-  },
 });
