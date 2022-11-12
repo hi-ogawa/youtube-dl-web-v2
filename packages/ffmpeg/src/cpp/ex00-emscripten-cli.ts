@@ -3,6 +3,11 @@ import path from "node:path";
 import process from "node:process";
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
 import { tinyassert } from "../tinyassert";
+import type {
+  EmbindVector,
+  EmscriptenInit,
+  EmscriptenModule,
+} from "./ex00-emscripten-types";
 
 const DEFAULT_MODULE_PATH = "build/emscripten/Release/ex00-emscripten.js";
 
@@ -83,30 +88,6 @@ async function main() {
 //
 // utils
 //
-
-interface EmbindVector {
-  resize: (length: number, defaultValue: number) => void;
-  view(): Uint8Array;
-}
-
-interface EmbindStringMap {
-  set(k: string, v: string): void;
-}
-
-interface EmscriptenModule {
-  embind_Vector: new () => EmbindVector;
-  embind_StringMap: new () => EmbindStringMap;
-  embind_convert: (
-    in_data: EmbindVector,
-    out_format: string,
-    metadata: EmbindStringMap,
-    start_time: number,
-    end_time: number
-  ) => EmbindVector;
-  embind_extractMetadata: (in_data: EmbindVector) => string;
-}
-
-type EmscriptenInit = (options?: {}) => Promise<EmscriptenModule>;
 
 async function readFileToVector(
   vector: EmbindVector,
