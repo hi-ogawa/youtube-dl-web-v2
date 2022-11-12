@@ -1,4 +1,5 @@
 import React from "react";
+import { useStableRef } from "./use-stable-ref";
 
 // vscode is fine but local tsc doesn't see `ReadableStreamDefaultReadResult<T>`
 type ReadResult<T> = Awaited<
@@ -55,10 +56,4 @@ export function useReadableStream<T>({
       reader.cancel();
     };
   }, [stream]);
-}
-
-function useStableRef<T>(value: T) {
-  const ref = React.useRef(value);
-  ref.current = value;
-  return ref;
 }

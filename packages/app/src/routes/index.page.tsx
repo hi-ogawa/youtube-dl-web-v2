@@ -1,17 +1,24 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
+import { Clock } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
-import { VideoCard } from "../components/video-card";
+import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
-import { formatBytes, ignoreFormEnter } from "../utils/misc";
+import { formatBytes, formatTimestamp, ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
+import { useStableRef } from "../utils/use-stable-ref";
 import { webmToOpus } from "../utils/worker-client";
-import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
+import {
+  VideoInfo,
+  YoutubePlayer,
+  getThumbnailUrl,
+  loadYoutubeIframeApi,
+} from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
@@ -62,6 +69,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Video ID</span>
             <input
+              data-lpignore="true" // https://stackoverflow.com/a/44984917
               className="input px-1"
               placeholder="ID or URL"
               {...form.register("id")}
@@ -197,13 +205,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
+  const [player, setPlayer] = React.useState<YoutubePlayer>();
+
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
-      <VideoCard
-        imageUrl={getThumbnailUrl(videoInfo.id)}
-        title={videoInfo.title}
-        uploader={videoInfo.uploader}
-      />
+      <VideoPlayer videoId={videoInfo.id} setPlayer={setPlayer} />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" {...form.register("format_id")}>
@@ -242,7 +248,23 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <span>Start Time</span>
+        <div className="flex items-center gap-2">
+          <span className="w-[75px]">Start Time</span>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player) {
+                const time = player.getCurrentTime();
+                form.setValue("startTime", formatTimestamp(time));
+              }
+            }}
+            title="set current player time"
+          >
+            <Clock className="w-3.5 h-3.5" />
+          </button>
+        </div>
         <input
           className="input px-1"
           placeholder="hh:mm:ss"
@@ -251,7 +273,23 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <span>End Time</span>
+        <div className="flex items-center gap-2">
+          <span className="w-[75px]">End Time</span>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player) {
+                const time = player.getCurrentTime();
+                form.setValue("endTime", formatTimestamp(time));
+              }
+            }}
+            title="set current player time"
+          >
+            <Clock className="w-3.5 h-3.5" />
+          </button>
+        </div>
         <input
           className="input px-1"
           placeholder="hh:mm:ss"
@@ -318,7 +356,7 @@ interface ProcessFileArg {
 function MainFormSkelton() {
   return (
     <>
-      <VideoCard />
+      <VideoPlayerSkelton />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" disabled></select>
@@ -352,4 +390,69 @@ function MainFormSkelton() {
       </button>
     </>
   );
+}
+
+function VideoPlayer(props: {
+  videoId: string;
+  setPlayer: (player?: YoutubePlayer) => void;
+}) {
+  const ref = usePlayer(props);
+  return (
+    <div className="relative w-full aspect-video overflow-hidden">
+      <div ref={ref} className="absolute w-full h-full" />
+    </div>
+  );
+}
+
+function VideoPlayerSkelton() {
+  return (
+    <div className="relative w-full aspect-video overflow-hidden dark:(filter brightness-50)">
+      <img src={PLACEHOLDER_IMAGE} className="absolute w-full h-full" />
+    </div>
+  );
+}
+
+// TODO: not hmr friendly
+function usePlayer(args: {
+  videoId: string;
+  setPlayer: (player?: YoutubePlayer) => void;
+}) {
+  const apiQuery = useYoutubeIframeApi();
+  const setPlayerRef = useStableRef(args.setPlayer);
+
+  return React.useCallback(
+    (el: HTMLDivElement | null) => {
+      if (!apiQuery.isSuccess) {
+        setPlayerRef.current(undefined);
+        return;
+      }
+
+      if (el) {
+        const api = apiQuery.data;
+        const player = new api.Player(el, {
+          videoId: args.videoId,
+          events: {
+            onReady: () => {
+              setPlayerRef.current(player);
+            },
+          },
+        });
+      } else {
+        setPlayerRef.current(undefined);
+      }
+    },
+    [apiQuery.isSuccess, args.videoId]
+  );
+}
+
+function useYoutubeIframeApi() {
+  return useQuery({
+    queryKey: [useYoutubeIframeApi.name],
+    queryFn: loadYoutubeIframeApi,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    onError: () => {
+      toast.error("failed to load youtube iframe");
+    },
+  });
 }

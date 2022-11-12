@@ -124,3 +124,53 @@ export async function fetchVideoInfoRaw(videoId: string): Promise<any> {
 export function getThumbnailUrl(videoId: string): string {
   return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 }
+
+//
+// iframe api
+//
+
+type YoutubeIframeApi = {
+  ready: (callback: () => void) => void;
+  Player: new (el: HTMLElement, options: YoutubePlayerOptions) => YoutubePlayer;
+};
+
+export interface YoutubePlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  seekTo: (second: number) => void;
+  getCurrentTime: () => number;
+  getPlayerState: () => number;
+}
+
+export type YoutubePlayerOptions = {
+  videoId: string;
+  height?: number;
+  width?: number;
+  playerVars?: {
+    autoplay?: 0 | 1;
+    start?: number; // must be integer
+  };
+  events?: {
+    onReady?: () => void;
+  };
+};
+
+export async function loadYoutubeIframeApi(): Promise<YoutubeIframeApi> {
+  await loadScript("https://www.youtube.com/iframe_api");
+  const api = (window as any).YT as YoutubeIframeApi;
+  tinyassert(api);
+  tinyassert(typeof api.ready === "function");
+  await new Promise((resolve) => api.ready(() => resolve(undefined)));
+  return api;
+}
+
+function loadScript(src: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = src;
+    el.async = true;
+    el.addEventListener("load", () => resolve());
+    el.addEventListener("error", reject);
+    document.body.appendChild(el);
+  });
+}

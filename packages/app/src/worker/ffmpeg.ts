@@ -7,6 +7,7 @@ import type {
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
 import { expose } from "comlink";
 import _ from "lodash";
+import { parseTimestamp } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 
 export type { FFmpegWorker };
@@ -74,16 +75,6 @@ class FFmpegWorker {
 //
 // utils
 //
-
-// hh:mm:ss.xxx => seconds
-function parseTimestamp(time: string): number {
-  const [hh, mm, ssxxx] = time.split(":");
-  tinyassert(hh && mm && ssxxx);
-  const [ss, xxx] = ssxxx.split(".");
-  return (
-    (Number(hh) * 60 + Number(mm)) * 60 + Number(ss) + Number(xxx ?? 0) / 1000
-  );
-}
 
 function arrayToVector(data: Uint8Array): EmbindVector {
   const vector = new Module.embind_Vector();
