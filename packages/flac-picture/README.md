@@ -12,6 +12,9 @@ pnpm e2e
 
 # release
 pnpm release
+
+# cli
+flac-picture < misc/test.jpg
 ```
 
 ## references

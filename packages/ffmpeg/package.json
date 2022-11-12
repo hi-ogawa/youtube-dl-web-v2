@@ -1,6 +1,6 @@
 {
   "name": "@hiogawa/ffmpeg",
-  "version": "1.0.0-pre.4",
+  "version": "1.0.0-pre.5",
   "type": "commonjs",
   "main": "./build/esbuild/index.cjs",
   "types": "./build/tsc/index.d.ts",

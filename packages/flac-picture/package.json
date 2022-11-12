@@ -1,6 +1,6 @@
 {
   "name": "@hiogawa/flac-picture",
-  "version": "1.0.0-pre.3",
+  "version": "1.0.0-pre.5",
   "type": "commonjs",
   "main": "./build/esbuild/index.js",
   "types": "./build/tsc/index.d.js",
