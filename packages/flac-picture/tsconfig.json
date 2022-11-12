@@ -9,7 +9,8 @@
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es2021",
-    "lib": ["es2021"]
+    "target": "ES2021",
+    "lib": ["ES2021", "DOM"],
+    "types": ["@types/node"]
   }
 }

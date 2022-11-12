@@ -22,7 +22,7 @@
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "dev": "run-p build:dev tsc:dev",
     "build": "run-s build:js build:dts",
-    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=esm --platform=node",
+    "build:js": "esbuild ./src/index.ts ./src/cli.ts --bundle --outdir=./build/esbuild --format=cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
     "tsc": "tsc -b",
     "tsc:dev": "tsc -b -w --preserveWatchOutput",
@@ -32,6 +32,7 @@
     "release": "npm publish --access public"
   },
   "devDependencies": {
-    "@hiogawa/base64": "1.0.0-alpha.1"
+    "@hiogawa/base64": "1.0.0-alpha.1",
+    "@types/node": "^16"
   }
 }
