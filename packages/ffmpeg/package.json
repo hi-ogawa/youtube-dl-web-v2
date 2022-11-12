@@ -1,6 +1,6 @@
 {
   "name": "@hiogawa/ffmpeg",
-  "version": "1.0.0-pre.3",
+  "version": "1.0.0-pre.4",
   "type": "commonjs",
   "main": "./build/esbuild/index.cjs",
   "types": "./build/tsc/index.d.ts",
@@ -8,6 +8,8 @@
     "build/esbuild/index.cjs",
     "build/esbuild/cli.cjs",
     "build/tsc/index.d.ts",
+    "build/emscripten/Release/ex00-emscripten.js",
+    "build/emscripten/Release/ex00-emscripten.wasm",
     "build/ffmpeg/wasm-release/ffmpeg_g.js",
     "build/ffmpeg/wasm-release/ffmpeg_g.wasm",
     "build/ffmpeg/wasm-release/ffmpeg_g.worker.js"
@@ -34,6 +36,7 @@
     "release": "npm publish --access public"
   },
   "devDependencies": {
+    "@hiogawa/flac-picture": "workspace:*",
     "@types/node": "^18.11.9"
   }
 }

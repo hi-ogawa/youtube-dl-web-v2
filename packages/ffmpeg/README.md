@@ -35,7 +35,7 @@ make -j -C build/native/ffmpeg install
 
 cmake . -B build/native/Debug -DCMAKE_BUILD_TYPE=Debug
 cmake --build build/native/Debug
-./build/native/Debug/ex00 --in test.webm --out test.opus --start-time 10 --end-time 21
+./build/native/Debug/ex00 --in test.webm --out test.opus --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
 
 #
 # emscripten build inside docker
@@ -59,5 +59,5 @@ pnpm emscripten make -j -C build/emscripten/ffmpeg install
 # Debug build is too slow
 pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 pnpm emscripten cmake --build build/emscripten/Release
-pnpm ts ./src/cpp/ex00-emscripten-cli.ts --module build/emscripten/Release/ex00-emscripten.js --in test.webm --out test.opus --start-time 10 --end-time 21
+pnpm ts ./src/cpp/ex00-emscripten-cli.ts --module build/emscripten/Release/ex00-emscripten.js --in test.webm --out test.opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
 ```

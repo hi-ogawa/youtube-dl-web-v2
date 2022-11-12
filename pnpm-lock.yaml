@@ -81,8 +81,10 @@ importers:
 
   packages/ffmpeg:
     specifiers:
+      '@hiogawa/flac-picture': workspace:*
       '@types/node': ^18.11.9
     devDependencies:
+      '@hiogawa/flac-picture': link:../flac-picture
       '@types/node': 18.11.9
 
   packages/flac-picture:

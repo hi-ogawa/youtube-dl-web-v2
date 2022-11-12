@@ -1,6 +1,11 @@
 #pragma once
 
-// convert from webm to opus while copying selected timestamp range
+// - [x] copy audio stream (e.g. webm to opus)
+// - [x] filter by selected timestamp range
+// - [x] embed metadata
+// - [x] embed thumbnail
+// - [ ] extract metadata
+// - [ ] extract thumbnail
 
 #include <cstring>
 #include <optional>
@@ -21,6 +26,7 @@ using utils_ffmpeg::BufferOutput;
 
 std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
                              const std::string& out_format,
+                             const std::map<std::string, std::string>& metadata,
                              double start_time,  // -1 to indicate no value
                              double end_time) {
   // validate timestamp
@@ -50,6 +56,11 @@ std::vector<uint8_t> convert(const std::vector<uint8_t>& in_data,
     avformat_free_context(ofmt_ctx_);
   };
   ofmt_ctx_->pb = output_.avio_ctx_;
+
+  // write metadata
+  for (auto [k, v] : metadata) {
+    av_dict_set(&ofmt_ctx_->metadata, k.c_str(), v.c_str(), 0);
+  }
 
   // input audio stream
   auto stream_index =
