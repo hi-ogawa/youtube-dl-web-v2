@@ -1,17 +1,22 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
-import { VideoCard } from "../components/video-card";
+import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
 import { formatBytes, ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
-import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
+import {
+  VideoInfo,
+  YoutubePlayer,
+  getThumbnailUrl,
+  loadYoutubeIframeApi,
+} from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
@@ -62,6 +67,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Video ID</span>
             <input
+              data-lpignore="true" // https://stackoverflow.com/a/44984917
               className="input px-1"
               placeholder="ID or URL"
               {...form.register("id")}
@@ -199,11 +205,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
-      <VideoCard
-        imageUrl={getThumbnailUrl(videoInfo.id)}
-        title={videoInfo.title}
-        uploader={videoInfo.uploader}
-      />
+      <VideoPlayer videoId={videoInfo.id} />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" {...form.register("format_id")}>
@@ -318,7 +320,7 @@ interface ProcessFileArg {
 function MainFormSkelton() {
   return (
     <>
-      <VideoCard />
+      <VideoPlayerSkelton />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" disabled></select>
@@ -352,4 +354,67 @@ function MainFormSkelton() {
       </button>
     </>
   );
+}
+
+// remount on videoId change (use `key={props.videoId}`)
+function VideoPlayer(props: { videoId: string }) {
+  const [refCallback, player] = usePlayer(props.videoId);
+  console.log(player?.getCurrentTime());
+
+  return (
+    <div className="relative w-full aspect-video overflow-hidden">
+      <div ref={refCallback} className="absolute w-full h-full" />
+    </div>
+  );
+}
+
+function VideoPlayerSkelton() {
+  return (
+    <div className="relative w-full aspect-video overflow-hidden dark:(filter brightness-50)">
+      <img src={PLACEHOLDER_IMAGE} className="absolute w-full h-full" />
+    </div>
+  );
+}
+
+function usePlayer(videoId: string) {
+  const apiQuery = useYoutubeIframeApi();
+  const [player, setPlayer] = React.useState<YoutubePlayer>();
+
+  const refCallback = React.useCallback(
+    (el: HTMLDivElement | null) => {
+      if (!apiQuery.isSuccess) {
+        setPlayer(undefined);
+        return;
+      }
+
+      if (el) {
+        const api = apiQuery.data;
+        const player = new api.Player(el, {
+          videoId,
+          events: {
+            onReady: () => {
+              setPlayer(player);
+            },
+          },
+        });
+      } else {
+        setPlayer(undefined);
+      }
+    },
+    [apiQuery.isSuccess, videoId]
+  );
+
+  return [refCallback, player] as const;
+}
+
+function useYoutubeIframeApi() {
+  return useQuery({
+    queryKey: [useYoutubeIframeApi.name],
+    queryFn: loadYoutubeIframeApi,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    onError: () => {
+      toast.error("failed to load youtube iframe");
+    },
+  });
 }
