@@ -2,14 +2,16 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
+import { Clock } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
-import { formatBytes, ignoreFormEnter } from "../utils/misc";
+import { formatBytes, formatTimestamp, ignoreFormEnter } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
+import { useStableRef } from "../utils/use-stable-ref";
 import { webmToOpus } from "../utils/worker-client";
 import {
   VideoInfo,
@@ -203,9 +205,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
+  const [player, setPlayer] = React.useState<YoutubePlayer>();
+
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
-      <VideoPlayer videoId={videoInfo.id} />
+      <VideoPlayer videoId={videoInfo.id} setPlayer={setPlayer} />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" {...form.register("format_id")}>
@@ -244,7 +248,23 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <span>Start Time</span>
+        <div className="flex items-center gap-2">
+          <span className="w-[75px]">Start Time</span>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player) {
+                const time = player.getCurrentTime();
+                form.setValue("startTime", formatTimestamp(time));
+              }
+            }}
+            title="set current player time"
+          >
+            <Clock className="w-3.5 h-3.5" />
+          </button>
+        </div>
         <input
           className="input px-1"
           placeholder="hh:mm:ss"
@@ -253,7 +273,23 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <span>End Time</span>
+        <div className="flex items-center gap-2">
+          <span className="w-[75px]">End Time</span>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player) {
+                const time = player.getCurrentTime();
+                form.setValue("endTime", formatTimestamp(time));
+              }
+            }}
+            title="set current player time"
+          >
+            <Clock className="w-3.5 h-3.5" />
+          </button>
+        </div>
         <input
           className="input px-1"
           placeholder="hh:mm:ss"
@@ -356,17 +392,14 @@ function MainFormSkelton() {
   );
 }
 
-// TODO: for simplicity, remount on videoId change (use `key={props.videoId}`)
-// TODO: spinner
-function VideoPlayer(props: { videoId: string }) {
-  const [refCallback, player] = usePlayer(props.videoId);
-
-  // TODO: set startTime/endTime based on current player time
-  console.log(player?.getCurrentTime());
-
+function VideoPlayer(props: {
+  videoId: string;
+  setPlayer: (player?: YoutubePlayer) => void;
+}) {
+  const ref = usePlayer(props);
   return (
     <div className="relative w-full aspect-video overflow-hidden">
-      <div ref={refCallback} className="absolute w-full h-full" />
+      <div ref={ref} className="absolute w-full h-full" />
     </div>
   );
 }
@@ -379,35 +412,37 @@ function VideoPlayerSkelton() {
   );
 }
 
-function usePlayer(videoId: string) {
+// TODO: not hmr friendly
+function usePlayer(args: {
+  videoId: string;
+  setPlayer: (player?: YoutubePlayer) => void;
+}) {
   const apiQuery = useYoutubeIframeApi();
-  const [player, setPlayer] = React.useState<YoutubePlayer>();
+  const setPlayerRef = useStableRef(args.setPlayer);
 
-  const refCallback = React.useCallback(
+  return React.useCallback(
     (el: HTMLDivElement | null) => {
       if (!apiQuery.isSuccess) {
-        setPlayer(undefined);
+        setPlayerRef.current(undefined);
         return;
       }
 
       if (el) {
         const api = apiQuery.data;
         const player = new api.Player(el, {
-          videoId,
+          videoId: args.videoId,
           events: {
             onReady: () => {
-              setPlayer(player);
+              setPlayerRef.current(player);
             },
           },
         });
       } else {
-        setPlayer(undefined);
+        setPlayerRef.current(undefined);
       }
     },
-    [apiQuery.isSuccess, videoId]
+    [apiQuery.isSuccess, args.videoId]
   );
-
-  return [refCallback, player] as const;
 }
 
 function useYoutubeIframeApi() {
