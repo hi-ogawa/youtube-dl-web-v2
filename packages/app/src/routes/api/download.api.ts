@@ -35,7 +35,9 @@ export async function get(ctx: RequestContext) {
   });
   tinyassert(res.ok);
 
-  const headers = new Headers();
+  const headers = new Headers({
+    "cache-control": "public, immutable, max-age=31536000",
+  });
   const contentType = res.headers.get("content-type");
   if (contentType) {
     headers.set("content-type", contentType);
