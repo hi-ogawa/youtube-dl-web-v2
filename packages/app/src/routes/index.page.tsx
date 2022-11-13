@@ -3,13 +3,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy, uniq } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
-import { Clock, Pause, Play, SkipBack, SkipForward } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
 import {
+  cls,
   extractTimestamps,
   formatBytes,
   formatTimestamp,
@@ -266,7 +266,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <div className="flex items-center gap-2">
           <span className="w-[75px]">Start Time</span>
           <button
-            className="p-1 btn btn-default"
+            className="p-0.5 btn btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -279,10 +279,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             }}
             title="set current player time"
           >
-            <Clock className="w-3.5 h-3.5" />
+            <span className="i-ri-time-line w-4 h-4"></span>
           </button>
           <button
-            className="p-1 btn btn-default"
+            className="p-0.5 btn btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -292,7 +292,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             }}
             title="seek player"
           >
-            <Play className="w-3.5 h-3.5" />
+            <span className="i-ri-play-line w-4 h-4"></span>
           </button>
         </div>
         <input
@@ -314,7 +314,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <div className="flex items-center gap-2">
           <span className="w-[75px]">End Time</span>
           <button
-            className="p-1 btn btn-default"
+            className="p-0.5 btn btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -327,10 +327,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             }}
             title="set current player time"
           >
-            <Clock className="w-3.5 h-3.5" />
+            <span className="i-ri-time-line w-4 h-4"></span>
           </button>
           <button
-            className="p-1 btn btn-default"
+            className="p-0.5 btn btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -340,7 +340,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             }}
             title="seek player"
           >
-            <Play className="w-3.5 h-3.5" />
+            <span className="i-ri-play-line w-4 h-4"></span>
           </button>
         </div>
         <input
@@ -492,7 +492,7 @@ function VideoPlayer({
             }
           }}
         >
-          <SkipBack className="w-4 h-4" />
+          <span className="i-ri-skip-back-line w-5 h-5"></span>
         </button>
         <button
           type="button"
@@ -506,11 +506,12 @@ function VideoPlayer({
             }
           }}
         >
-          {isPlaying ? (
-            <Pause className="w-4 h-4" />
-          ) : (
-            <Play className="w-4 h-4" />
-          )}
+          <span
+            className={cls(
+              isPlaying ? "i-ri-pause-line" : "i-ri-play-line",
+              "w-5 h-5"
+            )}
+          ></span>
         </button>
         <button
           type="button"
@@ -522,7 +523,7 @@ function VideoPlayer({
             }
           }}
         >
-          <SkipForward className="w-4 h-4" />
+          <span className="i-ri-skip-forward-line w-5 h-5"></span>
         </button>
       </div>
     </div>
@@ -541,21 +542,21 @@ function VideoPlayerSkelton() {
           className="flex-1 p-1 btn btn-default flex justify-center"
           disabled
         >
-          <SkipBack className="w-4 h-4" />
+          <span className="i-ri-skip-back-line w-5 h-5"></span>
         </button>
         <button
           type="button"
           className="flex-1 p-1 btn btn-default flex justify-center"
           disabled
         >
-          <Play className="w-4 h-4" />
+          <span className="i-ri-play-line w-5 h-5"></span>
         </button>
         <button
           type="button"
           className="flex-1 p-1 btn btn-default flex justify-center"
           disabled
         >
-          <SkipForward className="w-4 h-4" />
+          <span className="i-ri-skip-forward-line w-5 h-5"></span>
         </button>
       </div>
     </div>
