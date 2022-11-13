@@ -2,13 +2,18 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
-import { Clock } from "react-feather";
+import { Clock, Play } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
-import { formatBytes, formatTimestamp, ignoreFormEnter } from "../utils/misc";
+import {
+  formatBytes,
+  formatTimestamp,
+  ignoreFormEnter,
+  parseTimestamp,
+} from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { useStableRef } from "../utils/use-stable-ref";
@@ -256,13 +261,28 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             disabled={!player}
             onClick={() => {
               if (player) {
-                const time = player.getCurrentTime();
-                form.setValue("startTime", formatTimestamp(time));
+                form.setValue(
+                  "startTime",
+                  formatTimestamp(player.getCurrentTime())
+                );
               }
             }}
             title="set current player time"
           >
             <Clock className="w-3.5 h-3.5" />
+          </button>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player && startTime) {
+                player.seekTo(parseTimestamp(startTime));
+              }
+            }}
+            title="seek player"
+          >
+            <Play className="w-3.5 h-3.5" />
           </button>
         </div>
         <input
@@ -281,13 +301,28 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             disabled={!player}
             onClick={() => {
               if (player) {
-                const time = player.getCurrentTime();
-                form.setValue("endTime", formatTimestamp(time));
+                form.setValue(
+                  "endTime",
+                  formatTimestamp(player.getCurrentTime())
+                );
               }
             }}
             title="set current player time"
           >
             <Clock className="w-3.5 h-3.5" />
+          </button>
+          <button
+            className="p-1 btn btn-default"
+            type="button"
+            disabled={!player}
+            onClick={() => {
+              if (player && endTime) {
+                player.seekTo(parseTimestamp(endTime));
+              }
+            }}
+            title="seek player"
+          >
+            <Play className="w-3.5 h-3.5" />
           </button>
         </div>
         <input
