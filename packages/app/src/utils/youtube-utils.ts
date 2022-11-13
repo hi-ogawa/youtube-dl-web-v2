@@ -145,6 +145,8 @@ export interface YoutubePlayer {
   getPlayerState: () => number;
 }
 
+export const PLAYER_STATE_PLAYING = 1;
+
 export type YoutubePlayerOptions = {
   videoId: string;
   height?: number;
