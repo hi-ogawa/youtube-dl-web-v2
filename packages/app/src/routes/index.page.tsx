@@ -481,7 +481,7 @@ function VideoPlayer({
           <span className="absolute spinner w-20 h-20 !border-4"></span>
         </Transition>
       </div>
-      <div className="flex">
+      <div className="flex gap-1.5">
         <button
           type="button"
           className="flex-1 p-1 btn btn-default flex justify-center"
@@ -531,8 +531,33 @@ function VideoPlayer({
 
 function VideoPlayerSkelton() {
   return (
-    <div className="relative w-full aspect-video overflow-hidden dark:(filter brightness-50)">
-      <img src={PLACEHOLDER_IMAGE} className="absolute w-full h-full" />
+    <div className="flex flex-col gap-2">
+      <div className="relative w-full aspect-video overflow-hidden dark:(filter brightness-50)">
+        <img src={PLACEHOLDER_IMAGE} className="absolute w-full h-full" />
+      </div>
+      <div className="flex gap-1.5">
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled
+        >
+          <SkipBack className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled
+        >
+          <Play className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled
+        >
+          <SkipForward className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
