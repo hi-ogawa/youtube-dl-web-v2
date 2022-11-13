@@ -43,7 +43,7 @@ pnpm emscripten bash misc/ffmpeg-build-wasm.sh
 # Debug build is too slow
 pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 pnpm emscripten cmake --build build/emscripten/Release
-pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.opus --out-format opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
-pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --out-format mjpeg
-pnpm ts ./src/cpp/ex00-emscripten-cli.ts extract-metadata --in test.out.opus
+pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.opus --outFormat opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --startTime 10 --endTime 21
+pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --outFormat mjpeg
+pnpm ts ./src/cpp/ex00-emscripten-cli.ts extractMetadata --in test.out.opus
 ```
