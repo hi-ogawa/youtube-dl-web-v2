@@ -8,6 +8,7 @@
     "build:app": "run-s rakkas:build fix-vercel-output",
     "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
+    "test": "vitest",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
     "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",

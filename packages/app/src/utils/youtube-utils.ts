@@ -18,6 +18,7 @@ export interface FormatInfo {
 export interface VideoInfo {
   id: string;
   title: string;
+  shortDescription: string;
   uploader: string;
   artist?: string;
   album?: string;
@@ -50,6 +51,7 @@ const RAW_INFO_SCHEMA = z.object({
     videoId: z.string(),
     title: z.string(),
     author: z.string(),
+    shortDescription: z.string(),
   }),
   streamingData: z.object({
     // formats: z.object({}).array(), // TODO
@@ -78,6 +80,7 @@ export async function fetchVideoInfo(videoId: string): Promise<VideoInfo> {
     id: p.videoDetails.videoId,
     title: p.videoDetails.title,
     uploader: p.videoDetails.author,
+    shortDescription: p.videoDetails.shortDescription,
     formats: p.streamingData.adaptiveFormats.map((f) => ({
       url: f.url,
       filesize: f.contentLength,
