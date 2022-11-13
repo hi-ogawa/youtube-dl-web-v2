@@ -88,12 +88,6 @@ const extractMetadata = tinycli(
   }
 );
 
-function main() {
-  const cli = tinycliMulti({ convert, extractMetadata });
-  const args = process.argv.slice(2);
-  return cli(args);
-}
-
 //
 // utils
 //
@@ -105,6 +99,12 @@ async function readFileToVector(
   const buffer = await fs.promises.readFile(filename);
   vector.resize(buffer.length, 0);
   vector.view().set(new Uint8Array(buffer));
+}
+
+function main() {
+  const cli = tinycliMulti({ convert, extractMetadata });
+  const args = process.argv.slice(2);
+  return cli(args);
 }
 
 if (require.main === module) {

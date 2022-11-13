@@ -10,7 +10,6 @@ import type { z } from "zod";
 
 // todo
 // - unused arguments is simply ignored
-// - prettier error message
 
 //
 // api
@@ -23,7 +22,12 @@ export function tinycli<T extends z.AnyZodObject>(
   action: (args: z.infer<T>) => unknown
 ): Command {
   return (args: string[]) => {
-    return action(schema.parse(parseRawArgs(args)));
+    const record = parseRawArgs(args);
+    const parsed = schema.safeParse(record);
+    if (parsed.success) {
+      return action(parsed.data);
+    }
+    throw new Error(formatError(parsed.error));
   };
 }
 
@@ -63,4 +67,14 @@ function parseRawArgs(args: string[]): Record<string, string> {
     }
   }
   return result;
+}
+
+function formatError(error: z.ZodError) {
+  let message = "\n";
+  for (const [flag, errors] of Object.entries(error.flatten().fieldErrors)) {
+    if (errors) {
+      message += `  --${flag}: ${errors?.join(", ")}\n`;
+    }
+  }
+  return message;
 }
