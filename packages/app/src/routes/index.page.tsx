@@ -1,8 +1,9 @@
+import { Transition } from "@headlessui/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy, uniq } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
-import { Clock, Play } from "react-feather";
+import { Clock, Pause, Play, SkipBack, SkipForward } from "react-feather";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
@@ -16,10 +17,12 @@ import {
   parseTimestamp,
 } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
+import { useAnimationFrameLoop } from "../utils/use-animation-frame-loop";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { useStableRef } from "../utils/use-stable-ref";
 import { webmToOpus } from "../utils/worker-client";
 import {
+  PLAYER_STATE_PLAYING,
   VideoInfo,
   YoutubePlayer,
   getThumbnailUrl,
@@ -217,7 +220,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
-      <VideoPlayer videoId={videoInfo.id} setPlayer={setPlayer} />
+      <VideoPlayer
+        videoId={videoInfo.id}
+        player={player}
+        setPlayer={setPlayer}
+      />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select className="input px-1" {...form.register("format_id")}>
@@ -440,14 +447,84 @@ function MainFormSkelton() {
   );
 }
 
-function VideoPlayer(props: {
+function VideoPlayer({
+  videoId,
+  player,
+  setPlayer,
+}: {
   videoId: string;
+  player?: YoutubePlayer;
   setPlayer: (player?: YoutubePlayer) => void;
 }) {
-  const ref = usePlayer(props);
+  const ref = usePlayer({ videoId, setPlayer });
+
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
+  useAnimationFrameLoop(() => {
+    setIsPlaying(player?.getPlayerState() === PLAYER_STATE_PLAYING);
+  });
+
   return (
-    <div className="relative w-full aspect-video overflow-hidden">
-      <div ref={ref} className="absolute w-full h-full" />
+    <div className="flex flex-col gap-2">
+      <div className="relative w-full aspect-video overflow-hidden">
+        <div ref={ref} className="absolute w-full h-full" />
+        <Transition
+          show={!player}
+          appear={true}
+          className="absolute inset-0 flex justify-center items-center transition duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="absolute inset-0 bg-base opacity-50"></div>
+          <span className="absolute spinner w-20 h-20 !border-4"></span>
+        </Transition>
+      </div>
+      <div className="flex">
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled={!player}
+          onClick={() => {
+            if (player) {
+              player.seekTo(player.getCurrentTime() - 5);
+            }
+          }}
+        >
+          <SkipBack className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled={!player}
+          onClick={() => {
+            if (isPlaying) {
+              player?.pauseVideo();
+            } else {
+              player?.playVideo();
+            }
+          }}
+        >
+          {isPlaying ? (
+            <Pause className="w-4 h-4" />
+          ) : (
+            <Play className="w-4 h-4" />
+          )}
+        </button>
+        <button
+          type="button"
+          className="flex-1 p-1 btn btn-default flex justify-center"
+          disabled={!player}
+          onClick={() => {
+            if (player) {
+              player.seekTo(player.getCurrentTime() + 5);
+            }
+          }}
+        >
+          <SkipForward className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
