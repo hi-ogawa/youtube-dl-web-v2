@@ -1,5 +1,6 @@
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
+import { decodePayload, encodePayload } from "../../utils/handler-utils";
 import { tinyassert } from "../../utils/tinyassert";
 import { fetchVideoInfo } from "../../utils/youtube-utils";
 
@@ -12,11 +13,11 @@ const DOWNLOAD_REQUEST_SCHEME = z.object({
   end: z.number(),
 });
 
-export type DownloadRequest = z.infer<typeof DOWNLOAD_REQUEST_SCHEME>;
+type DownloadRequest = z.infer<typeof DOWNLOAD_REQUEST_SCHEME>;
 
-export async function post(ctx: RequestContext) {
+export async function get(ctx: RequestContext) {
   const parsed = DOWNLOAD_REQUEST_SCHEME.parse(
-    JSON.parse(await ctx.request.text())
+    decodePayload(new URL(ctx.request.url).searchParams)
   );
   const { id, format_id, start, end } = parsed;
 
@@ -34,7 +35,9 @@ export async function post(ctx: RequestContext) {
   });
   tinyassert(res.ok);
 
-  const headers = new Headers();
+  const headers = new Headers({
+    "cache-control": "public, immutable, max-age=31536000",
+  });
   const contentType = res.headers.get("content-type");
   if (contentType) {
     headers.set("content-type", contentType);
@@ -47,8 +50,5 @@ export async function post(ctx: RequestContext) {
 //
 
 export function fetchDownload(req: DownloadRequest): Promise<Response> {
-  return fetch("/api/download", {
-    method: "POST",
-    body: JSON.stringify(req),
-  });
+  return fetch("/api/download?" + encodePayload(req));
 }
