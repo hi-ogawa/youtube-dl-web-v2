@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@hiogawa/flac-picture": "workspace:*",
-    "@types/node": "^18.11.9"
+    "@types/node": "^18.11.9",
+    "zod": "^3.19.1"
   }
 }

@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
-import { tinyassert } from "../tinyassert";
+import { z } from "zod";
+import { tinycli, tinycliMulti } from "../tinycli";
 import type {
   EmbindVector,
   EmscriptenInit,
@@ -11,79 +12,81 @@ import type {
 
 const DEFAULT_MODULE_PATH = "build/emscripten/Release/ex00-emscripten.js";
 
-async function mainConvert(cli: Cli) {
-  const modulePath = cli.getArgument("--module") ?? DEFAULT_MODULE_PATH;
-  const inFile = cli.getArgument("--in");
-  const outFile = cli.getArgument("--out");
-  const outFormat = cli.getArgument("--out-format");
-  const title = cli.getArgument("--title");
-  const artist = cli.getArgument("--artist");
-  const thumbnail = cli.getArgument("--thumbnail");
-  const startTime = Number(cli.getArgument("--start-time") ?? -1);
-  const endTime = Number(cli.getArgument("--end-time") ?? -1);
-  tinyassert(inFile);
-  tinyassert(outFile);
-  tinyassert(outFormat);
+//
+// convert
+//
 
-  // initialize emscritpen module
-  const init: EmscriptenInit = require(path.resolve(modulePath));
-  const Module: EmscriptenModule = await init();
+const convert = tinycli(
+  z.object({
+    module: z.string().default(DEFAULT_MODULE_PATH),
+    in: z.string(),
+    out: z.string(),
+    outFormat: z.string(),
+    thumbnail: z.string().optional(),
+    title: z.string().optional(),
+    artist: z.string().optional(),
+    startTime: z.preprocess(Number, z.number()).default(-1),
+    endTime: z.preprocess(Number, z.number()).default(-1),
+  }),
+  async (args) => {
+    // initialize emscritpen module
+    const init: EmscriptenInit = require(path.resolve(args.module));
+    const Module: EmscriptenModule = await init();
 
-  // media data
-  const inData = new Module.embind_Vector();
-  await readFileToVector(inData, inFile);
+    // media data
+    const inData = new Module.embind_Vector();
+    await readFileToVector(inData, args.in);
 
-  // metadata
-  const metadata = new Module.embind_StringMap();
-  for (const [k, v] of Object.entries({ title, artist })) {
-    if (v) {
-      metadata.set(k, v);
+    // metadata
+    const metadata = new Module.embind_StringMap();
+    for (const [k, v] of Object.entries({
+      title: args.title,
+      artist: args.artist,
+    })) {
+      if (v) {
+        metadata.set(k, v);
+      }
     }
+    if (args.thumbnail) {
+      const thumbnailData = await fs.promises.readFile(args.thumbnail);
+      const encoded = encode(thumbnailData);
+      metadata.set(METADATA_BLOCK_PICTURE, encoded);
+    }
+
+    const outData = Module.embind_convert(
+      inData,
+      args.outFormat,
+      metadata,
+      args.startTime,
+      args.endTime
+    );
+    await fs.promises.writeFile(args.out, outData.view());
   }
-  if (thumbnail) {
-    const thumbnailData = await fs.promises.readFile(thumbnail);
-    const encoded = encode(thumbnailData);
-    metadata.set(METADATA_BLOCK_PICTURE, encoded);
+);
+
+//
+// extractMetadata
+//
+
+const extractMetadata = tinycli(
+  z.object({
+    module: z.string().default(DEFAULT_MODULE_PATH),
+    in: z.string(),
+  }),
+  async (args) => {
+    // initialize emscritpen module
+    const init: EmscriptenInit = require(path.resolve(args.module));
+    const Module: EmscriptenModule = await init();
+
+    // read data
+    const inData = new Module.embind_Vector();
+    await readFileToVector(inData, args.in);
+
+    // process
+    const outData = Module.embind_extractMetadata(inData);
+    console.log(outData);
   }
-
-  const outData = Module.embind_convert(
-    inData,
-    outFormat,
-    metadata,
-    startTime,
-    endTime
-  );
-  await fs.promises.writeFile(outFile, outData.view());
-}
-
-async function mainExtractMetadata(cli: Cli) {
-  const modulePath = cli.getArgument("--module") ?? DEFAULT_MODULE_PATH;
-  const inFile = cli.getArgument("--in");
-  tinyassert(inFile);
-
-  // initialize emscritpen module
-  const init: EmscriptenInit = require(path.resolve(modulePath));
-  const Module: EmscriptenModule = await init();
-
-  // read data
-  const inData = new Module.embind_Vector();
-  await readFileToVector(inData, inFile);
-
-  // process
-  const outData = Module.embind_extractMetadata(inData);
-  console.log(outData);
-}
-
-async function main() {
-  const cli = new Cli(process.argv.slice(2));
-  if (process.argv[2] === "convert") {
-    return mainConvert(cli);
-  }
-  if (process.argv[2] === "extract-metadata") {
-    return mainExtractMetadata(cli);
-  }
-  process.exit(-1);
-}
+);
 
 //
 // utils
@@ -98,16 +101,10 @@ async function readFileToVector(
   vector.view().set(new Uint8Array(buffer));
 }
 
-class Cli {
-  constructor(private argv: string[]) {}
-
-  getArgument(flag: string): string | undefined {
-    const index = this.argv.indexOf(flag);
-    if (index !== -1) {
-      return this.argv[index + 1];
-    }
-    return;
-  }
+function main() {
+  const cli = tinycliMulti({ convert, extractMetadata });
+  const args = process.argv.slice(2);
+  return cli(args);
 }
 
 if (require.main === module) {
