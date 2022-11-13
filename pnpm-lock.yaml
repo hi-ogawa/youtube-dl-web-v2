@@ -34,6 +34,7 @@ importers:
       '@headlessui/react': ^1.7.4
       '@hiogawa/ffmpeg': workspace:*
       '@hiogawa/flac-picture': workspace:*
+      '@iconify-json/ri': ^1.1.3
       '@tanstack/react-query': ^4.3.4
       '@tanstack/react-query-devtools': ^4.3.5
       '@types/lodash': ^4.14.186
@@ -45,7 +46,6 @@ importers:
       rakkasjs: next
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-feather: ^2.0.10
       react-hook-form: ^7.35.0
       react-hot-toast: ^2.4.0
       react-remove-scroll: ^2.5.5
@@ -65,12 +65,12 @@ importers:
       rakkasjs: 0.6.2-next.8_f7o6wpxqr354gb5rak66npcju4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-feather: 2.0.10_react@18.2.0
       react-hook-form: 7.38.0_react@18.2.0
       react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
       react-remove-scroll: 2.5.5_i2izv7j3km4zzxbpzq2d4xtojy
       zod: 3.19.1
     devDependencies:
+      '@iconify-json/ri': 1.1.3
       '@types/lodash': 4.14.186
       '@types/react': 18.0.23
       '@types/react-dom': 18.0.7
@@ -544,6 +544,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/ri/1.1.3:
+    resolution: {integrity: sha512-YQ45kQNpuHc2bso4fDGhooWou43qy7njD/I5l7vpjcujb+P/K2BfLASbWYTTUKu6lMersuFmO8F7NdGzy6eGWw==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types/2.0.0:
@@ -2862,11 +2868,6 @@ packages:
       boolbase: 1.0.0
     dev: false
 
-  /object-assign/4.1.1:
-    resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
-    engines: {node: '>=0.10.0'}
-    dev: false
-
   /object-inspect/1.12.2:
     resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
     dev: true
@@ -3053,14 +3054,6 @@ packages:
     hasBin: true
     dev: true
 
-  /prop-types/15.8.1:
-    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-    dev: false
-
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
@@ -3119,15 +3112,6 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-feather/2.0.10_react@18.2.0:
-    resolution: {integrity: sha512-BLhukwJ+Z92Nmdcs+EMw6dy1Z/VLiJTzEQACDUEnWMClhYnFykJCGWQx+NmwP/qQHGX/5CzQ+TGi8ofg2+HzVQ==}
-    peerDependencies:
-      react: '>=16.8.6'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
   /react-hook-form/7.38.0_react@18.2.0:
     resolution: {integrity: sha512-gxWW1kMeru9xR1GoR+Iw4hA+JBOM3SHfr4DWCUKY0xc7Vv1MLsF109oHtBeWl9shcyPFx67KHru44DheN0XY5A==}
     engines: {node: '>=12.22.0'}
@@ -3149,10 +3133,6 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
       - csstype
-    dev: false
-
-  /react-is/16.13.1:
-    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
   /react-refresh/0.14.0:

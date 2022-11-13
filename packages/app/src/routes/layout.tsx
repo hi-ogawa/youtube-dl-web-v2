@@ -2,10 +2,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
 import React from "react";
-import { Edit, GitHub, Home, Menu, Moon, Sun } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import ICON_URL from "../assets/icon-32.png?url";
 import { Drawer } from "../components/drawer";
+import { cls } from "../utils/misc";
 import THEME_SCRIPT from "../utils/theme-script.js?raw";
 import { usePrevious } from "../utils/use-previous";
 import { useThemeState } from "../utils/use-theme-state";
@@ -49,8 +49,11 @@ function PageHeader(props: LayoutProps) {
   // shadow color taken from https://ant.design/components/overview/
   return (
     <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
-      <button className="p-1 btn btn-ghost" onClick={() => setMenuOpen(true)}>
-        <Menu className="w-5 h-5" />
+      <button
+        className="pl-1 py-1 btn btn-ghost flex items-center"
+        onClick={() => setMenuOpen(true)}
+      >
+        <span className="i-ri-menu-line w-5 h-5"></span>
       </button>
       <div className="text-lg">{title}</div>
       <span className="flex-1"></span>
@@ -60,16 +63,16 @@ function PageHeader(props: LayoutProps) {
         href="https://github.com/hi-ogawa/youtube-dl-web-v2"
         target="_blank"
       >
-        <GitHub className="w-5 h-5" />
+        <span className="i-ri-github-line w-5 h-5"></span>
       </a>
       <Drawer open={menuOpen} onClose={() => setMenuOpen(false)}>
-        <div className="flex flex-col gap-2">
-          <div className="pl-6 py-2">
+        <div className="flex flex-col py-2 gap-2">
+          <div className="pl-7 py-1">
             <button
-              className="p-1 btn btn-ghost"
+              className="btn btn-ghost flex items-center"
               onClick={() => setMenuOpen(false)}
             >
-              <Menu className="w-5 h-5" />
+              <span className="i-ri-menu-line w-5 h-5"></span>
             </button>
           </div>
           <div className="flex flex-col gap-4">
@@ -77,14 +80,14 @@ function PageHeader(props: LayoutProps) {
               className="pl-7 flex items-center gap-3 btn btn-ghost"
               href="/"
             >
-              <Home className="w-5 h-5" />
+              <span className="i-ri-home-4-line w-5 h-5"></span>
               Home
             </Link>
             <Link
               className="pl-7 flex items-center gap-3 btn btn-ghost"
               href="/edit"
             >
-              <Edit className="w-5 h-5" />
+              <span className="i-ri-edit-2-line w-5 h-5"></span>
               Edit
             </Link>
           </div>
@@ -104,11 +107,12 @@ function ThemeButton() {
         setTheme(theme === "dark" ? "light" : "dark");
       }}
     >
-      {theme === "dark" ? (
-        <Sun className="w-5 h-5" />
-      ) : (
-        <Moon className="w-5 h-5" />
-      )}
+      <span
+        className={cls(
+          theme === "dark" ? "i-ri-sun-line" : "i-ri-moon-line",
+          "w-5 h-5"
+        )}
+      ></span>
     </button>
   );
 }

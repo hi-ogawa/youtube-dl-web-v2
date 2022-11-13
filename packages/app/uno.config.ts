@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import {
   defineConfig,
+  presetIcons,
   presetUno,
   transformerDirectives,
   transformerVariantGroup,
@@ -76,6 +77,14 @@ export default defineConfig({
       not-disabled:active:(bg-primary-active border-primary-active)
     `,
   },
-  presets: [presetUno()],
+  presets: [
+    presetUno(),
+    // for the ease of search ui, use https://remixicon.com/ e.g. i-ri-github-line
+    presetIcons({
+      extraProperties: {
+        display: "inline-block",
+      },
+    }),
+  ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
 });
