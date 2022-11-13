@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { isNil, pick, sortBy } from "lodash";
+import { isNil, pick, sortBy, uniq } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { Clock, Play } from "react-feather";
@@ -9,6 +9,7 @@ import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { DownloadProgress, download } from "../utils/download";
 import {
+  extractTimestamps,
   formatBytes,
   formatTimestamp,
   ignoreFormEnter,
@@ -212,6 +213,8 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const [player, setPlayer] = React.useState<YoutubePlayer>();
 
+  const timestampOptions = uniq(extractTimestamps(videoInfo.shortDescription));
+
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
       <VideoPlayer videoId={videoInfo.id} setPlayer={setPlayer} />
@@ -287,10 +290,18 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
+          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
         />
+        <datalist id="timestamp-options">
+          {timestampOptions.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </datalist>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
@@ -327,10 +338,12 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
+          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
         />
+        {timestampOptions.length > 0}
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
