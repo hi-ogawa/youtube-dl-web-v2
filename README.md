@@ -1,7 +1,7 @@
 # youtube-dl-web
 
 ```sh
-git submodule init --update
+git submodule update --init
 
 # development
 pnpm i
