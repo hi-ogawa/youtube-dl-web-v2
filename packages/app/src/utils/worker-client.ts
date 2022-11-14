@@ -1,6 +1,6 @@
 import EMSCRIPTEN_MODULE_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.js?url";
 import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.wasm?url";
-import { wrap } from "comlink";
+import { transfer, wrap } from "comlink";
 import _ from "lodash";
 import WORKER_URL from "../worker/build/ffmpeg.js?url";
 import type { FFmpegWorker } from "../worker/ffmpeg";
@@ -29,18 +29,20 @@ export async function webmToOpus(
 ): Promise<Uint8Array> {
   const workerImpl = await getWorkerV2();
   const output = await workerImpl.webmToOpus(
-    webm,
+    transfer(webm, [webm.buffer]),
     metadata,
     startTime,
     endTime,
-    jpeg
+    jpeg && transfer(jpeg, [jpeg.buffer])
   );
   return output;
 }
 
 export async function extractCoverArt(opus: Uint8Array): Promise<Uint8Array> {
   const workerImpl = await getWorkerV2();
-  const output = await workerImpl.extractCoverArt(opus);
+  const output = await workerImpl.extractCoverArt(
+    transfer(opus, [opus.buffer])
+  );
   return output;
 }
 
@@ -48,7 +50,7 @@ export async function extractMetadata(
   opus: Uint8Array
 ): Promise<Record<string, string>> {
   const workerImpl = await getWorkerV2();
-  const info = await workerImpl.extractMetadata(opus);
+  const info = await workerImpl.extractMetadata(transfer(opus, [opus.buffer]));
   const stream = info.streams.find((s) => s.type === "audio");
   tinyassert(stream);
   return stream.metadata;
