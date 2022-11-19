@@ -53,6 +53,14 @@ ostream& operator<<(ostream& ostr, const pair<T1, T2>& x) {
   return ostr << tie(x.first, x.second);
 }
 
+template <class T>
+ostream& operator<<(ostream& ostr, const optional<T>& x) {
+  if (x.has_value()) {
+    return ostr << "{" << x.value() << "}";
+  }
+  return ostr << "null";
+}
+
 // "container" except std::string
 template <class T,
           class = decltype(begin(declval<T>())),

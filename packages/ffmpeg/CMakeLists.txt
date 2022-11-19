@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.0.0)
 project(youtube-dl-web-v2-ffmpeg LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-add_compile_options(-Wall -Wextra -Wshadow -Wno-missing-braces)
+# TODO: temporarly removed since it's too noisy when compiling libwebm
+# add_compile_options(-Wall -Wextra -Wshadow -Wno-missing-braces)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -20,11 +21,21 @@ target_include_directories(ffmpeg INTERFACE ${FFMPEG_PREFIX_DIR}/include)
 
 # json https://github.com/nlohmann/json
 add_library(json INTERFACE)
-target_include_directories(ffmpeg INTERFACE ${CMAKE_SOURCE_DIR}/third_party/json/single_include)
+target_include_directories(json INTERFACE ${CMAKE_SOURCE_DIR}/third_party/json/single_include)
+
+# libwebm
+set(ENABLE_WEBM_PARSER ON CACHE BOOL "")
+set(ENABLE_WEBMTS OFF CACHE BOOL "")
+set(ENABLE_WEBMINFO OFF CACHE BOOL "")
+add_subdirectory(third_party/libwebm)
 
 # binary
 add_executable(ex00 src/cpp/ex00.cpp)
 target_link_libraries(ex00 ffmpeg json)
+
+add_executable(ex01 src/cpp/ex01.cpp)
+target_link_libraries(ex01 webm_parser json)
+include_directories(ex01 third_party/libwebm/webm_parser/include)
 
 # emscripten binary
 get_filename_component(COMPILER_BASENAME "${CMAKE_C_COMPILER}" NAME)
