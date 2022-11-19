@@ -1,3 +1,5 @@
+#include <mkvmuxer/mkvmuxer.h>
+#include <mkvmuxer/mkvwriter.h>
 #include <webm/buffer_reader.h>
 #include <webm/webm_parser.h>
 #include <optional>
@@ -8,6 +10,7 @@
 // cf.
 // - packages/ffmpeg/third_party/libwebm/webm_parser/demo/demo.cc
 // - packages/ffmpeg/third_party/libwebm/webm_parser/README.md
+// - packages/ffmpeg/third_party/libwebm/mkvmuxer_sample.cc
 
 namespace utils_webm {
 
@@ -100,8 +103,42 @@ struct SimpleMetadata {
 };
 
 struct SimpleFrame {
+  std::uint64_t track_number;
   std::uint64_t timecode;
   std::vector<std::uint8_t> data;
+};
+
+//
+// in-memory mkvmuxer writier
+//
+
+struct MkvBufferWriter : mkvmuxer::IMkvWriter {
+  std::vector<std::uint8_t> data_ = {};
+  size_t position_ = 0;
+
+  //
+  // override
+  //
+
+  mkvmuxer::int64 Position() const override { return position_; };
+
+  mkvmuxer::int32 Position(mkvmuxer::int64 position) override {
+    position_ = position;
+    return 0;
+  }
+
+  bool Seekable() const override { return true; }
+
+  mkvmuxer::int32 Write(const void* buffer, mkvmuxer::uint32 length) override {
+    position_ += length;
+    if (position_ > data_.size()) {
+      data_.resize(position_);
+    }
+    std::memcpy(&data_[position_ - length], buffer, length);
+    return 0;
+  }
+
+  void ElementStartNotify(mkvmuxer::uint64, mkvmuxer::int64) override {}
 };
 
 //
@@ -191,19 +228,11 @@ struct FrameParserCallback : webm::Callback {
     return webm::Status(webm::Status::kOkCompleted);
   }
 
+  // taking only SimpleBlock seems fine
   webm::Status OnBlockBegin(const webm::ElementMetadata&,
-                            const webm::Block& block,
+                            const webm::Block&,
                             webm::Action* action) override {
-    ASSERT(!block_);
-    block_ = block;
-    *action = webm::Action::kRead;
-    return webm::Status(webm::Status::kOkCompleted);
-  }
-
-  webm::Status OnBlockEnd(const webm::ElementMetadata&,
-                          const webm::Block&) override {
-    ASSERT(block_);
-    block_ = std::nullopt;
+    *action = webm::Action::kSkip;
     return webm::Status(webm::Status::kOkCompleted);
   }
 
@@ -216,6 +245,7 @@ struct FrameParserCallback : webm::Callback {
     ASSERT(block_.value().num_frames == 1);
     ASSERT(block_.value().timecode >= 0);
     auto timecode = cluster_.value().timecode.value() + block_.value().timecode;
+    auto track_number = block_.value().track_number;
 
     std::vector<std::uint8_t> data;
     data.resize(metadata.size);
@@ -231,14 +261,14 @@ struct FrameParserCallback : webm::Callback {
     }
 
     ASSERT(num_actually_read == metadata.size);
-    frames_.push_back(SimpleFrame{timecode, data});
+    frames_.push_back(SimpleFrame{track_number, timecode, data});
     *bytes_remaining = 0;
     return webm::Status(webm::Status::kOkCompleted);
   }
 };
 
 //
-// read metadata from buffer
+// main API
 //
 
 std::pair<webm::Status, SimpleMetadata> parseMetadata(
@@ -258,6 +288,37 @@ std::pair<webm::Status, std::vector<SimpleFrame>> parseFrames(
   parser.DidSeek();
   auto status = parser.Feed(&callback, &reader);
   return std::make_pair(status, callback.frames_);  // TODO: avoid copy
+}
+
+std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
+                                const std::vector<SimpleFrame>& frames) {
+  MkvBufferWriter writer;
+
+  mkvmuxer::Segment muxer_segment;
+  ASSERT(muxer_segment.Init(&writer));
+
+  // add tracks
+  for (auto& track_entry : metadata.track_entries) {
+    ASSERT(track_entry.track_number);
+    ASSERT(
+        muxer_segment.AddAudioTrack(48000, 2, track_entry.track_number.value()))
+    auto track = reinterpret_cast<mkvmuxer::AudioTrack*>(
+        muxer_segment.GetTrackByNumber(track_entry.track_number.value()));
+    ASSERT(track);
+    track->set_codec_id(mkvmuxer::Tracks::kOpusCodecId);
+  }
+
+  // add frames
+  for (auto& frame : frames) {
+    auto timecode = frame.timecode - frames[0].timecode;
+    auto timecode_ns = timecode * 1000000;
+    // TODO: does "key frame" matter?
+    ASSERT(muxer_segment.AddFrame(frame.data.data(), frame.data.size(),
+                                  frame.track_number, timecode_ns, true));
+  }
+
+  ASSERT(muxer_segment.Finalize());
+  return writer.data_;
 }
 
 }  // namespace utils_webm

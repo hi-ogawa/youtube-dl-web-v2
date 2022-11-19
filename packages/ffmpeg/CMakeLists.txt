@@ -34,8 +34,8 @@ add_executable(ex00 src/cpp/ex00.cpp)
 target_link_libraries(ex00 ffmpeg json)
 
 add_executable(ex01 src/cpp/ex01.cpp)
-target_link_libraries(ex01 webm_parser json)
-include_directories(ex01 third_party/libwebm/webm_parser/include)
+target_link_libraries(ex01 webm_parser mkvmuxer json)
+include_directories(ex01 third_party/libwebm/webm_parser/include third_party/libwebm)
 
 # emscripten binary
 get_filename_component(COMPILER_BASENAME "${CMAKE_C_COMPILER}" NAME)
