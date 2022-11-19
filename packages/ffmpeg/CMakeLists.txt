@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(youtube-dl-web-v2-ffmpeg LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-# TODO: temporarly removed since it's too noisy when compiling libwebm
-# add_compile_options(-Wall -Wextra -Wshadow -Wno-missing-braces)
+add_compile_options(-Wall -Wextra -Wshadow -Wno-missing-braces)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -35,7 +34,7 @@ target_link_libraries(ex00 ffmpeg json)
 
 add_executable(ex01 src/cpp/ex01.cpp)
 target_link_libraries(ex01 webm_parser mkvmuxer json)
-include_directories(ex01 third_party/libwebm/webm_parser/include third_party/libwebm)
+include_directories(ex01 SYSTEM third_party/libwebm/webm_parser/include third_party/libwebm) # SYSTEM to suppress warning
 
 # emscripten binary
 get_filename_component(COMPILER_BASENAME "${CMAKE_C_COMPILER}" NAME)
