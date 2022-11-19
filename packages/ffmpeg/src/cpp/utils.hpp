@@ -27,7 +27,7 @@
 
 #define dbg(...)                                                   \
   do {                                                             \
-    std::cout << #__VA_ARGS__ ": " << std::make_tuple(__VA_ARGS__) \
+    std::cerr << #__VA_ARGS__ ": " << std::make_tuple(__VA_ARGS__) \
               << std::endl;                                        \
   } while (0)
 

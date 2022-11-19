@@ -99,6 +99,11 @@ struct SimpleMetadata {
                                  cue_points);
 };
 
+struct SimpleFrame {
+  std::uint64_t timecode;
+  std::vector<std::uint8_t> data;
+};
+
 //
 // custom webm::Callback
 //
@@ -147,6 +152,91 @@ struct MetadataParserCallback : webm::Callback {
   }
 };
 
+// collect frames
+struct FrameParserCallback : webm::Callback {
+  std::vector<SimpleFrame> frames_;
+  // track current ancestor cluster/block of current frame
+  std::optional<webm::Cluster> cluster_;
+  std::optional<webm::Block> block_;
+
+  webm::Status OnClusterBegin(const webm::ElementMetadata&,
+                              const webm::Cluster& cluster,
+                              webm::Action* action) override {
+    ASSERT(!cluster_);
+    cluster_ = cluster;
+    *action = webm::Action::kRead;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnClusterEnd(const webm::ElementMetadata&,
+                            const webm::Cluster&) override {
+    ASSERT(cluster_);
+    cluster_ = std::nullopt;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnSimpleBlockBegin(const webm::ElementMetadata&,
+                                  const webm::SimpleBlock& simple_block,
+                                  webm::Action* action) override {
+    ASSERT(!block_);
+    block_ = simple_block;
+    *action = webm::Action::kRead;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnSimpleBlockEnd(const webm::ElementMetadata&,
+                                const webm::SimpleBlock&) override {
+    ASSERT(block_);
+    block_ = std::nullopt;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnBlockBegin(const webm::ElementMetadata&,
+                            const webm::Block& block,
+                            webm::Action* action) override {
+    ASSERT(!block_);
+    block_ = block;
+    *action = webm::Action::kRead;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnBlockEnd(const webm::ElementMetadata&,
+                          const webm::Block&) override {
+    ASSERT(block_);
+    block_ = std::nullopt;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnFrame(const webm::FrameMetadata& metadata,
+                       webm::Reader* reader,
+                       std::uint64_t* bytes_remaining) override {
+    ASSERT(cluster_);
+    ASSERT(block_);
+    ASSERT(cluster_.value().timecode.is_present());
+    ASSERT(block_.value().num_frames == 1);
+    ASSERT(block_.value().timecode >= 0);
+    auto timecode = cluster_.value().timecode.value() + block_.value().timecode;
+
+    std::vector<std::uint8_t> data;
+    data.resize(metadata.size);
+
+    // assume single Read suffices (which should be the case for
+    // BufferReader)
+    std::uint64_t num_actually_read = 0;
+    auto status = reader->Read(metadata.size, data.data(), &num_actually_read);
+
+    // abort if not success
+    if (!status.completed_ok()) {
+      return webm::Status(webm::Status::kEndOfFile);
+    }
+
+    ASSERT(num_actually_read == metadata.size);
+    frames_.push_back(SimpleFrame{timecode, data});
+    *bytes_remaining = 0;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+};
+
 //
 // read metadata from buffer
 //
@@ -158,6 +248,16 @@ std::pair<webm::Status, SimpleMetadata> parseMetadata(
   webm::BufferReader reader(buffer);
   auto status = parser.Feed(&callback, &reader);
   return std::make_pair(status, callback.metadata_);
+}
+
+std::pair<webm::Status, std::vector<SimpleFrame>> parseFrames(
+    const std::vector<uint8_t>& buffer) {
+  FrameParserCallback callback;
+  webm::WebmParser parser;
+  webm::BufferReader reader(buffer);
+  parser.DidSeek();
+  auto status = parser.Feed(&callback, &reader);
+  return std::make_pair(status, callback.frames_);  // TODO: avoid copy
 }
 
 }  // namespace utils_webm

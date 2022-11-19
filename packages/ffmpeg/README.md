@@ -34,7 +34,8 @@ cmake --build build/native/Debug
 ./build/native/Debug/ex00 convert --in test.webm --out test.out.opus --out-format opus --thumbnail test.jpeg --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
 ./build/native/Debug/ex00 convert --in test.out.opus --out test.out.jpg --out-format mjpeg
 ./build/native/Debug/ex00 extract-metadata --in test.out.opus
-./build/native/Debug/ex01 --in test.webm --slice 1000  # only first 1KB is needed to extract all cue points
+./build/native/Debug/ex01 parse-metadata --in test.webm --slice 1000  # only first 1KB is needed to extract all cue points
+./build/native/Debug/ex01 parse-frames --in test.webm --slice-start $((3154391 + 48)) # cluster of last cue point
 
 #
 # emscripten build inside docker
