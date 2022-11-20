@@ -41,7 +41,7 @@ cmake --build build/native/Debug
 #
 # emscripten build inside docker
 #
-pnpm emscripten bash misc/ffmpeg-build-wasm.sh
+pnpm emscripten bash misc/ffmpeg-build-emscripten.sh
 
 # Debug build is too slow
 pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
