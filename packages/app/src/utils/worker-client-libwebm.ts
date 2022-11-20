@@ -8,8 +8,7 @@ import type { LibwebmWorker } from "../worker/libwebm";
 import { tinyassert } from "./tinyassert";
 
 // prefetch assets before instantiating emscripten worker
-export const WORKER_ASSET_URLS = [
-  WORKER_URL,
+export const WORKER_ASSET_URLS_LIBWEBM = [
   EMSCRIPTEN_MODULE_URL,
   EMSCRIPTEN_WASM_URL,
 ];

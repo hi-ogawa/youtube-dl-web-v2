@@ -7,11 +7,7 @@ import type { FFmpegWorker } from "../worker/ffmpeg";
 import { tinyassert } from "./tinyassert";
 
 // prefetch assets before instantiating emscripten worker
-export const WORKER_ASSET_URLS = [
-  WORKER_URL,
-  EMSCRIPTEN_MODULE_URL,
-  EMSCRIPTEN_WASM_URL,
-];
+export const WORKER_ASSET_URLS = [EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL];
 
 const getWorker = _.memoize(async () => {
   const worker = new Worker(WORKER_URL);
