@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { isNil, pick, sortBy, uniq } from "lodash";
+import { isNil, pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -234,7 +234,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const [player, setPlayer] = React.useState<YoutubePlayer>();
 
-  const timestampOptions = uniq(extractTimestamps(videoInfo.shortDescription));
+  const timestampOptions = uniqBy(
+    extractTimestamps(videoInfo.shortDescription),
+    (t) => t.time
+  );
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
@@ -330,8 +333,8 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
         <datalist id="timestamp-options">
           {timestampOptions.map((t) => (
-            <option key={t} value={t}>
-              {t}
+            <option key={t.time} value={t.time}>
+              {t.label || t.time}
             </option>
           ))}
         </datalist>
