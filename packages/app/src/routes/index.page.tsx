@@ -159,7 +159,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
-  // TODO: disable form during download
   const handleDownload = form.handleSubmit((data) => {
     tinyassert(data.format_id);
     setDownloadProgress(0);
