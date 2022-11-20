@@ -30,9 +30,16 @@ test("basic", async ({ page }) => {
   await page.locator('input[name="startTime"]').fill("4:19");
   await page.locator('input[name="endTime"]').fill("7:55");
 
-  // start download
+  // start download (i.e. fetching + processing)
   await page.getByRole("button", { name: "Download" }).click();
 
   // success message
   await page.waitForSelector("'successfully downloaded'");
+
+  // trigger file dialog
+  const downloadPromise = page.waitForEvent("download");
+  await page.locator("a >> 'Finished!'").click();
+  const download = await downloadPromise;
+  const downloadPath = await download.path();
+  expect(downloadPath).toBeDefined();
 });
