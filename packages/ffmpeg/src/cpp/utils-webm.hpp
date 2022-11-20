@@ -300,8 +300,8 @@ std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
   // add tracks
   for (auto& track_entry : metadata.track_entries) {
     ASSERT(track_entry.track_number);
-    ASSERT(
-        muxer_segment.AddAudioTrack(48000, 2, track_entry.track_number.value()))
+    ASSERT(muxer_segment.AddAudioTrack(48000, 2,
+                                       track_entry.track_number.value()));
     auto track = reinterpret_cast<mkvmuxer::AudioTrack*>(
         muxer_segment.GetTrackByNumber(track_entry.track_number.value()));
     ASSERT(track);
