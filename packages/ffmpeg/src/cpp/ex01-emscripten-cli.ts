@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { z } from "zod";
+import { tinyassert } from "../tinyassert";
 import { tinycli, tinycliMulti } from "../tinycli";
 import type {
   EmbindVector,
@@ -46,18 +47,29 @@ const remux = tinycli(
     module: z.string().default(DEFAULT_MODULE_PATH),
     in: z.string(),
     out: z.string(),
-    sliceStart: z.preprocess(Number, z.number().int()).optional(),
-    sliceEnd: z.preprocess(Number, z.number().int()).optional(),
+    startTime: z.preprocess(Number, z.number()).optional(),
+    endTime: z.preprocess(Number, z.number()).optional(),
   }),
   async (args) => {
     await initModule(args.module);
 
-    // read data
+    // read metadata
     const inData = await readFile(args.in);
+    const outData = Module.embind_parseMetadataWrapper(inData);
+    const metadata: SimpleMetadata = JSON.parse(outData);
 
-    // slice frame
+    // compute containing range
+    const cueRange = findContainingRange(
+      metadata,
+      args.startTime,
+      args.endTime
+    );
+
+    // slice frame data
     const frameData = new Module.embind_Vector();
-    const sliceArray = inData.view().slice(args.sliceStart, args.sliceEnd);
+    const sliceArray = inData
+      .view()
+      .slice(cueRange.startByte, cueRange.endByte);
     frameData.resize(sliceArray.length, 0);
     frameData.view().set(sliceArray);
 
@@ -77,6 +89,48 @@ async function readFile(filename: string): Promise<EmbindVector> {
   vector.resize(buffer.length, 0);
   vector.view().set(new Uint8Array(buffer));
   return vector;
+}
+
+interface ContainingRange {
+  // byte offset of containing clusters
+  startByte: number;
+  endByte?: number;
+  // timestamp of first frame (in seconds)
+  startTime: number;
+}
+
+function findContainingRange(
+  metadata: SimpleMetadata,
+  startTime?: number,
+  endTime?: number
+): ContainingRange {
+  tinyassert(metadata.segment_body_start);
+  tinyassert(metadata.track_entries.length === 1);
+
+  interface StrictCuePont {
+    time: number;
+    cluster_position: number;
+  }
+  const cuePoints: StrictCuePont[] = metadata.cue_points.map((c) => {
+    const { time, cluster_position } = c;
+    tinyassert(typeof time === "number");
+    tinyassert(typeof cluster_position === "number");
+    return { time: time / 1000, cluster_position };
+  });
+
+  const startCue = startTime
+    ? [...cuePoints].reverse().find((c) => c.time <= startTime)
+    : cuePoints[0];
+  const endCue = endTime && cuePoints.find((c) => c.time > endTime);
+  tinyassert(startCue);
+
+  return {
+    startByte: startCue.cluster_position + metadata.segment_body_start,
+    endByte: endCue
+      ? endCue.cluster_position + metadata.segment_body_start
+      : undefined,
+    startTime: startCue.time,
+  };
 }
 
 //

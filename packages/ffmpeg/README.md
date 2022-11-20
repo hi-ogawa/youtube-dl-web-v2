@@ -51,5 +51,5 @@ pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.o
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --outFormat mjpeg
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts extractMetadata --in test.out.opus
 pnpm ts ./src/cpp/ex01-emscripten-cli.ts parseMetadata --in test.webm --slice 1000
-pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --sliceStart $((134457 + 48)) --sliceEnd $((267084 + 48))
+pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --startTime 35 --endTime 45
 ```

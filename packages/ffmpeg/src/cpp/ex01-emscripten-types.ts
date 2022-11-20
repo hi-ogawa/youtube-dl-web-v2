@@ -17,6 +17,7 @@ export interface SimpleCuePoint {
 }
 
 export interface SimpleMetadata {
+  segment_body_start?: number;
   track_entries: SimpleTrackEntry[];
   cue_points: SimpleCuePoint[];
 }
