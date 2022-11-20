@@ -29,7 +29,8 @@ export interface EmscriptenModule {
 
   embind_remuxWrapper: (
     metadata_buffer: EmbindVector,
-    frame_buffer: EmbindVector
+    frame_buffer: EmbindVector,
+    fix_timestamp: boolean
   ) => EmbindVector;
 }
 

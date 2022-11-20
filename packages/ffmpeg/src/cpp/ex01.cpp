@@ -50,6 +50,8 @@ int mainRemux(int argc, const char* argv[]) {
   auto out_file = cli.argument<std::string>("--out");
   auto slice_start = cli.argument<size_t>("--slice-start");
   auto slice_end = cli.argument<size_t>("--slice-end");
+  auto fix_timestamp =
+      cli.argument<std::string>("--fix-timestamp").value_or("true");
   ASSERT(in_file);
   ASSERT(out_file);
 
@@ -66,7 +68,7 @@ int mainRemux(int argc, const char* argv[]) {
   dbg(status2.code, frames.size());
 
   // remux
-  auto output = utils_webm::remux(metadata, frames);
+  auto output = utils_webm::remux(metadata, frames, fix_timestamp == "true");
   utils::writeFile(out_file.value(), output);
   return 0;
 }

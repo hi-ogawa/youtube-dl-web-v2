@@ -90,6 +90,10 @@ struct SimpleMetadata {
   // CueClusterPosition is relative to position
   std::optional<uint64_t> segment_body_start;
 
+  // Info element
+  uint64_t timecode_scale;
+  double duration;
+
   std::vector<SimpleTrackEntry> track_entries;
 
   std::vector<SimpleCuePoint> cue_points;
@@ -97,6 +101,8 @@ struct SimpleMetadata {
   // serializable to nlohmann::json for quick debugging
   OPTIONAL__NLOHMANN_DEFINE_TYPE(SimpleMetadata,
                                  ebml_doc_type,
+                                 timecode_scale,
+                                 duration,
                                  segment_body_start,
                                  track_entries,
                                  cue_points);
@@ -164,6 +170,15 @@ struct MetadataParserCallback : webm::Callback {
     ASSERT(!metadata_.segment_body_start.has_value());
     metadata_.segment_body_start = metadata.position + metadata.header_size;
     *action = webm::Action::kRead;
+    return webm::Status(webm::Status::kOkCompleted);
+  }
+
+  webm::Status OnInfo(const webm::ElementMetadata&,
+                      const webm::Info& info) override {
+    ASSERT(info.timecode_scale.is_present());
+    ASSERT(info.duration.is_present());
+    metadata_.timecode_scale = info.timecode_scale.value();
+    metadata_.duration = info.duration.value();
     return webm::Status(webm::Status::kOkCompleted);
   }
 
@@ -300,7 +315,8 @@ std::pair<webm::Status, std::vector<SimpleFrame>> parseFrames(
 }
 
 std::vector<uint8_t> remux(const SimpleMetadata& metadata,
-                           const std::vector<SimpleFrame>& frames) {
+                           const std::vector<SimpleFrame>& frames,
+                           bool fix_timestamp) {
   MkvBufferWriter writer;
 
   mkvmuxer::Segment muxer_segment;
@@ -320,25 +336,31 @@ std::vector<uint8_t> remux(const SimpleMetadata& metadata,
 
   // add frames
   for (auto& frame : frames) {
-    auto timecode = frame.timecode - frames[0].timecode;
-    // TODO: parse scale
-    auto timecode_ns = timecode * 1000000;
+    auto timecode = frame.timecode;
+    if (fix_timestamp) {
+      timecode -= frames[0].timecode;
+    }
+    auto timecode_ns = timecode * metadata.timecode_scale;
     // TODO: does "key frame" matter?
     ASSERT(muxer_segment.AddFrame(frame.data.data(), frame.data.size(),
                                   frame.track_number, timecode_ns, true));
   }
 
+  if (!fix_timestamp) {
+    muxer_segment.set_duration(metadata.duration);
+  }
   ASSERT(muxer_segment.Finalize());
   return writer.data_;
 }
 
 std::vector<uint8_t> remuxWrapper(const std::vector<uint8_t>& metadata_buffer,
-                                  const std::vector<uint8_t>& frame_buffer) {
+                                  const std::vector<uint8_t>& frame_buffer,
+                                  bool fix_timestamp) {
   auto [metadata_status, metadata] = parseMetadata(metadata_buffer);
   auto [frame_status, frames] = parseFrames(frame_buffer);
   ASSERT(metadata_status.ok());
   ASSERT(frame_status.ok());
-  return remux(metadata, frames);
+  return remux(metadata, frames, fix_timestamp);
 }
 
 }  // namespace utils_webm

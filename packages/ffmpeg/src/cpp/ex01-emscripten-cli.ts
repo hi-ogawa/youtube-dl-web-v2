@@ -49,6 +49,7 @@ const remux = tinycli(
     out: z.string(),
     startTime: z.preprocess(Number, z.number()).optional(),
     endTime: z.preprocess(Number, z.number()).optional(),
+    fixTimestamp: z.enum(["true", "false"]).default("true"),
   }),
   async (args) => {
     await initModule(args.module);
@@ -74,7 +75,11 @@ const remux = tinycli(
     frameData.view().set(sliceArray);
 
     // process
-    const output = Module.embind_remuxWrapper(inData, frameData);
+    const output = Module.embind_remuxWrapper(
+      inData,
+      frameData,
+      args.fixTimestamp === "true"
+    );
     await fs.promises.writeFile(args.out, output.view());
   }
 );
