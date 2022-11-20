@@ -67,7 +67,7 @@ function printf(value: number, N: number): string {
   return String(Math.floor(value)).padStart(N, "0");
 }
 
-interface TimestampEntry {
+export interface TimestampEntry {
   time: string;
   label: string;
 }
