@@ -2,6 +2,7 @@ node_modules
 build
 dist
 .vercel
+*.log
 *.webm
 *.opus
 *.jpg

@@ -9,6 +9,7 @@
     "rakkas:dev": "rakkas --no-clearScreen",
     "rakkas:build": "rakkas build",
     "test": "vitest",
+    "e2e": "playwright test",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
     "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.1.3",
+    "@playwright/test": "^1.28.0",
     "@types/lodash": "^4.14.186",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
