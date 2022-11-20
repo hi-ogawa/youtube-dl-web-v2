@@ -28,6 +28,7 @@ struct SimpleTrackEntry {
   std::optional<uint64_t> track_number;
   std::optional<uint64_t> track_type;
   std::optional<std::string> codec_id;
+  std::optional<std::vector<uint8_t>> codec_private;
 
   static SimpleTrackEntry fromWebm(const webm::TrackEntry& w) {
     SimpleTrackEntry res;
@@ -39,6 +40,9 @@ struct SimpleTrackEntry {
     }
     if (w.codec_id.is_present()) {
       res.codec_id = w.codec_id.value();
+    }
+    if (w.codec_private.is_present()) {
+      res.codec_private = w.codec_private.value();
     }
     return res;
   }
@@ -332,6 +336,10 @@ std::vector<uint8_t> remux(const SimpleMetadata& metadata,
         muxer_segment.GetTrackByNumber(track_entry.track_number.value()));
     ASSERT(track);
     track->set_codec_id(mkvmuxer::Tracks::kOpusCodecId);
+    if (track_entry.codec_private) {
+      auto& data = track_entry.codec_private.value();
+      track->SetCodecPrivate(data.data(), data.size());
+    }
   }
 
   // add frames
@@ -346,6 +354,8 @@ std::vector<uint8_t> remux(const SimpleMetadata& metadata,
                                   frame.track_number, timecode_ns, true));
   }
 
+  // by not fixing timestamp to start from zero, we can use "startTime/endTime"
+  // filtering in ex00-impl.cpp as is.
   if (!fix_timestamp) {
     muxer_segment.set_duration(metadata.duration);
   }
