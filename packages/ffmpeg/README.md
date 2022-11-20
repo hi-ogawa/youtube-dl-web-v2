@@ -1,6 +1,7 @@
-# ffmpeg
+# ffmpeg/libwebm
 
-based on https://github.com/hi-ogawa/ffmpeg-experiment
+emscripten port of ffmepg (libavformat) and libwebm.
+exposing very small set of webm/opus manipulation utilities via embind-based wrapper.
 
 ```sh
 pnpm build
