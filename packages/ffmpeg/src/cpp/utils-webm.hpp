@@ -25,8 +25,8 @@ auto to_underlying_type(const EnumClass& v) {
 }
 
 struct SimpleTrackEntry {
-  std::optional<std::uint64_t> track_number;
-  std::optional<std::uint64_t> track_type;
+  std::optional<uint64_t> track_number;
+  std::optional<uint64_t> track_type;
   std::optional<std::string> codec_id;
 
   static SimpleTrackEntry fromWebm(const webm::TrackEntry& w) {
@@ -50,10 +50,10 @@ struct SimpleTrackEntry {
 };
 
 struct SimpleCuePoint {
-  std::optional<std::uint64_t> time;
-  std::optional<std::uint64_t> track;
-  std::optional<std::uint64_t> duration;
-  std::optional<std::uint64_t> cluster_position;
+  std::optional<uint64_t> time;
+  std::optional<uint64_t> track;
+  std::optional<uint64_t> duration;
+  std::optional<uint64_t> cluster_position;
 
   static SimpleCuePoint fromWebm(const webm::CuePoint& w) {
     SimpleCuePoint res;
@@ -88,7 +88,7 @@ struct SimpleMetadata {
   std::optional<std::string> ebml_doc_type;
 
   // CueClusterPosition is relative to position
-  std::optional<std::uint64_t> segment_body_start;
+  std::optional<uint64_t> segment_body_start;
 
   std::vector<SimpleTrackEntry> track_entries;
 
@@ -103,9 +103,9 @@ struct SimpleMetadata {
 };
 
 struct SimpleFrame {
-  std::uint64_t track_number;
-  std::uint64_t timecode;
-  std::vector<std::uint8_t> data;
+  uint64_t track_number;
+  uint64_t timecode;
+  std::vector<uint8_t> data;
 };
 
 //
@@ -113,28 +113,30 @@ struct SimpleFrame {
 //
 
 struct MkvBufferWriter : mkvmuxer::IMkvWriter {
-  std::vector<std::uint8_t> data_ = {};
+  std::vector<uint8_t> data_ = {};
   size_t position_ = 0;
 
   //
   // override
   //
 
-  mkvmuxer::int64 Position() const override { return position_; };
+  mkvmuxer::int64 Position() const override {
+    return (mkvmuxer::int64)position_;
+  };
 
   mkvmuxer::int32 Position(mkvmuxer::int64 position) override {
-    position_ = position;
+    position_ = (mkvmuxer::int32)position;
     return 0;
   }
 
   bool Seekable() const override { return true; }
 
   mkvmuxer::int32 Write(const void* buffer, mkvmuxer::uint32 length) override {
-    position_ += length;
+    position_ += (size_t)length;
     if (position_ > data_.size()) {
       data_.resize(position_);
     }
-    std::memcpy(&data_[position_ - length], buffer, length);
+    std::memcpy(&data_[position_ - (size_t)length], buffer, length);
     return 0;
   }
 
@@ -182,7 +184,7 @@ struct MetadataParserCallback : webm::Callback {
     // stop once "Cluster" is found
     if (metadata.id == webm::Id::kCluster) {
       *action = webm::Action::kSkip;
-      return webm::Status(webm::Status::kEndOfFile);
+      return webm::Status(webm::Status::kOkPartial);
     }
     *action = webm::Action::kRead;
     return webm::Status(webm::Status::kOkCompleted);
@@ -238,7 +240,7 @@ struct FrameParserCallback : webm::Callback {
 
   webm::Status OnFrame(const webm::FrameMetadata& metadata,
                        webm::Reader* reader,
-                       std::uint64_t* bytes_remaining) override {
+                       uint64_t* bytes_remaining) override {
     ASSERT(cluster_);
     ASSERT(block_);
     ASSERT(cluster_.value().timecode.is_present());
@@ -247,13 +249,14 @@ struct FrameParserCallback : webm::Callback {
     auto timecode = cluster_.value().timecode.value() + block_.value().timecode;
     auto track_number = block_.value().track_number;
 
-    std::vector<std::uint8_t> data;
-    data.resize(metadata.size);
+    std::vector<uint8_t> data;
+    data.resize((size_t)metadata.size);
 
     // assume single Read suffices (which should be the case for
     // BufferReader)
-    std::uint64_t num_actually_read = 0;
-    auto status = reader->Read(metadata.size, data.data(), &num_actually_read);
+    uint64_t num_actually_read = 0;
+    auto status =
+        reader->Read((size_t)metadata.size, data.data(), &num_actually_read);
 
     // abort if not success
     if (!status.completed_ok()) {
@@ -280,6 +283,12 @@ std::pair<webm::Status, SimpleMetadata> parseMetadata(
   return std::make_pair(status, callback.metadata_);
 }
 
+std::string parseMetadataWrapper(const std::vector<uint8_t>& buffer) {
+  auto [status, metadata] = parseMetadata(buffer);
+  ASSERT(status.ok());
+  return nlohmann::json(metadata).dump(2);
+}
+
 std::pair<webm::Status, std::vector<SimpleFrame>> parseFrames(
     const std::vector<uint8_t>& buffer) {
   FrameParserCallback callback;
@@ -290,8 +299,8 @@ std::pair<webm::Status, std::vector<SimpleFrame>> parseFrames(
   return std::make_pair(status, callback.frames_);  // TODO: avoid copy
 }
 
-std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
-                                const std::vector<SimpleFrame>& frames) {
+std::vector<uint8_t> remux(const SimpleMetadata& metadata,
+                           const std::vector<SimpleFrame>& frames) {
   MkvBufferWriter writer;
 
   mkvmuxer::Segment muxer_segment;
@@ -300,8 +309,9 @@ std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
   // add tracks
   for (auto& track_entry : metadata.track_entries) {
     ASSERT(track_entry.track_number);
-    ASSERT(muxer_segment.AddAudioTrack(48000, 2,
-                                       track_entry.track_number.value()));
+    // TODO: parse sampleRate/channels
+    ASSERT(muxer_segment.AddAudioTrack(
+        48000, 2, (int32_t)track_entry.track_number.value()));
     auto track = reinterpret_cast<mkvmuxer::AudioTrack*>(
         muxer_segment.GetTrackByNumber(track_entry.track_number.value()));
     ASSERT(track);
@@ -311,6 +321,7 @@ std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
   // add frames
   for (auto& frame : frames) {
     auto timecode = frame.timecode - frames[0].timecode;
+    // TODO: parse scale
     auto timecode_ns = timecode * 1000000;
     // TODO: does "key frame" matter?
     ASSERT(muxer_segment.AddFrame(frame.data.data(), frame.data.size(),
@@ -319,6 +330,15 @@ std::vector<std::uint8_t> remux(const SimpleMetadata& metadata,
 
   ASSERT(muxer_segment.Finalize());
   return writer.data_;
+}
+
+std::vector<uint8_t> remuxWrapper(const std::vector<uint8_t>& metadata_buffer,
+                                  const std::vector<uint8_t>& frame_buffer) {
+  auto [metadata_status, metadata] = parseMetadata(metadata_buffer);
+  auto [frame_status, frames] = parseFrames(frame_buffer);
+  ASSERT(metadata_status.ok());
+  ASSERT(frame_status.ok());
+  return remux(metadata, frames);
 }
 
 }  // namespace utils_webm

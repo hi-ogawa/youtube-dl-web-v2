@@ -15,7 +15,7 @@ int mainParseMetadata(int argc, const char* argv[]) {
     webmData = std::vector(webmData.begin(), webmData.begin() + slice.value());
   }
   auto [status, metadata] = utils_webm::parseMetadata(webmData);
-  dbg(status.code, status.completed_ok());
+  dbg(status.code, status.completed_ok(), status.ok());
   std::cout << nlohmann::json(metadata).dump(2) << std::endl;
   return 0;
 }
@@ -38,7 +38,7 @@ int mainParseFrames(int argc, const char* argv[]) {
   }
   webmData = std::vector(begin, end);
   auto [status, frames] = utils_webm::parseFrames(webmData);
-  dbg(status.code, status.completed_ok());
+  dbg(status.code, status.completed_ok(), status.ok());
   dbg(frames.size());
 
   return 0;

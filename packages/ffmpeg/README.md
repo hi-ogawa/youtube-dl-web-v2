@@ -36,7 +36,7 @@ cmake --build build/native/Debug
 ./build/native/Debug/ex00 extract-metadata --in test.out.opus
 ./build/native/Debug/ex01 parse-metadata --in test.webm --slice 1000  # only first 1KB is needed to extract all cue points
 ./build/native/Debug/ex01 parse-frames --in test.webm --slice-start $((3154391 + 48)) # cluster of last cue point
-./build/native/Debug/ex01 remux --in test.webm --out test.remux.webm --slice-start $((134457 + 48)) --slice-end $((267084 + 48)) # 2nd cluster
+./build/native/Debug/ex01 remux --in test.webm --out test.out.webm --slice-start $((134457 + 48)) --slice-end $((267084 + 48)) # 2nd cluster
 
 #
 # emscripten build inside docker
@@ -49,4 +49,6 @@ pnpm emscripten cmake --build build/emscripten/Release
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.opus --outFormat opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --startTime 10 --endTime 21
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --outFormat mjpeg
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts extractMetadata --in test.out.opus
+pnpm ts ./src/cpp/ex01-emscripten-cli.ts parseMetadata --in test.webm --slice 1000
+pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --sliceStart $((134457 + 48)) --sliceEnd $((267084 + 48))
 ```

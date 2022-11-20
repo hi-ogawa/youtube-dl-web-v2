@@ -34,7 +34,7 @@ target_link_libraries(ex00 ffmpeg json)
 
 add_executable(ex01 src/cpp/ex01.cpp)
 target_link_libraries(ex01 webm_parser mkvmuxer json)
-include_directories(ex01 SYSTEM third_party/libwebm/webm_parser/include third_party/libwebm) # SYSTEM to suppress warning
+include_directories(ex01 SYSTEM third_party/libwebm/webm_parser/include third_party/libwebm) # use SYSTEM to suppress warning
 
 # emscripten binary
 get_filename_component(COMPILER_BASENAME "${CMAKE_C_COMPILER}" NAME)
@@ -43,4 +43,10 @@ if (COMPILER_BASENAME STREQUAL emcc)
   target_link_libraries(ex00-emscripten ffmpeg json)
   target_compile_options(ex00-emscripten PRIVATE "SHELL: -fexceptions")
   target_link_options(ex00-emscripten PRIVATE "SHELL: --bind -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 --minify 0")
+
+  add_executable(ex01-emscripten src/cpp/ex01-emscripten.cpp)
+  target_link_libraries(ex01-emscripten webm_parser mkvmuxer json)
+  include_directories(ex01-emscripten SYSTEM third_party/libwebm/webm_parser/include third_party/libwebm) # use SYSTEM to suppress warning
+  target_compile_options(ex01-emscripten PRIVATE "SHELL: -fexceptions")
+  target_link_options(ex01-emscripten PRIVATE "SHELL: --bind -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 --minify 0")
 endif()
