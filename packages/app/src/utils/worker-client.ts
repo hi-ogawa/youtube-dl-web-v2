@@ -13,7 +13,7 @@ export const WORKER_ASSET_URLS = [
   EMSCRIPTEN_WASM_URL,
 ];
 
-const getWorkerV2 = _.memoize(async () => {
+const getWorker = _.memoize(async () => {
   const worker = new Worker(WORKER_URL);
   const workerImpl = wrap<FFmpegWorker>(worker);
   await workerImpl.initialize(EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL);
@@ -27,7 +27,7 @@ export async function webmToOpus(
   endTime?: string,
   jpeg?: Uint8Array
 ): Promise<Uint8Array> {
-  const workerImpl = await getWorkerV2();
+  const workerImpl = await getWorker();
   const output = await workerImpl.webmToOpus(
     transfer(webm, [webm.buffer]),
     metadata,
@@ -39,7 +39,7 @@ export async function webmToOpus(
 }
 
 export async function extractCoverArt(opus: Uint8Array): Promise<Uint8Array> {
-  const workerImpl = await getWorkerV2();
+  const workerImpl = await getWorker();
   const output = await workerImpl.extractCoverArt(
     transfer(opus, [opus.buffer])
   );
@@ -49,7 +49,7 @@ export async function extractCoverArt(opus: Uint8Array): Promise<Uint8Array> {
 export async function extractMetadata(
   opus: Uint8Array
 ): Promise<Record<string, string>> {
-  const workerImpl = await getWorkerV2();
+  const workerImpl = await getWorker();
   const info = await workerImpl.extractMetadata(transfer(opus, [opus.buffer]));
   const stream = info.streams.find((s) => s.type === "audio");
   tinyassert(stream);

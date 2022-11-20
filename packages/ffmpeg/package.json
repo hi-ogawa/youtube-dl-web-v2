@@ -9,8 +9,11 @@
     "build/esbuild/cli.cjs",
     "build/tsc/index.d.ts",
     "build/tsc/cpp/ex00-emscripten-types.d.ts",
+    "build/tsc/cpp/ex01-emscripten-types.d.ts",
     "build/emscripten/Release/ex00-emscripten.js",
     "build/emscripten/Release/ex00-emscripten.wasm",
+    "build/emscripten/Release/ex01-emscripten.js",
+    "build/emscripten/Release/ex01-emscripten.wasm",
     "build/emscripten/ffmpeg/ffmpeg_g.js",
     "build/emscripten/ffmpeg/ffmpeg_g.wasm",
     "build/emscripten/ffmpeg/ffmpeg_g.worker.js"

@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
-import { DownloadProgress, download } from "../utils/download";
+import {
+  DownloadProgress,
+  download,
+  downloadFastSeek,
+} from "../utils/download";
 import {
   cls,
   extractTimestamps,
@@ -155,10 +159,22 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
+  // TODO: disable form during download
   const handleDownload = form.handleSubmit((data) => {
     tinyassert(data.format_id);
     setDownloadProgress(0);
-    setDownloadStream(download(videoInfo, data.format_id));
+    if (startTime || endTime) {
+      setDownloadStream(
+        downloadFastSeek(
+          videoInfo,
+          data.format_id,
+          startTime ? parseTimestamp(startTime) : undefined,
+          endTime ? parseTimestamp(endTime) : undefined
+        )
+      );
+    } else {
+      setDownloadStream(download(videoInfo, data.format_id));
+    }
   });
 
   useReadableStream({
@@ -169,7 +185,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       }
       const { result, offset, total } = res.value;
       setDownloadProgress(offset / total);
-      if (offset === total) {
+      if (result) {
         processFileMutation.mutate({
           audio: result,
           image: (embedThumbnail && thumbnailQuery.data) || undefined,
