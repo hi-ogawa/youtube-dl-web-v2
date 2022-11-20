@@ -22,6 +22,7 @@ import {
 } from "../utils/misc";
 import { tinyassert } from "../utils/tinyassert";
 import { useAnimationFrameLoop } from "../utils/use-animation-frame-loop";
+import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { useStableRef } from "../utils/use-stable-ref";
 import { webmToOpus } from "../utils/worker-client";
@@ -37,6 +38,8 @@ import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export default function Page() {
+  const hydrated = useHydrated();
+
   const form = useForm({
     defaultValues: {
       id: "",
@@ -71,7 +74,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center" data-hydrated={hydrated}>
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
         <form
           className="flex flex-col gap-4"
