@@ -14,12 +14,17 @@
 // assertion
 //
 
-#define ASSERT(EXPR)                                                \
-  if (!static_cast<bool>(EXPR)) {                                   \
-    std::ostringstream ostream;                                     \
-    ostream << "[" << __FILE__ << ":" << __LINE__ << "] " << #EXPR; \
-    throw std::runtime_error{ostream.str()};                        \
-  }
+// format file/line compatible to vscode link
+// https://github.com/microsoft/vscode/blob/78397428676e15782e253261358b0398c2a1149e/src/vs/workbench/contrib/terminal/browser/links/terminalLocalLinkDetector.ts#L51
+#define ASSERT(EXPR)                                                        \
+  do {                                                                      \
+    if (!static_cast<bool>(EXPR)) {                                         \
+      std::ostringstream __ostr__##__LINE__;                                \
+      __ostr__##__LINE__ << "[" << __FILE__ << ":line " << __LINE__ << "] " \
+                         << #EXPR;                                          \
+      throw std::runtime_error{__ostr__##__LINE__.str()};                   \
+    }                                                                       \
+  } while (0)
 
 //
 // debug print
@@ -27,7 +32,7 @@
 
 #define dbg(...)                                                   \
   do {                                                             \
-    std::cout << #__VA_ARGS__ ": " << std::make_tuple(__VA_ARGS__) \
+    std::cerr << #__VA_ARGS__ ": " << std::make_tuple(__VA_ARGS__) \
               << std::endl;                                        \
   } while (0)
 
@@ -51,6 +56,14 @@ ostream& operator<<(ostream& ostr, const tuple<Ts...>& xs) {
 template <class T1, class T2>
 ostream& operator<<(ostream& ostr, const pair<T1, T2>& x) {
   return ostr << tie(x.first, x.second);
+}
+
+template <class T>
+ostream& operator<<(ostream& ostr, const optional<T>& x) {
+  if (x.has_value()) {
+    return ostr << "{" << x.value() << "}";
+  }
+  return ostr << "null";
 }
 
 // "container" except std::string

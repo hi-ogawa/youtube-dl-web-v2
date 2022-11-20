@@ -22,12 +22,17 @@ export function tinycli<T extends z.AnyZodObject>(
   action: (args: z.infer<T>) => unknown
 ): Command {
   return (args: string[]) => {
+    const help = tinycliHelp(schema);
+    if (args.length === 1 && args[0] === "--help") {
+      console.error(help.trim());
+      return;
+    }
     const record = parseRawArgs(args);
     const parsed = schema.safeParse(record);
     if (parsed.success) {
       return action(parsed.data);
     }
-    throw new Error(formatError(parsed.error));
+    throw new Error("\n" + formatError(parsed.error) + "\n" + help);
   };
 }
 
@@ -36,6 +41,11 @@ export function tinycliMulti(
   defaultCommand?: Command
 ): Command {
   return (args: string[]) => {
+    const help = tinycliMultiHelp(commands);
+    if (args.length === 1 && args[0] === "--help") {
+      console.error(help.trim());
+      return;
+    }
     const [name, ...restArgs] = args;
     if (name && name in commands) {
       return commands[name](restArgs);
@@ -43,10 +53,7 @@ export function tinycliMulti(
     if (defaultCommand) {
       return defaultCommand(args);
     }
-    const actual = Object.keys(commands).join(", ");
-    throw new Error(
-      `invalid command '${name}' (available commands: ${actual})`
-    );
+    throw new Error(help);
   };
 }
 
@@ -70,11 +77,36 @@ function parseRawArgs(args: string[]): Record<string, string> {
 }
 
 function formatError(error: z.ZodError) {
-  let message = "\n";
+  let message = "";
   for (const [flag, errors] of Object.entries(error.flatten().fieldErrors)) {
     if (errors) {
       message += `  --${flag}: ${errors?.join(", ")}\n`;
     }
+  }
+  return message;
+}
+
+function tinycliHelp<T extends z.ZodObject<z.ZodRawShape>>(schema: T): string {
+  let message = "available options:\n";
+  for (const key in schema.shape) {
+    const option = schema.shape[key];
+    let line = [
+      `--${key}`,
+      // TODO: extra message?
+      // option.description ?? option._def.typeName,
+      !option.isOptional() && "(required)",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    message += `  ${line}\n`;
+  }
+  return message;
+}
+
+function tinycliMultiHelp(commands: Record<string, Command>): string {
+  let message = "available commands:\n";
+  for (const name in commands) {
+    message += `  - ${name}\n`;
   }
   return message;
 }

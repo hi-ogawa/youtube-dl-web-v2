@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
-import { DownloadProgress, download } from "../utils/download";
+import {
+  DownloadProgress,
+  download,
+  downloadFastSeek,
+} from "../utils/download";
 import {
   cls,
   extractTimestamps,
@@ -158,7 +162,18 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   const handleDownload = form.handleSubmit((data) => {
     tinyassert(data.format_id);
     setDownloadProgress(0);
-    setDownloadStream(download(videoInfo, data.format_id));
+    if (startTime || endTime) {
+      setDownloadStream(
+        downloadFastSeek(
+          videoInfo,
+          data.format_id,
+          startTime ? parseTimestamp(startTime) : undefined,
+          endTime ? parseTimestamp(endTime) : undefined
+        )
+      );
+    } else {
+      setDownloadStream(download(videoInfo, data.format_id));
+    }
   });
 
   useReadableStream({
@@ -169,7 +184,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       }
       const { result, offset, total } = res.value;
       setDownloadProgress(offset / total);
-      if (offset === total) {
+      if (result) {
         processFileMutation.mutate({
           audio: result,
           image: (embedThumbnail && thumbnailQuery.data) || undefined,
@@ -227,7 +242,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
-        <select className="input px-1" {...form.register("format_id")}>
+        <select
+          className="input px-1"
+          {...form.register("format_id")}
+          disabled={!isNil(downloadProgress)}
+        >
           {formats.map(
             (f) =>
               f.filesize && (
@@ -244,6 +263,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="input px-1"
           {...form.register("title")}
           onKeyDown={ignoreFormEnter}
+          readOnly={!isNil(downloadProgress)}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -252,6 +272,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="input px-1"
           {...form.register("artist")}
           onKeyDown={ignoreFormEnter}
+          readOnly={!isNil(downloadProgress)}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -260,6 +281,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="input px-1"
           {...form.register("album")}
           onKeyDown={ignoreFormEnter}
+          readOnly={!isNil(downloadProgress)}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -301,6 +323,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
+          readOnly={!isNil(downloadProgress)}
         />
         <datalist id="timestamp-options">
           {timestampOptions.map((t) => (
@@ -349,6 +372,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
+          readOnly={!isNil(downloadProgress)}
         />
         {timestampOptions.length > 0}
       </div>
@@ -357,7 +381,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <input
           type="checkbox"
           {...form.register("embedThumbnail")}
-          disabled={!thumbnailQuery.isSuccess}
+          readOnly={!thumbnailQuery.isSuccess || !isNil(downloadProgress)}
         />
       </div>
       {!processFileMutation.isSuccess && (
