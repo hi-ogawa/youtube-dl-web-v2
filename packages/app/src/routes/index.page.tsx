@@ -575,12 +575,18 @@ function VideoPlayer({
                 <span className="i-ri-play-list-2-line w-5 h-4"></span>
               </button>
             )}
-            floating={({ props, open }) =>
-              open && (
-                <div
-                  className="bg-gray-50 dark:bg-[#222] shadow-lg max-w-[250px] max-h-[400px] overflow-y-auto"
-                  {...props}
-                >
+            floating={({ props, open }) => (
+              <Transition
+                show={open}
+                unmount={false} // for floating-ui positioning
+                className="transition duration-150"
+                enterFrom="scale-95 opacity-0"
+                enterTo="scale-100 opacity-100"
+                leaveFrom="scale-100 opacity-100"
+                leaveTo="scale-95 opacity-0"
+                {...props}
+              >
+                <div className="bg-gray-50 dark:bg-[#222] shadow-lg max-w-[250px] max-h-[400px] overflow-y-auto">
                   <ul className="flex flex-col">
                     {timestampOptions.map((t) => (
                       <li
@@ -626,8 +632,8 @@ function VideoPlayer({
                     ))}
                   </ul>
                 </div>
-              )
-            }
+              </Transition>
+            )}
           />
         )}
       </div>
@@ -662,13 +668,6 @@ function VideoPlayerSkelton() {
           disabled
         >
           <span className="i-ri-skip-forward-line w-5 h-5"></span>
-        </button>
-        <button
-          type="button"
-          className="flex-none p-1 btn btn-default flex justify-center items-center"
-          disabled
-        >
-          <span className="i-ri-play-list-2-line w-5 h-4"></span>
         </button>
       </div>
     </div>
