@@ -586,12 +586,12 @@ function VideoPlayer({
                 leaveTo="scale-95 opacity-0"
                 {...props}
               >
-                <div className="bg-gray-50 dark:bg-[#222] shadow-lg max-w-[250px] max-h-[400px] overflow-y-auto">
+                <div className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto">
                   <ul className="flex flex-col">
                     {timestampOptions.map((t) => (
                       <li
                         key={t.time}
-                        className="flex flex-col gap-1 p-2 border-b last:border-none hover:"
+                        className="flex flex-col gap-1.5 p-1.5 border-b last:border-none text-sm"
                       >
                         <span className="">{t.label}</span>
                         <div className="flex items-center text-sm gap-2">
