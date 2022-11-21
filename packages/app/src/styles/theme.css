@@ -30,6 +30,8 @@ errorOutline:          var(--antd-error-color-outline)
 /* based on https://gist.github.com/hi-ogawa/1339756898e3adba50e5e40737083a52 */
 
 :root {
+  color-scheme: light;
+
   --antd-primary-color: #1890ff;
   --antd-primary-color-hover: #40a9ff;
   --antd-primary-color-active: #096dd9;
@@ -51,6 +53,8 @@ errorOutline:          var(--antd-error-color-outline)
 }
 
 .dark {
+  color-scheme: dark;
+
   --antd-primary-color: #177ddc;
   --antd-primary-color-hover: #3c9be8;
   --antd-primary-color-active: #095cb5;
