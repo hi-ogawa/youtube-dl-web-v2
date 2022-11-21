@@ -580,10 +580,10 @@ function VideoPlayer({
                 show={open}
                 unmount={false} // for floating-ui positioning
                 className="transition duration-150"
-                enterFrom="scale-95 opacity-0"
+                enterFrom="scale-80 opacity-0"
                 enterTo="scale-100 opacity-100"
                 leaveFrom="scale-100 opacity-100"
-                leaveTo="scale-95 opacity-0"
+                leaveTo="scale-80 opacity-0"
                 {...props}
               >
                 <div className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto">
