@@ -334,19 +334,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
-          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
         />
-        <datalist id="timestamp-options">
-          {timestampOptions.map((t) => (
-            <option key={t.time} value={t.time}>
-              {t.label || t.time}
-            </option>
-          ))}
-        </datalist>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
@@ -383,7 +375,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
-          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
