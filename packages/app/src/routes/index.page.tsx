@@ -578,7 +578,7 @@ function VideoPlayer({
             floating={({ props, open }) => (
               <Transition
                 show={open}
-                unmount={false} // for floating-ui positioning
+                unmount={false} // for floating-ui positioning. also for preserving scroll position
                 className="transition duration-150"
                 enterFrom="scale-80 opacity-0"
                 enterTo="scale-100 opacity-100"
@@ -593,7 +593,7 @@ function VideoPlayer({
                         key={t.time}
                         className="flex flex-col gap-1.5 p-1.5 border-b last:border-none text-sm"
                       >
-                        <span className="">{t.label}</span>
+                        <span>{t.label}</span>
                         <div className="flex items-center text-sm gap-2">
                           <span>{t.time}</span>
                           <span className="flex-1"></span>
