@@ -588,7 +588,7 @@ function VideoPlayer({
                         className="flex flex-col gap-1 p-2 border-b last:border-none hover:"
                       >
                         <span className="">{t.label}</span>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center text-sm gap-2">
                           <span>{t.time}</span>
                           <span className="flex-1"></span>
                           <button
