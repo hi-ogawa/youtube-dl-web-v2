@@ -28,9 +28,11 @@ export function cls(...args: any[]): string {
 
 // hh:mm:ss.xxx
 const r = String.raw;
-const TIMESTAMP_RE = r`(\d{1,2}:)?\d{1,2}:\d{1,2}(\.\d+)?`;
+const TIMESTAMP_RE = r`(?:\d{1,2}:)?\d{1,2}:\d{1,2}(?:\.\d+)?`;
 const TIMESTAMP_RE_EXACT = new RegExp(r`^` + TIMESTAMP_RE + r`$`);
-const TIMESTAMP_RE_EXTRACT = new RegExp(r`\b` + TIMESTAMP_RE + r`\b`, "g");
+const TIMESTAMP_RE_EXTRACT = new RegExp(
+  r`^\s*(` + TIMESTAMP_RE + r`)\s*(.*?)\s*$`
+);
 
 export function parseTimestamp(time: string): number {
   tinyassert(time.match(TIMESTAMP_RE_EXACT), "invalid timestamp");
@@ -65,6 +67,19 @@ function printf(value: number, N: number): string {
   return String(Math.floor(value)).padStart(N, "0");
 }
 
-export function extractTimestamps(text: string): string[] {
-  return Array.from(text.matchAll(TIMESTAMP_RE_EXTRACT), (m) => m[0]);
+export interface TimestampEntry {
+  time: string;
+  label: string;
+}
+
+export function extractTimestamps(text: string): TimestampEntry[] {
+  const result: TimestampEntry[] = [];
+  for (const line of text.split("\n")) {
+    const match = line.match(TIMESTAMP_RE_EXTRACT);
+    if (match) {
+      const [, time, label] = match;
+      result.push({ time, label });
+    }
+  }
+  return result;
 }

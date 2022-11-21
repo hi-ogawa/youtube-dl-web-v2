@@ -1,10 +1,11 @@
 import { Transition } from "@headlessui/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { isNil, pick, sortBy, uniq } from "lodash";
+import { isNil, pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { Popover } from "../components/popover";
 import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import {
@@ -13,6 +14,7 @@ import {
   downloadFastSeek,
 } from "../utils/download";
 import {
+  TimestampEntry,
   cls,
   extractTimestamps,
   formatBytes,
@@ -234,7 +236,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const [player, setPlayer] = React.useState<YoutubePlayer>();
 
-  const timestampOptions = uniq(extractTimestamps(videoInfo.shortDescription));
+  const timestampOptions = uniqBy(
+    extractTimestamps(videoInfo.shortDescription),
+    (t) => t.time
+  );
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleDownload}>
@@ -242,6 +247,13 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         videoId={videoInfo.id}
         player={player}
         setPlayer={setPlayer}
+        timestampOptions={timestampOptions}
+        setStartTime={(t) => {
+          form.setValue("startTime", t);
+        }}
+        setEndTime={(t) => {
+          form.setValue("endTime", t);
+        }}
       />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
@@ -322,19 +334,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
-          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
         />
-        <datalist id="timestamp-options">
-          {timestampOptions.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </datalist>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
@@ -371,13 +375,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         </div>
         <input
           className="input px-1"
-          list="timestamp-options"
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
         />
-        {timestampOptions.length > 0}
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
@@ -478,10 +480,16 @@ function VideoPlayer({
   videoId,
   player,
   setPlayer,
+  timestampOptions,
+  setStartTime,
+  setEndTime,
 }: {
   videoId: string;
   player?: YoutubePlayer;
   setPlayer: (player?: YoutubePlayer) => void;
+  timestampOptions: TimestampEntry[];
+  setStartTime: (t: string) => void;
+  setEndTime: (t: string) => void;
 }) {
   const ref = usePlayer({ videoId, setPlayer });
 
@@ -552,6 +560,76 @@ function VideoPlayer({
         >
           <span className="i-ri-skip-forward-line w-5 h-5"></span>
         </button>
+        {timestampOptions.length > 0 && (
+          <Popover
+            placement="left"
+            reference={({ props, open, setOpen }) => (
+              <button
+                type="button"
+                className="flex-none p-1 btn btn-default flex justify-center items-center"
+                onClick={() => {
+                  setOpen(!open);
+                }}
+                {...props}
+              >
+                <span className="i-ri-play-list-2-line w-5 h-4"></span>
+              </button>
+            )}
+            floating={({ props, open }) =>
+              open && (
+                <div
+                  className="bg-gray-50 dark:bg-[#222] shadow-lg max-w-[250px] max-h-[400px] overflow-y-auto"
+                  {...props}
+                >
+                  <ul className="flex flex-col">
+                    {timestampOptions.map((t) => (
+                      <li
+                        key={t.time}
+                        className="flex flex-col gap-1 p-2 border-b last:border-none hover:"
+                      >
+                        <span className="">{t.label}</span>
+                        <div className="flex items-center text-sm gap-2">
+                          <span>{t.time}</span>
+                          <span className="flex-1"></span>
+                          <button
+                            className="btn btn-default h-5 flex items-center"
+                            type="button"
+                            disabled={!player}
+                            onClick={() => {
+                              if (player) {
+                                player.seekTo(parseTimestamp(t.time));
+                              }
+                            }}
+                          >
+                            <span className="i-ri-play-line w-5 h-5"></span>
+                          </button>
+                          <button
+                            className="px-1 btn btn-default text-sm h-5 flex items-center"
+                            type="button"
+                            onClick={() => {
+                              setStartTime(t.time);
+                            }}
+                          >
+                            start
+                          </button>
+                          <button
+                            className="px-1 btn btn-default text-sm h-5 flex items-center"
+                            type="button"
+                            onClick={() => {
+                              setEndTime(t.time);
+                            }}
+                          >
+                            end
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+          />
+        )}
       </div>
     </div>
   );
@@ -584,6 +662,13 @@ function VideoPlayerSkelton() {
           disabled
         >
           <span className="i-ri-skip-forward-line w-5 h-5"></span>
+        </button>
+        <button
+          type="button"
+          className="flex-none p-1 btn btn-default flex justify-center items-center"
+          disabled
+        >
+          <span className="i-ri-play-list-2-line w-5 h-4"></span>
         </button>
       </div>
     </div>
