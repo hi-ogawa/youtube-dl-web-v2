@@ -575,19 +575,25 @@ function VideoPlayer({
                 <span className="i-ri-play-list-2-line w-5 h-4"></span>
               </button>
             )}
-            floating={({ props, open }) =>
-              open && (
-                <div
-                  className="bg-gray-50 dark:bg-[#222] shadow-lg max-w-[250px] max-h-[400px] overflow-y-auto"
-                  {...props}
-                >
+            floating={({ props, open }) => (
+              <Transition
+                show={open}
+                unmount={false} // for floating-ui positioning. also for preserving scroll position
+                className="transition duration-150"
+                enterFrom="scale-80 opacity-0"
+                enterTo="scale-100 opacity-100"
+                leaveFrom="scale-100 opacity-100"
+                leaveTo="scale-80 opacity-0"
+                {...props}
+              >
+                <div className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto">
                   <ul className="flex flex-col">
                     {timestampOptions.map((t) => (
                       <li
                         key={t.time}
-                        className="flex flex-col gap-1 p-2 border-b last:border-none hover:"
+                        className="flex flex-col gap-1.5 p-1.5 border-b last:border-none text-sm"
                       >
-                        <span className="">{t.label}</span>
+                        <span>{t.label}</span>
                         <div className="flex items-center text-sm gap-2">
                           <span>{t.time}</span>
                           <span className="flex-1"></span>
@@ -626,8 +632,8 @@ function VideoPlayer({
                     ))}
                   </ul>
                 </div>
-              )
-            }
+              </Transition>
+            )}
           />
         )}
       </div>
@@ -662,13 +668,6 @@ function VideoPlayerSkelton() {
           disabled
         >
           <span className="i-ri-skip-forward-line w-5 h-5"></span>
-        </button>
-        <button
-          type="button"
-          className="flex-none p-1 btn btn-default flex justify-center items-center"
-          disabled
-        >
-          <span className="i-ri-play-list-2-line w-5 h-4"></span>
         </button>
       </div>
     </div>
