@@ -575,7 +575,7 @@ function VideoPlayer({
                 <span className="i-ri-play-list-2-line w-5 h-4"></span>
               </button>
             )}
-            floating={({ props, open }) => (
+            floating={({ props, open, arrowProps }) => (
               <Transition
                 show={open}
                 unmount={false} // for floating-ui positioning. also for preserving scroll position
@@ -586,7 +586,15 @@ function VideoPlayer({
                 leaveTo="scale-80 opacity-0"
                 {...props}
               >
-                <div className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto">
+                <div
+                  className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto"
+                  style={{ scrollbarGutter: "stable" }}
+                >
+                  {/* TODO: scrollbar is bothering */}
+                  <span
+                    className="bg-inherit w-7 h-7 z-[-1]"
+                    {...arrowProps}
+                  ></span>
                   <ul className="flex flex-col">
                     {timestampOptions.map((t) => (
                       <li

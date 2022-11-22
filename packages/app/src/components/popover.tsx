@@ -1,6 +1,7 @@
 import {
   FloatingPortal,
   Placement,
+  arrow,
   autoUpdate,
   flip,
   offset,
@@ -11,12 +12,14 @@ import {
   useId,
   useInteractions,
 } from "@floating-ui/react-dom-interactions";
+import { isNil } from "lodash";
 import React from "react";
 
 interface PopoverRenderProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   props: {};
+  arrowProps?: JSX.IntrinsicElements["span"];
 }
 
 export function Popover(props: {
@@ -26,14 +29,16 @@ export function Popover(props: {
   onClickReference?: React.MouseEventHandler<Element>;
 }) {
   const [open, setOpen] = React.useState(false);
+  const arrowRef = React.useRef<HTMLElement>(null);
 
-  const { reference, floating, context, x, y, strategy } = useFloating({
-    open,
-    onOpenChange: setOpen,
-    placement: props.placement,
-    middleware: [offset(5), flip(), shift()],
-    whileElementsMounted: autoUpdate,
-  });
+  const { reference, floating, context, x, y, strategy, middlewareData } =
+    useFloating({
+      open,
+      onOpenChange: setOpen,
+      placement: props.placement,
+      middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
+      whileElementsMounted: autoUpdate,
+    });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useClick(context),
@@ -64,6 +69,18 @@ export function Popover(props: {
               position: strategy,
             },
           }),
+          // TODO: this arrow is only for `placement === "left"`
+          arrowProps: {
+            ref: arrowRef,
+            style: {
+              position: "absolute",
+              transform: "rotate(-90deg)",
+              top: !isNil(middlewareData.arrow?.y)
+                ? `${middlewareData.arrow?.y}px`
+                : "",
+              right: "-10px",
+            },
+          },
         })}
       </FloatingPortal>
     </>
