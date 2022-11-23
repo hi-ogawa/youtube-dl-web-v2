@@ -30,8 +30,8 @@ bash misc/ffmpeg-configure.sh "$PWD/build/native/ffmpeg" --prefix="$PWD/build/na
   --enable-decoder=opus,mjpeg
 make -j -C build/native/ffmpeg install
 
-cmake . -B build/native/Debug -DCMAKE_BUILD_TYPE=Debug
-cmake --build build/native/Debug
+meson setup build/native/Debug
+meson compile -C build/native/Debug
 ./build/native/Debug/ex00 convert --in test.webm --out test.out.opus --out-format opus --thumbnail test.jpeg --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
 ./build/native/Debug/ex00 convert --in test.out.opus --out test.out.jpg --out-format mjpeg
 ./build/native/Debug/ex00 extract-metadata --in test.out.opus
@@ -45,9 +45,8 @@ cmake --build build/native/Debug
 #
 pnpm emscripten bash misc/ffmpeg-build-emscripten.sh
 
-# Debug build is too slow
-pnpm emscripten cmake . -B build/emscripten/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
-pnpm emscripten cmake --build build/emscripten/Release
+pnpm emscripten meson setup build/emscripten/Release --cross-file meson-cross-file-emscripten.ini
+pnpm emscripten meson compile -C build/emscripten/Release
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.opus --outFormat opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --startTime 10 --endTime 21
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --outFormat mjpeg
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts extractMetadata --in test.out.opus
@@ -55,12 +54,4 @@ pnpm ts ./src/cpp/ex01-emscripten-cli.ts parseMetadata --in test.webm --slice 10
 pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --startTime 35 --endTime 45
 pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --startTime 35 --endTime 45 --fixTimestamp false
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.webm --out test.out.opus --outFormat opus --startTime 35 --endTime 45
-```
-
-```sh
-meson setup build/meson
-meson compile -C build/meson
-
-pnpm emscripten meson setup build/meson-emscripten --cross-file meson-cross-file-emscripten.ini
-pnpm emscripten meson compile -C build/meson-emscripten
 ```
