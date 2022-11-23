@@ -45,7 +45,7 @@ meson compile -C build/native/Debug
 #
 pnpm emscripten bash misc/ffmpeg-build-emscripten.sh
 
-pnpm emscripten meson setup build/emscripten/Release --cross-file meson-cross-file-emscripten.ini
+pnpm emscripten meson setup build/emscripten/Release --cross-file meson-cross-file-emscripten.ini --buildtype release
 pnpm emscripten meson compile -C build/emscripten/Release
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.webm --out test.out.opus --outFormat opus --thumbnail test.jpg --title "Dean Town" --artist "VULFPECK" --startTime 10 --endTime 21
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.opus --out test.out.jpg --outFormat mjpeg
