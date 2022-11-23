@@ -56,3 +56,11 @@ pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.web
 pnpm ts ./src/cpp/ex01-emscripten-cli.ts remux --in test.webm --out test.out.webm --startTime 35 --endTime 45 --fixTimestamp false
 pnpm ts ./src/cpp/ex00-emscripten-cli.ts convert --in test.out.webm --out test.out.opus --outFormat opus --startTime 35 --endTime 45
 ```
+
+```sh
+meson setup build/meson
+meson compile -C build/meson
+
+pnpm emscripten meson setup build/meson-emscripten --cross-file meson-cross-file-emscripten.ini
+pnpm emscripten meson compile -C build/meson-emscripten
+```

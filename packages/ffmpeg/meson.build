@@ -6,24 +6,31 @@ project('@hiogawa/ffmpeg', 'cpp')
 #   - [x] json
 #   - [x] ffmpeg
 #   - [x] libwebm
-# - [ ] emscripten toolchain
+# - [x] emscripten toolchain
 # - [ ] ci
 # - [ ] sanitizer
 # - [ ] __FILE__ macro absolute path (ninja issue?)
 
+compiler = meson.get_compiler('cpp')
+is_emscripten = compiler.get_id() == 'emscripten'
+
 #
 # ffmpeg (prebuilt beforehand)
 #
-compiler = meson.get_compiler('cpp')
+if is_emscripten
+  ffmpeg_prefix = 'build/emscripten/ffmpeg/prefix'
+else
+  ffmpeg_prefix = 'build/native/ffmpeg/prefix'
+endif
 
 ffmpeg_libs = []
 foreach ffmpeg_lib_name : ['avformat', 'avcodec', 'avutil', 'swresample']
-  ffmpeg_libs += compiler.find_library(ffmpeg_lib_name, dirs: meson.current_source_dir() / 'build/native/ffmpeg/prefix/lib')
+  ffmpeg_libs += compiler.find_library(ffmpeg_lib_name, dirs: meson.current_source_dir() / ffmpeg_prefix / 'lib')
 endforeach
 
 ffmpeg_dep = declare_dependency(
   dependencies: ffmpeg_libs,
-  include_directories: include_directories('build/native/ffmpeg/prefix/include'),
+  include_directories: include_directories(ffmpeg_prefix / 'include'),
 )
 
 #
@@ -84,3 +91,30 @@ executable(
     mkvmuxer_dep
   ]
 )
+
+if is_emscripten
+  emscripten_link_args = ['--bind', '-s', 'ALLOW_MEMORY_GROWTH=1', '-s', 'MODULARIZE=1', '--minify', '0']
+
+  executable(
+    'ex00-emscripten',
+    'src/cpp/ex00-emscripten.cpp',
+    name_suffix: 'js',
+    dependencies: [
+      nlohmann_json_dep,
+      ffmpeg_dep
+    ],
+    link_args: emscripten_link_args
+  )
+
+  executable(
+    'ex01-emscripten',
+    'src/cpp/ex01-emscripten.cpp',
+    name_suffix: 'js',
+    dependencies: [
+      nlohmann_json_dep,
+      webm_parser_dep,
+      mkvmuxer_dep
+    ],
+    link_args: emscripten_link_args
+  )
+endif
