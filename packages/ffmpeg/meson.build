@@ -1,16 +1,5 @@
 project('@hiogawa/ffmpeg', 'cpp')
 
-# TODO:
-# - [x] compile_commands.json
-# - [x] dependency, subproject
-#   - [x] json
-#   - [x] ffmpeg
-#   - [x] libwebm
-# - [x] emscripten toolchain
-# - [ ] ci
-# - [ ] sanitizer
-# - [ ] __FILE__ macro absolute path (ninja issue?)
-
 compiler = meson.get_compiler('cpp')
 is_emscripten = compiler.get_id() == 'emscripten'
 
