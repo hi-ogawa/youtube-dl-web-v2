@@ -30,7 +30,7 @@ bash misc/ffmpeg-configure.sh "$PWD/build/native/ffmpeg" --prefix="$PWD/build/na
   --enable-decoder=opus,mjpeg
 make -j -C build/native/ffmpeg install
 
-meson setup build/native/Debug
+meson setup -Db_sanitize=address,undefined build/native/Debug
 meson compile -C build/native/Debug
 ./build/native/Debug/ex00 convert --in test.webm --out test.out.opus --out-format opus --thumbnail test.jpeg --title "Dean Town" --artist "VULFPECK" --start-time 10 --end-time 21
 ./build/native/Debug/ex00 convert --in test.out.opus --out test.out.jpg --out-format mjpeg
