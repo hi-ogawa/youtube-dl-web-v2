@@ -15,11 +15,11 @@ ffmpeg-emscripten -i=./test.webm:/in.webm -o=test.out.opus:/out.opus -- -i /in.w
 
 ```sh
 # download test files (webm and jpg)
-youtube-dl -f 251 -o test.webm https://www.youtube.com/watch?v=le0BLAEO93g
+yt-dlp -f 251 -o test.webm https://www.youtube.com/watch?v=le0BLAEO93g
 wget -O test.jpg https://i.ytimg.com/vi/le0BLAEO93g/maxresdefault.jpg
 
 #
-# native build (easier to debug)
+# native build (easier to iterate and debug)
 #
 bash misc/ffmpeg-configure.sh "$PWD/build/native/ffmpeg" --prefix="$PWD/build/native/ffmpeg/prefix" \
   --disable-autodetect --disable-everything --disable-asm --disable-doc \
