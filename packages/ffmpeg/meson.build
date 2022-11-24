@@ -25,66 +25,21 @@ ffmpeg_dep = declare_dependency(
 #
 # json https://github.com/nlohmann/json
 #
-nlohmann_json_dep = declare_dependency(
-  include_directories: include_directories('third_party/json/single_include')
-)
+nlohmann_json_project = subproject('nlohmann_json')
+nlohmann_json_dep = nlohmann_json_project.get_variable('nlohmann_json_dep')
 
 #
-# libwebm (webm_parser, mkvmuxer) (cf. packages/ffmpeg/third_party/libwebm/CMakeLists.txt)
+# libwebm (for webm_parser and mkvmuxer)
 #
-webm_parser_lib = static_library(
-  'webm_parser',
-  # find third_party/libwebm/webm_parser/src -type f -name '*.cc' | sort | xargs -I @ echo "'@',"
-  'third_party/libwebm/webm_parser/src/ancestory.cc',
-  'third_party/libwebm/webm_parser/src/bit_utils.cc',
-  'third_party/libwebm/webm_parser/src/block_header_parser.cc',
-  'third_party/libwebm/webm_parser/src/block_parser.cc',
-  'third_party/libwebm/webm_parser/src/buffer_reader.cc',
-  'third_party/libwebm/webm_parser/src/callback.cc',
-  'third_party/libwebm/webm_parser/src/date_parser.cc',
-  'third_party/libwebm/webm_parser/src/file_reader.cc',
-  'third_party/libwebm/webm_parser/src/float_parser.cc',
-  'third_party/libwebm/webm_parser/src/id_element_parser.cc',
-  'third_party/libwebm/webm_parser/src/id_parser.cc',
-  'third_party/libwebm/webm_parser/src/istream_reader.cc',
-  'third_party/libwebm/webm_parser/src/master_parser.cc',
-  'third_party/libwebm/webm_parser/src/parser_utils.cc',
-  'third_party/libwebm/webm_parser/src/segment_parser.cc',
-  'third_party/libwebm/webm_parser/src/size_parser.cc',
-  'third_party/libwebm/webm_parser/src/skip_parser.cc',
-  'third_party/libwebm/webm_parser/src/unknown_parser.cc',
-  'third_party/libwebm/webm_parser/src/var_int_parser.cc',
-  'third_party/libwebm/webm_parser/src/virtual_block_parser.cc',
-  'third_party/libwebm/webm_parser/src/void_parser.cc',
-  'third_party/libwebm/webm_parser/src/webm_parser.cc',
-  include_directories: [
-    include_directories('third_party/libwebm/webm_parser/include'),
-    include_directories('third_party/libwebm/webm_parser')
-  ]
-)
-webm_parser_dep = declare_dependency(
-  link_with: webm_parser_lib,
-  include_directories: include_directories('third_party/libwebm/webm_parser/include')
-)
-
-mkvmuxer_lib = static_library(
-  'mkvmuxer',
-  # find third_party/libwebm/mkvmuxer -type f -name '*.cc' | sort | xargs -I @ echo "'@',"
-  'third_party/libwebm/mkvmuxer/mkvmuxer.cc',
-  'third_party/libwebm/mkvmuxer/mkvmuxerutil.cc',
-  'third_party/libwebm/mkvmuxer/mkvwriter.cc',
-  include_directories: include_directories('third_party/libwebm')
-)
-mkvmuxer_dep = declare_dependency(
-  link_with: mkvmuxer_lib,
-  include_directories: include_directories('third_party/libwebm')
-)
+libwebm_project = subproject('libwebm')
+webm_parser_dep = libwebm_project.get_variable('webm_parser_dep')
+mkvmuxer_dep = libwebm_project.get_variable('mkvmuxer_dep')
 
 #
 # binary
 #
 
-# prepending `meson.current_source_dir()` for __FILE__ macro to give absolute path
+# prepending `meson.current_source_dir()` so that __FILE__ macro gives absolute path
 executable(
   'ex00',
   meson.current_source_dir() / 'src/cpp/ex00.cpp',
