@@ -83,9 +83,11 @@ mkvmuxer_dep = declare_dependency(
 #
 # binary
 #
+
+# prepending `meson.current_source_dir()` for __FILE__ macro to give absolute path
 executable(
   'ex00',
-  'src/cpp/ex00.cpp',
+  meson.current_source_dir() / 'src/cpp/ex00.cpp',
   dependencies: [
     nlohmann_json_dep,
     ffmpeg_dep
@@ -94,7 +96,7 @@ executable(
 
 executable(
   'ex01',
-  'src/cpp/ex01.cpp',
+  meson.current_source_dir() / 'src/cpp/ex01.cpp',
   dependencies: [
     nlohmann_json_dep,
     webm_parser_dep,
@@ -107,7 +109,7 @@ if is_emscripten
 
   executable(
     'ex00-emscripten',
-    'src/cpp/ex00-emscripten.cpp',
+    meson.current_source_dir() / 'src/cpp/ex00-emscripten.cpp',
     name_suffix: 'js',
     dependencies: [
       nlohmann_json_dep,
@@ -118,7 +120,7 @@ if is_emscripten
 
   executable(
     'ex01-emscripten',
-    'src/cpp/ex01-emscripten.cpp',
+    meson.current_source_dir() / 'src/cpp/ex01-emscripten.cpp',
     name_suffix: 'js',
     dependencies: [
       nlohmann_json_dep,
