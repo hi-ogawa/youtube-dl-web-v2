@@ -3,6 +3,8 @@ project('@hiogawa/ffmpeg', 'cpp')
 compiler = meson.get_compiler('cpp')
 is_emscripten = compiler.get_id() == 'emscripten'
 
+ffmpeg_project = subproject('ffmpeg')
+
 #
 # ffmpeg (prebuilt beforehand)
 #

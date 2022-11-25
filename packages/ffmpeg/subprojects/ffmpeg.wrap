@@ -1,0 +1,6 @@
+[wrap-git]
+directory = ffmpeg-5.1
+url = https://github.com/FFmpeg/FFmpeg.git
+revision = release/5.1
+depth = 1
+patch_directory = ffmpeg
