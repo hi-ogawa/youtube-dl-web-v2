@@ -1,6 +1,6 @@
 project('libwebm', 'cpp')
 
-# based on subprojects/libwebm/CMakeLists.txt
+# based on CMakeLists.txt
 
 #
 # webm_parser
@@ -8,7 +8,7 @@ project('libwebm', 'cpp')
 
 webm_parser_lib = static_library(
   'webm_parser',
-  # find subprojects/libwebm/webm_parser/src -type f -name '*.cc' | sort | xargs -I @ echo "'@',"
+  # (cd subprojects/libwebm-1.0.0.29; find webm_parser/src -type f -name '*.cc' | sort | xargs -I @ echo "'@',")
   'webm_parser/src/ancestory.cc',
   'webm_parser/src/bit_utils.cc',
   'webm_parser/src/block_header_parser.cc',
@@ -48,7 +48,7 @@ webm_parser_dep = declare_dependency(
 
 mkvmuxer_lib = static_library(
   'mkvmuxer',
-  # find subprojects/libwebm/mkvmuxer -type f -name '*.cc' | sort | xargs -I @ echo "'@',"
+  # (cd subprojects/libwebm-1.0.0.29; find mkvmuxer -type f -name '*.cc' | sort | xargs -I @ echo "'@',")
   'mkvmuxer/mkvmuxer.cc',
   'mkvmuxer/mkvmuxerutil.cc',
   'mkvmuxer/mkvwriter.cc',
