@@ -2,7 +2,7 @@ import { MutationOptions, useMutation } from "@tanstack/react-query";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
 import { json } from "../../utils/handler-utils";
-import { getTracer } from "../../utils/otel-utils";
+import { tracePromise } from "../../utils/otel-utils";
 import {
   VideoInfo,
   fetchVideoInfo,
@@ -20,10 +20,6 @@ interface MetadataResponse {
 }
 
 export async function post(ctx: RequestContext) {
-  const tracer = getTracer();
-  const span = tracer.startSpan("metadata.api");
-  span.end();
-
   const parsed = METADATA_REQUEST_SCHEME.parse(
     JSON.parse(await ctx.request.text())
   );
@@ -32,7 +28,13 @@ export async function post(ctx: RequestContext) {
     throw new Error("invalid id");
   }
 
-  const videoInfo = await fetchVideoInfo(id);
+  const videoInfo = await tracePromise(
+    fetchVideoInfo(id),
+    fetchVideoInfo.name,
+    {
+      attributes: { "custom.id": id },
+    }
+  );
   const res: MetadataResponse = {
     videoInfo,
   };

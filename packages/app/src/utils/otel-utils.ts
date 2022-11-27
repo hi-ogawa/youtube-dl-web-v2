@@ -1,6 +1,6 @@
 import process from "node:process";
 import type { RequestHandler } from "@hattip/compose";
-import { trace } from "@opentelemetry/api";
+import { SpanKind, SpanOptions, context, trace } from "@opentelemetry/api";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
 import { NodeSDK } from "@opentelemetry/sdk-node";
@@ -16,9 +16,13 @@ import {
 } from "@opentelemetry/semantic-conventions";
 
 // https://github.com/open-telemetry/opentelemetry-js
+// https://github.com/open-telemetry/opentelemetry-js/tree/main/examples
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-sdk-trace-base
 // https://github.com/open-telemetry/opentelemetry-js/tree/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/exporter-trace-otlp-http
+// https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-context-zone-peer-dep
 // https://github.com/open-telemetry/opentelemetry-js-contrib
+// https://github.com/open-telemetry/opentelemetry-js-contrib/blob/main/plugins/node/opentelemetry-instrumentation-fastify/src/instrumentation.ts
+// https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md
 // https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup
 
 // set flag globally for dev hmr
@@ -57,47 +61,57 @@ export async function initializeOtel() {
   provider.register();
 }
 
-export function getTracer() {
+function getTracer() {
   return trace.getTracer("default-tracer");
 }
 
-export async function traceSpanPromise<T>(
+export async function tracePromise<T>(
+  promise: Promise<T>,
   spanName: string,
-  promise: Promise<T>
+  spanOptions?: SpanOptions
 ): Promise<T> {
   const tracer = getTracer();
-  const span = tracer.startSpan(spanName);
-  try {
-    return await promise;
-  } catch (e) {
-    span.recordException(e as any);
-    throw e;
-  } finally {
-    span.end();
-  }
+  const span = tracer.startSpan(spanName, spanOptions, context.active());
+  return context.with(trace.setSpan(context.active(), span), async () => {
+    try {
+      return await promise;
+    } catch (e) {
+      span.recordException(e as any);
+      throw e;
+    } finally {
+      span.end();
+    }
+  });
 }
 
 export const traceRequestHanlder: RequestHandler = async (ctx) => {
-  const { locals, request, ip } = ctx;
-  const span = getTracer().startSpan("request-handler");
-  // TODO: inject span context to propagate?
-  locals;
-  // request attirbutes (https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md)
+  const { request, ip } = ctx;
   const url = new URL(request.url);
-  span.setAttributes({
-    [SemanticAttributes.HTTP_METHOD]: request.method,
-    [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
-    [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
-    [SemanticAttributes.HTTP_CLIENT_IP]: ip,
+  // create span
+  const span = getTracer().startSpan("request-handler", {
+    kind: SpanKind.SERVER,
+    // request attirbutes
+    attributes: {
+      [SemanticAttributes.HTTP_METHOD]: request.method,
+      [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
+      [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
+      [SemanticAttributes.HTTP_CLIENT_IP]: ip,
+    },
   });
-  try {
-    const response = await ctx.next();
-    // reponse attributes
-    span.setAttributes({
-      [SemanticAttributes.HTTP_STATUS_CODE]: response.status,
-    });
-    return response;
-  } finally {
-    span.end();
-  }
+  // wrap with context
+  return context.with(trace.setSpan(context.active(), span), async () => {
+    try {
+      const response = await ctx.next();
+      // reponse attributes
+      span.setAttributes({
+        [SemanticAttributes.HTTP_STATUS_CODE]: response.status,
+      });
+      return response;
+    } catch (e) {
+      span.recordException(e as any);
+      throw e;
+    } finally {
+      span.end();
+    }
+  });
 };
