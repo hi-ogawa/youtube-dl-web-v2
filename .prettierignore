@@ -3,4 +3,5 @@ pnpm-lock.yaml
 build
 dist
 third_party
+subprojects
 .vercel
