@@ -38,7 +38,14 @@ export async function initializeOtel() {
   // switch exporter based on standard environment variables https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L48-L55
   const traceExporter =
     process.env["OTEL_EXPORTER_OTLP_TRACES_PROTOCOL"] === "http/json"
-      ? new OTLPTraceExporter() // uses OTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default is http://localhost:4318)
+      ? new OTLPTraceExporter({
+          // internally uses OTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default is http://localhost:4318)
+          // url: "xxx",
+          headers: {
+            // https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup#review-settings
+            "api-key": process.env["CONFIG_NEWRELIC_API_KEY"],
+          },
+        })
       : new ConsoleSpanExporter();
 
   const spanProcessor =
