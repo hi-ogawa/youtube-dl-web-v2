@@ -3,4 +3,13 @@ import { initializeOtel } from "./utils/otel-utils";
 
 initializeOtel();
 
-export default createRequestHandler({});
+export default createRequestHandler({
+  middleware: {
+    beforePages: (ctx) => {
+      ctx;
+    },
+    beforeApiRoutes: (ctx) => {
+      ctx;
+    },
+  },
+});
