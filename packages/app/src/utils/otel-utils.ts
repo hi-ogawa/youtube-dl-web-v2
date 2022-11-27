@@ -1,6 +1,7 @@
 import process from "node:process";
 import type { RequestHandler } from "@hattip/compose";
 import { SpanKind, SpanOptions, context, trace } from "@opentelemetry/api";
+import { AsyncLocalStorageContextManager } from "@opentelemetry/context-async-hooks";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
 import { NodeSDK } from "@opentelemetry/sdk-node";
@@ -14,7 +15,6 @@ import {
   SemanticAttributes,
   SemanticResourceAttributes,
 } from "@opentelemetry/semantic-conventions";
-import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks'
 
 // https://github.com/open-telemetry/opentelemetry-js
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/examples
