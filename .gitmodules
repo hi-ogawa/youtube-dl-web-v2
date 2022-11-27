@@ -1,9 +1,3 @@
 [submodule "packages/ffmpeg/third_party/FFmpeg"]
 	path = packages/ffmpeg/third_party/FFmpeg
 	url = git@github.com:FFmpeg/FFmpeg.git
-[submodule "packages/ffmpeg/third_party/json"]
-	path = packages/ffmpeg/third_party/json
-	url = git@github.com:nlohmann/json.git
-[submodule "packages/ffmpeg/third_party/libwebm"]
-	path = packages/ffmpeg/third_party/libwebm
-	url = git@github.com:webmproject/libwebm.git

@@ -1,0 +1,6 @@
+[wrap-git]
+directory = libwebm-1.0.0.29
+url = https://github.com/webmproject/libwebm.git
+revision = libwebm-1.0.0.29
+depth = 1
+patch_directory = libwebm
