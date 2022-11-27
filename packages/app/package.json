@@ -22,6 +22,7 @@
     "@headlessui/react": "^1.7.4",
     "@hiogawa/ffmpeg": "workspace:*",
     "@hiogawa/flac-picture": "workspace:*",
+    "@opentelemetry/sdk-node": "^0.34.0",
     "@tanstack/react-query": "^4.3.4",
     "@tanstack/react-query-devtools": "^4.3.5",
     "comlink": "^4.3.1",

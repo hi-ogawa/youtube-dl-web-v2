@@ -1,0 +1,13 @@
+diff --git a/build/src/sdk.js b/build/src/sdk.js
+index 2be4a08ac8e0f9d9d93334abdfee2deba981f3b0..78f9b35d72f536161b88586e251592bcbe5b9ed5 100644
+--- a/build/src/sdk.js
++++ b/build/src/sdk.js
+@@ -23,7 +23,7 @@ const sdk_metrics_1 = require("@opentelemetry/sdk-metrics");
+ const sdk_trace_base_1 = require("@opentelemetry/sdk-trace-base");
+ const sdk_trace_node_1 = require("@opentelemetry/sdk-trace-node");
+ const semantic_conventions_1 = require("@opentelemetry/semantic-conventions");
+-const TracerProviderWithEnvExporter_1 = require("./TracerProviderWithEnvExporter");
++// const TracerProviderWithEnvExporter_1 = require("./TracerProviderWithEnvExporter");
+ class NodeSDK {
+     /**
+      * Create a new NodeJS SDK instance
