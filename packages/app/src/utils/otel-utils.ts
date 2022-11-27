@@ -14,6 +14,7 @@ import {
   SemanticAttributes,
   SemanticResourceAttributes,
 } from "@opentelemetry/semantic-conventions";
+import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks'
 
 // https://github.com/open-telemetry/opentelemetry-js
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/examples
@@ -53,6 +54,7 @@ export async function initializeOtel() {
     traceExporter,
     spanProcessor,
     resource,
+    contextManager: new AsyncLocalStorageContextManager(),
   });
   await sdk.start();
 
@@ -61,7 +63,7 @@ export async function initializeOtel() {
 }
 
 function getTracer() {
-  return trace.getTracer("default-tracer");
+  return trace.getTracer("default");
 }
 
 export async function tracePromise<T>(
