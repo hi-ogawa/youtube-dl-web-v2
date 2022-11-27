@@ -1,6 +1,8 @@
 import process from "node:process";
+import type { RequestHandler } from "@hattip/compose";
 import { trace } from "@opentelemetry/api";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+import { Resource } from "@opentelemetry/resources";
 import { NodeSDK } from "@opentelemetry/sdk-node";
 import {
   BasicTracerProvider,
@@ -8,6 +10,10 @@ import {
   ConsoleSpanExporter,
   SimpleSpanProcessor,
 } from "@opentelemetry/sdk-trace-base";
+import {
+  SemanticAttributes,
+  SemanticResourceAttributes,
+} from "@opentelemetry/semantic-conventions";
 
 // https://github.com/open-telemetry/opentelemetry-js
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-sdk-trace-base
@@ -36,9 +42,14 @@ export async function initializeOtel() {
       ? new SimpleSpanProcessor(traceExporter)
       : new BatchSpanProcessor(traceExporter);
 
+  const resource = new Resource({
+    [SemanticResourceAttributes.SERVICE_NAME]: "youtube-dl-web",
+  });
+
   const sdk = new NodeSDK({
     traceExporter,
     spanProcessor,
+    resource,
   });
   await sdk.start();
 
@@ -65,3 +76,28 @@ export async function traceSpanPromise<T>(
     span.end();
   }
 }
+
+export const traceRequestHanlder: RequestHandler = async (ctx) => {
+  const { locals, request, ip } = ctx;
+  const span = getTracer().startSpan("request-handler");
+  // TODO: inject span context to propagate?
+  locals;
+  // request attirbutes (https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md)
+  const url = new URL(request.url);
+  span.setAttributes({
+    [SemanticAttributes.HTTP_METHOD]: request.method,
+    [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
+    [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
+    [SemanticAttributes.HTTP_CLIENT_IP]: ip,
+  });
+  try {
+    const response = await ctx.next();
+    // reponse attributes
+    span.setAttributes({
+      [SemanticAttributes.HTTP_STATUS_CODE]: response.status,
+    });
+    return response;
+  } finally {
+    span.end();
+  }
+};

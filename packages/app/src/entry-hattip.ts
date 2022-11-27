@@ -1,15 +1,7 @@
+import { compose } from "@hattip/compose";
 import { createRequestHandler } from "rakkasjs";
-import { initializeOtel } from "./utils/otel-utils";
+import { initializeOtel, traceRequestHanlder } from "./utils/otel-utils";
 
 initializeOtel();
 
-export default createRequestHandler({
-  middleware: {
-    beforePages: (ctx) => {
-      ctx;
-    },
-    beforeApiRoutes: (ctx) => {
-      ctx;
-    },
-  },
-});
+export default compose(traceRequestHanlder, createRequestHandler());
