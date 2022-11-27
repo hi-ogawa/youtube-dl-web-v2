@@ -40,7 +40,6 @@ export async function initializeOtel() {
       ? new OTLPTraceExporter() // uses OTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default is http://localhost:4318)
       : new ConsoleSpanExporter();
 
-  // for dev logging purpose, it would be mis-leading to not patch
   const spanProcessor =
     traceExporter instanceof ConsoleSpanExporter
       ? new SimpleSpanProcessor(traceExporter)
