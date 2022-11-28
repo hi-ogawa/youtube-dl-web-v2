@@ -59,6 +59,9 @@ export async function initializeOtel() {
 
   const resource = new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: "youtube-dl-web",
+    [SemanticResourceAttributes.SERVICE_VERSION]: import.meta.env.PROD
+      ? "production"
+      : "development",
   });
 
   const sdk = new NodeSDK({
