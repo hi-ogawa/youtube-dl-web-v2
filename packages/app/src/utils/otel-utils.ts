@@ -1,6 +1,12 @@
 import process from "node:process";
 import type { RequestHandler } from "@hattip/compose";
-import { SpanKind, SpanOptions, context, trace } from "@opentelemetry/api";
+import {
+  SpanKind,
+  SpanOptions,
+  SpanStatusCode,
+  context,
+  trace,
+} from "@opentelemetry/api";
 import { AsyncLocalStorageContextManager } from "@opentelemetry/context-async-hooks";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
@@ -23,6 +29,7 @@ import {
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-context-zone-peer-dep
 // https://github.com/open-telemetry/opentelemetry-js-contrib
 // https://github.com/open-telemetry/opentelemetry-js-contrib/blob/main/plugins/node/opentelemetry-instrumentation-fastify/src/instrumentation.ts
+// https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md
 // https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md
 // https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup
 
@@ -79,11 +86,12 @@ export async function tracePromise<T>(
   spanOptions?: SpanOptions
 ): Promise<T> {
   const tracer = getTracer();
-  const span = tracer.startSpan(spanName, spanOptions, context.active());
+  const span = tracer.startSpan(spanName, spanOptions);
   return context.with(trace.setSpan(context.active(), span), async () => {
     try {
       return await promise;
     } catch (e) {
+      span.setStatus({ code: SpanStatusCode.ERROR });
       span.recordException(e as any);
       throw e;
     } finally {
@@ -116,6 +124,7 @@ export const traceRequestHanlder: RequestHandler = async (ctx) => {
       });
       return response;
     } catch (e) {
+      span.setStatus({ code: SpanStatusCode.ERROR });
       span.recordException(e as any);
       throw e;
     } finally {
