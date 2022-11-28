@@ -28,13 +28,9 @@ export async function post(ctx: RequestContext) {
     throw new Error("invalid id");
   }
 
-  const videoInfo = await tracePromise(
-    fetchVideoInfo(id),
-    fetchVideoInfo.name,
-    {
-      attributes: { "custom.id": id },
-    }
-  );
+  const videoInfo = await tracePromise(fetchVideoInfo(id), "fetchVideoInfo", {
+    attributes: { "code.arguments": [id] },
+  });
   const res: MetadataResponse = {
     videoInfo,
   };
