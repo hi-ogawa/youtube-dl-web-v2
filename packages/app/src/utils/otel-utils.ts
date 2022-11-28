@@ -112,6 +112,8 @@ export const traceRequestHanlder: RequestHandler = async (ctx) => {
       [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
       [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
       [SemanticAttributes.HTTP_CLIENT_IP]: ip,
+      [SemanticAttributes.NET_HOST_NAME]: url.hostname,
+      [SemanticAttributes.NET_HOST_PORT]: url.port,
     },
   });
   // wrap with context
