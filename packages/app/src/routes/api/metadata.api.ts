@@ -2,6 +2,7 @@ import { MutationOptions, useMutation } from "@tanstack/react-query";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
 import { json } from "../../utils/handler-utils";
+import { tracePromise } from "../../utils/otel-utils";
 import {
   VideoInfo,
   fetchVideoInfo,
@@ -27,7 +28,9 @@ export async function post(ctx: RequestContext) {
     throw new Error("invalid id");
   }
 
-  const videoInfo = await fetchVideoInfo(id);
+  const videoInfo = await tracePromise(fetchVideoInfo(id), "fetchVideoInfo", {
+    attributes: { "code.arguments": [id] },
+  });
   const res: MetadataResponse = {
     videoInfo,
   };
