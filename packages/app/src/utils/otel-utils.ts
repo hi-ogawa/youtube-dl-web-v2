@@ -52,7 +52,7 @@ export async function initializeOtel() {
       : new BatchSpanProcessor(traceExporter);
 
   // notable default behaviors
-  // - resouce name is auto detected via OTEL_RESOURCE_NAME https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-resources/src/detectors/EnvDetector.ts#L60
+  // - resouce name is auto detected via OTEL_SERVICE_NAME https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-resources/src/detectors/EnvDetector.ts#L60
   // - internally `NodeTracerProvider` is used by default which enables AsyncLocalStorageContextManager automatically
   const sdk = new NodeSDK({
     traceExporter,
