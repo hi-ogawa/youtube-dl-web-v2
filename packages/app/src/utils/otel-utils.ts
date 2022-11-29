@@ -7,20 +7,14 @@ import {
   context,
   trace,
 } from "@opentelemetry/api";
-import { AsyncLocalStorageContextManager } from "@opentelemetry/context-async-hooks";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { Resource } from "@opentelemetry/resources";
 import { NodeSDK } from "@opentelemetry/sdk-node";
 import {
-  BasicTracerProvider,
   BatchSpanProcessor,
   ConsoleSpanExporter,
   SimpleSpanProcessor,
 } from "@opentelemetry/sdk-trace-base";
-import {
-  SemanticAttributes,
-  SemanticResourceAttributes,
-} from "@opentelemetry/semantic-conventions";
+import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
 
 // https://github.com/open-telemetry/opentelemetry-js
 // https://github.com/open-telemetry/opentelemetry-js/tree/main/examples
@@ -57,23 +51,14 @@ export async function initializeOtel() {
       ? new SimpleSpanProcessor(traceExporter)
       : new BatchSpanProcessor(traceExporter);
 
-  const resource = new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: "youtube-dl-web",
-    [SemanticResourceAttributes.SERVICE_VERSION]: import.meta.env.PROD
-      ? "production"
-      : "development",
-  });
-
+  // notable default behaviors
+  // - resouce name is auto detected via OTEL_RESOURCE_NAME https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-resources/src/detectors/EnvDetector.ts#L60
+  // - internally `NodeTracerProvider` is used by default which enables AsyncLocalStorageContextManager automatically
   const sdk = new NodeSDK({
     traceExporter,
     spanProcessor,
-    resource,
-    contextManager: new AsyncLocalStorageContextManager(),
   });
   await sdk.start();
-
-  const provider = new BasicTracerProvider();
-  provider.register();
 }
 
 function getTracer() {
