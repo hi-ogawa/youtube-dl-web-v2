@@ -1,5 +1,8 @@
 name: ci
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -19,5 +22,5 @@ jobs:
       - run: pnpm tsc
       - run: pnpm test
       - run: pnpm build
-      - run: npx playwright install chromium --with-deps
+      - run: npx -C packages/app playwright install chromium --with-deps
       - run: pnpm -C packages/app e2e
