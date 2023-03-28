@@ -22,5 +22,5 @@ jobs:
       - run: pnpm tsc
       - run: pnpm test
       - run: pnpm build
-      - run: npx playwright install chromium --with-deps
+      - run: npx -C packages/app playwright install chromium --with-deps
       - run: pnpm -C packages/app e2e
