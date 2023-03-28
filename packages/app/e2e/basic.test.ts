@@ -19,7 +19,7 @@ test("basic", async ({ page }) => {
   // pre-filled based on channel name and video title
   await expect(page.locator('input[name="artist"]')).toHaveValue("Vulf");
   await expect(page.locator('input[name="title"]')).toHaveValue(
-    "VULFPECK /// Live at Madison Square Garden"
+    "Vulfpeck Live at Madison Square Garden"
   );
 
   // update form
