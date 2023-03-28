@@ -101,23 +101,29 @@ export async function fetchVideoInfo(videoId: string): Promise<VideoInfo> {
 
 // cf. https://gist.github.com/hi-ogawa/23f6d0b212f51c2b1b255339c642e9b9
 export async function fetchVideoInfoRaw(videoId: string): Promise<any> {
-  const url = "https://www.youtube.com/youtubei/v1/player";
-  const body = {
-    videoId,
-    context: {
-      client: {
-        clientName: "ANDROID",
-        clientVersion: "17.31.35",
-        androidSdkVersion: 30,
-        hl: "en",
-        timeZone: "UTC",
-        utcOffsetMinutes: 0,
-      },
-    },
-  };
-  const res = await fetch(url, {
+  // prettier-ignore
+  const res = await fetch("https://www.youtube.com/youtubei/v1/player", {
     method: "POST",
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      videoId,
+      context: {
+        client: {
+          clientName: "ANDROID",
+          clientVersion: "17.31.35",
+          androidSdkVersion: 30,
+          hl: "en",
+          timeZone: "UTC",
+          utcOffsetMinutes: 0,
+        },
+      },
+    }),
+    headers: {
+      "X-YouTube-Client-Name": "3",
+      "X-YouTube-Client-Version": "17.31.35",
+      "Origin": "https://www.youtube.com",
+      "User-Agent": "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip",
+      "content-type": "application/json",
+    }
   });
   tinyassert(res.ok);
   tinyassert(res.headers.get("content-type")?.startsWith("application/json"));
