@@ -6,9 +6,9 @@ import {
   useInteractions,
 } from "@floating-ui/react-dom-interactions";
 import { Transition } from "@headlessui/react";
+import { tinyassert } from "@hiogawa/utils";
 import type React from "react";
 import { RemoveScroll } from "react-remove-scroll";
-import { tinyassert } from "../utils/tinyassert";
 
 export function Drawer(props: {
   open: boolean;

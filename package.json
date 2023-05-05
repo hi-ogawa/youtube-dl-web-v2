@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@hiogawa/isort-ts": "1.0.2-pre.1",
+    "@hiogawa/utils": "1.4.2-pre.9",
     "@tsconfig/strictest": "^1.0.2",
     "esbuild": "^0.15.13",
     "esbuild-register": "^3.3.3",

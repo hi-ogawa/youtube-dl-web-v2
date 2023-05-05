@@ -1,4 +1,4 @@
-import { tinyassert } from "./tinyassert";
+import { tinyassert } from "@hiogawa/utils";
 
 // cf.
 // - https://github.com/hattipjs/hattip/blob/2f5b08335ad55b64a49db63b3d25781e9032e938/packages/base/response/src/index.ts

@@ -1,3 +1,4 @@
+import { tinyassert } from "@hiogawa/utils";
 import { useMutation } from "@tanstack/react-query";
 import type { PreloadFunction } from "rakkasjs";
 import React from "react";
@@ -5,7 +6,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { ignoreFormEnter } from "../utils/misc";
-import { tinyassert } from "../utils/tinyassert";
 import {
   extractCoverArt,
   extractMetadata,

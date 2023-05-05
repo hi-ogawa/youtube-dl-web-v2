@@ -1,10 +1,10 @@
 import EMSCRIPTEN_MODULE_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.js?url";
 import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.wasm?url";
+import { tinyassert } from "@hiogawa/utils";
 import { transfer, wrap } from "comlink";
 import _ from "lodash";
 import WORKER_URL from "../worker/build/ffmpeg.js?url";
 import type { FFmpegWorker } from "../worker/ffmpeg";
-import { tinyassert } from "./tinyassert";
 
 // prefetch assets before instantiating emscripten worker
 export const WORKER_ASSET_URLS = [EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL];

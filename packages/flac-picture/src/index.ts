@@ -1,6 +1,6 @@
 import { toBase64 } from "@hiogawa/base64";
+import { tinyassert } from "@hiogawa/utils";
 import { parseJpeg } from "./jpeg";
-import { tinyassert } from "./tinyassert";
 import { BytesWriter, bytesFromString, bytesFromU32BE } from "./utils";
 
 export const METADATA_BLOCK_PICTURE = "METADATA_BLOCK_PICTURE";

@@ -1,4 +1,4 @@
-import { tinyassert } from "./tinyassert";
+import { tinyassert } from "@hiogawa/utils";
 
 export function ignoreFormEnter(e: React.KeyboardEvent<HTMLInputElement>) {
   if (e.key === "Enter") {

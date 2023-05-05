@@ -5,10 +5,10 @@ import type {
   Metadata,
 } from "@hiogawa/ffmpeg/build/tsc/cpp/ex00-emscripten-types";
 import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
+import { tinyassert } from "@hiogawa/utils";
 import { expose } from "comlink";
 import _ from "lodash";
 import { parseTimestamp } from "../utils/misc";
-import { tinyassert } from "../utils/tinyassert";
 
 export type { FFmpegWorker };
 

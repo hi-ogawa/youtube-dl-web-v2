@@ -3,7 +3,7 @@
 // - https://github.com/nothings/stb/blob/8b5f1f37b5b75829fc72d38e7b5d4bcbf8a26d55/stb_image.h#L3330
 // - https://gitlab.xiph.org/xiph/libopusenc/-/blob/f51c3aa431c2f0f8fccd8926628b5f330292489f/src/picture.c#L189
 
-import { tinyassert } from "./tinyassert";
+import { tinyassert } from "@hiogawa/utils";
 import { BytesReader, ImageInfo, bytesToU16BE } from "./utils";
 
 export function parseJpeg(data: Uint8Array): ImageInfo {

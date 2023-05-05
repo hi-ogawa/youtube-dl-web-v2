@@ -3,9 +3,9 @@ import path from "node:path";
 import process from "node:process";
 import { run } from "@hiogawa/ffmpeg";
 import { encode } from "@hiogawa/flac-picture";
+import { tinyassert } from "@hiogawa/utils";
 import { maxBy } from "lodash";
 import undici from "undici";
-import { tinyassert } from "../utils/tinyassert";
 import {
   fetchVideoInfo,
   getThumbnailUrl,

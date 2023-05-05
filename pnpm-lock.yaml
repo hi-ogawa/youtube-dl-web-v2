@@ -12,6 +12,9 @@ importers:
       '@hiogawa/isort-ts':
         specifier: 1.0.2-pre.1
         version: 1.0.2-pre.1(prettier@2.7.1)(typescript@4.8.4)
+      '@hiogawa/utils':
+        specifier: 1.4.2-pre.9
+        version: 1.4.2-pre.9
       '@tsconfig/strictest':
         specifier: ^1.0.2
         version: 1.0.2
@@ -624,7 +627,6 @@ packages:
 
   /@hiogawa/utils@1.4.2-pre.9:
     resolution: {integrity: sha512-XT5XROUx3NL9Al4nEt2VZEIY4dDrxT3vVjQWy0kpu0vnSn81JuDfM7TiX5Sbo6oiAtQkjX9XbTfns8VKDtB0Mg==}
-    dev: false
 
   /@iconify-json/ri@1.1.3:
     resolution: {integrity: sha512-YQ45kQNpuHc2bso4fDGhooWou43qy7njD/I5l7vpjcujb+P/K2BfLASbWYTTUKu6lMersuFmO8F7NdGzy6eGWw==}
