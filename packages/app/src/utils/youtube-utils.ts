@@ -211,14 +211,17 @@ export function useYoutubePlayerLoader(
 
   const ref = useRefCallbackEffect<HTMLElement>((el) => {
     if (el && mutation.isIdle) {
-      mutation.mutate(el);
+      // https://github.com/TanStack/query/issues/4983
+      window.setTimeout(() => mutation.mutate(el));
     }
   });
 
   const mutation = useMutation(
     (el: HTMLElement) => loadYoutubePlayer(el, playerOptions),
     {
-      onSuccess: onReady,
+      onSuccess: (player) => {
+        onReady(player);
+      },
       onError: () => {
         window.alert("failed to initialize youtube player");
       },
