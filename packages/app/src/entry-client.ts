@@ -1,6 +1,6 @@
+import "virtual:uno.css";
 import { startClient } from "rakkasjs";
 import { registerServiceWorker } from "./utils/register-service-worker";
-import "./styles";
 
 startClient({
   hooks: {

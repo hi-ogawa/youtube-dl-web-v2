@@ -1,4 +1,4 @@
-import { tinyassert } from "./tinyassert";
+import { tinyassert } from "@hiogawa/utils";
 
 export interface ImageInfo {
   mimeType: string;

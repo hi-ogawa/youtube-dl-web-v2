@@ -6,9 +6,9 @@ import {
   useInteractions,
 } from "@floating-ui/react-dom-interactions";
 import { Transition } from "@headlessui/react";
+import { tinyassert } from "@hiogawa/utils";
 import type React from "react";
 import { RemoveScroll } from "react-remove-scroll";
-import { tinyassert } from "../utils/tinyassert";
 
 export function Drawer(props: {
   open: boolean;
@@ -27,7 +27,7 @@ export function Drawer(props: {
 
   return (
     <FloatingPortal id={id}>
-      <Transition show={props.open} className="z-[100]">
+      <Transition show={props.open} className="fixed z-100">
         {/* backdrop */}
         <Transition.Child
           className="transition duration-300 fixed inset-0 bg-black"
@@ -40,7 +40,7 @@ export function Drawer(props: {
         <RemoveScroll className="fixed inset-0 overflow-hidden">
           <Transition.Child
             // requires absolute width
-            className="transition duration-300 transform w-[200px] h-full bg-base shadow-lg"
+            className="transition duration-300 transform w-[200px] h-full bg-colorBgContainer shadow-lg"
             enterFrom="translate-x-[-100%]"
             enterTo="translate-x-[0]"
             leaveFrom="translate-x-[0]"

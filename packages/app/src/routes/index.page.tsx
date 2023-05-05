@@ -1,4 +1,5 @@
 import { Transition } from "@headlessui/react";
+import { tinyassert } from "@hiogawa/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { isNil, pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
@@ -22,7 +23,6 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
-import { tinyassert } from "../utils/tinyassert";
 import { useAnimationFrameLoop } from "../utils/use-animation-frame-loop";
 import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
@@ -88,20 +88,20 @@ export default function Page() {
             <span>Video ID</span>
             <input
               data-lpignore="true" // https://stackoverflow.com/a/44984917
-              className="input px-1"
+              className="antd-input px-1"
               placeholder="ID or URL"
               {...form.register("id")}
               aria-invalid={metadataQuery.isError}
             />
           </div>
           <button
-            className="p-1 btn btn-default"
+            className="p-1 antd-btn antd-btn-default"
             disabled={metadataQuery.isLoading}
           >
             <div className="flex justify-center items-center relative">
               <span>Search</span>
               {metadataQuery.isLoading && (
-                <div className="absolute right-4 w-4 h-4 spinner"></div>
+                <div className="absolute right-4 w-4 h-4 antd-spin"></div>
               )}
             </div>
           </button>
@@ -258,7 +258,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       <div className="flex flex-col gap-2">
         <span>Audio</span>
         <select
-          className="input px-1"
+          className="antd-input px-1"
           {...form.register("format_id")}
           disabled={!isNil(downloadProgress)}
         >
@@ -275,7 +275,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       <div className="flex flex-col gap-2">
         <span>Title</span>
         <input
-          className="input px-1"
+          className="antd-input px-1"
           {...form.register("title")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
@@ -284,7 +284,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       <div className="flex flex-col gap-2">
         <span>Artist</span>
         <input
-          className="input px-1"
+          className="antd-input px-1"
           {...form.register("artist")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
@@ -293,7 +293,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       <div className="flex flex-col gap-2">
         <span>Album</span>
         <input
-          className="input px-1"
+          className="antd-input px-1"
           {...form.register("album")}
           onKeyDown={ignoreFormEnter}
           readOnly={!isNil(downloadProgress)}
@@ -303,7 +303,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <div className="flex items-center gap-2">
           <span className="w-[75px]">Start Time</span>
           <button
-            className="p-0.5 btn btn-default flex items-center"
+            className="p-0.5 antd-btn antd-btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -319,7 +319,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             <span className="i-ri-time-line w-4 h-4"></span>
           </button>
           <button
-            className="p-0.5 btn btn-default flex items-center"
+            className="p-0.5 antd-btn antd-btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -333,7 +333,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           </button>
         </div>
         <input
-          className="input px-1"
+          className="antd-input px-1"
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
@@ -344,7 +344,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <div className="flex items-center gap-2">
           <span className="w-[75px]">End Time</span>
           <button
-            className="p-0.5 btn btn-default flex items-center"
+            className="p-0.5 antd-btn antd-btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -360,7 +360,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             <span className="i-ri-time-line w-4 h-4"></span>
           </button>
           <button
-            className="p-0.5 btn btn-default flex items-center"
+            className="p-0.5 atnd-btn atnd-btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -374,7 +374,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           </button>
         </div>
         <input
-          className="input px-1"
+          className="antd-input px-1"
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
@@ -391,7 +391,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </div>
       {!processFileMutation.isSuccess && (
         <button
-          className="p-1 btn btn-primary"
+          className="p-1 antd-btn antd-btn-primary"
           disabled={processFileMutation.isLoading || !isNil(downloadProgress)}
         >
           <div className="flex justify-center items-center relative">
@@ -414,7 +414,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       )}
       {processFileMutation.isSuccess && (
         <a
-          className="p-1 btn btn-primary"
+          className="p-1 antd-btn antd-btn-primary"
           href={processFileMutation.data.url}
           download={processFileMutation.data.name}
         >
@@ -443,33 +443,33 @@ function MainFormSkelton() {
       <VideoPlayerSkelton />
       <div className="flex flex-col gap-2">
         <span>Audio</span>
-        <select className="input px-1" disabled></select>
+        <select className="antd-input px-1" disabled></select>
       </div>
       <div className="flex flex-col gap-2">
         <span>Title</span>
-        <input className="input px-1" disabled />
+        <input className="antd-input px-1" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>Artist</span>
-        <input className="input px-1" disabled />
+        <input className="antd-input px-1" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>Album</span>
-        <input className="input px-1" disabled />
+        <input className="antd-input px-1" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>Start Time</span>
-        <input className="input px-1" placeholder="hh:mm:ss" disabled />
+        <input className="antd-input px-1" placeholder="hh:mm:ss" disabled />
       </div>
       <div className="flex flex-col gap-2">
         <span>End Time</span>
-        <input className="input px-1" placeholder="hh:mm:ss" disabled />
+        <input className="antd-input px-1" placeholder="hh:mm:ss" disabled />
       </div>
       <div className="flex gap-4">
         <span>Embed Thumbnail</span>
         <input type="checkbox" disabled />
       </div>
-      <button className="p-1 btn btn-primary" disabled>
+      <button className="p-1 antd-btn antd-btn-primary" disabled>
         Download
       </button>
     </>
@@ -512,14 +512,14 @@ function VideoPlayer({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="absolute inset-0 bg-base opacity-50"></div>
-          <span className="absolute spinner w-20 h-20 !border-4"></span>
+          <div className="absolute inset-0 bg-body opacity-50"></div>
+          <span className="absolute antd-spin w-20 h-20 !border-4"></span>
         </Transition>
       </div>
       <div className="flex gap-1.5">
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled={!player}
           onClick={() => {
             if (player) {
@@ -531,7 +531,7 @@ function VideoPlayer({
         </button>
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled={!player}
           onClick={() => {
             if (isPlaying) {
@@ -550,7 +550,7 @@ function VideoPlayer({
         </button>
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled={!player}
           onClick={() => {
             if (player) {
@@ -566,7 +566,7 @@ function VideoPlayer({
             reference={({ props, open, setOpen }) => (
               <button
                 type="button"
-                className="flex-none p-1 btn btn-default flex justify-center items-center"
+                className="flex-none p-1 antd-btn antd-btn-default flex justify-center items-center"
                 onClick={() => {
                   setOpen(!open);
                 }}
@@ -598,7 +598,7 @@ function VideoPlayer({
                           <span>{t.time}</span>
                           <span className="flex-1"></span>
                           <button
-                            className="btn btn-default h-5 flex items-center"
+                            className="antd-btn antd-btn-default h-5 flex items-center"
                             type="button"
                             disabled={!player}
                             onClick={() => {
@@ -610,7 +610,7 @@ function VideoPlayer({
                             <span className="i-ri-play-line w-5 h-5"></span>
                           </button>
                           <button
-                            className="px-1 btn btn-default text-sm h-5 flex items-center"
+                            className="px-1 antd-btn antd-btn-default text-sm h-5 flex items-center"
                             type="button"
                             onClick={() => {
                               setStartTime(t.time);
@@ -619,7 +619,7 @@ function VideoPlayer({
                             start
                           </button>
                           <button
-                            className="px-1 btn btn-default text-sm h-5 flex items-center"
+                            className="px-1 antd-btn antd-btn-default text-sm h-5 flex items-center"
                             type="button"
                             onClick={() => {
                               setEndTime(t.time);
@@ -650,21 +650,21 @@ function VideoPlayerSkelton() {
       <div className="flex gap-1.5">
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled
         >
           <span className="i-ri-skip-back-line w-5 h-5"></span>
         </button>
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled
         >
           <span className="i-ri-play-line w-5 h-5"></span>
         </button>
         <button
           type="button"
-          className="flex-1 p-1 btn btn-default flex justify-center"
+          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
           disabled
         >
           <span className="i-ri-skip-forward-line w-5 h-5"></span>

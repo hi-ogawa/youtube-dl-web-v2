@@ -1,6 +1,6 @@
+import { tinyassert } from "@hiogawa/utils";
 import { range } from "lodash";
 import { fetchDownload } from "../routes/api/download.api";
-import { tinyassert } from "./tinyassert";
 import {
   extractWebmInfo,
   findContainingRange,

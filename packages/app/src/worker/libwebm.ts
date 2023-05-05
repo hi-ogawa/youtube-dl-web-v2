@@ -4,9 +4,9 @@ import type {
   EmscriptenModule,
   SimpleMetadata,
 } from "@hiogawa/ffmpeg/build/tsc/cpp/ex01-emscripten-types";
+import { tinyassert } from "@hiogawa/utils";
 import { expose } from "comlink";
 import _ from "lodash";
-import { tinyassert } from "../utils/tinyassert";
 
 export type { LibwebmWorker };
 

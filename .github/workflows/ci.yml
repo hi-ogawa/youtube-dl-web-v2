@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: pnpm i --frozen-lockfile
-      - run: pnpm lint:check
+      - run: pnpm i
+      - run: pnpm lint-check
       - run: pnpm build:deps
       - run: pnpm tsc
       - run: pnpm test

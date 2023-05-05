@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
-import { tinyassert } from "../tinyassert";
 import { tinycli, tinycliMulti } from "../tinycli";
 import type {
   EmbindVector,

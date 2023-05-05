@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { wrapError } from "./result";
-import { tinyassert } from "./tinyassert";
+import { tinyassert } from "@hiogawa/utils";
 import { EmptyFileInfo, FileInfo, run } from ".";
+import { wrapError } from "./result";
 
 const HELP_MESSAGE = `
 usage:

@@ -1,7 +1,7 @@
+import { tinyassert } from "@hiogawa/utils";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
 import { decodePayload, encodePayload } from "../../utils/handler-utils";
-import { tinyassert } from "../../utils/tinyassert";
 import { fetchVideoInfo } from "../../utils/youtube-utils";
 
 // proxy youtube's media data

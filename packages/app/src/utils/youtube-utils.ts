@@ -1,5 +1,5 @@
+import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
-import { tinyassert } from "./tinyassert";
 
 // https://github.com/ytdl-org/youtube-dl/blob/9aa8e5340f3d5ece372b983f8e399277ca1f1fe4/youtube_dl/extractor/youtube.py#L1819-L1830
 export interface FormatInfo {

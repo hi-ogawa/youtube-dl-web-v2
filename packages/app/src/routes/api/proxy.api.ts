@@ -1,7 +1,7 @@
+import { tinyassert } from "@hiogawa/utils";
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
-import { tinyassert } from "../../utils/tinyassert";
 
 // simple proxy to fetch image data
 

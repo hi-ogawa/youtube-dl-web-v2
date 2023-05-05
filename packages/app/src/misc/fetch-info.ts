@@ -1,6 +1,6 @@
 import process from "node:process";
+import { tinyassert } from "@hiogawa/utils";
 import Undici from "undici";
-import { tinyassert } from "../utils/tinyassert";
 import { fetchVideoInfoRaw, parseVideoId } from "../utils/youtube-utils";
 
 // usage:
