@@ -11,12 +11,12 @@
     "release:production": "pnpm -C packages/app release:production",
     "tsc": "tsc -b packages/app packages/flac-picture packages/ffmpeg",
     "test": "pnpm -r test",
-    "lint": "run-s prettier isort && pnpm -r lint",
-    "lint:check": "run-s prettier:check isort:check && pnpm -r lint:check",
-    "prettier": "prettier -w --cache .",
-    "prettier:check": "prettier -c --cache .",
-    "isort": "pnpm isort:check --fix",
-    "isort:check": "isort-ts --git --cache"
+    "lint": "run-s lint:* && pnpm -r lint",
+    "lint-check": "run-s lint-check:* && pnpm -r lint-check",
+    "lint:prettier": "prettier -w --cache .",
+    "lint-check:prettier": "prettier -c --cache .",
+    "lint:isort": "isort-ts --git --cache --fix",
+    "lint-check:check": "isort-ts --git --cache"
   },
   "devDependencies": {
     "@hiogawa/isort-ts": "1.0.2-pre.1",
