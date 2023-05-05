@@ -54,9 +54,6 @@ importers:
       '@hiogawa/flac-picture':
         specifier: workspace:*
         version: link:../flac-picture
-      '@hiogawa/utils':
-        specifier: 1.4.2-pre.9
-        version: 1.4.2-pre.9
       '@opentelemetry/api':
         specifier: ^1.3.0
         version: 1.3.0
@@ -627,6 +624,7 @@ packages:
 
   /@hiogawa/utils@1.4.2-pre.9:
     resolution: {integrity: sha512-XT5XROUx3NL9Al4nEt2VZEIY4dDrxT3vVjQWy0kpu0vnSn81JuDfM7TiX5Sbo6oiAtQkjX9XbTfns8VKDtB0Mg==}
+    dev: true
 
   /@iconify-json/ri@1.1.3:
     resolution: {integrity: sha512-YQ45kQNpuHc2bso4fDGhooWou43qy7njD/I5l7vpjcujb+P/K2BfLASbWYTTUKu6lMersuFmO8F7NdGzy6eGWw==}
