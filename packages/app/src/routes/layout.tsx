@@ -15,6 +15,7 @@ import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 export default function Layout(props: LayoutProps) {
   return (
     <>
+      {/* TODO: rakkas throws on initial load? */}
       <Head>
         <title>Youtube DL Web</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,7 +52,7 @@ function PageHeader(props: LayoutProps) {
   return (
     <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button
-        className="pl-1 py-1 btn btn-ghost flex items-center"
+        className="pl-1 py-1 antd-btn antd-btn-ghost flex items-center"
         onClick={() => setMenuOpen(true)}
       >
         <span className="i-ri-menu-line w-5 h-5"></span>
@@ -60,7 +61,7 @@ function PageHeader(props: LayoutProps) {
       <span className="flex-1"></span>
       <ThemeButton />
       <a
-        className="flex items-center btn btn-ghost pl-1"
+        className="flex items-center antd-btn antd-btn-ghost pl-1"
         href="https://github.com/hi-ogawa/youtube-dl-web-v2"
         target="_blank"
       >
@@ -70,22 +71,22 @@ function PageHeader(props: LayoutProps) {
         <div className="flex flex-col py-2 gap-2">
           <div className="pl-7 py-1">
             <button
-              className="btn btn-ghost flex items-center"
+              className="antd-btn antd-btn-ghost flex items-center"
               onClick={() => setMenuOpen(false)}
             >
               <span className="i-ri-menu-line w-5 h-5"></span>
             </button>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 p-1">
             <Link
-              className="pl-7 flex items-center gap-3 btn btn-ghost"
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
               href="/"
             >
               <span className="i-ri-home-4-line w-5 h-5"></span>
               Home
             </Link>
             <Link
-              className="pl-7 flex items-center gap-3 btn btn-ghost"
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
               href="/edit"
             >
               <span className="i-ri-edit-2-line w-5 h-5"></span>
@@ -102,7 +103,7 @@ function ThemeButton() {
   const [theme, setTheme] = useThemeState();
   return (
     <button
-      className="flex items-center btn btn-ghost"
+      className="flex items-center antd-btn antd-btn-ghost"
       disabled={!theme}
       onClick={() => {
         setTheme(theme === "dark" ? "light" : "dark");

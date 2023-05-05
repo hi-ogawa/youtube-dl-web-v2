@@ -111,7 +111,7 @@ export default function Page() {
                 </span>
               </span>
               {probeMutation.isLoading && (
-                <div className="spinner w-4 h-4"></div>
+                <div className="antd-spin w-4 h-4"></div>
               )}
             </div>
             <input type="file" {...form.register("fileList")} />
@@ -120,7 +120,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Title</span>
             <input
-              className="input px-1"
+              className="antd-input px-1"
               {...form.register("title")}
               onKeyDown={ignoreFormEnter}
             />
@@ -128,7 +128,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Artist</span>
             <input
-              className="input px-1"
+              className="antd-input px-1"
               {...form.register("artist")}
               onKeyDown={ignoreFormEnter}
             />
@@ -136,7 +136,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Album</span>
             <input
-              className="input px-1"
+              className="antd-input px-1"
               {...form.register("album")}
               onKeyDown={ignoreFormEnter}
             />
@@ -144,7 +144,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Start Time</span>
             <input
-              className="input px-1"
+              className="antd-input px-1"
               placeholder="hh:mm:ss"
               {...form.register("startTime")}
               onKeyDown={ignoreFormEnter}
@@ -153,7 +153,7 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>End Time</span>
             <input
-              className="input px-1"
+              className="antd-input px-1"
               placeholder="hh:mm:ss"
               {...form.register("endTime")}
               onKeyDown={ignoreFormEnter}
@@ -176,20 +176,20 @@ export default function Page() {
           </div>
           {!processFileMutation.isSuccess && (
             <button
-              className="p-1 btn btn-primary"
+              className="p-1 antd-btn antd-btn-primary"
               disabled={!file || processFileMutation.isLoading}
             >
               <div className="flex justify-center items-center relative">
                 <span>Convert</span>
                 {processFileMutation.isLoading && (
-                  <div className="absolute right-4 w-4 h-4 spinner"></div>
+                  <div className="absolute right-4 w-4 h-4 antd-spin"></div>
                 )}
               </div>
             </button>
           )}
           {processFileMutation.isSuccess && (
             <a
-              className="p-1 btn btn-primary"
+              className="p-1 antd-btn antd-btn-primary"
               href={processFileMutation.data.url}
               download={processFileMutation.data.name}
             >
