@@ -1,22 +1,22 @@
-import { useStableRef } from "@hiogawa/utils-react";
+import { useStableCallback } from "@hiogawa/utils-react";
 import React from "react";
 
 // TODO: not concurrent-react safe?
 // TODO: workaround fast-refresh?
 export function useReadableStream<T>({
   stream,
-  onRead,
-  onSuccess,
-  onError,
+  onRead = () => {},
+  onSuccess = () => {},
+  onError = () => {},
 }: {
   stream?: ReadableStream<T>;
   onRead?: (arg: ReadableStreamReadResult<T>) => void;
   onSuccess?: () => void;
   onError?: (e: unknown) => void;
 }) {
-  const onReadRef = useStableRef(onRead);
-  const onErrorRef = useStableRef(onError);
-  const onSuccessRef = useStableRef(onSuccess);
+  onRead = useStableCallback(onRead);
+  onSuccess = useStableCallback(onSuccess);
+  onError = useStableCallback(onError);
 
   React.useEffect(() => {
     if (!stream) {
@@ -29,7 +29,7 @@ export function useReadableStream<T>({
     (async () => {
       while (!done) {
         const read = await reader.read();
-        onReadRef.current?.(read);
+        onRead(read);
         if (read.done) {
           break;
         }
@@ -40,9 +40,9 @@ export function useReadableStream<T>({
     (async () => {
       try {
         await reader.closed;
-        onSuccessRef.current?.();
+        onSuccess();
       } catch (e) {
-        onErrorRef.current?.(e);
+        onError(e);
       }
     })();
 
