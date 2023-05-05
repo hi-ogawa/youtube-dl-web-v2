@@ -8,49 +8,50 @@ import {
   context,
   trace,
 } from "@opentelemetry/api";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { NodeSDK } from "@opentelemetry/sdk-node";
-import {
-  BatchSpanProcessor,
-  ConsoleSpanExporter,
-  SimpleSpanProcessor,
-} from "@opentelemetry/sdk-trace-base";
 import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
 
-// https://github.com/open-telemetry/opentelemetry-js
-// https://github.com/open-telemetry/opentelemetry-js/tree/main/examples
-// https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-sdk-trace-base
-// https://github.com/open-telemetry/opentelemetry-js/tree/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/exporter-trace-otlp-http
-// https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-context-zone-peer-dep
-// https://github.com/open-telemetry/opentelemetry-js-contrib
-// https://github.com/open-telemetry/opentelemetry-js-contrib/blob/main/plugins/node/opentelemetry-instrumentation-fastify/src/instrumentation.ts
-// https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md
-// https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md
-// https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup
+/*
+
+# how to test opentelemetry locally
+
+```sh
+# see logs on console
+OTEL_TRACES_EXPORTER=console pnpm dev
+
+# see logs on local jaeger
+docker-compose up jaeger
+OTEL_TRACES_EXPORTER=otlp OTEL_EXPORTER_OTLP_TRACES_PROTOCOL=http/json pnpm dev
+```
+
+# notes
+
+by default, sdk uses TracerProviderWithEnvExporters to configure everything based on environment variables
+
+  https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L27
+
+for example,
+
+  OTEL_TRACES_EXPORTER https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L69
+  OTEL_EXPORTER_OTLP_PROTOCOL https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L54
+  OTEL_EXPORTER_OTLP_ENDPOINT https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/exporter-trace-otlp-grpc/src/OTLPTraceExporter.ts#L68
+  OTEL_SERVICE_NAME https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-resources/src/detectors/EnvDetector.ts#L60
+
+also note that it uses AsyncLocalStorageContextManager so that span context is propagated properly within promise chain
+
+  https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-sdk-trace-node/src/NodeTracerProvider.ts#L60-L66
+
+## patch
+
+to avoid bundling all the adapters referenced by `TracerProviderWithEnvExporter` (e.g. grpc, jeager),
+we comment out `require` manually by patches/@opentelemetry__sdk-node@0.34.0.patch.
+
+*/
 
 const initializeOtel = once(async () => {
-  // switch exporter based on standard environment variables https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L48-L55
-  // - OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-  const traceExporter =
-    process.env["OTEL_EXPORTER_OTLP_TRACES_PROTOCOL"] === "http/json"
-      ? // configurable environment variables https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/exporter-trace-otlp-http/src/platform/node/OTLPTraceExporter.ts#L33-L61
-        // - OTEL_EXPORTER_OTLP_ENDPOINT (e.g. https://otlp.nr-data.net:4318) (default is http://localhost:4318)
-        // - OTEL_EXPORTER_OTLP_TRACES_HEADERS (e.g. api-key=xxx)
-        new OTLPTraceExporter()
-      : new ConsoleSpanExporter();
+  if (!process.env["OTEL_TRACES_EXPORTER"]) return;
 
-  const spanProcessor =
-    traceExporter instanceof ConsoleSpanExporter
-      ? new SimpleSpanProcessor(traceExporter)
-      : new BatchSpanProcessor(traceExporter);
-
-  // notable default behaviors
-  // - resouce name is auto detected via OTEL_SERVICE_NAME https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/packages/opentelemetry-resources/src/detectors/EnvDetector.ts#L60
-  // - internally `NodeTracerProvider` is used by default which enables AsyncLocalStorageContextManager automatically
-  const sdk = new NodeSDK({
-    traceExporter,
-    spanProcessor,
-  });
+  const sdk = new NodeSDK();
   await sdk.start();
 });
 
