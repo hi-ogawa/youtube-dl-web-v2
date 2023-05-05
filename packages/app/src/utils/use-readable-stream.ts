@@ -1,13 +1,8 @@
 import React from "react";
 import { useStableRef } from "./use-stable-ref";
 
-// vscode is fine but local tsc doesn't see `ReadableStreamDefaultReadResult<T>`
-type ReadResult<T> = Awaited<
-  ReturnType<ReturnType<ReadableStream<T>["getReader"]>["read"]>
->;
-
-// TODO: not concurrent-react safe
-// TODO: workaround fast-refresh
+// TODO: not concurrent-react safe?
+// TODO: workaround fast-refresh?
 export function useReadableStream<T>({
   stream,
   onRead,
@@ -15,7 +10,7 @@ export function useReadableStream<T>({
   onError,
 }: {
   stream?: ReadableStream<T>;
-  onRead?: (arg: ReadResult<T>) => void;
+  onRead?: (arg: ReadableStreamReadResult<T>) => void;
   onSuccess?: () => void;
   onError?: (e: unknown) => void;
 }) {

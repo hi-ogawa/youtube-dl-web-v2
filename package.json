@@ -21,12 +21,12 @@
   "devDependencies": {
     "@hiogawa/isort-ts": "1.0.2-pre.1",
     "@hiogawa/utils": "1.4.2-pre.9",
-    "@tsconfig/strictest": "^1.0.2",
+    "@tsconfig/strictest": "^2.0.1",
     "esbuild": "^0.15.13",
     "esbuild-register": "^3.3.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.4",
+    "typescript": "^5.0.4",
     "vitest": "^0.24.5"
   },
   "volta": {
