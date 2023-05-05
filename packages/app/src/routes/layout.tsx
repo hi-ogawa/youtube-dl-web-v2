@@ -1,3 +1,4 @@
+import { usePrevious } from "@hiogawa/utils-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
@@ -7,7 +8,6 @@ import ICON_URL from "../assets/icon-32.png?url";
 import { Drawer } from "../components/drawer";
 import { cls } from "../utils/misc";
 import THEME_SCRIPT from "../utils/theme-script.js?raw";
-import { usePrevious } from "../utils/use-previous";
 import { useThemeState } from "../utils/use-theme-state";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
@@ -155,8 +155,8 @@ function CustomQueryClientProvider(props: React.PropsWithChildren) {
 function ToastProvider(props: React.PropsWithChildren) {
   return (
     <>
-      {props.children}
       <Toaster />
+      {props.children}
     </>
   );
 }

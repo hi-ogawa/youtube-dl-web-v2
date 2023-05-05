@@ -1,6 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { tinyassert } from "@hiogawa/utils";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRafLoop } from "@hiogawa/utils-react";
+import { useMutation } from "@tanstack/react-query";
 import { isNil, pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
@@ -23,17 +24,15 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
-import { useAnimationFrameLoop } from "../utils/use-animation-frame-loop";
 import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
-import { useStableRef } from "../utils/use-stable-ref";
 import { webmToOpus } from "../utils/worker-client";
 import {
   PLAYER_STATE_PLAYING,
   VideoInfo,
   YoutubePlayer,
   getThumbnailUrl,
-  loadYoutubeIframeApi,
+  useYoutubePlayerLoader,
 } from "../utils/youtube-utils";
 import { useMetadata } from "./api/metadata.api";
 import { useFetchProxy } from "./api/proxy.api";
@@ -491,21 +490,20 @@ function VideoPlayer({
   setStartTime: (t: string) => void;
   setEndTime: (t: string) => void;
 }) {
-  const ref = usePlayer({ videoId, setPlayer });
+  const { ref } = useYoutubePlayerLoader({ videoId }, { onReady: setPlayer });
 
   const [isPlaying, setIsPlaying] = React.useState(false);
 
-  useAnimationFrameLoop(() => {
+  useRafLoop(() => {
     setIsPlaying(player?.getPlayerState() === PLAYER_STATE_PLAYING);
   });
 
   return (
     <div className="flex flex-col gap-2">
       <div className="relative w-full aspect-video overflow-hidden">
-        <div ref={ref} className="absolute w-full h-full" />
+        <div ref={ref} className="absolute inset-0" />
         <Transition
           show={!player}
-          appear={true}
           className="absolute inset-0 flex justify-center items-center transition duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -672,49 +670,4 @@ function VideoPlayerSkelton() {
       </div>
     </div>
   );
-}
-
-// TODO: not hmr friendly
-function usePlayer(args: {
-  videoId: string;
-  setPlayer: (player?: YoutubePlayer) => void;
-}) {
-  const apiQuery = useYoutubeIframeApi();
-  const setPlayerRef = useStableRef(args.setPlayer);
-
-  return React.useCallback(
-    (el: HTMLDivElement | null) => {
-      if (!apiQuery.isSuccess) {
-        setPlayerRef.current(undefined);
-        return;
-      }
-
-      if (el) {
-        const api = apiQuery.data;
-        const player = new api.Player(el, {
-          videoId: args.videoId,
-          events: {
-            onReady: () => {
-              setPlayerRef.current(player);
-            },
-          },
-        });
-      } else {
-        setPlayerRef.current(undefined);
-      }
-    },
-    [apiQuery.isSuccess, args.videoId]
-  );
-}
-
-function useYoutubeIframeApi() {
-  return useQuery({
-    queryKey: [useYoutubeIframeApi.name],
-    queryFn: loadYoutubeIframeApi,
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    onError: () => {
-      toast.error("failed to load youtube iframe");
-    },
-  });
 }
