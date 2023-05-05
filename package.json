@@ -8,7 +8,7 @@
     "build:deps": "run-s build:flac-picture build:ffmpeg",
     "build:all": "run-s build:deps build",
     "release": "pnpm -C packages/app release",
-    "release:production": "pnpm -C packages/app release:production",
+    "release-production": "pnpm -C packages/app release-production",
     "tsc": "tsc -b packages/app packages/flac-picture packages/ffmpeg",
     "test": "pnpm -r test",
     "lint": "run-s lint:* && pnpm -r lint",

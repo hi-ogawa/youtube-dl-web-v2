@@ -10,7 +10,7 @@ pnpm dev
 
 # deploy
 pnpm build
-pnpm release:production
+pnpm release-production
 ```
 
 ![image](https://user-images.githubusercontent.com/4232207/202964423-e74c0db6-8873-4b48-bd7c-d734697cf8e2.png)
