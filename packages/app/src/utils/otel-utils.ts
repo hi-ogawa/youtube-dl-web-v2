@@ -1,5 +1,6 @@
 import process from "node:process";
 import type { RequestHandler } from "@hattip/compose";
+import { once } from "@hiogawa/utils";
 import {
   SpanKind,
   SpanOptions,
@@ -27,15 +28,7 @@ import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
 // https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md
 // https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup
 
-// set flag globally for dev hmr
-declare global {
-  var __OTEL_INITIALIZED__: any;
-}
-
-export async function initializeOtel() {
-  if (global.__OTEL_INITIALIZED__) return;
-  global.__OTEL_INITIALIZED__ = true;
-
+const initializeOtel = once(async () => {
   // switch exporter based on standard environment variables https://github.com/open-telemetry/opentelemetry-js/blob/db0ecc37683507c8ef25b07cfbb5f25b3e263a53/experimental/packages/opentelemetry-sdk-node/src/TracerProviderWithEnvExporter.ts#L48-L55
   // - OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
   const traceExporter =
@@ -59,7 +52,7 @@ export async function initializeOtel() {
     spanProcessor,
   });
   await sdk.start();
-}
+});
 
 function getTracer() {
   return trace.getTracer("default");
@@ -86,6 +79,8 @@ export async function tracePromise<T>(
 }
 
 export const traceRequestHanlder: RequestHandler = async (ctx) => {
+  await initializeOtel();
+
   const { request, ip } = ctx;
   const url = new URL(request.url);
   // create span
