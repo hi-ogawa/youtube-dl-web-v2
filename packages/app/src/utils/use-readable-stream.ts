@@ -1,5 +1,5 @@
+import { useStableRef } from "@hiogawa/utils-react";
 import React from "react";
-import { useStableRef } from "./use-stable-ref";
 
 // TODO: not concurrent-react safe?
 // TODO: workaround fast-refresh?
