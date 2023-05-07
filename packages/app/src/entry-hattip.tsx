@@ -1,9 +1,9 @@
 import { compose } from "@hattip/compose";
+import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { createRequestHandler } from "rakkasjs";
 import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
 import { traceRequestHanlder } from "./utils/otel-utils";
-import THEME_SCRIPT from "./utils/theme-script.js?raw";
 import { WORKER_ASSET_URLS } from "./utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "./utils/worker-client-libwebm";
 
@@ -27,7 +27,16 @@ function AppHead() {
       {[...WORKER_ASSET_URLS, ...WORKER_ASSET_URLS_LIBWEBM].map((href) => (
         <link key={href} rel="prefetch" href={href} />
       ))}
-      <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      {/* early theme initialization on client */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `\
+globalThis.__themeStorageKey = "youtube-dl-web:theme";
+globalThis.__themeDefaultTheme = "dark";
+${THEME_SCRIPT}
+`,
+        }}
+      />
     </>
   );
 }

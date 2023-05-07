@@ -5,8 +5,7 @@ import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { Drawer } from "../components/drawer";
-import { cls } from "../utils/misc";
-import { useThemeState } from "../utils/use-theme-state";
+import { ThemeSelect } from "../components/theme-select";
 
 export default function Layout(props: LayoutProps) {
   return (
@@ -47,7 +46,7 @@ function PageHeader(props: LayoutProps) {
       </button>
       <div className="text-lg">{title}</div>
       <span className="flex-1"></span>
-      <ThemeButton />
+      <ThemeSelect />
       <a
         className="flex items-center antd-btn antd-btn-ghost pl-1"
         href="https://github.com/hi-ogawa/youtube-dl-web-v2"
@@ -84,26 +83,6 @@ function PageHeader(props: LayoutProps) {
         </div>
       </Drawer>
     </header>
-  );
-}
-
-function ThemeButton() {
-  const [theme, setTheme] = useThemeState();
-  return (
-    <button
-      className="flex items-center antd-btn antd-btn-ghost"
-      disabled={!theme}
-      onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
-    >
-      <span
-        className={cls(
-          theme === "dark" ? "i-ri-sun-line" : "i-ri-moon-line",
-          "w-5 h-5"
-        )}
-      ></span>
-    </button>
   );
 }
 

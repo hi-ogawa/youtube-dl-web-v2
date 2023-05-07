@@ -54,6 +54,9 @@ importers:
       '@hiogawa/flac-picture':
         specifier: workspace:*
         version: link:../flac-picture
+      '@hiogawa/utils-experimental':
+        specifier: ^0.0.0
+        version: 0.0.0
       '@hiogawa/utils-react':
         specifier: 1.2.1-pre.4
         version: 1.2.1-pre.4(react@18.2.0)
@@ -756,6 +759,10 @@ packages:
       local-pkg: 0.4.3
       unocss: 0.46.5(vite@4.3.5)
     dev: true
+
+  /@hiogawa/utils-experimental@0.0.0:
+    resolution: {integrity: sha512-KIntm8b5EbVVATzq3f/+ttIpNfstoN7Mx04BxRZG5t7sMdLmbj0S5yKzKL0sR7wv4qD+rStO3YELWOqN4LZPhA==}
+    dev: false
 
   /@hiogawa/utils-react@1.2.1-pre.4(react@18.2.0):
     resolution: {integrity: sha512-/apCDXNbjIxXyWvrEg/ZGLFcI+wWXhxMMFx12CmjM1SXsHxHAL9iMJBuS/eVgq8e+4Uqap0TSHbbyrga0cz52g==}
