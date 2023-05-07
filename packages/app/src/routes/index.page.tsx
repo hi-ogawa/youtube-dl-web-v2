@@ -2,13 +2,12 @@ import { Transition } from "@headlessui/react";
 import { tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
 import { useMutation } from "@tanstack/react-query";
-import { isNil, pick, sortBy, uniqBy } from "lodash";
+import { pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Popover } from "../components/popover";
-import { RadialProgress } from "../components/radial-progress";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import {
   DownloadProgress,
@@ -152,7 +151,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   const [downloadStream, setDownloadStream] =
     React.useState<ReadableStream<DownloadProgress>>();
 
-  const [downloadProgress, setDownloadProgress] = React.useState<number>();
+  const [downloadProgress, setDownloadProgress] = React.useState<number>(0);
+
+  const isDownloadStarted = Boolean(downloadStream);
 
   const thumbnailQuery = useFetchProxy(
     { url: getThumbnailUrl(videoInfo.id) },
@@ -215,15 +216,16 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         arg.endTime,
         arg.image
       );
-      const url = URL.createObjectURL(new Blob([output]));
-      const name =
-        ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
-          "download") + ".opus";
-      return { url, name };
+      return { arg, output };
     },
     {
-      onSuccess: () => {
+      onSuccess: ({ arg, output }) => {
         toast.success("successfully downloaded");
+        const href = URL.createObjectURL(new Blob([output])); // TODO: URL.revokeObjectURL
+        const download =
+          ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
+            "download") + ".opus";
+        triggetDownloadClick({ href, download });
       },
       onError: () => {
         toast.error("failed to create an opus file", {
@@ -259,7 +261,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <select
           className="antd-input px-1"
           {...form.register("format_id")}
-          disabled={!isNil(downloadProgress)}
+          disabled={isDownloadStarted}
         >
           {formats.map(
             (f) =>
@@ -277,7 +279,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="antd-input px-1"
           {...form.register("title")}
           onKeyDown={ignoreFormEnter}
-          readOnly={!isNil(downloadProgress)}
+          readOnly={isDownloadStarted}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -286,7 +288,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="antd-input px-1"
           {...form.register("artist")}
           onKeyDown={ignoreFormEnter}
-          readOnly={!isNil(downloadProgress)}
+          readOnly={isDownloadStarted}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -295,7 +297,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           className="antd-input px-1"
           {...form.register("album")}
           onKeyDown={ignoreFormEnter}
-          readOnly={!isNil(downloadProgress)}
+          readOnly={isDownloadStarted}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -336,7 +338,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           placeholder="hh:mm:ss"
           {...form.register("startTime")}
           onKeyDown={ignoreFormEnter}
-          readOnly={!isNil(downloadProgress)}
+          readOnly={isDownloadStarted}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -377,7 +379,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           placeholder="hh:mm:ss"
           {...form.register("endTime")}
           onKeyDown={ignoreFormEnter}
-          readOnly={!isNil(downloadProgress)}
+          readOnly={isDownloadStarted}
         />
       </div>
       <div className="flex gap-4">
@@ -385,45 +387,43 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         <input
           type="checkbox"
           {...form.register("embedThumbnail")}
-          readOnly={!thumbnailQuery.isSuccess || !isNil(downloadProgress)}
+          readOnly={!thumbnailQuery.isSuccess || isDownloadStarted}
         />
       </div>
-      {!processFileMutation.isSuccess && (
-        <button
-          className="p-1 antd-btn antd-btn-primary"
-          disabled={processFileMutation.isLoading || !isNil(downloadProgress)}
-        >
-          <div className="flex justify-center items-center relative">
-            {!processFileMutation.isLoading && isNil(downloadProgress) && (
-              <span>Download</span>
-            )}
-            {!processFileMutation.isLoading && !isNil(downloadProgress) && (
+      <button
+        className="p-1 antd-btn antd-btn-primary"
+        disabled={Boolean(downloadStream)}
+      >
+        <div className="flex justify-center items-center relative">
+          {!downloadStream && <span>Download</span>}
+          {downloadStream && processFileMutation.isIdle && (
+            <>
               <span>Downloading...</span>
-            )}
-            {processFileMutation.isLoading && <span>Processing...</span>}
-            {!isNil(downloadProgress) && (
-              <RadialProgress
-                progress={downloadProgress}
-                className="absolute right-2 w-6 h-6 text-gray-500"
-                classNameBackCircle="text-gray-50"
-              />
-            )}
-          </div>
-        </button>
-      )}
-      {processFileMutation.isSuccess && (
-        <a
-          className="p-1 antd-btn antd-btn-primary"
-          href={processFileMutation.data.url}
-          download={processFileMutation.data.name}
-        >
-          <div className="flex justify-center items-center">
-            <span>Finished!</span>
-          </div>
-        </a>
-      )}
+              <span className="absolute right-2 text-sm">
+                ({(downloadProgress * 100).toPrecision(3) + "%"})
+              </span>
+            </>
+          )}
+          {processFileMutation.isLoading && <span>Processing...</span>}
+          {processFileMutation.isSuccess && <span>Finished!</span>}
+        </div>
+      </button>
     </form>
   );
+}
+
+function triggetDownloadClick({
+  href,
+  download,
+}: {
+  href: string;
+  download: string;
+}) {
+  // TODO: would it work when the tab is not focused?
+  const a = document.createElement("a");
+  a.setAttribute("href", href);
+  a.setAttribute("download", download);
+  a.click();
 }
 
 interface ProcessFileArg {
