@@ -4,28 +4,16 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
-import ICON_URL from "../assets/icon-32.png?url";
 import { Drawer } from "../components/drawer";
 import { cls } from "../utils/misc";
-import THEME_SCRIPT from "../utils/theme-script.js?raw";
 import { useThemeState } from "../utils/use-theme-state";
-import { WORKER_ASSET_URLS } from "../utils/worker-client";
-import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 
 export default function Layout(props: LayoutProps) {
   return (
     <>
-      {/* TODO: rakkas throws on initial load? */}
       <Head>
         <title>Youtube DL Web</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href={ICON_URL} />
-        <link rel="manifest" href="/manifest.json" />
-        {/* it doesn't have to be so high priority, but don't want to spend time fetching them during instantiating emscripten module */}
-        {[...WORKER_ASSET_URLS, ...WORKER_ASSET_URLS_LIBWEBM].map((href) => (
-          <link key={href} rel="prefetch" href={href} />
-        ))}
-        <script>{THEME_SCRIPT}</script>
       </Head>
       <AppProvider>
         <PageHeader {...props} />
