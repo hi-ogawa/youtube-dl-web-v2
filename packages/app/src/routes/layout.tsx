@@ -11,10 +11,10 @@ import { useThemeState } from "../utils/use-theme-state";
 export default function Layout(props: LayoutProps) {
   return (
     <>
-      <Head>
-        <title>Youtube DL Web</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
+      <Head
+        title="Youtube DL Web"
+        viewport="width=device-width, initial-scale=1.0"
+      />
       <AppProvider>
         <PageHeader {...props} />
         {props.children}
