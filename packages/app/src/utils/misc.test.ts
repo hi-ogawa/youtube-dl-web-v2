@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { extractTimestamps, formatTimestamp, parseTimestamp } from "../misc";
+import { extractTimestamps, formatTimestamp, parseTimestamp } from "./misc";
 
 describe("parseTimestamp", () => {
   it("basic", () => {
