@@ -32,7 +32,7 @@ function AppHead() {
         dangerouslySetInnerHTML={{
           __html: `\
 globalThis.__themeStorageKey = "youtube-dl-web:theme";
-globalThis.__themeDefaultTheme = "dark";
+globalThis.__themeDefault = "dark";
 ${THEME_SCRIPT}
 `,
         }}
