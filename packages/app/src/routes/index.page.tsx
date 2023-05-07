@@ -501,7 +501,7 @@ function VideoPlayer({
   return (
     <div className="flex flex-col gap-2">
       <div className="relative w-full aspect-video overflow-hidden">
-        <div ref={ref} className="absolute inset-0" />
+        <div ref={ref} className="absolute w-full h-full" />
         <Transition
           show={!player}
           className="absolute inset-0 flex justify-center items-center transition duration-300"
