@@ -220,7 +220,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     },
     {
       onSuccess: ({ arg, output }) => {
-        toast.success("Successfully downloaded");
+        toast.success("successfully downloaded");
         const href = URL.createObjectURL(new Blob([output])); // TODO: URL.revokeObjectURL
         const download =
           ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||

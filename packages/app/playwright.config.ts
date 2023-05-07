@@ -14,6 +14,11 @@ const config: PlaywrightTestConfig = {
       name: "chromium",
       use: {
         browserName: "chromium",
+        // https://github.com/microsoft/playwright/issues/1086#issuecomment-592227413
+        viewport: null, // adopt to browser window size specified below
+        launchOptions: {
+          args: ["--window-size=600,800"],
+        },
       },
     },
   ],
