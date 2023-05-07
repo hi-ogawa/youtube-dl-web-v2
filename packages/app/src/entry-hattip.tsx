@@ -17,7 +17,7 @@ const rakkasHandler = createRequestHandler({
   },
 });
 
-// rakkasjs <Head /> in layout.tsx seems to have some issue during dev/hmr
+// rakkasjs <Head /> doesn't support link, script, etc...
 function AppHead() {
   return (
     <>
