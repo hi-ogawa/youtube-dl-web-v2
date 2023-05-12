@@ -14,10 +14,16 @@
     "tsc:dev": "tsc --noEmit --watch --preserveWatchOutput",
     "fix-vercel-output": "cp -f misc/vercel/config.json .vercel/output/config.json && cp -f misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
+    "awslocal": "AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=na AWS_SECRET_ACCESS_KEY=na aws --endpoint-url http://localhost:4566",
+    "s3-reset": "run-s s3-reset:*",
+    "s3-reset:dev": "(pnpm -s awslocal s3 rb s3://dev --force || true) && pnpm -s awslocal s3api create-bucket --bucket dev",
+    "s3-reset:test": "(pnpm -s awslocal s3 rb s3://test --force || true) && pnpm -s awslocal s3api create-bucket --bucket test",
     "release": "vercel deploy --prebuilt .",
     "release-production": "vercel deploy --prebuilt . --prod"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.332.0",
+    "@aws-sdk/s3-request-presigner": "^3.332.0",
     "@floating-ui/react-dom-interactions": "^0.10.3",
     "@hattip/compose": "^0.0.22",
     "@headlessui/react": "^1.7.4",
