@@ -59,8 +59,8 @@ function getTracer() {
   return trace.getTracer("default");
 }
 
-export async function tracePromise<T>(
-  promise: Promise<T>,
+export async function traceAsync<T>(
+  asyncFn: () => T,
   spanName: string,
   spanOptions?: SpanOptions
 ): Promise<T> {
@@ -68,7 +68,7 @@ export async function tracePromise<T>(
   const span = tracer.startSpan(spanName, spanOptions);
   return context.with(trace.setSpan(context.active(), span), async () => {
     try {
-      return await promise;
+      return await asyncFn();
     } catch (e) {
       span.setStatus({ code: SpanStatusCode.ERROR });
       span.recordException(e as any);
@@ -77,6 +77,20 @@ export async function tracePromise<T>(
       span.end();
     }
   });
+}
+
+export function decorateTraceAsync<F extends (...args: any[]) => any>(
+  asyncFn: F,
+  metaFn: (...args: Parameters<F>) => {
+    spanName: string;
+    spanOptions?: SpanOptions;
+  }
+): F {
+  const wrapper = (...args: Parameters<F>) => {
+    const meta = metaFn(...args);
+    return traceAsync(() => asyncFn(...args), meta.spanName, meta.spanOptions);
+  };
+  return wrapper as F;
 }
 
 export const traceRequestHanlder: RequestHandler = async (ctx) => {
