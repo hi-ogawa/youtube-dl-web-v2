@@ -1,7 +1,7 @@
 import { usePrevious } from "@hiogawa/utils-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
+import { Head, LayoutProps, StyledLink, useLocation } from "rakkasjs";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { Drawer } from "../components/drawer";
@@ -65,20 +65,30 @@ function PageHeader(props: LayoutProps) {
             </button>
           </div>
           <div className="flex flex-col gap-4 p-1">
-            <Link
+            <StyledLink
               className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
               href="/"
             >
               <span className="i-ri-home-4-line w-5 h-5"></span>
               Home
-            </Link>
-            <Link
+            </StyledLink>
+            <StyledLink
               className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
               href="/edit"
             >
               <span className="i-ri-edit-2-line w-5 h-5"></span>
               Edit
-            </Link>
+            </StyledLink>
+            <StyledLink
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
+              href="/share"
+            >
+              <span className="i-ri-share-line w-5 h-5"></span>
+              Share
+            </StyledLink>
           </div>
         </div>
       </Drawer>
