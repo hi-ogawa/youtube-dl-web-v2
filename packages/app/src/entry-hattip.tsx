@@ -1,11 +1,11 @@
-import { RequestHandler, compose } from "@hattip/compose";
+import { compose } from "@hattip/compose";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { createRequestHandler } from "rakkasjs";
 import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
 import { trpcHandler } from "./trpc/hattip";
 import { traceRequestHanlder } from "./utils/otel-utils";
-import { initializeServer } from "./utils/server-utils";
+import { initializeServerHandler } from "./utils/server-utils";
 import { WORKER_ASSET_URLS } from "./utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "./utils/worker-client-libwebm";
 
@@ -46,15 +46,6 @@ ${THEME_SCRIPT}
     </>
   );
 }
-
-//
-// one-time server initialization
-//
-
-const initializeServerHandler: RequestHandler = async (ctx) => {
-  await initializeServer();
-  return ctx.next();
-};
 
 //
 // main handler
