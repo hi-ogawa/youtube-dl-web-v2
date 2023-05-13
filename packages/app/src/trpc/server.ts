@@ -10,11 +10,11 @@ export const trpcRoot = trpcRouterFactory({
         id: z.string(),
       })
     )
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
       const id = parseVideoId(input.id);
       tinyassert(id, "invalid video id");
 
-      const videoInfo = fetchVideoInfo(id);
+      const videoInfo = await fetchVideoInfo(id);
       return { videoInfo };
     }),
 });
