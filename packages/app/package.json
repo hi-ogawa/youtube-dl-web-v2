@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.332.0",
+    "@aws-sdk/s3-presigned-post": "^3.332.0",
     "@aws-sdk/s3-request-presigner": "^3.332.0",
     "@floating-ui/react-dom-interactions": "^0.10.3",
     "@hattip/compose": "^0.0.22",
@@ -36,6 +37,9 @@
     "@opentelemetry/sdk-node": "^0.34.0",
     "@opentelemetry/sdk-trace-base": "^1.8.0",
     "@opentelemetry/semantic-conventions": "^1.8.0",
+    "@remix-run/web-fetch": "^4.3.4",
+    "@remix-run/web-file": "^3.0.2",
+    "@remix-run/web-form-data": "^3.0.4",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/react-query-devtools": "^4.29.6",
     "@trpc/client": "^10.26.0",
@@ -48,7 +52,7 @@
     "react-hook-form": "^7.35.0",
     "react-hot-toast": "^2.4.0",
     "react-remove-scroll": "^2.5.5",
-    "zod": "^3.19.1"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@hiogawa/unocss-preset-antd": "2.2.1-pre.2",
@@ -58,7 +62,7 @@
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "@unocss/reset": "^0.46.1",
-    "undici": "^5.12.0",
+    "undici": "^5.22.1",
     "unocss": "0.46.5",
     "vite": "^4.3.5"
   }
