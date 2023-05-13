@@ -81,6 +81,12 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^4.29.6
         version: 4.29.6(@tanstack/react-query@4.29.5)(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/client':
+        specifier: ^10.26.0
+        version: 10.26.0(@trpc/server@10.26.0)
+      '@trpc/server':
+        specifier: ^10.26.0
+        version: 10.26.0
       comlink:
         specifier: ^4.3.1
         version: 4.3.1
@@ -1222,6 +1228,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@trpc/client@10.26.0(@trpc/server@10.26.0):
+    resolution: {integrity: sha512-ojHxQFIE97rBEGPK8p1ijbzo0T1IdEBoJ9fFSgWWL9FMuEEA/DNQ9s0uuiOrDKhCCdTFT1unfRharoJhB2/O2w==}
+    peerDependencies:
+      '@trpc/server': 10.26.0
+    dependencies:
+      '@trpc/server': 10.26.0
+    dev: false
+
+  /@trpc/server@10.26.0:
+    resolution: {integrity: sha512-+Wt0NFAeflVSNiUnHIDNN3C8jP7XIRmYrcgJ6IsAnm0lK4p/FkpCpeu1aig5qxrgZx30PHNDLZ/3FttVSEW2aQ==}
     dev: false
 
   /@tsconfig/strictest@2.0.1:

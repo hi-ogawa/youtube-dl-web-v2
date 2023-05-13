@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Popover } from "../components/popover";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
+import { trpcRQ } from "../trpc/react-query";
 import {
   DownloadProgress,
   download,
@@ -33,7 +34,6 @@ import {
   getThumbnailUrl,
   useYoutubePlayerLoader,
 } from "../utils/youtube-utils";
-import { useMetadata } from "./api/metadata.api";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
@@ -46,7 +46,8 @@ export default function Page() {
     },
   });
 
-  const metadataQuery = useMetadata({
+  const metadataQuery = useMutation({
+    ...trpcRQ.getVideoMetadata.mutationOptions(),
     onError: () => {
       toast.error("failed to fetch video info", {
         id: "metadataQuery.onError",
