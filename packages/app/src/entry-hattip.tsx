@@ -3,6 +3,7 @@ import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.j
 import { createRequestHandler } from "rakkasjs";
 import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
+import { trpcHandler } from "./trpc/hattip";
 import { traceRequestHanlder } from "./utils/otel-utils";
 import { initializeServer } from "./utils/server-utils";
 import { WORKER_ASSET_URLS } from "./utils/worker-client";
@@ -62,5 +63,6 @@ const initializeServerHandler: RequestHandler = async (ctx) => {
 export default compose(
   initializeServerHandler,
   traceRequestHanlder,
+  trpcHandler,
   rakkasHandler
 );
