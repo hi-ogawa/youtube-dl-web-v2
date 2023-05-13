@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
@@ -34,7 +34,7 @@ import {
   getThumbnailUrl,
   useYoutubePlayerLoader,
 } from "../utils/youtube-utils";
-import { useFetchProxy } from "./api/proxy.api";
+import { fetchProxyQueryOptions } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export default function Page() {
@@ -156,14 +156,12 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const isDownloadStarted = Boolean(downloadStream);
 
-  const thumbnailQuery = useFetchProxy(
-    { url: getThumbnailUrl(videoInfo.id) },
-    {
-      onError: () => {
-        toast.error("failed to fetch thumbnail data");
-      },
-    }
-  );
+  const thumbnailQuery = useQuery({
+    ...fetchProxyQueryOptions({ url: getThumbnailUrl(videoInfo.id) }),
+    onError: () => {
+      toast.error("failed to fetch thumbnail data");
+    },
+  });
 
   const handleDownload = form.handleSubmit((data) => {
     tinyassert(data.format_id);

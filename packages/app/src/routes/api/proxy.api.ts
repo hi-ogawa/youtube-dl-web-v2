@@ -1,5 +1,5 @@
 import { tinyassert } from "@hiogawa/utils";
-import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { UseQueryOptions } from "@tanstack/react-query";
 import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
 
@@ -25,25 +25,21 @@ export async function post(ctx: RequestContext) {
 // client
 //
 
-export function fetchProxy(req: ProxyRequest): Promise<Response> {
+function fetchProxy(req: ProxyRequest): Promise<Response> {
   return fetch("/api/proxy", {
     method: "POST",
     body: JSON.stringify(req),
   });
 }
 
-export function useFetchProxy(
-  req: ProxyRequest,
-  options?: UseQueryOptions<Uint8Array>
-) {
-  return useQuery({
-    queryKey: [useFetchProxy.name, req],
+export function fetchProxyQueryOptions(req: ProxyRequest) {
+  return {
+    queryKey: ["/api/proxy", req],
     queryFn: async () => {
       const res = await fetchProxy(req);
       tinyassert(res.ok);
       const buf = await res.arrayBuffer();
       return new Uint8Array(buf);
-    },
-    ...options,
-  });
+    }
+  } satisfies UseQueryOptions;
 }
