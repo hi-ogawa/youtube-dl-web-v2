@@ -6,7 +6,7 @@ import { Asset } from "../utils/s3-utils";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
 export default function Page() {
-  // TODO: infinite query
+  // TODO: paginate
   // TODO: spinner
   const assetsQuery = useQuery({
     ...trpcRQ.listAssets.queryOptions({ cursor: undefined }),

@@ -68,6 +68,7 @@ export const trpcRoot = trpcRouterFactory({
 });
 
 function createDateDescSortKey(date: Date): string {
-  // 14 hexes until new Date(2 ** 52) (next 10^5 years or so)
-  return (Number.MAX_SAFE_INTEGER - date.getTime()).toString(16);
+  return (Number.MAX_SAFE_INTEGER - date.getTime())
+    .toString(16)
+    .padStart(16, "0");
 }

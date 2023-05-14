@@ -15,8 +15,14 @@ export default function Layout(props: LayoutProps) {
         viewport="width=device-width, initial-scale=1.0"
       />
       <AppProvider>
-        <PageHeader {...props} />
-        {props.children}
+        <div className="h-[100vh] flex flex-col relative">
+          <div className="flex-none">
+            <PageHeader {...props} />
+          </div>
+          <div className="flex-1 flex flex-col overflow-y-auto">
+            {props.children}
+          </div>
+        </div>
       </AppProvider>
     </>
   );
@@ -37,7 +43,7 @@ function PageHeader(props: LayoutProps) {
 
   // shadow color taken from https://ant.design/components/overview/
   return (
-    <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
+    <header className="flex-none flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button
         className="pl-1 py-1 antd-btn antd-btn-ghost flex items-center"
         onClick={() => setMenuOpen(true)}
