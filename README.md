@@ -6,6 +6,7 @@ git submodule update --init
 # development
 pnpm i
 pnpm build:deps
+make -C packages/app docker/up localstack/reset # for share feature
 pnpm dev
 
 # deploy
