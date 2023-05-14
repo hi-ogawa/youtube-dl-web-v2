@@ -1,6 +1,11 @@
 version: "3.7"
 
 services:
+  localstack:
+    image: localstack/localstack:2.0.2
+    ports:
+      - 4566:4566
+
   # to test opentelemetry locally (see packages/app/src/utils/otel-utils.ts)
   # https://www.jaegertracing.io/docs/1.39/getting-started/
   jaeger:
@@ -12,3 +17,8 @@ services:
       - 4318:4318
       # UI http://localhost:16686
       - 16686:16686
+    profiles: ["tools"]
+
+  dockerize:
+    image: jwilder/dockerize:0.6.1
+    profiles: ["tools"]

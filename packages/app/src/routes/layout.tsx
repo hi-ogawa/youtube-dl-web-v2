@@ -1,9 +1,9 @@
 import { usePrevious } from "@hiogawa/utils-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head, LayoutProps, Link, useLocation } from "rakkasjs";
+import { Head, LayoutProps, StyledLink, useLocation } from "rakkasjs";
 import React from "react";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { Drawer } from "../components/drawer";
 import { ThemeSelect } from "../components/theme-select";
 
@@ -15,8 +15,14 @@ export default function Layout(props: LayoutProps) {
         viewport="width=device-width, initial-scale=1.0"
       />
       <AppProvider>
-        <PageHeader {...props} />
-        {props.children}
+        <div className="h-[100vh] flex flex-col relative">
+          <div className="flex-none">
+            <PageHeader {...props} />
+          </div>
+          <div className="flex-1 flex flex-col overflow-y-auto">
+            {props.children}
+          </div>
+        </div>
       </AppProvider>
     </>
   );
@@ -37,7 +43,7 @@ function PageHeader(props: LayoutProps) {
 
   // shadow color taken from https://ant.design/components/overview/
   return (
-    <header className="flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
+    <header className="flex-none flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button
         className="pl-1 py-1 antd-btn antd-btn-ghost flex items-center"
         onClick={() => setMenuOpen(true)}
@@ -65,20 +71,30 @@ function PageHeader(props: LayoutProps) {
             </button>
           </div>
           <div className="flex flex-col gap-4 p-1">
-            <Link
+            <StyledLink
               className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
               href="/"
             >
               <span className="i-ri-home-4-line w-5 h-5"></span>
               Home
-            </Link>
-            <Link
+            </StyledLink>
+            <StyledLink
               className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
               href="/edit"
             >
               <span className="i-ri-edit-2-line w-5 h-5"></span>
               Edit
-            </Link>
+            </StyledLink>
+            <StyledLink
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
+              activeClass="antd-menu-item-active"
+              href="/share"
+            >
+              <span className="i-ri-share-line w-5 h-5"></span>
+              Uploaded
+            </StyledLink>
           </div>
         </div>
       </Drawer>
@@ -107,6 +123,14 @@ function CustomQueryClientProvider(props: React.PropsWithChildren) {
             refetchOnWindowFocus: false,
             refetchOnReconnect: false,
             retry: 0,
+            onError: () => {
+              toast.error("unknown network error");
+            },
+          },
+          mutations: {
+            onError: () => {
+              toast.error("unknown network error");
+            },
           },
         },
       })

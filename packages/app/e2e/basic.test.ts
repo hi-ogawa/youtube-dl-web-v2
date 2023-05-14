@@ -37,6 +37,26 @@ test("basic", async ({ page }) => {
   // success message
   await page.waitForSelector("'successfully downloaded'");
   const download = await downloadPromise;
-  const downloadPath = await download.path();
-  expect(downloadPath).toBeDefined();
+  expect(download.suggestedFilename()).toBe(
+    "VULFPECK - Animal Spirits ___ Live at Madison Square Garden.opus"
+  );
+
+  // upload to share
+  await page.getByRole("button", { name: "Upload to share" }).click();
+  await page.getByText("successfuly uploaded").click();
+
+  // check uploaded file
+  await page.getByRole("banner").getByRole("button").first().click();
+  await page.getByRole("link", { name: "Uploaded" }).click();
+  await page.waitForURL("/share");
+  await page
+    .getByText("Animal Spirits /// Live at Madison Square Garden")
+    .click();
+
+  const downloadPromise2 = page.waitForEvent("download");
+  await page.locator(".i-ri-download-line").click();
+  const download2 = await downloadPromise2;
+  expect(download2.suggestedFilename()).toBe(
+    "VULFPECK - Animal Spirits ___ Live at Madison Square Garden.opus"
+  );
 });

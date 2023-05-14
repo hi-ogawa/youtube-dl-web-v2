@@ -5,8 +5,13 @@ import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
 import { trpcHandler } from "./trpc/hattip";
 import { traceRequestHanlder } from "./utils/otel-utils";
+import { initializeServerHandler } from "./utils/server-utils";
 import { WORKER_ASSET_URLS } from "./utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "./utils/worker-client-libwebm";
+
+//
+// rakkas
+//
 
 const rakkasHandler = createRequestHandler({
   createPageHooks(_ctx) {
@@ -42,4 +47,13 @@ ${THEME_SCRIPT}
   );
 }
 
-export default compose(traceRequestHanlder, trpcHandler, rakkasHandler);
+//
+// main handler
+//
+
+export default compose(
+  initializeServerHandler,
+  traceRequestHanlder,
+  trpcHandler,
+  rakkasHandler
+);

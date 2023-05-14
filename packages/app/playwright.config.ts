@@ -1,12 +1,11 @@
 import process from "node:process";
 import { PlaywrightTestConfig } from "@playwright/test";
 
-const PORT = process.env["PORT"] ? Number(process.env["PORT"]) : 5173;
-
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
+  globalSetup: "./src/misc/playwright/setup-global.ts",
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: `http://localhost:15173`,
     trace: process.env["E2E_TRACE"] ? "on" : "off",
   },
   projects: [
@@ -15,7 +14,7 @@ const config: PlaywrightTestConfig = {
       use: {
         browserName: "chromium",
         // https://github.com/microsoft/playwright/issues/1086#issuecomment-592227413
-        viewport: null, // adopt to browser window size specified below
+        viewport: null, // adapt to browser window size specified below
         launchOptions: {
           args: ["--window-size=600,800"],
         },
@@ -23,9 +22,8 @@ const config: PlaywrightTestConfig = {
     },
   ],
   webServer: {
-    command: `pnpm dev >> e2e.log 2>&1`,
-    port: PORT,
-    env: { PORT: `${PORT}` },
+    command: `pnpm dev-e2e >> e2e.log 2>&1`,
+    port: 15173,
     reuseExistingServer: true,
   },
 };
