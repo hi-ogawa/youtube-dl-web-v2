@@ -85,7 +85,10 @@ export function AssetEntryCompoennt({ asset }: { asset: Asset }) {
         </span>
         <div className="absolute right-2 bottom-1">
           <button
-            className="antd-btn antd-btn-ghost i-ri-download-line w-5 h-5"
+            className={cls(
+              "antd-btn antd-btn-ghost w-5 h-5",
+              downloadMutation.isLoading ? "antd-spin" : "i-ri-download-line"
+            )}
             onClick={() => downloadMutation.mutate()}
           />
         </div>
