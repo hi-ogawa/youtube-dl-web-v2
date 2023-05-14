@@ -240,21 +240,16 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const uploadShareMutation = useMutation({
     mutationFn: async (args: { output: Uint8Array; filename: string }) => {
-      const post = await trpcClient.getAssetUploadPost.mutate({
+      const url = await trpcClient.getAssetUploadPutUrl.mutate({
         filename: args.filename,
         contentType: "audio/opus",
         videoId: videoInfo.id,
         title,
         artist,
       });
-      const formData = new FormData();
-      for (const [k, v] of Object.entries(post.fields)) {
-        formData.append(k, v);
-      }
-      formData.append("file", new Blob([args.output]));
-      const res = await fetch(post.url, {
-        method: "POST",
-        body: formData,
+      const res = await fetch(url, {
+        method: "PUT",
+        body: args.output,
       });
       tinyassert(res.ok);
     },

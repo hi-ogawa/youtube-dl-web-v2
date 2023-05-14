@@ -5,9 +5,11 @@ import { z } from "zod";
 import {
   getAssetDownloadUrl,
   getAssetUploadPost,
+  getAssetUploadPutUrl,
   listAssets,
   s3GetDownloadUrl,
   s3GetUploadPost,
+  s3GetUploadPutUrl,
   s3ListObjects,
   s3ResetBucket,
 } from "./s3-utils";
@@ -23,7 +25,8 @@ describe("s3-utils", () => {
       expect(res).toMatchInlineSnapshot("[]");
     }
 
-    {
+    // give up POST since R2 doesn't support it yet
+    if (false as boolean) {
       const { url, fields } = await s3GetUploadPost({ Key: "hello.txt" });
       const formData = new FormData();
       for (const [k, v] of Object.entries(fields)) {
@@ -33,6 +36,13 @@ describe("s3-utils", () => {
       const res = await fetch(url, {
         method: "POST",
         body: formData,
+      });
+      assert.ok(res.ok);
+    } else {
+      const url = await s3GetUploadPutUrl({ Key: "hello.txt" });
+      const res = await fetch(url, {
+        method: "PUT",
+        body: new Blob(["hello world"]),
       });
       assert.ok(res.ok);
     }
@@ -103,7 +113,7 @@ describe("asset-utils", () => {
       `);
     }
 
-    {
+    if (false as boolean) {
       const { url, fields } = await getAssetUploadPost({
         sortKey: "abc",
         filename: "hello.txt",
@@ -118,6 +128,18 @@ describe("asset-utils", () => {
       const res = await fetch(url, {
         method: "POST",
         body: formData,
+      });
+      assert.ok(res.ok);
+    } else {
+      const url = await getAssetUploadPutUrl({
+        sortKey: "abc",
+        filename: "hello.txt",
+        contentType: "plain/txt",
+        videoId: "D-X0jqkguhs",
+      });
+      const res = await fetch(url, {
+        method: "PUT",
+        body: new Blob(["hello world"]),
       });
       assert.ok(res.ok);
     }

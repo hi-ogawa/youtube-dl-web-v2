@@ -3,6 +3,7 @@ import {
   GetObjectCommand,
   GetObjectCommandInput,
   ListObjectsV2CommandInput,
+  PutObjectCommand,
   S3,
 } from "@aws-sdk/client-s3";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
@@ -56,6 +57,16 @@ export async function s3GetDownloadUrl(
   return url;
 }
 
+export async function s3GetUploadPutUrl(options: { Key: string }) {
+  const command = new PutObjectCommand({
+    ...options,
+    Bucket: serverConfig.APP_S3_BUCKET,
+  });
+  const url = await getSignedUrl(s3, command, { expiresIn: 60 * 10 });
+  return url;
+}
+
+// cloudflare R2 currently doesn't support POST upload https://developers.cloudflare.com/r2/api/s3/presigned-urls/
 export async function s3GetUploadPost(options: { Key: string }) {
   const res = await createPresignedPost(s3, {
     ...options,
@@ -129,6 +140,11 @@ function decodeAssetKey(key: string): AssetCreate {
   const [sortKey, restString] = splitFirst(key, "-");
   const rest = JSON.parse(decodeString(restString));
   return Z_ASSET_CREATE.parse({ sortKey, ...rest });
+}
+
+export async function getAssetUploadPutUrl(asset: AssetCreate) {
+  const Key = encodeAssetKey(asset);
+  return s3GetUploadPutUrl({ Key });
 }
 
 export async function getAssetUploadPost(asset: AssetCreate) {

@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   getAssetDownloadUrl,
   getAssetUploadPost,
+  getAssetUploadPutUrl,
   listAssets,
 } from "../utils/s3-utils";
 import { fetchVideoInfo, parseVideoId } from "../utils/youtube-utils";
@@ -32,6 +33,29 @@ export const trpcRoot = trpcRouterFactory({
     )
     .query(async ({ input }) => {
       return listAssets(input);
+    }),
+
+  getAssetUploadPutUrl: trpcProcedureBuilder
+    .input(
+      z.object({
+        filename: z.string(),
+        contentType: z.string(),
+        videoId: z.string(),
+        artist: z.string().optional(),
+        title: z.string().optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const timestamp = new Date();
+      const sortKey = createDateDescSortKey(timestamp);
+      return getAssetUploadPutUrl({
+        sortKey,
+        filename: input.filename,
+        contentType: input.contentType,
+        videoId: input.videoId,
+        artist: input.artist,
+        title: input.title,
+      });
     }),
 
   getAssetUploadPost: trpcProcedureBuilder
