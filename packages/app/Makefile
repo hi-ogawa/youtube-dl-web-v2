@@ -3,6 +3,7 @@
 
 docker/up:
 	docker-compose up -d
+	docker-compose run --rm dockerize -timeout 60s -wait tcp://localstack:4566
 
 docker/down:
 	docker-compose down

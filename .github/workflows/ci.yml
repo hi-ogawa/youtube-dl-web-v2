@@ -20,6 +20,7 @@ jobs:
       - run: pnpm lint-check
       - run: pnpm build:deps
       - run: pnpm tsc
+      - run: make -C packages/app docker/up localstack/reset
       - run: pnpm test
       - run: pnpm build
       - run: npx -C packages/app playwright install chromium --with-deps
