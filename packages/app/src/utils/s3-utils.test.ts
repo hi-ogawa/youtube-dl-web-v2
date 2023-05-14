@@ -108,7 +108,7 @@ describe("asset-utils", () => {
         sortKey: "abc",
         filename: "hello.txt",
         contentType: "plain/txt",
-        extra: { videoId: "D-X0jqkguhs" },
+        videoId: "D-X0jqkguhs",
       });
       const formData = new FormData();
       for (const [k, v] of Object.entries(fields)) {
@@ -129,15 +129,13 @@ describe("asset-utils", () => {
           "assets": [
             {
               "contentType": "plain/txt",
-              "extra": {
-                "videoId": "D-X0jqkguhs",
-              },
               "filename": "hello.txt",
-              "key": "abc-eyJmaWxlbmFtZSI6ImhlbGxvLnR4dCIsImNvbnRlbnRUeXBlIjoicGxhaW4vdHh0IiwiZXh0cmEiOnsidmlkZW9JZCI6IkQtWDBqcWtndWhzIn19",
+              "key": "abc-7b2266696c656e616d65223a2268656c6c6f2e747874222c22636f6e74656e7454797065223a22706c61696e2f747874222c22766964656f4964223a22442d58306a716b67756873227d",
               "sortKey": "abc",
+              "videoId": "D-X0jqkguhs",
             },
           ],
-          "nextCursor": "abc-eyJmaWxlbmFtZSI6ImhlbGxvLnR4dCIsImNvbnRlbnRUeXBlIjoicGxhaW4vdHh0IiwiZXh0cmEiOnsidmlkZW9JZCI6IkQtWDBqcWtndWhzIn19",
+          "nextCursor": "abc-7b2266696c656e616d65223a2268656c6c6f2e747874222c22636f6e74656e7454797065223a22706c61696e2f747874222c22766964656f4964223a22442d58306a716b67756873227d",
         }
       `);
 

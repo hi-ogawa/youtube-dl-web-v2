@@ -1,5 +1,10 @@
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
+import {
+  getAssetDownloadUrl,
+  getAssetUploadPost,
+  listAssets,
+} from "../utils/s3-utils";
 import { fetchVideoInfo, parseVideoId } from "../utils/youtube-utils";
 import { trpcProcedureBuilder, trpcRouterFactory } from "./factory";
 
@@ -17,4 +22,52 @@ export const trpcRoot = trpcRouterFactory({
       const videoInfo = await fetchVideoInfo(id);
       return { videoInfo };
     }),
+
+  listAssets: trpcProcedureBuilder
+    .input(
+      z.object({
+        cursor: z.string().optional(),
+      })
+    )
+    .query(async ({ input }) => {
+      return listAssets(input.cursor);
+    }),
+
+  getAssetUploadPost: trpcProcedureBuilder
+    .input(
+      z.object({
+        filename: z.string(),
+        contentType: z.string(),
+        videoId: z.string(),
+        artist: z.string().optional(),
+        title: z.string().optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const timestamp = new Date();
+      const sortKey = createDateDescSortKey(timestamp);
+      return getAssetUploadPost({
+        sortKey,
+        filename: input.filename,
+        contentType: input.contentType,
+        videoId: input.videoId,
+        artist: input.artist,
+        title: input.title,
+      });
+    }),
+
+  getDownloadUrl: trpcProcedureBuilder
+    .input(
+      z.object({
+        key: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      return getAssetDownloadUrl({ key: input.key });
+    }),
 });
+
+function createDateDescSortKey(date: Date): string {
+  // 14 hexes until new Date(2 ** 52) (next 10^5 years or so)
+  return (Number.MAX_SAFE_INTEGER - date.getTime()).toString(16);
+}

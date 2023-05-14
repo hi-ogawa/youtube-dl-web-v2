@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Popover } from "../components/popover";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
+import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
 import {
   DownloadProgress,
@@ -217,16 +218,16 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         arg.endTime,
         arg.image
       );
-      return { arg, output };
+      const filename =
+        ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
+          "download") + ".opus";
+      return { filename, output };
     },
     {
-      onSuccess: ({ arg, output }) => {
+      onSuccess: ({ filename, output }) => {
         toast.success("successfully downloaded");
         const href = URL.createObjectURL(new Blob([output])); // TODO: URL.revokeObjectURL
-        const download =
-          ([arg.artist, arg.album, arg.title].filter(Boolean).join(" - ") ||
-            "download") + ".opus";
-        triggetDownloadClick({ href, download });
+        triggetDownloadClick({ href, download: filename });
       },
       onError: () => {
         toast.error("failed to create an opus file", {
@@ -235,6 +236,28 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       },
     }
   );
+
+  const uploadShareMutation = useMutation({
+    mutationFn: async (args: { output: Uint8Array; filename: string }) => {
+      const post = await trpcClient.getAssetUploadPost.mutate({
+        filename: args.filename,
+        contentType: "audio/opus",
+        videoId: videoInfo.id,
+        title,
+        artist,
+      });
+      const formData = new FormData();
+      for (const [k, v] of Object.entries(post.fields)) {
+        formData.append(k, v);
+      }
+      formData.append("file", new Blob([args.output]));
+      const res = await fetch(post.url, {
+        method: "POST",
+        body: formData,
+      });
+      tinyassert(res.ok);
+    },
+  });
 
   const [player, setPlayer] = React.useState<YoutubePlayer>();
 
@@ -392,6 +415,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         />
       </div>
       <button
+        type="submit"
         className="p-1 antd-btn antd-btn-primary"
         disabled={Boolean(downloadStream)}
       >
@@ -409,6 +433,22 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           {processFileMutation.isSuccess && <span>Finished!</span>}
         </div>
       </button>
+      {processFileMutation.isSuccess && (
+        <button
+          type="button"
+          className="p-1 antd-btn antd-btn-primary"
+          onClick={() =>
+            uploadShareMutation.mutate({
+              output: processFileMutation.data.output,
+              filename: processFileMutation.data.filename,
+            })
+          }
+        >
+          <div className="flex justify-center items-center relative">
+            Upload to share
+          </div>
+        </button>
+      )}
     </form>
   );
 }

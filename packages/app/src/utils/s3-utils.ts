@@ -93,7 +93,10 @@ const Z_ASSET_CREATE = z.object({
   sortKey: z.string().regex(/^[0-9a-z]*$/),
   filename: z.string(),
   contentType: z.string(),
-  extra: z.record(z.string()),
+  // for app
+  videoId: z.string(),
+  title: z.string().optional(),
+  artist: z.string().optional(),
 });
 
 type AssetCreate = z.infer<typeof Z_ASSET_CREATE>;
@@ -101,11 +104,11 @@ type AssetCreate = z.infer<typeof Z_ASSET_CREATE>;
 type Asset = { key: string } & AssetCreate;
 
 function encodeString(s: string) {
-  return Buffer.from(s, "ascii").toString("base64url");
+  return Buffer.from(s, "ascii").toString("hex");
 }
 
 function decodeString(s: string) {
-  return Buffer.from(s, "base64url").toString("ascii");
+  return Buffer.from(s, "hex").toString("ascii");
 }
 
 function splitFirst(s: string, sep: string): [string, string] {
@@ -118,7 +121,7 @@ function splitFirst(s: string, sep: string): [string, string] {
 
 function encodeAssetKey(asset: AssetCreate): string {
   // parse will move `sortKey` to front
-  const { sortKey, ...rest } = asset;
+  const { sortKey, ...rest } = Z_ASSET_CREATE.parse(asset);
   const restString = encodeString(JSON.stringify(rest));
   return sortKey + "-" + restString;
 }
