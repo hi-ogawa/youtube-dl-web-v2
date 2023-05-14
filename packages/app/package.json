@@ -17,6 +17,7 @@
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "awslocal": "AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=na AWS_SECRET_ACCESS_KEY=na aws --endpoint-url http://localhost:4566",
     "dotenv-staging": "bash misc/dotenv.sh .env.staging",
+    "dotenv-production": "bash misc/dotenv.sh .env.production",
     "release": "vercel deploy --prebuilt .",
     "release-production": "vercel deploy --prebuilt . --prod"
   },
