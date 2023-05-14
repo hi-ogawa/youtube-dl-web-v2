@@ -434,7 +434,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       </button>
       <button
         type="button"
-        className="p-1 antd-btn antd-btn-default"
+        className={cls(
+          "p-1 antd-btn antd-btn-default",
+          uploadShareMutation.isLoading && "antd-btn-loading"
+        )}
         disabled={
           !processFileMutation.isSuccess || uploadShareMutation.isSuccess
         }
