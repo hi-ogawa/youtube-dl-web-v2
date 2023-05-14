@@ -66,7 +66,7 @@ export async function s3GetUploadPost(options: { Key: string }) {
 }
 
 export async function s3ResetBucket() {
-  await spawnPromsie("pnpm s3-reset:test");
+  await spawnPromsie("make localstack/reset/test");
 }
 
 async function spawnPromsie(command: string) {
@@ -101,14 +101,14 @@ const Z_ASSET_CREATE = z.object({
 
 type AssetCreate = z.infer<typeof Z_ASSET_CREATE>;
 
-type Asset = { key: string } & AssetCreate;
+export type Asset = { key: string } & AssetCreate;
 
 function encodeString(s: string) {
-  return Buffer.from(s, "ascii").toString("hex");
+  return Buffer.from(s, "utf8").toString("hex");
 }
 
 function decodeString(s: string) {
-  return Buffer.from(s, "hex").toString("ascii");
+  return Buffer.from(s, "hex").toString("utf8");
 }
 
 function splitFirst(s: string, sep: string): [string, string] {
@@ -120,7 +120,6 @@ function splitFirst(s: string, sep: string): [string, string] {
 }
 
 function encodeAssetKey(asset: AssetCreate): string {
-  // parse will move `sortKey` to front
   const { sortKey, ...rest } = Z_ASSET_CREATE.parse(asset);
   const restString = encodeString(JSON.stringify(rest));
   return sortKey + "-" + restString;
@@ -142,7 +141,9 @@ export async function getAssetDownloadUrl(asset: Pick<Asset, "key">) {
   return s3GetDownloadUrl({
     Key: asset.key,
     ResponseContentType: contentType,
-    ResponseContentDisposition: `attachment; filename="${filename}"`,
+    // cf. https://stackoverflow.com/questions/93551/how-to-encode-the-filename-parameter-of-content-disposition-header-in-http
+    // prettier-ignore
+    ResponseContentDisposition: `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`,
   });
 }
 

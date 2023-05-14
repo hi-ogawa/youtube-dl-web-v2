@@ -8,9 +8,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Popover } from "../components/popover";
-import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
+import { triggerDownloadClick } from "../utils/browser-utils";
 import {
   DownloadProgress,
   download,
@@ -88,7 +88,7 @@ export default function Page() {
             <span>Video ID</span>
             <input
               data-lpignore="true" // https://stackoverflow.com/a/44984917
-              className="antd-input px-1"
+              className="antd-input px-2"
               placeholder="ID or URL"
               {...form.register("id")}
               aria-invalid={metadataQuery.isError}
@@ -106,10 +106,11 @@ export default function Page() {
             </div>
           </button>
         </form>
-        <div className="border-t m-1"></div>
-        {!metadataQuery.isSuccess && <MainFormSkelton />}
         {metadataQuery.isSuccess && (
-          <MainForm videoInfo={metadataQuery.data.videoInfo} />
+          <>
+            <div className="border-t m-1"></div>
+            <MainForm videoInfo={metadataQuery.data.videoInfo} />
+          </>
         )}
       </div>
     </main>
@@ -227,7 +228,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       onSuccess: ({ filename, output }) => {
         toast.success("successfully downloaded");
         const href = URL.createObjectURL(new Blob([output])); // TODO: URL.revokeObjectURL
-        triggetDownloadClick({ href, download: filename });
+        triggerDownloadClick({ href, download: filename });
       },
       onError: () => {
         toast.error("failed to create an opus file", {
@@ -256,6 +257,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         body: formData,
       });
       tinyassert(res.ok);
+    },
+    onSuccess: () => {
+      toast.success("successfuly uploaded");
     },
   });
 
@@ -433,38 +437,26 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           {processFileMutation.isSuccess && <span>Finished!</span>}
         </div>
       </button>
-      {processFileMutation.isSuccess && (
-        <button
-          type="button"
-          className="p-1 antd-btn antd-btn-primary"
-          onClick={() =>
+      <button
+        type="button"
+        className="p-1 antd-btn antd-btn-default"
+        disabled={
+          !processFileMutation.isSuccess || uploadShareMutation.isSuccess
+        }
+        onClick={() => {
+          processFileMutation.isSuccess &&
             uploadShareMutation.mutate({
               output: processFileMutation.data.output,
               filename: processFileMutation.data.filename,
-            })
-          }
-        >
-          <div className="flex justify-center items-center relative">
-            Upload to share
-          </div>
-        </button>
-      )}
+            });
+        }}
+      >
+        <div className="flex justify-center items-center relative">
+          Upload to share
+        </div>
+      </button>
     </form>
   );
-}
-
-function triggetDownloadClick({
-  href,
-  download,
-}: {
-  href: string;
-  download: string;
-}) {
-  // TODO: would it work when the tab is not focused?
-  const a = document.createElement("a");
-  a.setAttribute("href", href);
-  a.setAttribute("download", download);
-  a.click();
 }
 
 interface ProcessFileArg {
@@ -475,45 +467,6 @@ interface ProcessFileArg {
   album?: string;
   startTime?: string;
   endTime?: string;
-}
-
-function MainFormSkelton() {
-  return (
-    <>
-      <VideoPlayerSkelton />
-      <div className="flex flex-col gap-2">
-        <span>Audio</span>
-        <select className="antd-input px-1" disabled></select>
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Title</span>
-        <input className="antd-input px-1" disabled />
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Artist</span>
-        <input className="antd-input px-1" disabled />
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Album</span>
-        <input className="antd-input px-1" disabled />
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Start Time</span>
-        <input className="antd-input px-1" placeholder="hh:mm:ss" disabled />
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>End Time</span>
-        <input className="antd-input px-1" placeholder="hh:mm:ss" disabled />
-      </div>
-      <div className="flex gap-4">
-        <span>Embed Thumbnail</span>
-        <input type="checkbox" disabled />
-      </div>
-      <button className="p-1 antd-btn antd-btn-primary" disabled>
-        Download
-      </button>
-    </>
-  );
 }
 
 function VideoPlayer({
@@ -675,39 +628,6 @@ function VideoPlayer({
             )}
           />
         )}
-      </div>
-    </div>
-  );
-}
-
-function VideoPlayerSkelton() {
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="relative w-full aspect-video overflow-hidden dark:(filter brightness-50)">
-        <img src={PLACEHOLDER_IMAGE} className="absolute w-full h-full" />
-      </div>
-      <div className="flex gap-1.5">
-        <button
-          type="button"
-          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
-          disabled
-        >
-          <span className="i-ri-skip-back-line w-5 h-5"></span>
-        </button>
-        <button
-          type="button"
-          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
-          disabled
-        >
-          <span className="i-ri-play-line w-5 h-5"></span>
-        </button>
-        <button
-          type="button"
-          className="flex-1 p-1 antd-btn antd-btn-default flex justify-center"
-          disabled
-        >
-          <span className="i-ri-skip-forward-line w-5 h-5"></span>
-        </button>
       </div>
     </div>
   );

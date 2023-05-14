@@ -87,7 +87,7 @@ function PageHeader(props: LayoutProps) {
               href="/share"
             >
               <span className="i-ri-share-line w-5 h-5"></span>
-              Share
+              Uploaded
             </StyledLink>
           </div>
         </div>

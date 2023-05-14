@@ -143,6 +143,9 @@ describe("asset-utils", () => {
       const download = await fetch(url);
       tinyassert(download.ok);
       expect(await download.text()).toMatchInlineSnapshot('"hello world"');
+      expect(download.headers.get("content-disposition")).toMatchInlineSnapshot(
+        "\"attachment; filename*=UTF-8''hello.txt\""
+      );
     }
   });
 });
