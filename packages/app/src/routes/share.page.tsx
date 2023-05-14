@@ -1,25 +1,53 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
 import { triggerDownloadClick } from "../utils/browser-utils";
+import { cls } from "../utils/misc";
 import { Asset } from "../utils/s3-utils";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
 export default function Page() {
-  // TODO: paginate
-  // TODO: spinner
-  const assetsQuery = useQuery({
-    ...trpcRQ.listAssets.queryOptions({ cursor: undefined }),
+  const assetsQuery = useInfiniteQuery({
+    ...trpcRQ.listAssets.infiniteQueryOptions(
+      { limit: 5 },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+        setPageParam: (input, pageParam) => ({
+          ...input,
+          cursor: pageParam as any,
+        }),
+      }
+    ),
   });
-  const assets = assetsQuery.data?.assets ?? [];
+  const assets = assetsQuery.data?.pages.flatMap((page) => page.assets);
 
   return (
     <main className="flex flex-col items-center">
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
-        {assets.length === 0 && "Empty"}
-        {assets.map((e) => (
-          <AssetEntryCompoennt asset={e} />
-        ))}
+        {assetsQuery.isInitialLoading && (
+          <div className="flex justify-center">
+            <div className="antd-spin h-8"></div>
+          </div>
+        )}
+        {assetsQuery.isSuccess && (
+          <>
+            {!assets?.length && "Empty"}
+            {assets?.map((e) => (
+              <AssetEntryCompoennt asset={e} />
+            ))}
+          </>
+        )}
+        {assetsQuery.hasNextPage && (
+          <button
+            className={cls(
+              `antd-btn antd-btn-default p-1`,
+              assetsQuery.isFetchingNextPage && "antd-btn-loading"
+            )}
+            onClick={() => assetsQuery.fetchNextPage()}
+          >
+            Load more
+          </button>
+        )}
       </div>
     </main>
   );

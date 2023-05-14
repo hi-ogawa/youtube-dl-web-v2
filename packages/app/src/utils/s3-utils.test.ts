@@ -94,7 +94,7 @@ describe("asset-utils", () => {
 
   it("basic", async () => {
     {
-      const assets = await listAssets();
+      const assets = await listAssets({ limit: 5 });
       expect(assets).toMatchInlineSnapshot(`
         {
           "assets": [],
@@ -123,7 +123,7 @@ describe("asset-utils", () => {
     }
 
     {
-      const res = await listAssets();
+      const res = await listAssets({ limit: 5 });
       expect(res).toMatchInlineSnapshot(`
         {
           "assets": [

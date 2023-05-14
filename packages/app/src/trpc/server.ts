@@ -27,10 +27,11 @@ export const trpcRoot = trpcRouterFactory({
     .input(
       z.object({
         cursor: z.string().optional(),
+        limit: z.number().int().min(1).max(10),
       })
     )
     .query(async ({ input }) => {
-      return listAssets(input.cursor);
+      return listAssets(input);
     }),
 
   getAssetUploadPost: trpcProcedureBuilder

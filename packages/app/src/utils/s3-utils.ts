@@ -147,12 +147,16 @@ export async function getAssetDownloadUrl(asset: Pick<Asset, "key">) {
   });
 }
 
-export async function listAssets(
-  cursor?: string
-): Promise<{ assets: Asset[]; nextCursor?: string }> {
+export async function listAssets({
+  limit,
+  cursor,
+}: {
+  limit: number;
+  cursor?: string;
+}): Promise<{ assets: Asset[]; nextCursor?: string }> {
   const objects = await s3ListObjects({
     StartAfter: cursor,
-    MaxKeys: 5,
+    MaxKeys: limit,
   });
   const keys = objects.map((o) => o.Key).filter(typedBoolean); // TODO: when is `Key` undefined?
   const assets = keys.map((key) => ({ key, ...decodeAssetKey(key) }));
