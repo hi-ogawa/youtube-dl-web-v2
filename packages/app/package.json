@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "rm -rf src/worker/build dist .vercel/output",
     "dev": "pnpm build:worker && run-p rakkas:dev tsc:dev",
-    "dev-e2e": "pnpm build:worker && pnpm rakkas:dev --port 15173",
+    "dev-e2e": "pnpm build:worker && NODE_ENV=test pnpm rakkas:dev --port 15173",
     "build": "run-s build:worker build:app",
     "build:worker": "esbuild ./src/worker/ffmpeg.ts ./src/worker/libwebm.ts --bundle --outdir=./src/worker/build",
     "build:app": "run-s rakkas:build fix-vercel-output",

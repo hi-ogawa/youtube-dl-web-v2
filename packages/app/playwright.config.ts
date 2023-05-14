@@ -3,6 +3,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
+  globalSetup: "./src/misc/playwright/setup-global.ts",
   use: {
     baseURL: `http://localhost:15173`,
     trace: process.env["E2E_TRACE"] ? "on" : "off",
