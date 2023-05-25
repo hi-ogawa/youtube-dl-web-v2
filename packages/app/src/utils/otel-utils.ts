@@ -48,11 +48,17 @@ we comment out `require` manually by patches/@opentelemetry__sdk-node@0.34.0.pat
 
 */
 
+let sdk: NodeSDK | undefined;
+
 export async function initializeOtel() {
   if (!process.env["OTEL_TRACES_EXPORTER"]) return;
 
-  const sdk = new NodeSDK();
+  sdk = new NodeSDK();
   await sdk.start();
+}
+
+export async function finalizeOtel() {
+  await sdk?.shutdown();
 }
 
 function getTracer() {
