@@ -43,6 +43,7 @@ export const trpcRoot = trpcRouterFactory({
         videoId: z.string(),
         artist: z.string().optional(),
         title: z.string().optional(),
+        token: z.string(),
       })
     )
     .mutation(async ({ input }) => {

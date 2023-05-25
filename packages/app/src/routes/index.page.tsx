@@ -249,27 +249,25 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const uploadShareMutation = useMutation({
     mutationFn: async (args: { output: Uint8Array; filename: string }) => {
-      if (publicConfig.APP_CAPTCHA_SITE_KEY) {
-        tinyassert(turnstileRef.current);
-        const turnstileResult = newPromiseWithResolvers<string>();
-        turnstile.render(turnstileRef.current, {
-          sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
-          callback: (token) => {
-            turnstileResult.resolve(token);
-          },
-          "error-callback": (error) => {
-            turnstileResult.reject(error);
-          },
-        });
-        const token = await turnstileResult.promise;
-        console.log("==", { token });
-      }
+      tinyassert(turnstileRef.current);
+      const turnstileResult = newPromiseWithResolvers<string>();
+      turnstile.render(turnstileRef.current, {
+        sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
+        callback: (token) => {
+          turnstileResult.resolve(token);
+        },
+        "error-callback": (error) => {
+          turnstileResult.reject(error);
+        },
+      });
+      const token = await turnstileResult.promise;
       const url = await trpcClient.getAssetUploadPutUrl.mutate({
         filename: args.filename,
         contentType: "audio/opus",
         videoId: videoInfo.id,
         title,
         artist,
+        token,
       });
       const res = await fetch(url, {
         method: "PUT",

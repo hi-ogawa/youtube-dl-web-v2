@@ -13,9 +13,9 @@ const Z_SERVER_CONFIG = z.object({
   APP_S3_REGION: z.string().default("us-east-1"),
   APP_S3_BUCKET: z.string().default(NODE_ENV),
 
-  // captcha
-  APP_CAPTCHA_SITE_KEY: z.string().optional(),
-  APP_CAPTCHA_SECRET_KEY: z.string().optional(),
+  // captcha (default test keys always succeed https://developers.cloudflare.com/turnstile/reference/testing/)
+  APP_CAPTCHA_SITE_KEY: z.string().default("1x00000000000000000000BB"),
+  APP_CAPTCHA_SECRET_KEY: z.string().default("1x0000000000000000000000000000000AA"),
 });
 
 export const Z_PUBLIC_CONFIG = Z_SERVER_CONFIG.pick({
