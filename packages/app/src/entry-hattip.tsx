@@ -4,6 +4,7 @@ import { createRequestHandler } from "rakkasjs";
 import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
 import { trpcHandler } from "./trpc/hattip";
+import { injectPublicConfigScript } from "./utils/config-public";
 import { traceRequestHanlder } from "./utils/otel-utils";
 import {
   initializeServerHandler,
@@ -44,6 +45,11 @@ globalThis.__themeStorageKey = "youtube-dl-web:theme";
 globalThis.__themeDefault = "dark";
 ${THEME_SCRIPT}
 `,
+        }}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: injectPublicConfigScript(),
         }}
       />
     </>

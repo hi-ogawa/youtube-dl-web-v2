@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { tinyassert } from "@hiogawa/utils";
+import { newPromiseWithResolvers, tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
@@ -11,6 +11,7 @@ import { Popover } from "../components/popover";
 import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
 import { triggerDownloadClick } from "../utils/browser-utils";
+import { publicConfig } from "../utils/config-public";
 import {
   DownloadProgress,
   download,
@@ -26,7 +27,7 @@ import {
   parseTimestamp,
 } from "../utils/misc";
 import { usePromiseQueryOpitons } from "../utils/react-query-utils";
-import { loadTurnstileScript } from "../utils/turnstile-utils";
+import { loadTurnstileScript, turnstile } from "../utils/turnstile-utils";
 import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
@@ -244,8 +245,22 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     usePromiseQueryOpitons(() => loadTurnstileScript().then(() => null))
   );
 
+  const turnstileRef = React.useRef<HTMLDivElement>(null);
+
   const uploadShareMutation = useMutation({
     mutationFn: async (args: { output: Uint8Array; filename: string }) => {
+      if (publicConfig.APP_CAPTCHA_SITE_KEY) {
+        tinyassert(turnstileRef.current);
+        const turnstileResult = newPromiseWithResolvers<string>();
+        turnstile.render(turnstileRef.current, {
+          sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
+          callback(token) {
+            turnstileResult.resolve(token);
+          },
+        });
+        const token = await turnstileResult.promise;
+        console.log("==", { token });
+      }
       const url = await trpcClient.getAssetUploadPutUrl.mutate({
         filename: args.filename,
         contentType: "audio/opus",
@@ -461,6 +476,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           Upload to share
         </div>
       </button>
+      <div ref={turnstileRef}></div>
     </form>
   );
 }

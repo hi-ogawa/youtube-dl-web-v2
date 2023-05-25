@@ -1,5 +1,6 @@
 import process from "node:process";
 import { z } from "zod";
+import { initializePublicConfigServer } from "./config-public";
 
 const NODE_ENV = process.env["NODE_ENV"] ?? "development";
 
@@ -17,8 +18,13 @@ const Z_SERVER_CONFIG = z.object({
   APP_CAPTCHA_SECRET_KEY: z.string().optional(),
 });
 
+export const Z_PUBLIC_CONFIG = Z_SERVER_CONFIG.pick({
+  APP_CAPTCHA_SITE_KEY: true,
+});
+
 export let serverConfig: z.infer<typeof Z_SERVER_CONFIG>;
 
 export function initializeConfig() {
   serverConfig = Z_SERVER_CONFIG.parse(process.env);
+  initializePublicConfigServer(Z_PUBLIC_CONFIG.parse(serverConfig));
 }
