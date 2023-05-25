@@ -25,6 +25,8 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
+import { usePromiseQueryOpitons } from "../utils/react-query-utils";
+import { loadTurnstileScript } from "../utils/turnstile-utils";
 import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
@@ -37,8 +39,6 @@ import {
 } from "../utils/youtube-utils";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
-import { usePromiseQueryOpitons } from "../utils/react-query-utils";
-import { loadTurnstileScript } from "../utils/turnstile-utils";
 
 export default function Page() {
   const hydrated = useHydrated();
