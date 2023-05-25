@@ -1,7 +1,7 @@
 import process from "node:process";
 import type { RequestHandler } from "@hattip/compose";
-import { once } from "@hiogawa/utils";
 import {
+  Span,
   SpanKind,
   SpanOptions,
   SpanStatusCode,
@@ -48,27 +48,30 @@ we comment out `require` manually by patches/@opentelemetry__sdk-node@0.34.0.pat
 
 */
 
-const initializeOtel = once(async () => {
+export async function initializeOtel() {
   if (!process.env["OTEL_TRACES_EXPORTER"]) return;
 
   const sdk = new NodeSDK();
   await sdk.start();
-});
+}
 
 function getTracer() {
   return trace.getTracer("default");
 }
 
 export async function traceAsync<T>(
-  asyncFn: () => T,
-  spanName: string,
-  spanOptions?: SpanOptions
-): Promise<T> {
-  const tracer = getTracer();
-  const span = tracer.startSpan(spanName, spanOptions);
-  return context.with(trace.setSpan(context.active(), span), async () => {
+  meta: {
+    name: string;
+    options?: SpanOptions;
+  },
+  asyncFn: (span: Span) => T
+): Promise<Awaited<T>> {
+  const span = getTracer().startSpan(meta.name, meta.options);
+  // redundant async/await to workaround typing
+  return await context.with(trace.setSpan(context.active(), span), async () => {
     try {
-      return await asyncFn();
+      // span can be also accessed by `trace.getActiveSpan()`
+      return await asyncFn(span);
     } catch (e) {
       span.setStatus({ code: SpanStatusCode.ERROR });
       span.recordException(e as any);
@@ -79,53 +82,29 @@ export async function traceAsync<T>(
   });
 }
 
-export function decorateTraceAsync<F extends (...args: any[]) => any>(
-  asyncFn: F,
-  metaFn: (...args: Parameters<F>) => {
-    spanName: string;
-    spanOptions?: SpanOptions;
-  }
-): F {
-  const wrapper = (...args: Parameters<F>) => {
-    const meta = metaFn(...args);
-    return traceAsync(() => asyncFn(...args), meta.spanName, meta.spanOptions);
-  };
-  return wrapper as F;
-}
-
-export const traceRequestHanlder: RequestHandler = async (ctx) => {
-  await initializeOtel();
-
-  const { request, ip } = ctx;
-  const url = new URL(request.url);
-  // create span
-  const span = getTracer().startSpan("request-handler", {
-    kind: SpanKind.SERVER,
-    // request attirbutes
-    attributes: {
-      [SemanticAttributes.HTTP_METHOD]: request.method,
-      [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
-      [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
-      [SemanticAttributes.HTTP_CLIENT_IP]: ip,
-      [SemanticAttributes.NET_HOST_NAME]: url.hostname,
-      [SemanticAttributes.NET_HOST_PORT]: url.port,
+export const traceRequestHanlder: RequestHandler = (ctx) => {
+  const { url } = ctx;
+  return traceAsync(
+    {
+      name: `${ctx.method} ${url.pathname}`, // TODO: resolve rakkasjs dynamic route
+      options: {
+        kind: SpanKind.SERVER,
+        attributes: {
+          [SemanticAttributes.HTTP_METHOD]: ctx.method,
+          [SemanticAttributes.HTTP_SCHEME]: url.protocol.slice(0, -1),
+          [SemanticAttributes.HTTP_TARGET]: url.pathname + url.search,
+          [SemanticAttributes.HTTP_CLIENT_IP]: ctx.ip,
+          [SemanticAttributes.NET_HOST_NAME]: url.hostname,
+          [SemanticAttributes.NET_HOST_PORT]: url.port,
+        },
+      },
     },
-  });
-  // wrap with context
-  return context.with(trace.setSpan(context.active(), span), async () => {
-    try {
+    async (span) => {
       const response = await ctx.next();
-      // reponse attributes
       span.setAttributes({
         [SemanticAttributes.HTTP_STATUS_CODE]: response.status,
       });
       return response;
-    } catch (e) {
-      span.setStatus({ code: SpanStatusCode.ERROR });
-      span.recordException(e as any);
-      throw e;
-    } finally {
-      span.end();
     }
-  });
+  );
 };
