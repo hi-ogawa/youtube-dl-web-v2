@@ -5,7 +5,10 @@ import { renderToString } from "react-dom/server";
 import ICON_URL from "./assets/icon-32.png?url";
 import { trpcHandler } from "./trpc/hattip";
 import { traceRequestHanlder } from "./utils/otel-utils";
-import { initializeServerHandler } from "./utils/server-utils";
+import {
+  initializeServerHandler,
+  setupFianlizeServer,
+} from "./utils/server-utils";
 import { WORKER_ASSET_URLS } from "./utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "./utils/worker-client-libwebm";
 
@@ -57,3 +60,5 @@ export default compose(
   trpcHandler,
   rakkasHandler
 );
+
+setupFianlizeServer();

@@ -1,5 +1,9 @@
 import { usePrevious } from "@hiogawa/utils-react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Head, LayoutProps, StyledLink, useLocation } from "rakkasjs";
 import React from "react";
@@ -123,16 +127,20 @@ function CustomQueryClientProvider(props: React.PropsWithChildren) {
             refetchOnWindowFocus: false,
             refetchOnReconnect: false,
             retry: 0,
-            onError: () => {
-              toast.error("unknown network error");
-            },
           },
           mutations: {
-            onError: () => {
-              toast.error("unknown network error");
+            onError: (error) => {
+              console.error("mutation error", error);
+              toast.error("something went wrong...");
             },
           },
         },
+        queryCache: new QueryCache({
+          onError(error, _query) {
+            console.error("query error", error);
+            toast.error("something went wrong...");
+          },
+        }),
       })
   );
   return (

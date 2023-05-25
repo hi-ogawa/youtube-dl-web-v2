@@ -33,3 +33,14 @@ export function decodePayload(searchParams: URLSearchParams): unknown {
   tinyassert(s);
   return JSON.parse(s);
 }
+
+//
+// headers
+//
+
+export const PRESET_HEADERS = {
+  // fully cache on CDN (cf. https://vercel.com/docs/concepts/functions/serverless-functions/edge-caching)
+  CACHE_CDN: {
+    "cache-control": "public, max-age=0, s-max-age=31536000",
+  },
+};
