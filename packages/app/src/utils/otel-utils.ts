@@ -88,6 +88,19 @@ export async function traceAsync<T>(
   });
 }
 
+export function decorateTraceAsync<F extends (...args: any[]) => any>(
+  metaFn: (...args: Parameters<F>) => {
+    name: string;
+    options?: SpanOptions;
+  },
+  asyncFn: F
+): F {
+  const wrapper = (...args: Parameters<F>) => {
+    return traceAsync(metaFn(...args), () => asyncFn(...args));
+  };
+  return wrapper as F;
+}
+
 export const traceRequestHanlder: RequestHandler = (ctx) => {
   const { url } = ctx;
   return traceAsync(

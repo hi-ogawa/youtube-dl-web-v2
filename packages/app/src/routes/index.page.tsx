@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
-import { tinyassert } from "@hiogawa/utils";
+import { newPromiseWithResolvers, tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
@@ -11,6 +11,7 @@ import { Popover } from "../components/popover";
 import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
 import { triggerDownloadClick } from "../utils/browser-utils";
+import { publicConfig } from "../utils/config-public";
 import {
   DownloadProgress,
   download,
@@ -25,6 +26,8 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
+import { usePromiseQueryOpitons } from "../utils/react-query-utils";
+import { loadTurnstileScript, turnstile } from "../utils/turnstile-utils";
 import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
@@ -238,14 +241,33 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
+  const turnstileScriptQuery = useQuery(
+    usePromiseQueryOpitons(() => loadTurnstileScript().then(() => null))
+  );
+
+  const turnstileRef = React.useRef<HTMLDivElement>(null);
+
   const uploadShareMutation = useMutation({
     mutationFn: async (args: { output: Uint8Array; filename: string }) => {
+      tinyassert(turnstileRef.current);
+      const turnstileResult = newPromiseWithResolvers<string>();
+      turnstile.render(turnstileRef.current, {
+        sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
+        callback: (token) => {
+          turnstileResult.resolve(token);
+        },
+        "error-callback": (error) => {
+          turnstileResult.reject(error);
+        },
+      });
+      const token = await turnstileResult.promise;
       const url = await trpcClient.getAssetUploadPutUrl.mutate({
         filename: args.filename,
         contentType: "audio/opus",
         videoId: videoInfo.id,
         title,
         artist,
+        token,
       });
       const res = await fetch(url, {
         method: "PUT",
@@ -439,7 +461,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           uploadShareMutation.isLoading && "antd-btn-loading"
         )}
         disabled={
-          !processFileMutation.isSuccess || uploadShareMutation.isSuccess
+          !turnstileScriptQuery.isSuccess ||
+          !processFileMutation.isSuccess ||
+          uploadShareMutation.isSuccess
         }
         onClick={() => {
           processFileMutation.isSuccess &&
@@ -453,6 +477,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           Upload to share
         </div>
       </button>
+      <div ref={turnstileRef}></div>
     </form>
   );
 }

@@ -6,6 +6,7 @@ import {
   getAssetUploadPutUrl,
   listAssets,
 } from "../utils/s3-utils";
+import { verifyTurnstile } from "../utils/turnstile-utils-server";
 import { fetchVideoInfo, parseVideoId } from "../utils/youtube-utils";
 import { trpcProcedureBuilder, trpcRouterFactory } from "./factory";
 
@@ -43,9 +44,12 @@ export const trpcRoot = trpcRouterFactory({
         videoId: z.string(),
         artist: z.string().optional(),
         title: z.string().optional(),
+        token: z.string(),
       })
     )
     .mutation(async ({ input }) => {
+      await verifyTurnstile({ response: input.token });
+
       const timestamp = new Date();
       const sortKey = createDateDescSortKey(timestamp);
       return getAssetUploadPutUrl({
