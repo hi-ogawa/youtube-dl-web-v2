@@ -3,6 +3,7 @@ set -eu -o pipefail
 
 # usage:
 #   pnpm dotenv-staging bash misc/vercel/copy-env.sh preview APP_S3_ENDPOINT
+#   pnpm dotenv-production bash misc/vercel/copy-env.sh production APP_S3_ENDPOINT
 
 target="$1"
 shift
