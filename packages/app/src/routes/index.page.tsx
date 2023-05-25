@@ -254,8 +254,11 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         const turnstileResult = newPromiseWithResolvers<string>();
         turnstile.render(turnstileRef.current, {
           sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
-          callback(token) {
+          callback: (token) => {
             turnstileResult.resolve(token);
+          },
+          "error-callback": (error) => {
+            turnstileResult.reject(error);
           },
         });
         const token = await turnstileResult.promise;

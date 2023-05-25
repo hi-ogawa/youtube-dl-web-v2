@@ -9,6 +9,7 @@ export let turnstile: {
     params: {
       sitekey: string;
       callback: (token: string) => void;
+      "error-callback": (error: unknown) => void;
     }
   ) => string | undefined;
 };
