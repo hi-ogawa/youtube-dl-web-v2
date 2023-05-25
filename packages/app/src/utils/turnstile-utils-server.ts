@@ -1,10 +1,11 @@
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
 import { serverConfig } from "./config";
+import { decorateTraceAsync } from "./otel-utils";
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
 
-export async function verifyTurnstile(options: { response: string }) {
+export let verifyTurnstile = async (options: { response: string }) => {
   const res = await fetch(
     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
     {
@@ -21,7 +22,12 @@ export async function verifyTurnstile(options: { response: string }) {
   tinyassert(res.ok);
   const data = Z_SITE_VERIFY.parse(await res.json());
   tinyassert(data.success);
-}
+};
+
+verifyTurnstile = decorateTraceAsync(
+  () => ({ name: "verifyTurnstile" }),
+  verifyTurnstile
+);
 
 const Z_SITE_VERIFY = z
   .object({
