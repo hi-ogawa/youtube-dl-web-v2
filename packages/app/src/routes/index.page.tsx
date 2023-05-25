@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
 import { navigate } from "rakkasjs";
 import React from "react";
@@ -37,6 +37,8 @@ import {
 } from "../utils/youtube-utils";
 import { useFetchProxy } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
+import { usePromiseQueryOpitons } from "../utils/react-query-utils";
+import { loadTurnstileScript } from "../utils/turnstile-utils";
 
 export default function Page() {
   const hydrated = useHydrated();
@@ -236,6 +238,10 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         });
       },
     }
+  );
+
+  const turnstileScriptQuery = useQuery(
+    usePromiseQueryOpitons(() => loadTurnstileScript().then(() => null))
   );
 
   const uploadShareMutation = useMutation({
@@ -439,7 +445,9 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           uploadShareMutation.isLoading && "antd-btn-loading"
         )}
         disabled={
-          !processFileMutation.isSuccess || uploadShareMutation.isSuccess
+          !turnstileScriptQuery.isSuccess ||
+          !processFileMutation.isSuccess ||
+          uploadShareMutation.isSuccess
         }
         onClick={() => {
           processFileMutation.isSuccess &&
