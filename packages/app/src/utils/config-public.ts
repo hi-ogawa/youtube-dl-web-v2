@@ -12,7 +12,6 @@ const __publicConfig = "__publicConfig";
 
 export function initializePublicConfigClient() {
   publicConfig = (globalThis as any)[__publicConfig];
-  console.log({ publicConfig });
 }
 
 export function injectPublicConfigScript() {
