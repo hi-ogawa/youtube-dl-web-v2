@@ -406,7 +406,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
             <span className="i-ri-time-line w-4 h-4"></span>
           </button>
           <button
-            className="p-0.5 atnd-btn atnd-btn-default flex items-center"
+            className="p-0.5 atnd-btn antd-btn-default flex items-center"
             type="button"
             disabled={!player}
             onClick={() => {
@@ -601,7 +601,7 @@ function VideoPlayer({
                 leaveTo="scale-80 opacity-0"
                 {...props}
               >
-                <div className="bg-[var(--antd-popover-background)] shadow-[var(--antd-box-shadow-base)] max-w-[250px] max-h-[400px] overflow-y-auto">
+                <div className="antd-floating max-w-[250px] max-h-[400px] overflow-y-auto">
                   <ul className="flex flex-col">
                     {timestampOptions.map((t) => (
                       <li
