@@ -88,17 +88,71 @@ export async function traceAsync<T>(
   });
 }
 
-export function decorateTraceAsync<F extends (...args: any[]) => any>(
-  metaFn: (...args: Parameters<F>) => {
-    name: string;
-    options?: SpanOptions;
-  },
-  asyncFn: F
+type SpanMetaFn<F extends (...args: any[]) => any> = (
+  ...args: Parameters<F>
+) => {
+  name: string;
+  options?: SpanOptions;
+};
+
+export function wrapTraceAsync<F extends (...args: any[]) => any>(
+  asyncFn: F,
+  metaFn: SpanMetaFn<F>
 ): F {
-  const wrapper = (...args: Parameters<F>) => {
-    return traceAsync(metaFn(...args), () => asyncFn(...args));
-  };
+  function wrapper(this: unknown, ...args: Parameters<F>) {
+    return traceAsync(metaFn(...args), () => asyncFn.apply(this, args));
+  }
   return wrapper as F;
+}
+
+type FunctionKeyOf<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => any ? K : never;
+}[keyof T];
+
+export function patchTraceAsync<T extends object, K extends FunctionKeyOf<T>>(
+  patchee: T,
+  key: K,
+  metaFn: SpanMetaFn<T[K]>
+) {
+  const original = patchee[key] as any;
+  function wrapper(this: T, ...args: Parameters<T[K]>) {
+    return traceAsync(metaFn(...args), () => original.apply(this, args));
+  }
+  patchee[key] = wrapper as any;
+}
+
+export function patchPrototypeTraceAsync<
+  T extends object,
+  K extends FunctionKeyOf<T>
+>(
+  klass: { name: string; prototype: T },
+  key: K,
+  metaFn: SpanMetaFn<T[K]> = () => ({ name: `${klass.name}.${String(key)}` })
+) {
+  const original = klass.prototype[key] as any;
+  function wrapper(this: T, ...args: Parameters<T[K]>) {
+    return traceAsync(metaFn(...args), () => original.apply(this, args));
+  }
+  klass.prototype[key] = wrapper as any;
+}
+
+type PatchProxy<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => any
+    ? (metaFn: SpanMetaFn<T[K]>) => void
+    : never;
+};
+
+export function patchProxyTraceAsync<T>(patchee: T): PatchProxy<T> {
+  return new Proxy(
+    {},
+    {
+      get(_target, p, _receiver) {
+        return (metaFn: any) => {
+          patchTraceAsync(patchee as any, p as any, metaFn);
+        };
+      },
+    }
+  ) as any;
 }
 
 export const traceRequestHanlder: RequestHandler = (ctx) => {
