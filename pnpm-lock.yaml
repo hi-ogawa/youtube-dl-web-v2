@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 patchedDependencies:
   '@opentelemetry/sdk-node@0.34.0':
     hash: m4llepgnp3xpvtv4bfixmognmm
@@ -135,7 +139,10 @@ importers:
     devDependencies:
       '@hiogawa/unocss-preset-antd':
         specifier: 2.2.1-pre.2
-        version: 2.2.1-pre.2(@unocss/preset-uno@0.52.3)(unocss@0.46.5)
+        version: 2.2.1-pre.2(@unocss/preset-uno@0.46.5)(unocss@0.46.5)
+      '@hiogawa/vite-glob-routes':
+        specifier: ^0.0.0
+        version: 0.0.0(@hattip/compose@0.0.22)(react-router@6.13.0)(vite@4.3.5)
       '@iconify-json/ri':
         specifier: ^1.1.3
         version: 1.1.3
@@ -154,6 +161,9 @@ importers:
       '@unocss/reset':
         specifier: ^0.46.1
         version: 0.46.1
+      react-router:
+        specifier: ^6.13.0
+        version: 6.13.0(react@18.2.0)
       undici:
         specifier: ^5.22.1
         version: 5.22.1
@@ -1710,7 +1720,6 @@ packages:
     resolution: {integrity: sha512-x96UQq1bis6g9TZHtpBbBPnTfKN7P4Pk6rTjBQnv9K9sQQnmv3QxzWYZ/FT+qvFCfnZ/Wd50ZT7aKl/Mj+B1Kg==}
     dependencies:
       '@hattip/core': 0.0.22
-    dev: false
 
   /@hattip/compose@0.0.33:
     resolution: {integrity: sha512-/T0bE+/i7E285KIkMK6bMzr276uUGjWaiVyQqs7Up9IEezRdsjtjc+KV+91Rl2unfu1jdz+D8+khYqexHuSNYw==}
@@ -1720,7 +1729,6 @@ packages:
 
   /@hattip/core@0.0.22:
     resolution: {integrity: sha512-C3SNVpDOPwDff3jigPhGr2bWe+B/1tvaFTP2nVu90VFmWCVZ6y0dT81RiBHjiRCoYX82KgAyxBiN1WD/YbgM+w==}
-    dev: false
 
   /@hattip/core@0.0.33:
     resolution: {integrity: sha512-/3hhN1PYMwDDSF1zqVHEHgFHhwB2YxDPBByLZFPQG6euPTODxG9/RMpZ9YJ4cYatshSAGGwSfNXUVpflMLbJTg==}
@@ -1762,13 +1770,13 @@ packages:
       typescript: 5.0.4
     dev: true
 
-  /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.52.3)(unocss@0.46.5):
+  /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.46.5)(unocss@0.46.5):
     resolution: {integrity: sha512-IyLBst49BiscFZ+lcO1d2fJ7S7YhEK+ikgZNymtgbcMYhIbgzY6Qju4FW5BpBivQ3csMblzvgz+sfJDaXC0viw==}
     peerDependencies:
       '@unocss/preset-uno': '*'
       unocss: '*'
     dependencies:
-      '@unocss/preset-uno': 0.52.3
+      '@unocss/preset-uno': 0.46.5
       '@unocss/reset': 0.48.5
       local-pkg: 0.4.3
       unocss: 0.46.5(vite@4.3.5)
@@ -1788,6 +1796,18 @@ packages:
 
   /@hiogawa/utils@1.4.2-pre.9:
     resolution: {integrity: sha512-XT5XROUx3NL9Al4nEt2VZEIY4dDrxT3vVjQWy0kpu0vnSn81JuDfM7TiX5Sbo6oiAtQkjX9XbTfns8VKDtB0Mg==}
+    dev: true
+
+  /@hiogawa/vite-glob-routes@0.0.0(@hattip/compose@0.0.22)(react-router@6.13.0)(vite@4.3.5):
+    resolution: {integrity: sha512-KEps7dnVcC4V434WmZTAlzq1RZsIGw0xR6Jz/Rgv+bxiDnWffOE4PGeay14gfNDLAbtN/sZRci72OeUcicqkaA==}
+    peerDependencies:
+      '@hattip/compose': '*'
+      react-router: '*'
+      vite: '*'
+    dependencies:
+      '@hattip/compose': 0.0.22
+      react-router: 6.13.0(react@18.2.0)
+      vite: 4.3.5
     dev: true
 
   /@iconify-json/ri@1.1.3:
@@ -2180,6 +2200,11 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
 
+  /@remix-run/router@1.6.3:
+    resolution: {integrity: sha512-EXJysQ7J3veRECd0kZFQwYYd5sJMcq2O/m60zu1W2l3oVQ9xtub8jTOtYRE0+M2iomyG/W3Ps7+vp2kna0C27Q==}
+    engines: {node: '>=14'}
+    dev: true
+
   /@remix-run/web-blob@3.0.4:
     resolution: {integrity: sha512-AfegzZvSSDc+LwnXV+SwROTrDtoLiPxeFW+jxgvtDAnkuCX1rrzmVJ6CzqZ1Ai0bVfmJadkG5GxtAfYclpPmgw==}
     dependencies:
@@ -2406,16 +2431,6 @@ packages:
     resolution: {integrity: sha512-apPWISH2ASKySyp4vBAkEzr5XNJDv4mu26eQ4wvg2a32cHRokUsiHLWFNMDe7oJquivTAOHsXqbLQuR9ePKNSg==}
     dev: true
 
-  /@unocss/core@0.52.3:
-    resolution: {integrity: sha512-AdpksuSj1+jAjF7Ek1Ubtt+pE/bi4EmVqz/sx7PTgp9RUyBX1457kDlSWJPFOvEEkKL8VLtwXB46hD2oPAp36Q==}
-    dev: true
-
-  /@unocss/extractor-arbitrary-variants@0.52.3:
-    resolution: {integrity: sha512-dEDQ9mfwlS/aC420iRO6wUT1p0z2WBH5nupTdVgrU9Wjtff+NmLaas78skN+GPE5FCPXgKTJJsaDX6+etc/hrw==}
-    dependencies:
-      '@unocss/core': 0.52.3
-    dev: true
-
   /@unocss/inspector@0.46.5:
     resolution: {integrity: sha512-L7bMqtp94qtADeGm0ZU1IPtRatChSqHHxFG2s11+VuElPjktcnwnEfTPY5Obm++sy0kNNPU0M3xJD4TPk/M22g==}
     dependencies:
@@ -2445,13 +2460,6 @@ packages:
       '@unocss/core': 0.46.5
     dev: true
 
-  /@unocss/preset-mini@0.52.3:
-    resolution: {integrity: sha512-9KJMlO3YF6UZRgua3js7pTh8lImMFLbtTpGWrrRNojJH2MvsmQNd4OlWLDobs3jUJG+4tlYiSH175Y3bdEHVXQ==}
-    dependencies:
-      '@unocss/core': 0.52.3
-      '@unocss/extractor-arbitrary-variants': 0.52.3
-    dev: true
-
   /@unocss/preset-tagify@0.46.5:
     resolution: {integrity: sha512-lE+nmm9Bf8ckr4pmVHzHYkLiePnfiC/HQTPHaa9CmRiBtUEljiMt/RVnRu/R7yuel+DDLdX7GfGg4oNstVB7Cg==}
     dependencies:
@@ -2472,14 +2480,6 @@ packages:
       '@unocss/preset-wind': 0.46.5
     dev: true
 
-  /@unocss/preset-uno@0.52.3:
-    resolution: {integrity: sha512-6rNjthD517yUBST3efxE5dsiErYf198RNh6fV8Fxhw0JwI+X1B9e5lzhviuyXbJj+qvJTpZFYcebyVxlzyT1lQ==}
-    dependencies:
-      '@unocss/core': 0.52.3
-      '@unocss/preset-mini': 0.52.3
-      '@unocss/preset-wind': 0.52.3
-    dev: true
-
   /@unocss/preset-web-fonts@0.46.5:
     resolution: {integrity: sha512-ITOtD9AeklSqsVzBlK6wKbABQnD1o9wubN4bGkz7cd0G0GEt7YkW9dYwmXPYqo9Stoga92MJPy/Z2mxKT0ejVw==}
     dependencies:
@@ -2492,13 +2492,6 @@ packages:
     dependencies:
       '@unocss/core': 0.46.5
       '@unocss/preset-mini': 0.46.5
-    dev: true
-
-  /@unocss/preset-wind@0.52.3:
-    resolution: {integrity: sha512-YBfn1goa509Xxet2+mJimUkVO9t1rsTcqv5ytDpA9kUMNMdR8hrHh6hyM6WPB5Pg8/B7yQ739iZ6dkfbr/UFgQ==}
-    dependencies:
-      '@unocss/core': 0.52.3
-      '@unocss/preset-mini': 0.52.3
     dev: true
 
   /@unocss/reset@0.46.1:
@@ -3768,7 +3761,6 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: false
 
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
@@ -3847,7 +3839,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /loupe@2.3.4:
     resolution: {integrity: sha512-OvKfgCC2Ndby6aSTREl5aCCPTNIzlDfQZvZxNUrBrihDhL3xcrYegTblhmEiCrg2kKQz4XsFIaemE5BF4ybSaQ==}
@@ -4350,6 +4341,16 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.0.23)(react@18.2.0)
     dev: false
 
+  /react-router@6.13.0(react@18.2.0):
+    resolution: {integrity: sha512-Si6KnfEnJw7gUQkNa70dlpI1bul46FuSxX5t5WwlUBxE25DAz2BjVkwaK8Y2s242bQrZPXCpmwLPtIO5pv4tXg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.6.3
+      react: 18.2.0
+    dev: true
+
   /react-style-singleton@2.2.1(@types/react@18.0.23)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
     engines: {node: '>=10'}
@@ -4372,7 +4373,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-pkg@3.0.0:
     resolution: {integrity: sha512-BLq/cCO9two+lBgiTYNqD6GdtK8s4NpaWrl6/rCO9w0TUS8oJl7cmToOZfRYllKTISY6nt1U7jQ53brmKqY6BA==}
