@@ -12,10 +12,7 @@ export default defineConfig((ctx) => ({
     vaviteConnect({
       standalone: false,
       serveClientAssetsInDev: true,
-      handlerEntry:
-        ctx.command === "build"
-          ? "./src/server/entry-vercel-edge.ts"
-          : "./src/server/entry-connect.ts",
+      handlerEntry: "./src/server/entry-connect.ts",
     }),
   ],
   build: {
@@ -23,8 +20,10 @@ export default defineConfig((ctx) => ({
     sourcemap: true,
   },
   ssr: {
-    // TODO: "node" doesn't bundle raw string import (index.html?raw)?
-    target: "webworker",
+    optimizeDeps: {
+      // workaround transitive cjs deps by aws-sdk
+      include: ["fast-xml-parser"],
+    },
   },
   clearScreen: false,
 }));

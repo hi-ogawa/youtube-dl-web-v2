@@ -1,9 +1,7 @@
 #!/bin/bash
 set -eu -o pipefail
 
-# copied from https://github.com/hi-ogawa/vite-server-build-example/blob/cd85c7542827f78a81b8177a689922209cab0597/misc/vercel/build.sh#L4-L6
-
-# https://vercel.com/docs/build-output-api/v3/primitives#edge-functions
+# cf. https://github.com/hi-ogawa/vite-server-build-example/blob/cd85c7542827f78a81b8177a689922209cab0597/misc/vercel/build.sh#L4-L6
 
 # .vercel/
 #   project.json
@@ -13,7 +11,7 @@ set -eu -o pipefail
 #     functions/
 #       index.func/
 #         .vc-config.json
-#         index.js         = dist/server/index.mjs
+#         index.js         = dist/server/index.js bundled by esbuild
 
 # clean
 rm -rf .vercel/output
@@ -26,5 +24,5 @@ cp misc/vercel/config.json .vercel/output/config.json
 cp -r dist/client .vercel/output/static
 
 # serverless
-cp dist/server/index.js .vercel/output/functions/index.func/index.js
+npx esbuild dist/server/index.js --outfile=.vercel/output/functions/index.func/index.js --bundle --platform=node
 cp misc/vercel/.vc-config.json .vercel/output/functions/index.func/.vc-config.json
