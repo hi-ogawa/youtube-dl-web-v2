@@ -28,7 +28,6 @@ import {
 } from "../utils/misc";
 import { usePromiseQueryOpitons } from "../utils/react-query-utils";
 import { loadTurnstileScript, turnstile } from "../utils/turnstile-utils";
-import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
@@ -41,8 +40,6 @@ import { fetchProxyQueryOptions } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
 export function Page() {
-  const hydrated = useHydrated();
-
   const form = useForm({
     defaultValues: {
       id: "",
@@ -79,7 +76,7 @@ export function Page() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center" data-hydrated={hydrated}>
+    <main className="flex flex-col items-center">
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
         <form
           className="flex flex-col gap-4"

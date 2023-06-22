@@ -7,8 +7,6 @@ test("title", async ({ page }) => {
 
 test("basic", async ({ page }) => {
   await page.goto("/");
-  // wait until hydrated (otherwise event handlers are not ready e.g. form onSubmit)
-  await page.waitForSelector("main[data-hydrated=true]");
 
   // search video
   await page

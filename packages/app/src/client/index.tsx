@@ -8,7 +8,7 @@ import { registerServiceWorker } from "../utils/register-service-worker";
 
 function main() {
   registerServiceWorker();
-  const el = document.querySelector("#root");
+  const el = document.getElementById("root");
   tinyassert(el);
   const root = createRoot(el);
   root.render(<Root />);
