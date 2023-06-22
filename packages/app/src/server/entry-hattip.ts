@@ -5,13 +5,13 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { TRPC_ENDPOINT } from "../trpc/common";
 import { trpcRoot } from "../trpc/server";
 import { injectPublicConfigScript } from "../utils/config-public";
-import { initializeServerHandler2 } from "../utils/server-utils";
+import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 
 export function createHattipEntry() {
   return compose(
-    initializeServerHandler2(),
+    initializeServerHandler(),
     trpcHanlder(),
     globApiRoutes(),
     indexHtmlHanlder()
