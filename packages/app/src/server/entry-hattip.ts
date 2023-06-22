@@ -6,6 +6,8 @@ import { TRPC_ENDPOINT } from "../trpc/common";
 import { trpcRoot } from "../trpc/server";
 import { injectPublicConfigScript } from "../utils/config-public";
 import { initializeServerHandler2 } from "../utils/server-utils";
+import { WORKER_ASSET_URLS } from "../utils/worker-client";
+import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 
 export function createHattipEntry() {
   return compose(
@@ -42,25 +44,22 @@ const INJECT_THEME_SCRIPT = `
 function indexHtmlHanlder(): RequestHandler {
   return async () => {
     // a bit scary but it seems to work thanks to dead code elination and two step build `vite build && vite build --ssr`
-    let { default: html } = await (import.meta.env.DEV
+    const { default: html } = await (import.meta.env.DEV
       ? import("/index.html?raw")
       : import("/dist/client/index.html?raw"));
 
+    let injectHead = "";
     if (import.meta.env.DEV) {
-      html = html.replace(
-        "<!--@INJECT_DEV_VITE_SCRIPT@-->",
-        INJECT_DEV_VITE_SCRIPT
-      );
+      injectHead += INJECT_DEV_VITE_SCRIPT;
+    }
+    injectHead += INJECT_THEME_SCRIPT;
+    injectHead += injectPublicConfigScript();
+    for (const href of [...WORKER_ASSET_URLS, ...WORKER_ASSET_URLS_LIBWEBM]) {
+      injectHead += `<link rel="prefetch" href="${href}" />`;
     }
 
-    html = html.replace("<!--@INJECT_THEME_SCRIPT@-->", INJECT_THEME_SCRIPT);
-
-    html = html.replace(
-      "<!--@INJECT_PUBLIC_CONFIG_SCRIPT@-->",
-      injectPublicConfigScript()
-    );
-
-    return new Response(html, {
+    const injectedHtml = html.replace("<!--@INJECT_HEAD@-->", injectHead);
+    return new Response(injectedHtml, {
       headers: [["content-type", "text/html"]],
     });
   };
