@@ -23,9 +23,8 @@ export default defineConfig((ctx) => ({
     sourcemap: true,
   },
   ssr: {
-    // TODO
-    // target: "webworker", // "node" doesn't bundle "xxx?raw" import?
-    // noExternal: true,
+    // TODO: "node" doesn't bundle raw string import (index.html?raw)?
+    target: "webworker",
   },
   clearScreen: false,
 }));
