@@ -21,11 +21,11 @@ export function Page() {
 
 function PageInner() {
   return (
-    <div className="h-[100vh] flex flex-col relative">
-      <div className="flex-none">
+    <div className="flex flex-col relative">
+      <div className="top-0 sticky">
         <PageHeader />
       </div>
-      <div className="flex-1 flex flex-col overflow-y-auto">
+      <div className="flex flex-col">
         <Outlet />
       </div>
     </div>
