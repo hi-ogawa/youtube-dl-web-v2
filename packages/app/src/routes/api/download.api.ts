@@ -1,5 +1,5 @@
+import { RequestContext } from "@hattip/compose";
 import { tinyassert } from "@hiogawa/utils";
-import type { RequestContext } from "rakkasjs";
 import { z } from "zod";
 import { decodePayload, encodePayload } from "../../utils/handler-utils";
 import { fetchVideoInfo } from "../../utils/youtube-utils";
@@ -13,7 +13,7 @@ const DOWNLOAD_REQUEST_SCHEME = z.object({
   end: z.number(),
 });
 
-type DownloadRequest = z.infer<typeof DOWNLOAD_REQUEST_SCHEME>;
+export type DownloadRequest = z.infer<typeof DOWNLOAD_REQUEST_SCHEME>;
 
 export async function get(ctx: RequestContext) {
   const parsed = DOWNLOAD_REQUEST_SCHEME.parse(
@@ -28,7 +28,7 @@ export async function get(ctx: RequestContext) {
 
   tinyassert(start >= 0);
   tinyassert(end > 0);
-  const res = await ctx.fetch(format.url, {
+  const res = await fetch(format.url, {
     headers: {
       range: `bytes=${start}-${end - 1}`,
     },

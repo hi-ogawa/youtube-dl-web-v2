@@ -17,6 +17,14 @@ export async function finalizeServer() {
 
 const initializeServerOnce = once(initializeServer);
 
+export function initializeServerHandler2(): RequestHandler {
+  const initializeServerOnce = once(initializeServer);
+  return async (ctx) => {
+    await initializeServerOnce();
+    return ctx.next();
+  };
+}
+
 export const initializeServerHandler: RequestHandler = async (ctx) => {
   await initializeServerOnce();
   return ctx.next();

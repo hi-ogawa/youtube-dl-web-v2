@@ -1,51 +1,41 @@
-import { usePrevious } from "@hiogawa/utils-react";
+import { Compose } from "@hiogawa/utils-react";
 import {
   QueryCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Head, LayoutProps, StyledLink, useLocation } from "rakkasjs";
 import React from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { NavLink, Outlet } from "react-router-dom";
 import { Drawer } from "../components/drawer";
 import { ThemeSelect } from "../components/theme-select";
 
-export default function Layout(props: LayoutProps) {
+export function Page() {
   return (
-    <>
-      <Head
-        title="Youtube DL Web"
-        viewport="width=device-width, initial-scale=1.0"
-      />
-      <AppProvider>
-        <div className="h-[100vh] flex flex-col relative">
-          <div className="flex-none">
-            <PageHeader {...props} />
-          </div>
-          <div className="flex-1 flex flex-col overflow-y-auto">
-            {props.children}
-          </div>
-        </div>
-      </AppProvider>
-    </>
+    <Compose
+      elements={[<QueryClientWrapper />, <ToastWrapper />, <PageInner />]}
+    />
   );
 }
 
-function PageHeader(props: LayoutProps) {
-  const title = (props.meta["title"] as string) || "Youtube DL Web";
+function PageInner() {
+  return (
+    <div className="h-[100vh] flex flex-col relative">
+      <div className="flex-none">
+        <PageHeader />
+      </div>
+      <div className="flex-1 flex flex-col overflow-y-auto">
+        <Outlet />
+      </div>
+    </div>
+  );
+}
+
+function PageHeader() {
+  const title = "Youtube DL Web";
   const [menuOpen, setMenuOpen] = React.useState(false);
 
-  // auto close on nav change
-  const location = useLocation();
-  const prev = usePrevious(location.pending);
-  React.useEffect(() => {
-    if (!prev && location.pending) {
-      setMenuOpen(false);
-    }
-  }, [location.pending]);
-
-  // shadow color taken from https://ant.design/components/overview/
   return (
     <header className="flex-none flex items-center gap-3 px-6 py-2 shadow-[0_2px_8px_#f0f1f2] dark:shadow-[0_2px_8px_#000000a6]">
       <button
@@ -75,30 +65,30 @@ function PageHeader(props: LayoutProps) {
             </button>
           </div>
           <div className="flex flex-col gap-4 p-1">
-            <StyledLink
-              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
-              activeClass="antd-menu-item-active"
-              href="/"
+            <NavLink
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item aria-[current=page]:antd-menu-item-active"
+              to="/"
+              onClick={() => setMenuOpen(false)}
             >
               <span className="i-ri-home-4-line w-5 h-5"></span>
               Home
-            </StyledLink>
-            <StyledLink
-              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
-              activeClass="antd-menu-item-active"
-              href="/edit"
+            </NavLink>
+            <NavLink
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item aria-[current=page]:antd-menu-item-active"
+              to="/edit"
+              onClick={() => setMenuOpen(false)}
             >
               <span className="i-ri-edit-2-line w-5 h-5"></span>
               Edit
-            </StyledLink>
-            <StyledLink
-              className="p-2 pl-7 flex items-center gap-3 antd-menu-item"
-              activeClass="antd-menu-item-active"
-              href="/share"
+            </NavLink>
+            <NavLink
+              className="p-2 pl-7 flex items-center gap-3 antd-menu-item aria-[current=page]:antd-menu-item-active"
+              to="/share"
+              onClick={() => setMenuOpen(false)}
             >
               <span className="i-ri-share-line w-5 h-5"></span>
               Uploaded
-            </StyledLink>
+            </NavLink>
           </div>
         </div>
       </Drawer>
@@ -106,19 +96,7 @@ function PageHeader(props: LayoutProps) {
   );
 }
 
-//
-// providers
-//
-
-function AppProvider(props: React.PropsWithChildren) {
-  let node = props.children;
-  for (const Provider of [ToastProvider, CustomQueryClientProvider]) {
-    node = <Provider>{node}</Provider>;
-  }
-  return <>{node}</>;
-}
-
-function CustomQueryClientProvider(props: React.PropsWithChildren) {
+function QueryClientWrapper(props: React.PropsWithChildren) {
   const [queryClient] = React.useState(
     () =>
       new QueryClient({
@@ -151,7 +129,7 @@ function CustomQueryClientProvider(props: React.PropsWithChildren) {
   );
 }
 
-function ToastProvider(props: React.PropsWithChildren) {
+function ToastWrapper(props: React.PropsWithChildren) {
   return (
     <>
       <Toaster />
