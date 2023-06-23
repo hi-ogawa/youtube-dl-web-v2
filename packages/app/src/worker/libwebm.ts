@@ -6,7 +6,6 @@ import type {
 } from "@hiogawa/ffmpeg/build/tsc/cpp/ex01-emscripten-types";
 import { tinyassert } from "@hiogawa/utils";
 import { expose } from "comlink";
-import _ from "lodash";
 
 export type { LibwebmWorker };
 
