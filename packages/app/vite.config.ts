@@ -1,4 +1,7 @@
-import { viteGlobRoutes } from "@hiogawa/vite-glob-routes";
+import {
+  indexHtmlMiddlewarePlugin,
+  viteGlobRoutes,
+} from "@hiogawa/vite-glob-routes";
 import vaviteConnect from "@vavite/connect";
 import react from "@vitejs/plugin-react";
 import unocss from "unocss/vite";
@@ -9,6 +12,7 @@ export default defineConfig((ctx) => ({
     unocss(),
     react(),
     viteGlobRoutes({ root: "/src/routes" }),
+    indexHtmlMiddlewarePlugin(),
     vaviteConnect({
       standalone: false,
       serveClientAssetsInDev: true,
