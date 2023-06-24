@@ -55,7 +55,8 @@
   "devDependencies": {
     "@hattip/adapter-node": "^0.0.34",
     "@hiogawa/unocss-preset-antd": "2.2.1-pre.2",
-    "@hiogawa/vite-glob-routes": "0.0.2-pre.0",
+    "@hiogawa/vite-glob-routes": "0.1.3-pre.2",
+    "@hiogawa/vite-index-html-middleware": "0.1.3-pre.2",
     "@iconify-json/ri": "^1.1.3",
     "@playwright/test": "^1.31.2",
     "@types/lodash": "^4.14.186",

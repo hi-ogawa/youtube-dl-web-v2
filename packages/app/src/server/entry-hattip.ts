@@ -1,7 +1,7 @@
-import globApiRoutes from "virtual:glob-api-routes/hattip";
-import indexHtmlMiddleware from "virtual:index-html-middleware/hattip";
 import { RequestHandler, compose } from "@hattip/compose";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
+import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
+import { indexHtmlMiddleware } from "@hiogawa/vite-index-html-middleware/dist/hattip";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { TRPC_ENDPOINT } from "../trpc/common";
 import { trpcRoot } from "../trpc/server";
