@@ -7,7 +7,7 @@
     "checkJs": false,
     "noEmit": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "target": "es2021",
     "lib": ["es2021", "dom", "WebWorker.ImportScripts"],
     "types": ["vite/client"],

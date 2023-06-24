@@ -1,5 +1,5 @@
 {
-  "runtime": "nodejs16.x",
+  "runtime": "nodejs18.x",
   "handler": "index.js",
   "launcherType": "Nodejs",
   "supportsResponseStreaming": true,

@@ -42,12 +42,12 @@ export function downloadFastSeek(
 
   return new ReadableStream({
     async start() {
-      // fetch only first 0.1% which is expected to include all "Cue" data
+      // fetch only first 0.1% or 1KB which is expected to include all "Cue" data
       const res = await fetchDownload({
         id: videoInfo.id,
         format_id,
         start: 0,
-        end: Math.max(Math.ceil(filesize * 0.001), 2 * 10),
+        end: Math.max(Math.ceil(filesize * 0.001), 2 ** 10),
       });
       if (cancelled) return;
 

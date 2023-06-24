@@ -3,10 +3,10 @@ import { newPromiseWithResolvers, tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
-import { navigate } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
 import { trpcClient } from "../trpc/client";
 import { trpcRQ } from "../trpc/react-query";
@@ -28,22 +28,18 @@ import {
 } from "../utils/misc";
 import { usePromiseQueryOpitons } from "../utils/react-query-utils";
 import { loadTurnstileScript, turnstile } from "../utils/turnstile-utils";
-import { useHydrated } from "../utils/use-hydrated";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
+import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
 import {
   PLAYER_STATE_PLAYING,
-  VideoInfo,
   YoutubePlayer,
-  getThumbnailUrl,
   useYoutubePlayerLoader,
-} from "../utils/youtube-utils";
-import { useFetchProxy } from "./api/proxy.api";
+} from "../utils/youtube-utils-client";
+import { fetchProxyQueryOptions } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
-export default function Page() {
-  const hydrated = useHydrated();
-
+export function Page() {
   const form = useForm({
     defaultValues: {
       id: "",
@@ -60,6 +56,7 @@ export default function Page() {
   });
 
   // handle share
+  const navigate = useNavigate();
   React.useEffect(() => {
     if (window.location.href) {
       const url = new URL(window.location.href);
@@ -79,7 +76,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center" data-hydrated={hydrated}>
+    <main className="flex flex-col items-center">
       <div className="w-xl max-w-full flex flex-col gap-4 p-4">
         <form
           className="flex flex-col gap-4"
@@ -90,7 +87,6 @@ export default function Page() {
           <div className="flex flex-col gap-2">
             <span>Video ID</span>
             <input
-              data-lpignore="true" // https://stackoverflow.com/a/44984917
               className="antd-input px-2"
               placeholder="ID or URL"
               {...form.register("id")}
@@ -161,14 +157,12 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
 
   const isDownloadStarted = Boolean(downloadStream);
 
-  const thumbnailQuery = useFetchProxy(
-    { url: getThumbnailUrl(videoInfo.id) },
-    {
-      onError: () => {
-        toast.error("failed to fetch thumbnail data");
-      },
-    }
-  );
+  const thumbnailQuery = useQuery({
+    ...fetchProxyQueryOptions({ url: getThumbnailUrl(videoInfo.id) }),
+    onError: () => {
+      toast.error("failed to fetch thumbnail data");
+    },
+  });
 
   const handleDownload = form.handleSubmit((data) => {
     tinyassert(data.format_id);

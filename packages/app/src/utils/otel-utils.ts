@@ -105,7 +105,7 @@ export const traceRequestHanlder: RequestHandler = (ctx) => {
   const { url } = ctx;
   return traceAsync(
     {
-      name: `${ctx.method} ${url.pathname}`, // TODO: resolve rakkasjs dynamic route
+      name: `${ctx.method} ${url.pathname}`,
       options: {
         kind: SpanKind.SERVER,
         attributes: {

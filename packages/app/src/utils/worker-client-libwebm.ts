@@ -1,9 +1,8 @@
 import EMSCRIPTEN_MODULE_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex01-emscripten.js?url";
 import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex01-emscripten.wasm?url";
 import type { SimpleMetadata } from "@hiogawa/ffmpeg/build/tsc/cpp/ex01-emscripten-types";
-import { tinyassert } from "@hiogawa/utils";
+import { once, tinyassert } from "@hiogawa/utils";
 import { transfer, wrap } from "comlink";
-import _ from "lodash";
 import WORKER_URL from "../worker/build/libwebm.js?url";
 import type { LibwebmWorker } from "../worker/libwebm";
 
@@ -13,7 +12,7 @@ export const WORKER_ASSET_URLS_LIBWEBM = [
   EMSCRIPTEN_WASM_URL,
 ];
 
-const getWorker = _.memoize(async () => {
+const getWorker = once(async () => {
   const worker = new Worker(WORKER_URL);
   const workerImpl = wrap<LibwebmWorker>(worker);
   await workerImpl.initialize(EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL);

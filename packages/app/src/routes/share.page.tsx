@@ -6,7 +6,7 @@ import { cls } from "../utils/misc";
 import { Asset } from "../utils/s3-utils";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
-export default function Page() {
+export function Page() {
   const assetsQuery = useInfiniteQuery({
     ...trpcRQ.listAssets.infiniteQueryOptions(
       { limit: 5 },
@@ -53,7 +53,7 @@ export default function Page() {
   );
 }
 
-export function AssetEntryCompoennt({ asset }: { asset: Asset }) {
+function AssetEntryCompoennt({ asset }: { asset: Asset }) {
   const downloadMutation = useMutation({
     mutationFn: async () => {
       const url = await trpcClient.getDownloadUrl.mutate({ key: asset.key });

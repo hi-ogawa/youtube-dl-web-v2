@@ -1,6 +1,5 @@
 import { tinyassert } from "@hiogawa/utils";
 import { useMutation } from "@tanstack/react-query";
-import type { PreloadFunction } from "rakkasjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -21,7 +20,7 @@ interface FormType {
   endTime?: string;
 }
 
-export default function Page() {
+export function Page() {
   const form = useForm<FormType>();
   const { fileList, title, artist, album, startTime, endTime } = form.watch();
   const [jpeg, setJpeg] = React.useState<Uint8Array>();
@@ -203,12 +202,3 @@ export default function Page() {
     </main>
   );
 }
-
-const preload: PreloadFunction = () => {
-  return {
-    meta: {
-      title: "Edit",
-    },
-  };
-};
-Object.assign(Page, { preload });
