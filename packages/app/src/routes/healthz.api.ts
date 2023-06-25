@@ -1,5 +1,3 @@
-import { json } from "../utils/handler-utils";
-
 export function get() {
-  return json(null, { status: 204 });
+  return new Response(null, { status: 204 });
 }
