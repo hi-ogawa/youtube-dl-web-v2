@@ -143,9 +143,9 @@ importers:
       '@hiogawa/vite-glob-routes':
         specifier: 0.1.3-pre.2
         version: 0.1.3-pre.2(@hattip/compose@0.0.22)(@types/react@18.0.23)(react-router@6.13.0)(vite@4.3.9)
-      '@hiogawa/vite-index-html-middleware':
-        specifier: 0.1.3-pre.2
-        version: 0.1.3-pre.2(@hattip/compose@0.0.22)(vite@4.3.9)
+      '@hiogawa/vite-import-index-html':
+        specifier: ^0.1.0
+        version: 0.1.0(vite@4.3.9)
       '@iconify-json/ri':
         specifier: ^1.1.3
         version: 1.1.3
@@ -1824,13 +1824,11 @@ packages:
       vite: 4.3.9
     dev: true
 
-  /@hiogawa/vite-index-html-middleware@0.1.3-pre.2(@hattip/compose@0.0.22)(vite@4.3.9):
-    resolution: {integrity: sha512-69hHnuIA40xvj52Ku0aeddgP2nyC27YaOWrnaP5c5uKGrA7JdZK0aZjBDNa2syfwFlSVySORTs2Zm+yzIMI8VQ==}
+  /@hiogawa/vite-import-index-html@0.1.0(vite@4.3.9):
+    resolution: {integrity: sha512-ZWOp8bu9OVyD1p+SGNQOYQ8TUNJkrITxdbKvutx18L/z5VQU0g2nCLw2NU9Azt8jBbxJDuRUT/+O24E7vfuRVg==}
     peerDependencies:
-      '@hattip/compose': '*'
       vite: '*'
     dependencies:
-      '@hattip/compose': 0.0.22
       vite: 4.3.9
     dev: true
 

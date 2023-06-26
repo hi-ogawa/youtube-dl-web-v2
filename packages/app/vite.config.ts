@@ -1,5 +1,5 @@
 import globRoutesPlugin from "@hiogawa/vite-glob-routes";
-import indexHtmlMiddlewarePlugin from "@hiogawa/vite-index-html-middleware";
+import importIndexHtmlPlugin from "@hiogawa/vite-import-index-html";
 import vaviteConnect from "@vavite/connect";
 import react from "@vitejs/plugin-react";
 import unocss from "unocss/vite";
@@ -10,7 +10,7 @@ export default defineConfig((ctx) => ({
     unocss(),
     react(),
     globRoutesPlugin({ root: "/src/routes" }),
-    indexHtmlMiddlewarePlugin(),
+    importIndexHtmlPlugin(),
     vaviteConnect({
       standalone: false,
       serveClientAssetsInDev: true,
