@@ -23,5 +23,5 @@ jobs:
       - run: make -C packages/app docker/up localstack/reset
       - run: pnpm test
       - run: pnpm build
-      - run: npx -C packages/app playwright install chromium --with-deps
+      - run: npx -C packages/app playwright install chromium
       - run: pnpm -C packages/app e2e

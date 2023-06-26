@@ -14,4 +14,4 @@ jobs:
           curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/healthz
       - name: POST /api/metadata
         run: |
-          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/api/metadata --data-binary '{ "id": "https://www.youtube.com/watch?v=rv4wf7bzfFE" }' | jq -r --exit-status '.videoInfo.title'
+          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/trpc/getVideoMetadata -H 'content-type: application/json' --data-raw '{ "id": "https://www.youtube.com/watch?v=rv4wf7bzfFE" }' | jq -r --exit-status '.result.data.videoInfo.title'
