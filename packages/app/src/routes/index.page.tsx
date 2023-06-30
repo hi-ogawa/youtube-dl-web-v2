@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
-import { rpcClient, rpcClientQuery } from "../rpc/client";
+import { rpcClient, rpcClientQuery } from "../trpc/client";
 import { triggerDownloadClick } from "../utils/browser-utils";
 import { publicConfig } from "../utils/config-public";
 import {

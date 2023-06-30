@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
-import { rpcClient, rpcClientQuery } from "../rpc/client";
+import { rpcClient, rpcClientQuery } from "../trpc/client";
 import { triggerDownloadClick } from "../utils/browser-utils";
 import { cls } from "../utils/misc";
 import { Asset } from "../utils/s3-utils";

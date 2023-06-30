@@ -2,7 +2,7 @@ import { RequestHandler, compose } from "@hattip/compose";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
-import { rpcHandler } from "../rpc/hattip";
+import { rpcHandler } from "../trpc/hattip";
 import { injectPublicConfigScript } from "../utils/config-public";
 import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
