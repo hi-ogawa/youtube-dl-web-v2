@@ -1,17 +1,17 @@
 import { RequestHandler } from "@hattip/compose";
-import { createServerHandler } from "@hiogawa/tiny-rpc";
+import { createTinyRpcHandler } from "@hiogawa/tiny-rpc";
 import { RPC_ENDPOINT } from "./client";
 import { rpcRoutes } from "./server";
 
 export function rpcHandler(): RequestHandler {
-  const handler = createServerHandler({
+  const handler = createTinyRpcHandler({
     endpoint: RPC_ENDPOINT,
-    fnRecord: rpcRoutes,
+    routes: rpcRoutes,
   });
   return async (ctx) => {
-    if (!ctx.url.pathname.startsWith(RPC_ENDPOINT)) {
-      return ctx.next();
+    if (ctx.url.pathname.startsWith(RPC_ENDPOINT)) {
+      return handler(ctx);
     }
-    return handler({ url: ctx.url, request: ctx.request });
+    return ctx.next();
   };
 }

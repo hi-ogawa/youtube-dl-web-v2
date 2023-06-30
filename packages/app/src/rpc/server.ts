@@ -1,3 +1,4 @@
+import { TinyRpcRoutes } from "@hiogawa/tiny-rpc";
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
 import {
@@ -83,7 +84,7 @@ export const rpcRoutes = {
   )(async (input) => {
     return getAssetDownloadUrl({ key: input.key });
   }),
-};
+} satisfies TinyRpcRoutes;
 
 //
 // utils
