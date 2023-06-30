@@ -71,8 +71,8 @@ importers:
         specifier: workspace:*
         version: link:../flac-picture
       '@hiogawa/query-proxy':
-        specifier: ^0.1.0
-        version: 0.1.0(@tanstack/query-core@4.29.5)
+        specifier: ^0.1.1-pre.0
+        version: 0.1.1-pre.0(@tanstack/query-core@4.29.5)
       '@hiogawa/tiny-rpc':
         specifier: ^0.1.2
         version: 0.1.2
@@ -1777,8 +1777,8 @@ packages:
       typescript: 5.0.4
     dev: true
 
-  /@hiogawa/query-proxy@0.1.0(@tanstack/query-core@4.29.5):
-    resolution: {integrity: sha512-AMIXTZq26fgJ291se+TgIBUeK2Fcm6aT+AJ7olBc2ExSfy6Ihd+0+/yOtTEE5fdQ3vHWIZTr9m0hjgjDU60S/Q==}
+  /@hiogawa/query-proxy@0.1.1-pre.0(@tanstack/query-core@4.29.5):
+    resolution: {integrity: sha512-GeM55Bv8xWe1w4Z+3C3VNvb5Prg+u140deWGkeaagaJXtsjxFKNJpqsx5TqykSyUn4VCeGs12fYcgOrf4iOFHQ==}
     peerDependencies:
       '@tanstack/query-core': '*'
       '@trpc/server': '*'
