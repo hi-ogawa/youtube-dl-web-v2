@@ -70,6 +70,12 @@ importers:
       '@hiogawa/flac-picture':
         specifier: workspace:*
         version: link:../flac-picture
+      '@hiogawa/query-proxy':
+        specifier: ^0.1.0
+        version: 0.1.0(@tanstack/query-core@4.29.5)(@trpc/server@10.26.0)
+      '@hiogawa/tiny-rpc':
+        specifier: ^0.1.2-pre.0
+        version: 0.1.2-pre.0
       '@hiogawa/utils-experimental':
         specifier: ^0.0.1
         version: 0.0.1
@@ -1776,6 +1782,23 @@ packages:
       prettier: 2.8.8
       typescript: 5.0.4
     dev: true
+
+  /@hiogawa/query-proxy@0.1.0(@tanstack/query-core@4.29.5)(@trpc/server@10.26.0):
+    resolution: {integrity: sha512-AMIXTZq26fgJ291se+TgIBUeK2Fcm6aT+AJ7olBc2ExSfy6Ihd+0+/yOtTEE5fdQ3vHWIZTr9m0hjgjDU60S/Q==}
+    peerDependencies:
+      '@tanstack/query-core': '*'
+      '@trpc/server': '*'
+    peerDependenciesMeta:
+      '@trpc/server':
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.29.5
+      '@trpc/server': 10.26.0
+    dev: false
+
+  /@hiogawa/tiny-rpc@0.1.2-pre.0:
+    resolution: {integrity: sha512-FTk0Ugh+N1ugl2tL5QEymm1XYEV0KHmNC3zLOrerzgh02cSLZuz+rrEnOj2Q/0xOMYfwpnj9w+ORnrfagJNJbQ==}
+    dev: false
 
   /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.53.3)(unocss@0.46.5):
     resolution: {integrity: sha512-IyLBst49BiscFZ+lcO1d2fJ7S7YhEK+ikgZNymtgbcMYhIbgzY6Qju4FW5BpBivQ3csMblzvgz+sfJDaXC0viw==}

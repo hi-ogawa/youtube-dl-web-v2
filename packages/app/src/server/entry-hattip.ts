@@ -3,6 +3,7 @@ import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.j
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { rpcHandler } from "../rpc/hattip";
 import { TRPC_ENDPOINT } from "../trpc/common";
 import { trpcRoot } from "../trpc/server";
 import { injectPublicConfigScript } from "../utils/config-public";
@@ -13,6 +14,7 @@ import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 export function createHattipEntry() {
   return compose(
     initializeServerHandler(),
+    rpcHandler(),
     trpcHanlder(),
     globApiRoutes(),
     indexHtmlHandler()
