@@ -78,7 +78,9 @@ describe("s3-utils", () => {
       assert.ok(res.ok);
       expect(await res.text()).toMatchInlineSnapshot('"hello world"');
 
-      let headers = Object.fromEntries(res.headers.entries());
+      let headers: any = {};
+      res.headers.forEach((v, k) => (headers[k] = v));
+
       headers = z
         .object({
           "content-length": z.string(),
