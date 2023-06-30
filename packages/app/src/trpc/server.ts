@@ -1,4 +1,5 @@
 import { TinyRpcRoutes } from "@hiogawa/tiny-rpc";
+import { zodFn } from "@hiogawa/tiny-rpc/dist/zod";
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
 import {
@@ -94,14 +95,4 @@ function createDateDescSortKey(date: Date): string {
   return (Number.MAX_SAFE_INTEGER - date.getTime())
     .toString(16)
     .padStart(16, "0");
-}
-
-function zodFn<Schema extends z.ZodType>(schema: Schema) {
-  return function decorate<Out>(
-    fn: (input: z.output<Schema>) => Out
-  ): (input: z.input<Schema>) => Out {
-    return function wrapper(input) {
-      return fn(schema.parse(input));
-    };
-  };
 }

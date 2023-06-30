@@ -74,8 +74,8 @@ importers:
         specifier: ^0.1.1-pre.0
         version: 0.1.1-pre.0(@tanstack/query-core@4.29.5)
       '@hiogawa/tiny-rpc':
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.1.3-pre.1
+        version: 0.1.3-pre.1(zod@3.21.4)
       '@hiogawa/utils-experimental':
         specifier: ^0.0.1
         version: 0.0.1
@@ -1789,8 +1789,15 @@ packages:
       '@tanstack/query-core': 4.29.5
     dev: false
 
-  /@hiogawa/tiny-rpc@0.1.2:
-    resolution: {integrity: sha512-bA22wHrMkmato1yqEjBNIIFwcdVuulFcoHQjZDiO3OGBTeIH6Esh6wakG1l15lHBjA+xBp3d+4v66WTBZXzhGA==}
+  /@hiogawa/tiny-rpc@0.1.3-pre.1(zod@3.21.4):
+    resolution: {integrity: sha512-vR8GVi+DY50TkNnTbS0danLfW2jpB55Sj4cD3/oGswMZlMH5IDxIUzt3uWhRIkQ1D0kIPAI8s/gVdHHmHv5Imw==}
+    peerDependencies:
+      zod: '*'
+    peerDependenciesMeta:
+      zod:
+        optional: true
+    dependencies:
+      zod: 3.21.4
     dev: false
 
   /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.53.3)(unocss@0.46.5):
