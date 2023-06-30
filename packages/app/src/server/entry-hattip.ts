@@ -2,10 +2,7 @@ import { RequestHandler, compose } from "@hattip/compose";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { rpcHandler } from "../rpc/hattip";
-import { TRPC_ENDPOINT } from "../trpc/common";
-import { trpcRoot } from "../trpc/server";
 import { injectPublicConfigScript } from "../utils/config-public";
 import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
@@ -15,7 +12,6 @@ export function createHattipEntry() {
   return compose(
     initializeServerHandler(),
     rpcHandler(),
-    trpcHanlder(),
     globApiRoutes(),
     indexHtmlHandler()
   );
@@ -45,25 +41,4 @@ function injectToHead(): string {
   ]
     .flat()
     .join("\n");
-}
-
-//
-// trpc
-//
-
-function trpcHanlder(): RequestHandler {
-  return (ctx) => {
-    if (ctx.url.pathname.startsWith(TRPC_ENDPOINT)) {
-      return fetchRequestHandler({
-        endpoint: TRPC_ENDPOINT,
-        req: ctx.request,
-        router: trpcRoot,
-        createContext: (ctx) => ctx,
-        onError: (e) => {
-          console.error(e);
-        },
-      });
-    }
-    return ctx.next();
-  };
 }
