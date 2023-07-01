@@ -5,7 +5,7 @@ import { RPC_ENDPOINT } from "./client";
 import { rpcRoutes } from "./server";
 
 export function rpcHandler(): RequestHandler {
-  const handler = createTinyRpcHandler({
+  return createTinyRpcHandler({
     endpoint: RPC_ENDPOINT,
     routes: rpcRoutes,
     onError(e) {
@@ -17,10 +17,4 @@ export function rpcHandler(): RequestHandler {
       }
     },
   });
-  return async (ctx) => {
-    if (ctx.url.pathname.startsWith(RPC_ENDPOINT)) {
-      return handler(ctx);
-    }
-    return ctx.next();
-  };
 }
