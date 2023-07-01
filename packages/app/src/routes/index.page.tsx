@@ -8,8 +8,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
-import { trpcClient } from "../trpc/client";
-import { trpcRQ } from "../trpc/react-query";
+import { rpcClient, rpcClientQuery } from "../trpc/client";
 import { triggerDownloadClick } from "../utils/browser-utils";
 import { publicConfig } from "../utils/config-public";
 import {
@@ -47,7 +46,7 @@ export function Page() {
   });
 
   const metadataQuery = useMutation({
-    ...trpcRQ.getVideoMetadata.mutationOptions(),
+    ...rpcClientQuery.getVideoMetadata.mutationOptions(),
     onError: () => {
       toast.error("failed to fetch video info", {
         id: "metadataQuery.onError",
@@ -255,7 +254,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         },
       });
       const token = await turnstileResult.promise;
-      const url = await trpcClient.getAssetUploadPutUrl.mutate({
+      const url = await rpcClient.getAssetUploadPutUrl({
         filename: args.filename,
         contentType: "audio/opus",
         videoId: videoInfo.id,

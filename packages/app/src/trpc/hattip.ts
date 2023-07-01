@@ -1,27 +1,26 @@
 import { RequestHandler } from "@hattip/compose";
+import { createTinyRpcHandler } from "@hiogawa/tiny-rpc";
 import { SpanStatusCode, trace } from "@opentelemetry/api";
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { TRPC_ENDPOINT } from "./common";
-import { trpcRoot } from "./server";
+import { RPC_ENDPOINT } from "./client";
+import { rpcRoutes } from "./server";
 
-// integrate trpc as hattip middleware
-
-export const trpcHandler: RequestHandler = async (ctx) => {
-  if (!ctx.url.pathname.startsWith(TRPC_ENDPOINT)) {
-    return ctx.next();
-  }
-  return fetchRequestHandler({
-    endpoint: TRPC_ENDPOINT,
-    req: ctx.request,
-    router: trpcRoot,
-    createContext: () => ({}),
-    onError: (e) => {
+export function rpcHandler(): RequestHandler {
+  const handler = createTinyRpcHandler({
+    endpoint: RPC_ENDPOINT,
+    routes: rpcRoutes,
+    onError(e) {
       console.error(e);
       const span = trace.getActiveSpan();
       if (span) {
         span.setStatus({ code: SpanStatusCode.ERROR });
-        span.recordException(e.error);
+        span.recordException(e instanceof Error ? e : new Error());
       }
     },
   });
-};
+  return async (ctx) => {
+    if (ctx.url.pathname.startsWith(RPC_ENDPOINT)) {
+      return handler(ctx);
+    }
+    return ctx.next();
+  };
+}

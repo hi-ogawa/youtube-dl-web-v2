@@ -1,6 +1,5 @@
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
-import { trpcClient } from "../trpc/client";
-import { trpcRQ } from "../trpc/react-query";
+import { rpcClient, rpcClientQuery } from "../trpc/client";
 import { triggerDownloadClick } from "../utils/browser-utils";
 import { cls } from "../utils/misc";
 import { Asset } from "../utils/s3-utils";
@@ -8,7 +7,7 @@ import { getThumbnailUrl } from "../utils/youtube-utils";
 
 export function Page() {
   const assetsQuery = useInfiniteQuery({
-    ...trpcRQ.listAssets.infiniteQueryOptions(
+    ...rpcClientQuery.listAssets.infiniteQueryOptions(
       { limit: 5 },
       {
         getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
@@ -56,7 +55,7 @@ export function Page() {
 function AssetEntryCompoennt({ asset }: { asset: Asset }) {
   const downloadMutation = useMutation({
     mutationFn: async () => {
-      const url = await trpcClient.getDownloadUrl.mutate({ key: asset.key });
+      const url = await rpcClient.getDownloadUrl({ key: asset.key });
       triggerDownloadClick({ href: url });
     },
   });

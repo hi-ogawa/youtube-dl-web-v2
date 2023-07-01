@@ -70,6 +70,12 @@ importers:
       '@hiogawa/flac-picture':
         specifier: workspace:*
         version: link:../flac-picture
+      '@hiogawa/query-proxy':
+        specifier: ^0.1.1-pre.0
+        version: 0.1.1-pre.0(@tanstack/query-core@4.29.5)
+      '@hiogawa/tiny-rpc':
+        specifier: ^0.2.1
+        version: 0.2.1(zod@3.21.4)
       '@hiogawa/utils-experimental':
         specifier: ^0.0.1
         version: 0.0.1
@@ -100,12 +106,6 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^4.29.6
         version: 4.29.6(@tanstack/react-query@4.29.5)(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/client':
-        specifier: ^10.26.0
-        version: 10.26.0(@trpc/server@10.26.0)
-      '@trpc/server':
-        specifier: ^10.26.0
-        version: 10.26.0
       comlink:
         specifier: ^4.3.1
         version: 4.3.1
@@ -1777,6 +1777,29 @@ packages:
       typescript: 5.0.4
     dev: true
 
+  /@hiogawa/query-proxy@0.1.1-pre.0(@tanstack/query-core@4.29.5):
+    resolution: {integrity: sha512-GeM55Bv8xWe1w4Z+3C3VNvb5Prg+u140deWGkeaagaJXtsjxFKNJpqsx5TqykSyUn4VCeGs12fYcgOrf4iOFHQ==}
+    peerDependencies:
+      '@tanstack/query-core': '*'
+      '@trpc/server': '*'
+    peerDependenciesMeta:
+      '@trpc/server':
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.29.5
+    dev: false
+
+  /@hiogawa/tiny-rpc@0.2.1(zod@3.21.4):
+    resolution: {integrity: sha512-DSMJmuu+PodvXSqf7BwB75N3AeNAQqIqf/vQAcRX2CK5BJuZuge0veQUiqDKOyenhzZ51fred523lwdo8xkGQQ==}
+    peerDependencies:
+      zod: '*'
+    peerDependenciesMeta:
+      zod:
+        optional: true
+    dependencies:
+      zod: 3.21.4
+    dev: false
+
   /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.53.3)(unocss@0.46.5):
     resolution: {integrity: sha512-IyLBst49BiscFZ+lcO1d2fJ7S7YhEK+ikgZNymtgbcMYhIbgzY6Qju4FW5BpBivQ3csMblzvgz+sfJDaXC0viw==}
     peerDependencies:
@@ -2330,18 +2353,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false
-
-  /@trpc/client@10.26.0(@trpc/server@10.26.0):
-    resolution: {integrity: sha512-ojHxQFIE97rBEGPK8p1ijbzo0T1IdEBoJ9fFSgWWL9FMuEEA/DNQ9s0uuiOrDKhCCdTFT1unfRharoJhB2/O2w==}
-    peerDependencies:
-      '@trpc/server': 10.26.0
-    dependencies:
-      '@trpc/server': 10.26.0
-    dev: false
-
-  /@trpc/server@10.26.0:
-    resolution: {integrity: sha512-+Wt0NFAeflVSNiUnHIDNN3C8jP7XIRmYrcgJ6IsAnm0lK4p/FkpCpeu1aig5qxrgZx30PHNDLZ/3FttVSEW2aQ==}
     dev: false
 
   /@tsconfig/strictest@2.0.1:

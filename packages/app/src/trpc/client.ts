@@ -1,11 +1,11 @@
-import { createTRPCProxyClient, httpLink } from "@trpc/client";
-import { TRPC_ENDPOINT } from "./common";
-import type { trpcRoot } from "./server";
+import { createFnRecordQueryProxy } from "@hiogawa/query-proxy";
+import { createTinyRpcClientProxy } from "@hiogawa/tiny-rpc";
+import { rpcRoutes } from "./server";
 
-export const trpcClient = createTRPCProxyClient<typeof trpcRoot>({
-  links: [
-    httpLink({
-      url: TRPC_ENDPOINT,
-    }),
-  ],
+export const RPC_ENDPOINT = "/trpc";
+
+export const rpcClient = createTinyRpcClientProxy<typeof rpcRoutes>({
+  endpoint: RPC_ENDPOINT,
 });
+
+export const rpcClientQuery = createFnRecordQueryProxy(rpcClient);
