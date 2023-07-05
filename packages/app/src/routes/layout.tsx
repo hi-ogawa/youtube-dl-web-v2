@@ -7,11 +7,11 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useRouteError } from "react-router-dom";
 import { Drawer } from "../components/drawer";
 import { ThemeSelect } from "../components/theme-select";
 
-export function Page() {
+export function Component() {
   return (
     <Compose
       elements={[<QueryClientWrapper />, <ToastWrapper />, <PageInner />]}
@@ -135,5 +135,29 @@ function ToastWrapper(props: React.PropsWithChildren) {
       <Toaster />
       {props.children}
     </>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const location = useLocation();
+
+  return (
+    <div className="flex flex-col items-center p-4">
+      <div className="flex flex-col gap-3 w-full max-w-2xl">
+        {location.pathname !== "/" && (
+          <div>
+            <a href="/" className="antd-btn antd-btn-default px-2 py-1">
+              Back to Home
+            </a>
+          </div>
+        )}
+        <pre className="text-sm overflow-auto border p-2 text-colorErrorText bg-colorErrorBg border-colorErrorBorder">
+          {error instanceof Error
+            ? error.stack ?? error.message
+            : JSON.stringify(error, null, 2)}
+        </pre>
+      </div>
+    </div>
   );
 }

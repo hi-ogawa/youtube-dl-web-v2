@@ -20,7 +20,7 @@ interface FormType {
   endTime?: string;
 }
 
-export function Page() {
+export function Component() {
   const form = useForm<FormType>();
   const { fileList, title, artist, album, startTime, endTime } = form.watch();
   const [jpeg, setJpeg] = React.useState<Uint8Array>();
