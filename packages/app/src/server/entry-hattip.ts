@@ -14,12 +14,45 @@ import { initailizeWorkerEnv } from "../utils/worker-env";
 export function createHattipEntry() {
   return compose(
     loggerMiddleware(),
+    import.meta.env.DEV && serveStaticHandler(),
     bootstrapHandler(),
     initializeServerHandler(),
     rpcHandler(),
     globApiRoutes(),
     htmlHandler()
   );
+}
+
+function serveStaticHandler(options?: { root?: string }): RequestHandler {
+  const root = options?.root ?? "public";
+  return async (ctx) => {
+    const nodeFs = await import("node:fs");
+    const filePath = root + ctx.url.pathname;
+    try {
+      // nodeFs.exi
+      // TODO
+      // handle.close()
+      const handle = await nodeFs.promises.open(filePath, "r");
+      const stat = await handle.stat();
+      if (!stat.isDirectory()) {
+        // workaround typing
+        const stream = handle.readableWebStream() as ReadableStream;
+        return new Response(stream, {
+          status: 200,
+          headers: {
+            // TODO: mime-type
+            // "content-type": "",
+          }
+        });
+      }
+    } catch (e) {
+      if (e instanceof Error && "code" in e && e.code === "ENOENT") {
+        return;
+      }
+      throw e
+    }
+    return;
+  }
 }
 
 function htmlHandler(): RequestHandler {
