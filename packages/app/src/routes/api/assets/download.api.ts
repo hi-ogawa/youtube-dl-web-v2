@@ -1,8 +1,5 @@
 import { RequestContext } from "@hattip/compose";
-import {
-  decodeAssetDownloadUrl,
-  getAsset,
-} from "../../../utils/asset-utils";
+import { decodeAssetDownloadUrl, getAsset } from "../../../utils/asset-utils";
 
 export async function post(ctx: RequestContext) {
   const asset = decodeAssetDownloadUrl(ctx.url);
