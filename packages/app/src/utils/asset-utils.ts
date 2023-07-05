@@ -20,11 +20,15 @@ type AssetCreate = z.infer<typeof Z_ASSET_CREATE>;
 
 export type Asset = { key: string } & AssetCreate;
 
-export async function putAsset(asset: any, data: ReadableStream) {
+export async function putAsset(asset: Asset, data: ReadableStream) {
   // workaround stream typing
   await workerEnv.kv.put(
     asset.key,
-    data as import("node:stream/web").ReadableStream
+    data as import("node:stream/web").ReadableStream,
+    {
+      metadata: asset,
+      expirationTtl: 24 * 60 * 60, // auto delete in 1 day
+    }
   );
 }
 
@@ -59,28 +63,38 @@ export async function listAssets({
 // TODO: sign and verify to avoid abuse?
 const PARAM_KEY = "asset";
 
-export function encodeAssetUploadUrl(asset: any): string {
+export function encodeAssetUploadUrl(assetCreate: AssetCreate): string {
+  const asset: Asset = {
+    key: assetCreate.sortKey + "-" + randomId(),
+    ...assetCreate,
+  };
   return (
     "/api/assets/upload?" +
-    new URLSearchParams({ asset: JSON.stringify(asset) })
+    new URLSearchParams([[PARAM_KEY, JSON.stringify(asset)]])
   );
 }
 
-export function decodeAssetUploadUrl(url: URL): any {
+export function decodeAssetUploadUrl(url: URL): Asset {
   const value = url.searchParams.get(PARAM_KEY);
   tinyassert(value);
   return JSON.parse(value);
 }
 
-export function encodeAssetDownloadUrl(asset: any): string {
+export function encodeAssetDownloadUrl(asset: Pick<Asset, "key">): string {
   return (
     "/api/assets/download?" +
-    new URLSearchParams({ asset: JSON.stringify(asset) })
+    new URLSearchParams([[PARAM_KEY, JSON.stringify(asset)]])
   );
 }
 
-export function decodeAssetDownloadUrl(url: URL): any {
+export function decodeAssetDownloadUrl(url: URL): Pick<Asset, "key"> {
   const value = url.searchParams.get(PARAM_KEY);
   tinyassert(value);
   return JSON.parse(value);
+}
+
+function randomId() {
+  return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+    .toString(16)
+    .padStart(16, "0");
 }

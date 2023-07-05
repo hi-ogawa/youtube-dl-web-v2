@@ -13,9 +13,9 @@ export async function initailizeWorkerEnv() {
     return;
   }
   const { KVNamespace } = await import("@miniflare/kv");
-  const { MemoryStorage } = await import("@miniflare/storage-memory");
+  const { FileStorage } = await import("@miniflare/storage-file");
   workerEnv = {
-    kv: new KVNamespace(new MemoryStorage()),
+    kv: new KVNamespace(new FileStorage(".wrangler/.vite-dev")),
   };
 }
 

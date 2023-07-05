@@ -263,7 +263,8 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         token,
       });
       const res = await fetch(url, {
-        method: "PUT",
+        // method: "PUT",
+        method: "POST",
         body: args.output,
       });
       tinyassert(res.ok);

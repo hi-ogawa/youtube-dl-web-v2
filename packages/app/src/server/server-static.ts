@@ -2,6 +2,8 @@ import fs from "node:fs";
 import { Readable } from "node:stream";
 import { RequestHandler } from "@hattip/compose";
 
+// just realized vite dev server already takes care by `publicDir`
+
 // cf.
 // https://github.com/honojs/node-server/blob/0a505a17112716987bc57b4be8df73df7dc6783a/src/serve-static.ts
 // https://github.com/lukeed/sirv/blob/19c6895483cc71e9ef367f8a6a863af1e558ecb0/packages/sirv/index.js
@@ -12,6 +14,7 @@ export function serveStaticHandler(options?: {
 }): RequestHandler {
   const root = options?.root ?? "public";
 
+  // https://github.com/lukeed/mrmime/blob/master/deno/mod.ts
   const contentTypes: Record<string, string> = {
     js: "application/javascript",
     json: "application/json",
@@ -27,13 +30,11 @@ export function serveStaticHandler(options?: {
     const stream = await readFileStream(filePath);
     if (stream) {
       const res = new Response(stream);
-      const ext = filePath.split(".").at(-1);
-      if (ext) {
-        const contentType = contentTypes[ext];
-        if (contentType) {
-          res.headers.set("content-type", contentType);
-        }
+      const contentType = contentTypes[filePath.split(".").at(-1)!];
+      if (contentType) {
+        res.headers.set("content-type", contentType);
       }
+      return res;
     }
     return;
   };
