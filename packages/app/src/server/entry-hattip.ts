@@ -13,11 +13,11 @@ export function createHattipEntry() {
     initializeServerHandler(),
     rpcHandler(),
     globApiRoutes(),
-    indexHtmlHandler()
+    htmlHandler()
   );
 }
 
-function indexHtmlHandler(): RequestHandler {
+function htmlHandler(): RequestHandler {
   return async () => {
     let html = await importIndexHtml();
     html = html.replace("<!--@INJECT_HEAD@-->", injectToHead());

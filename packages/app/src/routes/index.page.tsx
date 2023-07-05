@@ -38,7 +38,7 @@ import {
 import { fetchProxyQueryOptions } from "./api/proxy.api";
 import { SHARE_TARGET_PARAMS } from "./manifest.json.api";
 
-export function Page() {
+export function Component() {
   const form = useForm({
     defaultValues: {
       id: "",

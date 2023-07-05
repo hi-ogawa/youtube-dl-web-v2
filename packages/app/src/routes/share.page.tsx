@@ -5,7 +5,7 @@ import { cls } from "../utils/misc";
 import { Asset } from "../utils/s3-utils";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
-export function Page() {
+export function Component() {
   const assetsQuery = useInfiniteQuery({
     ...rpcClientQuery.listAssets.infiniteQueryOptions(
       { limit: 5 },

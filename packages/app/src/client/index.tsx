@@ -10,17 +10,17 @@ function main() {
   registerServiceWorker();
   const el = document.getElementById("root");
   tinyassert(el);
-  const root = createRoot(el);
-  root.render(<Root />);
-}
 
-function Root() {
-  const [router] = React.useState(() => createBrowserRouter(globPageRoutes()));
-  return (
+  const { routes } = globPageRoutes();
+  const router = createBrowserRouter(routes);
+  const reactEl = (
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
   );
+
+  const reactRoot = createRoot(el);
+  reactRoot.render(reactEl);
 }
 
 main();
