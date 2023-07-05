@@ -6,10 +6,10 @@
     "noUncheckedIndexedAccess": false, // too strict
     "checkJs": false,
     "noEmit": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
-    "target": "es2021",
-    "lib": ["es2021", "dom", "WebWorker.ImportScripts"],
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM", "WebWorker.ImportScripts"],
     "types": ["vite/client"],
     "jsx": "react-jsx"
   }

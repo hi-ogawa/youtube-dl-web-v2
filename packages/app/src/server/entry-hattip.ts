@@ -1,4 +1,5 @@
 import { RequestHandler, compose } from "@hattip/compose";
+import { once } from "@hiogawa/utils";
 import { loggerMiddleware } from "@hiogawa/utils-experimental";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
@@ -8,10 +9,12 @@ import { injectPublicConfigScript } from "../utils/config-public";
 import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
+import { initailizeWorkerEnv } from "../utils/worker-env";
 
 export function createHattipEntry() {
   return compose(
     loggerMiddleware(),
+    bootstrapHandler(),
     initializeServerHandler(),
     rpcHandler(),
     globApiRoutes(),
@@ -43,4 +46,10 @@ function injectToHead(): string {
   ]
     .flat()
     .join("\n");
+}
+
+function bootstrapHandler() {
+  return once(async () => {
+    await initailizeWorkerEnv();
+  });
 }

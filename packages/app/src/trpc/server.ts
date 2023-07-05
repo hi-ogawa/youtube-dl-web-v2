@@ -2,11 +2,11 @@ import { TinyRpcRoutes } from "@hiogawa/tiny-rpc";
 import { zodFn } from "@hiogawa/tiny-rpc/dist/zod";
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
+import { listAssets } from "../utils/asset-utils";
 import {
   getAssetDownloadUrl,
   getAssetUploadPost,
   getAssetUploadPutUrl,
-  listAssets,
 } from "../utils/s3-utils";
 import { verifyTurnstile } from "../utils/turnstile-utils-server";
 import { fetchVideoInfo, parseVideoId } from "../utils/youtube-utils";
