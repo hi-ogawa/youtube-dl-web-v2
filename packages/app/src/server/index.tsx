@@ -1,7 +1,15 @@
 import { RequestHandler, compose } from "@hattip/compose";
+import { tinyassert } from "@hiogawa/utils";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
+import {
+  globPageRoutes,
+  handleReactRouterServer,
+} from "@hiogawa/vite-glob-routes/dist/react-router";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { StaticRouterProvider } from "react-router-dom/server";
 import { rpcHandler } from "../trpc/hattip";
 import { injectPublicConfigScript } from "../utils/config-public";
 import { initializeServerHandler } from "../utils/server-utils";
@@ -18,10 +26,30 @@ export function createHattipEntry() {
 }
 
 function htmlHandler(): RequestHandler {
-  return async () => {
+  const { routes } = globPageRoutes();
+
+  return async (ctx) => {
+    const routerResult = await handleReactRouterServer({
+      routes,
+      request: ctx.request,
+    });
+    tinyassert(routerResult.type === "render");
+    const ssrHtml = renderToString(
+      <React.StrictMode>
+        <StaticRouterProvider
+          router={routerResult.router}
+          context={routerResult.context}
+        />
+      </React.StrictMode>
+    );
+
     let html = await importIndexHtml();
+    html = html.replace("<!--@INJECT_SSR@-->", ssrHtml);
     html = html.replace("<!--@INJECT_HEAD@-->", injectToHead());
-    return new Response(html, { headers: { "content-type": "text/html" } });
+    return new Response(html, {
+      status: routerResult.statusCode,
+      headers: { "content-type": "text/html" },
+    });
   };
 }
 

@@ -2,7 +2,7 @@ import "virtual:uno.css";
 import { tinyassert } from "@hiogawa/utils";
 import { globPageRoutes } from "@hiogawa/vite-glob-routes/dist/react-router";
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { registerServiceWorker } from "../utils/register-service-worker";
 
@@ -18,9 +18,8 @@ function main() {
       <RouterProvider router={router} />
     </React.StrictMode>
   );
-
-  const reactRoot = createRoot(el);
-  reactRoot.render(reactEl);
+  hydrateRoot(el, reactEl);
+  el.dataset["testid"] = "hydrated";
 }
 
 main();
