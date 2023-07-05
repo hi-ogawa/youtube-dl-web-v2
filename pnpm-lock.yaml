@@ -77,8 +77,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(zod@3.21.4)
       '@hiogawa/utils-experimental':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.1.0
+        version: 0.1.0
       '@hiogawa/utils-react':
         specifier: 1.2.1-pre.4
         version: 1.2.1-pre.4(react@18.2.0)
@@ -1812,8 +1812,8 @@ packages:
       unocss: 0.46.5(vite@4.3.9)
     dev: true
 
-  /@hiogawa/utils-experimental@0.0.1:
-    resolution: {integrity: sha512-7YNq6WRghFuuZYRK1FvSWlL4w9Qu32OE40FgBpxQjrwaXw9U5efU/jyZI7WaJ/RbqL3PCHr2InFc2SVpyXHG9g==}
+  /@hiogawa/utils-experimental@0.1.0:
+    resolution: {integrity: sha512-/iXmtdJlhBGfNK+bt4gNipdRPaHGkHeXbW+yY9RLB4dC2kOWoEpKY2aZjFugFRXEGtz3luEYVeLpV4VWEuq5kA==}
     dev: false
 
   /@hiogawa/utils-react@1.2.1-pre.4(react@18.2.0):

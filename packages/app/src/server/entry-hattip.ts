@@ -1,4 +1,5 @@
 import { RequestHandler, compose } from "@hattip/compose";
+import { loggerMiddleware } from "@hiogawa/utils-experimental";
 import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.js?raw";
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
@@ -10,6 +11,7 @@ import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 
 export function createHattipEntry() {
   return compose(
+    loggerMiddleware(),
     initializeServerHandler(),
     rpcHandler(),
     globApiRoutes(),

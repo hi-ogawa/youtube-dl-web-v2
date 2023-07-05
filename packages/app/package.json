@@ -32,7 +32,7 @@
     "@hiogawa/flac-picture": "workspace:*",
     "@hiogawa/query-proxy": "0.1.1-pre.0",
     "@hiogawa/tiny-rpc": "^0.2.2",
-    "@hiogawa/utils-experimental": "^0.0.1",
+    "@hiogawa/utils-experimental": "^0.1.0",
     "@hiogawa/utils-react": "1.2.1-pre.4",
     "@opentelemetry/api": "^1.3.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.34.0",
