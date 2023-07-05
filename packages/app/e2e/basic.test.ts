@@ -7,6 +7,7 @@ test("title", async ({ page }) => {
 
 test("basic", async ({ page }) => {
   await page.goto("/");
+  await page.getByTestId("hydrated").waitFor({ state: "attached" });
 
   // search video
   await page
