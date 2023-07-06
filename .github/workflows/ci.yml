@@ -23,4 +23,4 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: npx -C packages/app playwright install chromium
-      - run: pnpm -C packages/app e2e
+      - run: pnpm -C packages/app test-e2e

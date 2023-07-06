@@ -10,7 +10,7 @@
     "build:vite": "vite build && vite build --ssr",
     "build:cloudflare": "bash misc/cloudflare/build.sh",
     "test": "vitest",
-    "e2e": "playwright test",
+    "test-e2e": "playwright test",
     "tsc": "tsc",
     "dev:tsc": "tsc --noEmit --watch --preserveWatchOutput",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
