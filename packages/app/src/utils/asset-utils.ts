@@ -6,37 +6,44 @@ import { env } from "./worker-env";
 // https://developers.cloudflare.com/workers/runtime-apis/kv/#metadata
 // https://developers.cloudflare.com/workers/runtime-apis/kv/#ordering
 
-// TODO: simplify after R2 -> KV migration
-const Z_ASSET_CREATE = z.object({
-  sortKey: z.string().regex(/^[0-9a-z]*$/),
+export const Z_ASSET_METADATA = z.object({
   filename: z.string(),
   contentType: z.string(),
   videoId: z.string(),
   title: z.string().optional(),
   artist: z.string().optional(),
+  token: z.string(),
 });
 
-type AssetCreate = z.infer<typeof Z_ASSET_CREATE>;
+export type AssetMetadata = z.infer<typeof Z_ASSET_METADATA>;
 
-export type Asset = { key: string } & AssetCreate;
+export type AssetListEntry = {
+  name: string;
+  metadata: AssetMetadata;
+};
 
-export async function putAsset(asset: Asset, data: ReadableStream) {
-  // workaround stream typing
+export async function putAsset(
+  name: string,
+  metadata: AssetMetadata,
+  data: ReadableStream
+) {
   await env.kv.put(
-    asset.key,
-    data as import("node:stream/web").ReadableStream,
+    name,
+    data as import("node:stream/web").ReadableStream, // workaround stream typing
     {
-      metadata: asset,
+      metadata,
       expirationTtl: 24 * 60 * 60, // auto delete in 1 day
     }
   );
 }
 
-export async function getAsset(asset: any) {
-  const data = await env.kv.get(asset.key, "stream");
-  tinyassert(data, "asset not found");
-  // TODO: Response header etc...
-  return data as ReadableStream;
+export async function getAsset(key: string) {
+  const { value, metadata } = await env.kv.getWithMetadata(key, "stream");
+  tinyassert(value && metadata, "asset not found");
+  return {
+    value: value as ReadableStream, // workaround stream typing
+    metadata: Z_ASSET_METADATA.parse(metadata),
+  };
 }
 
 export async function listAssets({
@@ -45,14 +52,13 @@ export async function listAssets({
 }: {
   limit: number;
   cursor?: string;
-}): Promise<{ assets: Asset[]; nextCursor?: string }> {
+}): Promise<{ assets: AssetListEntry[]; nextCursor?: string }> {
   const result = await env.kv.list({ limit, cursor });
   const assets = result.keys.map((e) => {
-    const metadata = Z_ASSET_CREATE.parse(e.metadata);
     return {
-      key: e.name,
-      ...metadata,
-    } satisfies Asset;
+      name: e.name,
+      metadata: Z_ASSET_METADATA.parse(e.metadata),
+    } satisfies AssetListEntry;
   });
   return {
     assets,
@@ -60,41 +66,16 @@ export async function listAssets({
   };
 }
 
-// TODO: sign and verify to avoid abuse?
-const PARAM_KEY = "asset";
-
-export function encodeAssetUploadUrl(assetCreate: AssetCreate): string {
-  const asset: Asset = {
-    key: assetCreate.sortKey + "-" + randomId(),
-    ...assetCreate,
-  };
-  return (
-    "/api/assets/upload?" +
-    new URLSearchParams([[PARAM_KEY, JSON.stringify(asset)]])
-  );
-}
-
-export function decodeAssetUploadUrl(url: URL): Asset {
-  const value = url.searchParams.get(PARAM_KEY);
-  tinyassert(value);
-  return JSON.parse(value);
-}
-
-export function encodeAssetDownloadUrl(asset: Pick<Asset, "key">): string {
-  return (
-    "/api/assets/download?" +
-    new URLSearchParams([[PARAM_KEY, JSON.stringify(asset)]])
-  );
-}
-
-export function decodeAssetDownloadUrl(url: URL): Pick<Asset, "key"> {
-  const value = url.searchParams.get(PARAM_KEY);
-  tinyassert(value);
-  return JSON.parse(value);
-}
-
-function randomId() {
-  return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+export function createAssetKey(date: Date): string {
+  // desc time
+  const k1 = (Number.MAX_SAFE_INTEGER - date.getTime())
     .toString(16)
     .padStart(16, "0");
+
+  // random for uniqueness
+  const k2 = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
+    .toString(16)
+    .padStart(16, "0");
+
+  return `${k1}-${k2}`;
 }

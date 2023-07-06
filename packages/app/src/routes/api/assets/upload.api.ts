@@ -1,15 +1,29 @@
 import { RequestContext } from "@hattip/compose";
 import { tinyassert } from "@hiogawa/utils";
-import { decodeAssetUploadUrl, putAsset } from "../../../utils/asset-utils";
+import {
+  Z_ASSET_METADATA,
+  createAssetKey,
+  putAsset,
+} from "../../../utils/asset-utils";
+import { parseFormData } from "../../../utils/form-data-utils";
 import { json } from "../../../utils/handler-utils";
+import { verifyTurnstile } from "../../../utils/turnstile-utils-server";
 
 export async function post(ctx: RequestContext) {
-  // TODO: directly use FormData
-  ctx.request.formData;
+  // validate FormData
+  const formData = await ctx.request.formData();
+  const { files, metadata } = parseFormData(formData);
 
-  const asset = decodeAssetUploadUrl(ctx.url);
-  const data = ctx.request.body;
-  tinyassert(data);
-  await putAsset(asset, data);
+  tinyassert(files.length === 1);
+  const file = files[0];
+
+  const parsed = Z_ASSET_METADATA.parse(metadata);
+
+  // captcha
+  await verifyTurnstile({ response: parsed.token });
+
+  const key = createAssetKey(new Date());
+  await putAsset(key, parsed, file.stream());
+
   return json({ ok: true });
 }

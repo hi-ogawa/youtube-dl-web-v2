@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
-import { rpcClient, rpcClientQuery } from "../trpc/client";
+import { rpcClientQuery } from "../trpc/client";
+import { AssetMetadata } from "../utils/asset-utils";
 import { triggerDownloadClick } from "../utils/browser-utils";
 import { publicConfig } from "../utils/config-public";
 import {
@@ -16,6 +17,7 @@ import {
   download,
   downloadFastSeek,
 } from "../utils/download";
+import { createFormData } from "../utils/form-data-utils";
 import {
   TimestampEntry,
   cls,
@@ -254,18 +256,22 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
         },
       });
       const token = await turnstileResult.promise;
-      const url = await rpcClient.getAssetUploadPutUrl({
-        filename: args.filename,
-        contentType: "audio/opus",
-        videoId: videoInfo.id,
-        title,
-        artist,
-        token,
+
+      const url = "/api/assets/upload";
+      const formData = createFormData({
+        files: [new File([args.output], "__dummy")],
+        metadata: {
+          filename: args.filename,
+          contentType: "audio/opus",
+          videoId: videoInfo.id,
+          title,
+          artist,
+          token,
+        } satisfies AssetMetadata,
       });
       const res = await fetch(url, {
-        // method: "PUT",
         method: "POST",
-        body: args.output,
+        body: formData,
       });
       tinyassert(res.ok);
     },

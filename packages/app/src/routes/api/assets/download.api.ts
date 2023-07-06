@@ -1,14 +1,16 @@
 import { RequestContext } from "@hattip/compose";
-import { decodeAssetDownloadUrl, getAsset } from "../../../utils/asset-utils";
+import { tinyassert } from "@hiogawa/utils";
+import { getAsset } from "../../../utils/asset-utils";
 
 export async function get(ctx: RequestContext) {
-  const asset = decodeAssetDownloadUrl(ctx.url);
-  const data = await getAsset(asset);
-  return new Response(data, {
+  const name = ctx.url.searchParams.get("name");
+  tinyassert(name);
+  const { value, metadata } = await getAsset(name);
+  return new Response(value, {
     // prettier-ignore
     headers: {
-      "content-type": "audio/opus",
-      "content-disposition": `attachment; filename*=UTF-8''${encodeURIComponent("test.opus")}`,
+      "content-type": metadata.contentType,
+      "content-disposition": `attachment; filename*=UTF-8''${encodeURIComponent(metadata.filename)}`,
     },
   });
 }
