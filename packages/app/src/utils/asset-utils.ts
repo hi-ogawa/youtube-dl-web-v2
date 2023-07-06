@@ -12,7 +12,6 @@ export const Z_ASSET_METADATA = z.object({
   videoId: z.string(),
   title: z.string().optional(),
   artist: z.string().optional(),
-  token: z.string(),
 });
 
 export type AssetMetadata = z.infer<typeof Z_ASSET_METADATA>;

@@ -31,10 +31,5 @@
   },
   "volta": {
     "node": "18.16.1"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@opentelemetry/sdk-node@0.34.0": "patches/@opentelemetry__sdk-node@0.34.0.patch"
-    }
   }
 }

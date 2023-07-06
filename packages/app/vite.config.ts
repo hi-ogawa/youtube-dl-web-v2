@@ -14,12 +14,18 @@ export default defineConfig((ctx) => ({
     vaviteConnect({
       standalone: false,
       serveClientAssetsInDev: true,
-      handlerEntry: "./src/server/entry-connect.ts",
+      handlerEntry:
+        ctx.command === "build"
+          ? "./src/server/adapter-cloudflare-workers.ts"
+          : "./src/server/adapter-node.ts",
     }),
   ],
   build: {
     outDir: ctx.ssrBuild ? "dist/server" : "dist/client",
     sourcemap: true,
+    rollupOptions: {
+      external: ["__STATIC_CONTENT_MANIFEST"],
+    },
   },
   ssr: {
     optimizeDeps: {
