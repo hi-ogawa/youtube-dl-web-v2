@@ -1,6 +1,6 @@
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
-import { workerEnv } from "./worker-env";
+import { env } from "./worker-env";
 
 // persist uploaded audio file on KV
 // https://developers.cloudflare.com/workers/runtime-apis/kv/#metadata
@@ -22,7 +22,7 @@ export type Asset = { key: string } & AssetCreate;
 
 export async function putAsset(asset: Asset, data: ReadableStream) {
   // workaround stream typing
-  await workerEnv.kv.put(
+  await env.kv.put(
     asset.key,
     data as import("node:stream/web").ReadableStream,
     {
@@ -33,7 +33,7 @@ export async function putAsset(asset: Asset, data: ReadableStream) {
 }
 
 export async function getAsset(asset: any) {
-  const data = await workerEnv.kv.get(asset.key, "stream");
+  const data = await env.kv.get(asset.key, "stream");
   tinyassert(data, "asset not found");
   // TODO: Response header etc...
   return data as ReadableStream;
@@ -46,7 +46,7 @@ export async function listAssets({
   limit: number;
   cursor?: string;
 }): Promise<{ assets: Asset[]; nextCursor?: string }> {
-  const result = await workerEnv.kv.list({ limit, cursor });
+  const result = await env.kv.list({ limit, cursor });
   const assets = result.keys.map((e) => {
     const metadata = Z_ASSET_CREATE.parse(e.metadata);
     return {

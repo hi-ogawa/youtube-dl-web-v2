@@ -1,11 +1,11 @@
 import type { KVNamespace } from "@miniflare/kv";
 
-export let workerEnv: {
+export let env: {
   kv: KVNamespace;
 };
 
 export function setWorkerEnv(v: any) {
-  workerEnv = v;
+  env = v;
 }
 
 export async function initailizeWorkerEnv() {
@@ -14,9 +14,8 @@ export async function initailizeWorkerEnv() {
   }
   const { KVNamespace } = await import("@miniflare/kv");
   const { FileStorage } = await import("@miniflare/storage-file");
-  workerEnv = {
-    kv: new KVNamespace(new FileStorage(".wrangler/.vite-dev")),
-  };
+  const kv = new KVNamespace(new FileStorage(".wrangler/.vite-dev"));
+  env = { kv };
 }
 
 //
