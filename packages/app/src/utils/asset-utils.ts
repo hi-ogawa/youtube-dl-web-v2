@@ -31,7 +31,8 @@ export async function putAsset(
     data as import("node:stream/web").ReadableStream, // workaround stream typing
     {
       metadata,
-      expirationTtl: 24 * 60 * 60, // auto delete in 1 day
+      // TODO: auto delete?
+      // expirationTtl: 24 * 60 * 60,
     }
   );
 }
