@@ -7,17 +7,19 @@ import {
   context,
   trace,
 } from "@opentelemetry/api";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+import { Resource } from "@opentelemetry/resources";
 import {
+  BatchSpanProcessor,
   ConsoleSpanExporter,
   SimpleSpanProcessor,
   WebTracerProvider,
 } from "@opentelemetry/sdk-trace-web";
-import { SemanticAttributes } from "@opentelemetry/semantic-conventions";
+import {
+  SemanticAttributes,
+  SemanticResourceAttributes,
+} from "@opentelemetry/semantic-conventions";
 import { env } from "./worker-env";
-
-// TODO:
-// - async context
-// - exporter to otlp/http/json endpoint
 
 /*
 ```sh
@@ -25,8 +27,8 @@ import { env } from "./worker-env";
 OTEL_SERVICE_NAME=dev OTEL_TRACES_EXPORTER=console pnpm dev
 
 # see logs on local jaeger
-docker-compose up jaeger  # open http://localhost:16686
-OTEL_SERVICE_NAME=dev OTEL_TRACES_EXPORTER=otlp OTEL_EXPORTER_OTLP_TRACES_PROTOCOL=http/json pnpm dev
+docker compose up jaeger  # open http://localhost:16686
+OTEL_SERVICE_NAME=dev OTEL_TRACES_EXPORTER=otlp pnpm dev
 ```
 */
 
@@ -40,9 +42,35 @@ export async function initializeOpentelemetry() {
   if (!env.OTEL_TRACES_EXPORTER) {
     return;
   }
-  provider = new WebTracerProvider();
-  provider.register({ contextManager: undefined, propagator: undefined });
-  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+  provider = new WebTracerProvider({
+    resource: new Resource({
+      [SemanticResourceAttributes.SERVICE_NAME]: env.OTEL_SERVICE_NAME ?? "",
+    }),
+  });
+
+  // TODO: AsyncLocalStorage based context
+  provider.register({ contextManager: undefined });
+
+  function getSpanProcessor() {
+    switch (env.OTEL_TRACES_EXPORTER) {
+      case "console": {
+        return new SimpleSpanProcessor(new ConsoleSpanExporter());
+      }
+      case "otlp": {
+        // TODO: allow configuration
+        // OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp.nr-data.net:4318
+        // OTEL_EXPORTER_OTLP_TRACES_HEADERS=api-key=xxx
+        return new BatchSpanProcessor(
+          new OTLPTraceExporter({
+            url: undefined,
+            headers: {},
+          })
+        );
+      }
+    }
+    throw new Error("invalid env.OTEL_TRACES_EXPORTER");
+  }
+  provider.addSpanProcessor(getSpanProcessor());
 }
 
 //

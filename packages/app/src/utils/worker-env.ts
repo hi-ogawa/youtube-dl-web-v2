@@ -14,8 +14,10 @@ export async function initailizeWorkerEnv() {
   if (import.meta.env.PROD) {
     return;
   }
+  env = {} as any;
+
   const process = await import("node:process");
-  env = process.env as any;
+  Object.assign(env, process.env);
 
   const { KVNamespace } = await import("@miniflare/kv");
   const { FileStorage } = await import("@miniflare/storage-file");
