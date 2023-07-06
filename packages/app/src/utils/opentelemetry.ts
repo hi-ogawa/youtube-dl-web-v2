@@ -77,7 +77,7 @@ export async function initializeOpentelemetry() {
 }
 
 //
-// simple port to remove "event" and "async_hooks" dependency from
+// simple port to remove "events" and "async_hooks" dependency from
 // https://github.com/open-telemetry/opentelemetry-js/blob/06e919d6c909e8cc8e28b6624d9843f401d9b059/packages/opentelemetry-context-async-hooks/src/AsyncLocalStorageContextManager.ts#L17-L23
 //
 
