@@ -253,7 +253,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       tinyassert(res.ok);
     },
     onSuccess: () => {
-      toast.success("successfuly uploaded");
+      toast.success("successfully uploaded");
     },
   });
 

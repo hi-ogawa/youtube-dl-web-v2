@@ -8,6 +8,7 @@ import {
 } from "./worker-client-libwebm";
 import type { VideoInfo } from "./youtube-utils";
 
+// === TODO: this comment is obsolete after migrated to cloudflare workers ===
 // chunk size is chosen so that
 // - vercel's lambda timeouts in 10 seconds (on free plan)
 // - maximum aws lambda's payload is 8MB

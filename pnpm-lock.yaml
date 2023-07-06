@@ -50,9 +50,6 @@ importers:
       '@floating-ui/react-dom-interactions':
         specifier: ^0.10.3
         version: 0.10.3(@types/react@18.0.23)(react-dom@18.2.0)(react@18.2.0)
-      '@hattip/adapter-vercel-edge':
-        specifier: ^0.0.34
-        version: 0.0.34
       '@hattip/compose':
         specifier: ^0.0.22
         version: 0.0.22
@@ -1975,12 +1972,6 @@ packages:
       '@hattip/polyfills': 0.0.34
     dev: true
 
-  /@hattip/adapter-vercel-edge@0.0.34:
-    resolution: {integrity: sha512-c50G3Jq4TCmu5MjcQU/hoOCZGOMSDPE4+pm+/2Mn7lbqHEy2hxP852fpGGHOdBYSNh3ZfGuR9c4K99GxX8FwEA==}
-    dependencies:
-      '@hattip/core': 0.0.34
-    dev: false
-
   /@hattip/compose@0.0.22:
     resolution: {integrity: sha512-x96UQq1bis6g9TZHtpBbBPnTfKN7P4Pk6rTjBQnv9K9sQQnmv3QxzWYZ/FT+qvFCfnZ/Wd50ZT7aKl/Mj+B1Kg==}
     dependencies:
@@ -1991,6 +1982,7 @@ packages:
 
   /@hattip/core@0.0.34:
     resolution: {integrity: sha512-L9MRB5fVgW8vd2wKDbD1pIhsM4UloRCdsXn3x9us2Xp1jeynS83T3gHGLdUvPclgGvQZapwBgUkkn9paS+bjDg==}
+    dev: true
 
   /@hattip/polyfills@0.0.34:
     resolution: {integrity: sha512-zD0BemBQ4iqwKyX0jNu7YTSZtG4zH7sOB3XIBa5FkxRHZEjEc1dtKHsQpWhNqZW9+h5c8TWS9EiTMstqbtL2SQ==}

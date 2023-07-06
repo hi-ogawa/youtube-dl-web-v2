@@ -25,7 +25,6 @@
     "@aws-sdk/s3-presigned-post": "^3.332.0",
     "@aws-sdk/s3-request-presigner": "^3.332.0",
     "@floating-ui/react-dom-interactions": "^0.10.3",
-    "@hattip/adapter-vercel-edge": "^0.0.34",
     "@hattip/compose": "^0.0.22",
     "@headlessui/react": "^1.7.4",
     "@hiogawa/ffmpeg": "workspace:*",
