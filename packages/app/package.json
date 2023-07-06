@@ -35,7 +35,6 @@
     "@hiogawa/utils-experimental": "^0.1.0",
     "@hiogawa/utils-react": "1.2.1-pre.4",
     "@opentelemetry/api": "^1.4.1",
-    "@opentelemetry/context-async-hooks": "^1.14.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.40.0",
     "@opentelemetry/resources": "^1.14.0",
     "@opentelemetry/sdk-trace-web": "^1.14.0",

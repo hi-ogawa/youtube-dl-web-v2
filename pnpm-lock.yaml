@@ -80,9 +80,6 @@ importers:
       '@opentelemetry/api':
         specifier: ^1.4.1
         version: 1.4.1
-      '@opentelemetry/context-async-hooks':
-        specifier: ^1.14.0
-        version: 1.14.0(@opentelemetry/api@1.4.1)
       '@opentelemetry/exporter-trace-otlp-http':
         specifier: ^0.40.0
         version: 0.40.0(@opentelemetry/api@1.4.1)
@@ -2246,15 +2243,6 @@ packages:
   /@opentelemetry/api@1.4.1:
     resolution: {integrity: sha512-O2yRJce1GOc6PAy3QxFM4NzFiWzvScDC1/5ihYBL6BUEVdq0XMWN01sppE+H6bBXbaFYipjwFLEWLg5PaSOThA==}
     engines: {node: '>=8.0.0'}
-    dev: false
-
-  /@opentelemetry/context-async-hooks@1.14.0(@opentelemetry/api@1.4.1):
-    resolution: {integrity: sha512-KfwMzdjxUtQM3uy4ogEdN3pdakFreyZNybKKlvxUM+inF5tAObsGamlmsfmUt6s3mXEC70+DY743+TdG4FMf/Q==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.5.0'
-    dependencies:
-      '@opentelemetry/api': 1.4.1
     dev: false
 
   /@opentelemetry/core@1.14.0(@opentelemetry/api@1.4.1):
