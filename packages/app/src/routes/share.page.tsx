@@ -1,7 +1,6 @@
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { rpcClientQuery } from "../trpc/client";
 import { AssetListEntry } from "../utils/asset-utils";
-import { triggerDownloadClick } from "../utils/browser-utils";
 import { cls } from "../utils/misc";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
@@ -53,14 +52,6 @@ export function Component() {
 }
 
 function AssetEntryCompoennt({ asset }: { asset: AssetListEntry }) {
-  const downloadMutation = useMutation({
-    mutationFn: async () => {
-      const href =
-        "/api/assets/download?" + new URLSearchParams({ name: asset.name });
-      triggerDownloadClick({ href });
-    },
-  });
-
   return (
     <div
       className="relative w-full flex border"
@@ -84,13 +75,14 @@ function AssetEntryCompoennt({ asset }: { asset: AssetListEntry }) {
           {asset.metadata.artist}
         </span>
         <div className="absolute right-2 bottom-1">
-          <button
-            className={cls(
-              "antd-btn antd-btn-ghost w-5 h-5",
-              downloadMutation.isLoading ? "antd-spin" : "i-ri-download-line"
-            )}
-            onClick={() => downloadMutation.mutate()}
-          />
+          <a
+            className="antd-btn antd-btn-ghost i-ri-download-line w-5 h-5"
+            href={
+              "/api/assets/download?" +
+              new URLSearchParams({ name: asset.name })
+            }
+            download
+          ></a>
         </div>
       </div>
     </div>
