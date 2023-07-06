@@ -141,6 +141,23 @@ export async function traceAsync<T>(
   });
 }
 
+type SpanMetaFn<F extends (...args: any[]) => any> = (
+  ...args: Parameters<F>
+) => {
+  name: string;
+  options?: SpanOptions;
+};
+
+export function wrapTraceAsync<F extends (...args: any[]) => any>(
+  asyncFn: F,
+  spanMetaFn: SpanMetaFn<F>
+): F {
+  function wrapper(this: unknown, ...args: Parameters<F>) {
+    return traceAsync(spanMetaFn(...args), () => asyncFn.apply(this, args));
+  }
+  return wrapper as F;
+}
+
 //
 // hattip
 //
