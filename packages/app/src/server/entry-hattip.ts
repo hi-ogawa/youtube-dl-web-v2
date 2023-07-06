@@ -10,12 +10,10 @@ import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
 import { initailizeWorkerEnv } from "../utils/worker-env";
-import { serveStaticHandler } from "./server-static";
 
 export function createHattipEntry() {
   return compose(
     loggerMiddleware(),
-    import.meta.env.DEV && serveStaticHandler(),
     bootstrapHandler(),
     initializeServerHandler(),
     rpcHandler(),
