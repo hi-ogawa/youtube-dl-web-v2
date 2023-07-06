@@ -8,18 +8,17 @@
     "build": "run-s build:*",
     "build:worker": "esbuild ./src/worker/ffmpeg.ts ./src/worker/libwebm.ts --bundle --outdir=./src/worker/build",
     "build:vite": "vite build && vite build --ssr",
-    "xbuild:vercel": "bash misc/vercel/build.sh",
     "build:cloudflare": "bash misc/cloudflare/build.sh",
     "test": "vitest",
     "e2e": "playwright test",
     "tsc": "tsc",
     "dev:tsc": "tsc --noEmit --watch --preserveWatchOutput",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
-    "awslocal": "AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=na AWS_SECRET_ACCESS_KEY=na aws --endpoint-url http://localhost:4566",
     "dotenv-staging": "bash misc/dotenv.sh .env.staging",
     "dotenv-production": "bash misc/dotenv.sh .env.production",
-    "release": "vercel deploy --prebuilt .",
-    "release-production": "vercel deploy --prebuilt . --prod"
+    "preview": "wrangler dev --env staging",
+    "release": "wrangler deploy --env staging",
+    "release-production": "wrangler deploy"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.332.0",
@@ -70,6 +69,7 @@
     "react-router": "^6.13.0",
     "undici": "^5.22.1",
     "unocss": "0.46.5",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "wrangler": "^3.1.1"
   }
 }

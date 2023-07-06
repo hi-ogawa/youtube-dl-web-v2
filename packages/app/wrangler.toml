@@ -1,0 +1,22 @@
+name = "youtube-dl-web"
+
+main = "./dist/cloudflare/index.js"
+workers_dev = true
+no_bundle = true
+compatibility_date = "2023-04-20"
+compatibility_flags = [ "nodejs_compat" ]
+
+# npx wrangler kv:namespace create kv
+# npx wrangler kv:namespace create kv --env staging
+# npx wrangler kv:namespace create kv --env staging --preview
+kv_namespaces = [
+  { binding = "kv", id = "b69d95156a074661b3f2e7bac4a644ca" }
+]
+
+[site]
+bucket = "./dist/cloudflare/bucket"
+
+[env.staging]
+kv_namespaces = [
+  { binding = "kv", id = "329c9104766d4e7289f879aef5a93d4f", preview_id = "dd598af7e7764ea49de46a5ca794de04" }
+]
