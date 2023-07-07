@@ -28,11 +28,11 @@ import { env } from "./worker-env";
 /*
 ```sh
 # see logs on console
-OTEL_SERVICE_NAME=dev OTEL_TRACES_EXPORTER=console pnpm dev
+OTEL_TRACES_EXPORTER=console pnpm dev
 
 # see logs on local jaeger
 docker compose up jaeger  # open http://localhost:16686
-OTEL_SERVICE_NAME=dev OTEL_TRACES_EXPORTER=otlp pnpm dev
+OTEL_TRACES_EXPORTER=otlp pnpm dev
 ```
 */
 
@@ -49,7 +49,7 @@ export async function initializeOpentelemetry() {
   provider = new WebTracerProvider({
     resource: new Resource({
       [SemanticResourceAttributes.SERVICE_NAME]:
-        env.OTEL_SERVICE_NAME ?? "youtube-dl-web",
+        env.OTEL_SERVICE_NAME ?? "youtube-dl-web-unknown",
     }),
   });
 
