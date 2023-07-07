@@ -18,10 +18,11 @@ mkdir -p dist/cloudflare/bucket
 # dist/cloudflare/index.js
 ESBUILD_OPTS=(--minify --sourcemap=external)
 if [ -n "${DEBUG:-}" ]; then
+  # workerd doesn't support sourcemap?
   ESBUILD_OPTS=(--sourcemap=inline)
 fi
 esbuild dist/server/index.js "${ESBUILD_OPTS[@]}" --outfile=dist/cloudflare/index.js --metafile=dist/esbuild-metafile.json \
-  --bundle --minify --format=esm --platform=browser \
+  --bundle --format=esm --platform=browser \
   --external:__STATIC_CONTENT_MANIFEST \
   --external:node:async_hooks
 
