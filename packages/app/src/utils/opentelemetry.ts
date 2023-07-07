@@ -10,6 +10,7 @@ import {
   context,
   trace,
 } from "@opentelemetry/api";
+import { baggageUtils } from "@opentelemetry/core";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
 import {
@@ -47,7 +48,8 @@ export async function initializeOpentelemetry() {
   }
   provider = new WebTracerProvider({
     resource: new Resource({
-      [SemanticResourceAttributes.SERVICE_NAME]: env.OTEL_SERVICE_NAME ?? "",
+      [SemanticResourceAttributes.SERVICE_NAME]:
+        env.OTEL_SERVICE_NAME ?? "youtube-dl-web",
     }),
   });
 
@@ -60,15 +62,18 @@ export async function initializeOpentelemetry() {
         return new SimpleSpanProcessor(new ConsoleSpanExporter());
       }
       case "otlp": {
-        // TODO: allow configuration
-        // OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp.nr-data.net:4318
-        // OTEL_EXPORTER_OTLP_TRACES_HEADERS=api-key=xxx
-        return new BatchSpanProcessor(
-          new OTLPTraceExporter({
-            url: undefined,
-            headers: {},
-          })
+        // cf. https://github.com/open-telemetry/opentelemetry-js/blob/68039c55ecc7f8ff6af15c5c430d9202b6bf9f8b/experimental/packages/exporter-trace-otlp-http/src/platform/browser/OTLPTraceExporter.ts#L36
+        const url =
+          (env.OTEL_EXPORTER_OTLP_ENDPOINT ?? "http://localhost:4318") +
+          "/v1/traces";
+        const headers = baggageUtils.parseKeyPairsIntoRecord(
+          env.OTEL_EXPORTER_OTLP_TRACES_HEADERS
         );
+        const exporter = new OTLPTraceExporter({
+          url,
+          headers,
+        });
+        return new BatchSpanProcessor(exporter);
       }
     }
     throw new Error("invalid env.OTEL_TRACES_EXPORTER");

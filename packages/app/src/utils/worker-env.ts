@@ -5,6 +5,8 @@ export let env: {
   kv: KVNamespace;
   OTEL_SERVICE_NAME?: string;
   OTEL_TRACES_EXPORTER?: string;
+  OTEL_EXPORTER_OTLP_ENDPOINT?: string;
+  OTEL_EXPORTER_OTLP_TRACES_HEADERS?: string;
 } = {} as any;
 
 export function setWorkerEnv(v: any) {
