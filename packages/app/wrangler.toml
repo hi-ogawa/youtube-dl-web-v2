@@ -27,4 +27,5 @@ kv_namespaces = [
 ]
 
 [env.local.vars]
+# tweak variables for local testing
 # OTEL_TRACES_EXPORTER = "otlp"
