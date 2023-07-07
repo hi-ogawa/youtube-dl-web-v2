@@ -7,6 +7,7 @@ import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
 import { rpcHandler } from "../trpc/hattip";
 import {
   initializeOpentelemetry,
+  traceForceFlushHandler,
   traceRequestHandler,
 } from "../utils/opentelemetry";
 import { initializeServerHandler } from "../utils/server-utils";
@@ -17,7 +18,8 @@ import { initailizeWorkerEnv } from "../utils/worker-env";
 export function createHattipEntry() {
   return compose(
     loggerMiddleware(),
-    bootstrapHandler(),
+    bootstrapHandler(), // bootstrap includes opentelemetry initialization
+    traceForceFlushHandler(),
     traceRequestHandler(),
     initializeServerHandler(),
     rpcHandler(),

@@ -1,13 +1,13 @@
 import { RequestHandler } from "@hattip/compose";
 import {
-  Context,
-  ContextManager,
-  ROOT_CONTEXT,
+  DiagConsoleLogger,
+  DiagLogLevel,
   Span,
   SpanKind,
   SpanOptions,
   SpanStatusCode,
   context,
+  diag,
   trace,
 } from "@opentelemetry/api";
 import { baggageUtils } from "@opentelemetry/core";
@@ -23,6 +23,7 @@ import {
   SemanticAttributes,
   SemanticResourceAttributes,
 } from "@opentelemetry/semantic-conventions";
+import { SimpleAsyncContextManager } from "./opentelemetry-lib";
 import { env } from "./worker-env";
 
 /*
@@ -40,24 +41,35 @@ OTEL_TRACES_EXPORTER=otlp pnpm dev
 // init
 //
 
-let provider: WebTracerProvider;
+let provider: WebTracerProvider | undefined;
 
 export async function initializeOpentelemetry() {
   if (!env.OTEL_TRACES_EXPORTER) {
     return;
   }
-  provider = new WebTracerProvider({
-    resource: new Resource({
-      [SemanticResourceAttributes.SERVICE_NAME]:
-        env.OTEL_SERVICE_NAME ?? "youtube-dl-web-unknown",
-    }),
+
+  // debug
+  if (false as boolean) {
+    diag.setLogger(new DiagConsoleLogger(), { logLevel: DiagLogLevel.ALL });
+  }
+
+  const resource = new Resource({
+    [SemanticResourceAttributes.SERVICE_NAME]:
+      env.OTEL_SERVICE_NAME ?? "youtube-dl-web-unknown",
   });
-
   const contextManager = new SimpleAsyncContextManager();
-  provider.register({ contextManager });
+  const spanProcessor = getSpanProcessor(env.OTEL_TRACES_EXPORTER);
 
-  function getSpanProcessor() {
-    switch (env.OTEL_TRACES_EXPORTER) {
+  provider = new WebTracerProvider({ resource });
+  provider.register({ contextManager });
+  provider.addSpanProcessor(spanProcessor);
+
+  //
+  // helpers
+  //
+
+  function getSpanProcessor(type: string) {
+    switch (type) {
       case "console": {
         return new SimpleSpanProcessor(new ConsoleSpanExporter());
       }
@@ -76,44 +88,7 @@ export async function initializeOpentelemetry() {
         return new BatchSpanProcessor(exporter);
       }
     }
-    throw new Error("invalid env.OTEL_TRACES_EXPORTER");
-  }
-  provider.addSpanProcessor(getSpanProcessor());
-}
-
-//
-// simple port to remove "events" and "async_hooks" dependency from
-// https://github.com/open-telemetry/opentelemetry-js/blob/06e919d6c909e8cc8e28b6624d9843f401d9b059/packages/opentelemetry-context-async-hooks/src/AsyncLocalStorageContextManager.ts#L17-L23
-//
-
-import { AsyncLocalStorage } from "node:async_hooks";
-
-class SimpleAsyncContextManager implements ContextManager {
-  private storage = new AsyncLocalStorage<Context>();
-
-  active(): Context {
-    return this.storage.getStore() ?? ROOT_CONTEXT;
-  }
-
-  with<A extends unknown[], F extends (...args: A) => ReturnType<F>>(
-    context: Context,
-    fn: F,
-    thisArg?: ThisParameterType<F>,
-    ...args: A
-  ): ReturnType<F> {
-    return this.storage.run(context, () => fn.apply(thisArg, args));
-  }
-
-  bind<T>(_context: Context, _target: T): T {
-    throw new Error("todo: ContextManager.bind");
-  }
-
-  enable(): this {
-    return this;
-  }
-
-  disable(): this {
-    return this;
+    throw new Error("invalid OTEL_TRACES_EXPORTER");
   }
 }
 
@@ -129,7 +104,7 @@ export async function traceAsync<T>(
   asyncFn: (span: Span) => T
 ): Promise<Awaited<T>> {
   const span = trace.getTracer("default").startSpan(meta.name, meta.options);
-  // redundant async/await to workaround typing
+  // need redundant async/await to workaround typing
   return await context.with(trace.setSpan(context.active(), span), async () => {
     try {
       // span can be also accessed by `trace.getActiveSpan()`
@@ -193,5 +168,17 @@ export function traceRequestHandler(): RequestHandler {
         return response;
       }
     );
+  };
+}
+
+export function traceForceFlushHandler(): RequestHandler {
+  return async (ctx) => {
+    try {
+      return await ctx.next();
+    } finally {
+      if (provider) {
+        ctx.waitUntil(provider.forceFlush());
+      }
+    }
   };
 }
