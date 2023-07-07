@@ -81,7 +81,7 @@ function AssetEntryCompoennt({ asset }: { asset: AssetListEntry }) {
               "/api/assets/download?" +
               new URLSearchParams({ name: asset.name })
             }
-            download
+            download={asset.metadata.filename}
           ></a>
         </div>
       </div>
