@@ -18,5 +18,13 @@ bucket = "./dist/cloudflare/bucket"
 
 [env.staging]
 kv_namespaces = [
-  { binding = "kv", id = "329c9104766d4e7289f879aef5a93d4f", preview_id = "dd598af7e7764ea49de46a5ca794de04" }
+  { binding = "kv", id = "329c9104766d4e7289f879aef5a93d4f" }
 ]
+
+[env.local]
+kv_namespaces = [
+  { binding = "kv", id = "__dummy", preview_id = "dd598af7e7764ea49de46a5ca794de04" }
+]
+
+[env.local.vars]
+# OTEL_TRACES_EXPORTER = "otlp"

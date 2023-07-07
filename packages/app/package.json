@@ -16,7 +16,7 @@
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
     "dotenv-staging": "bash misc/dotenv.sh .env.staging",
     "dotenv-production": "bash misc/dotenv.sh .env.production",
-    "preview": "wrangler dev --env staging",
+    "preview": "wrangler dev --env local",
     "release": "wrangler deploy --env staging",
     "release-production": "wrangler deploy"
   },
