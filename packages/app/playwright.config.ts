@@ -21,6 +21,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
   webServer: {
+    // TODO: e2e against preview server (i.e. workerd runtime)?
     command: `pnpm dev-e2e >> e2e.log 2>&1`,
     port: 15173,
     reuseExistingServer: true,

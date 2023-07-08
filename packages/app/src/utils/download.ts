@@ -8,11 +8,9 @@ import {
 } from "./worker-client-libwebm";
 import type { VideoInfo } from "./youtube-utils";
 
-// === TODO: this comment is obsolete after migrated to cloudflare workers ===
-// chunk size is chosen so that
-// - vercel's lambda timeouts in 10 seconds (on free plan)
-// - maximum aws lambda's payload is 8MB
-const CHUNK_SIZE = 2_000_000;
+// even though cloudflare workers can respond with 250MB https://developers.cloudflare.com/workers/platform/limits/#response-limits
+// too large chunk seems to have negative impact on downlaod speed somewhere (probably at youtube media data CDN)
+const CHUNK_SIZE = 5_000_000;
 
 export interface DownloadProgress {
   result?: Uint8Array; // defined when finished processing
