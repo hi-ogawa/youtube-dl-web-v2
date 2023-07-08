@@ -41,7 +41,7 @@ test("basic", async ({ page }) => {
 
   // upload to share
   await page.getByRole("button", { name: "Upload to share" }).click();
-  await page.getByText("successfuly uploaded").click();
+  await page.getByText("successfully uploaded").click();
 
   // check uploaded file
   await page.getByRole("banner").getByRole("button").first().click();

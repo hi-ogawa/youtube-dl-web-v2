@@ -30,11 +30,6 @@
     "vitest": "^0.24.5"
   },
   "volta": {
-    "node": "16.18.0"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@opentelemetry/sdk-node@0.34.0": "patches/@opentelemetry__sdk-node@0.34.0.patch"
-    }
+    "node": "18.16.1"
   }
 }

@@ -2,6 +2,7 @@ node_modules
 build
 dist
 .vercel
+.wrangler
 *.log
 *.webm
 *.opus

@@ -3,7 +3,6 @@ import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
-  globalSetup: "./src/misc/playwright/setup-global.ts",
   use: {
     baseURL: `http://localhost:15173`,
     trace: process.env["E2E_TRACE"] ? "on" : "off",
@@ -22,6 +21,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
   webServer: {
+    // TODO: e2e against preview server (i.e. workerd runtime)?
     command: `pnpm dev-e2e >> e2e.log 2>&1`,
     port: 15173,
     reuseExistingServer: true,

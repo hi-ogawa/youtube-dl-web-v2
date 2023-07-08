@@ -1,8 +1,7 @@
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
-import { rpcClient, rpcClientQuery } from "../trpc/client";
-import { triggerDownloadClick } from "../utils/browser-utils";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { rpcClientQuery } from "../trpc/client";
+import { AssetListEntry } from "../utils/asset-utils";
 import { cls } from "../utils/misc";
-import { Asset } from "../utils/s3-utils";
 import { getThumbnailUrl } from "../utils/youtube-utils";
 
 export function Component() {
@@ -32,7 +31,7 @@ export function Component() {
           <>
             {!assets?.length && "Empty"}
             {assets?.map((e) => (
-              <AssetEntryCompoennt asset={e} />
+              <AssetEntryCompoennt key={e.name} asset={e} />
             ))}
           </>
         )}
@@ -52,14 +51,7 @@ export function Component() {
   );
 }
 
-function AssetEntryCompoennt({ asset }: { asset: Asset }) {
-  const downloadMutation = useMutation({
-    mutationFn: async () => {
-      const url = await rpcClient.getDownloadUrl({ key: asset.key });
-      triggerDownloadClick({ href: url });
-    },
-  });
-
+function AssetEntryCompoennt({ asset }: { asset: AssetListEntry }) {
   return (
     <div
       className="relative w-full flex border"
@@ -67,29 +59,30 @@ function AssetEntryCompoennt({ asset }: { asset: Asset }) {
     >
       <div className="flex-none w-[44%] relative aspect-video overflow-hidden">
         <a
-          href={`https://www.youtube.com/watch?v=${asset.videoId}`}
+          href={`https://www.youtube.com/watch?v=${asset.metadata.videoId}`}
           target="_blank"
           className="w-full h-full"
         >
           <img
             className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-            src={getThumbnailUrl(asset.videoId)}
+            src={getThumbnailUrl(asset.metadata.videoId)}
           />
         </a>
       </div>
       <div className="grow p-2 flex flex-col relative text-sm">
-        <span className="line-clamp-2 mb-2">{asset.title}</span>
+        <span className="line-clamp-2 mb-2">{asset.metadata.title}</span>
         <span className="line-clamp-1 text-colorTextSecondary text-xs pr-8">
-          {asset.artist}
+          {asset.metadata.artist}
         </span>
         <div className="absolute right-2 bottom-1">
-          <button
-            className={cls(
-              "antd-btn antd-btn-ghost w-5 h-5",
-              downloadMutation.isLoading ? "antd-spin" : "i-ri-download-line"
-            )}
-            onClick={() => downloadMutation.mutate()}
-          />
+          <a
+            className="antd-btn antd-btn-ghost i-ri-download-line w-5 h-5"
+            href={
+              "/api/assets/download?" +
+              new URLSearchParams({ name: asset.name })
+            }
+            download={asset.metadata.filename}
+          ></a>
         </div>
       </div>
     </div>

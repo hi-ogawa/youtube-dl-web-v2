@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { newPromiseWithResolvers, tinyassert } from "@hiogawa/utils";
+import { tinyassert } from "@hiogawa/utils";
 import { useRafLoop } from "@hiogawa/utils-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
@@ -8,14 +8,15 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
-import { rpcClient, rpcClientQuery } from "../trpc/client";
+import { rpcClientQuery } from "../trpc/client";
+import { AssetMetadata } from "../utils/asset-utils";
 import { triggerDownloadClick } from "../utils/browser-utils";
-import { publicConfig } from "../utils/config-public";
 import {
   DownloadProgress,
   download,
   downloadFastSeek,
 } from "../utils/download";
+import { createFormData } from "../utils/form-data-utils";
 import {
   TimestampEntry,
   cls,
@@ -25,8 +26,6 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
-import { usePromiseQueryOpitons } from "../utils/react-query-utils";
-import { loadTurnstileScript, turnstile } from "../utils/turnstile-utils";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
@@ -234,42 +233,27 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     }
   );
 
-  const turnstileScriptQuery = useQuery(
-    usePromiseQueryOpitons(() => loadTurnstileScript().then(() => null))
-  );
-
-  const turnstileRef = React.useRef<HTMLDivElement>(null);
-
   const uploadShareMutation = useMutation({
     mutationFn: async (args: { output: Uint8Array; filename: string }) => {
-      tinyassert(turnstileRef.current);
-      const turnstileResult = newPromiseWithResolvers<string>();
-      turnstile.render(turnstileRef.current, {
-        sitekey: publicConfig.APP_CAPTCHA_SITE_KEY,
-        callback: (token) => {
-          turnstileResult.resolve(token);
-        },
-        "error-callback": (error) => {
-          turnstileResult.reject(error);
-        },
-      });
-      const token = await turnstileResult.promise;
-      const url = await rpcClient.getAssetUploadPutUrl({
-        filename: args.filename,
-        contentType: "audio/opus",
-        videoId: videoInfo.id,
-        title,
-        artist,
-        token,
+      const url = "/api/assets/upload";
+      const formData = createFormData({
+        files: [new File([args.output], "__dummy")],
+        metadata: {
+          filename: args.filename,
+          contentType: "audio/opus",
+          videoId: videoInfo.id,
+          title,
+          artist,
+        } satisfies AssetMetadata,
       });
       const res = await fetch(url, {
-        method: "PUT",
-        body: args.output,
+        method: "POST",
+        body: formData,
       });
       tinyassert(res.ok);
     },
     onSuccess: () => {
-      toast.success("successfuly uploaded");
+      toast.success("successfully uploaded");
     },
   });
 
@@ -454,9 +438,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           uploadShareMutation.isLoading && "antd-btn-loading"
         )}
         disabled={
-          !turnstileScriptQuery.isSuccess ||
-          !processFileMutation.isSuccess ||
-          uploadShareMutation.isSuccess
+          !processFileMutation.isSuccess || uploadShareMutation.isSuccess
         }
         onClick={() => {
           processFileMutation.isSuccess &&
@@ -470,7 +452,6 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
           Upload to share
         </div>
       </button>
-      <div ref={turnstileRef}></div>
     </form>
   );
 }
