@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import process from "node:process";
 import { PlaywrightTestConfig } from "@playwright/test";
 
