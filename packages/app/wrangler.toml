@@ -24,3 +24,26 @@ id = "329c9104766d4e7289f879aef5a93d4f"
 binding = "kv"
 id = "__dummy-unused"
 preview_id = "dd598af7e7764ea49de46a5ca794de04"
+
+[vars]
+OTEL_SERVICE_NAME = "youtube-dl-web"
+OTEL_TRACES_EXPORTER = "otlp"
+OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.nr-data.net:4318"
+# https://developers.cloudflare.com/workers//wrangler/commands/#secret
+# npx wrangler secret put OTEL_EXPORTER_OTLP_TRACES_HEADERS
+# OTEL_EXPORTER_OTLP_TRACES_HEADERS = "api-key=xxx"
+
+[env.staging.vars]
+OTEL_SERVICE_NAME = "youtube-dl-web-staging"
+OTEL_TRACES_EXPORTER = "otlp"
+OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.nr-data.net:4318"
+# npx wrangler secret put OTEL_EXPORTER_OTLP_TRACES_HEADERS --env staging
+# OTEL_EXPORTER_OTLP_TRACES_HEADERS = "api-key=xxx"
+
+[env.local.vars]
+# tweak variables for local testing
+# OTEL_SERVICE_NAME = "youtube-dl-web-local"
+# OTEL_TRACES_EXPORTER = "console"
+# OTEL_TRACES_EXPORTER = "otlp"
+# OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.nr-data.net:4318"
+# OTEL_EXPORTER_OTLP_TRACES_HEADERS = "api-key=xxx"

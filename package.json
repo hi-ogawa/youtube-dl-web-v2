@@ -31,5 +31,10 @@
   },
   "volta": {
     "node": "18.16.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@opentelemetry/otlp-exporter-base@0.41.0": "patches/@opentelemetry__otlp-exporter-base@0.41.0.patch"
+    }
   }
 }

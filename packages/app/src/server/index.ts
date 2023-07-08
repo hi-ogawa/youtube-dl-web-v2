@@ -5,6 +5,11 @@ import THEME_SCRIPT from "@hiogawa/utils-experimental/dist/theme-script.global.j
 import { globApiRoutes } from "@hiogawa/vite-glob-routes/dist/hattip";
 import { importIndexHtml } from "@hiogawa/vite-import-index-html/dist/runtime";
 import { rpcHandler } from "../trpc/hattip";
+import {
+  initializeOpentelemetry,
+  traceForceFlushHandler,
+  traceRequestHandler,
+} from "../utils/opentelemetry";
 import { initializeServerHandler } from "../utils/server-utils";
 import { WORKER_ASSET_URLS } from "../utils/worker-client";
 import { WORKER_ASSET_URLS_LIBWEBM } from "../utils/worker-client-libwebm";
@@ -13,7 +18,9 @@ import { initailizeWorkerEnv } from "../utils/worker-env";
 export function createHattipEntry() {
   return compose(
     loggerMiddleware(),
-    bootstrapHandler(),
+    bootstrapHandler(), // bootstrap includes opentelemetry initialization
+    traceForceFlushHandler(),
+    traceRequestHandler(),
     initializeServerHandler(),
     rpcHandler(),
     globApiRoutes(),
@@ -49,5 +56,6 @@ function injectToHead(): string {
 function bootstrapHandler() {
   return once(async () => {
     await initailizeWorkerEnv();
+    await initializeOpentelemetry();
   });
 }

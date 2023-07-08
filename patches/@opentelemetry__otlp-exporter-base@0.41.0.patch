@@ -1,0 +1,42 @@
+diff --git a/build/esm/platform/browser/OTLPExporterBrowserBase.js b/build/esm/platform/browser/OTLPExporterBrowserBase.js
+index d763ecbb3f7aabd35cff83949af72a150b80b7a7..8d1766a8c65694e822c0ce14b03fcb4cd02c704c 100644
+--- a/build/esm/platform/browser/OTLPExporterBrowserBase.js
++++ b/build/esm/platform/browser/OTLPExporterBrowserBase.js
+@@ -41,11 +41,13 @@ var OTLPExporterBrowserBase = /** @class */ (function (_super) {
+         }
+         return _this;
+     }
++    // (PATCH) cloudflare workers compat (no window)
+     OTLPExporterBrowserBase.prototype.onInit = function () {
+-        window.addEventListener('unload', this.shutdown);
++        diag.debug("(PATCH) OTLPExporterBrowserBase.onInit");
++        // window.addEventListener('unload', this.shutdown);
+     };
+     OTLPExporterBrowserBase.prototype.onShutdown = function () {
+-        window.removeEventListener('unload', this.shutdown);
++        // window.removeEventListener('unload', this.shutdown);
+     };
+     OTLPExporterBrowserBase.prototype.send = function (items, onSuccess, onError) {
+         var _this = this;
+@@ -56,6 +58,21 @@ var OTLPExporterBrowserBase = /** @class */ (function (_super) {
+         var serviceRequest = this.convert(items);
+         var body = JSON.stringify(serviceRequest);
+         var promise = new Promise(function (resolve, reject) {
++            // (PATCH) cloudflare workers compat (fetch instead of xhr)
++            diag.debug("(PATCH) send by fetch");
++            fetch(_this.url, {
++              method: "POST",
++              body,
++              headers: {
++                "accept": "application/json",
++                "content-type": "application/json",
++                ..._this._headers
++              },
++            })
++            .then(res => res.ok ? resolve() : reject(new Error("(PATCH) Error in OTLPExporterBrowserBase")))
++            .catch(e => reject(e));
++            return;
++
+             if (_this._useXHR) {
+                 sendWithXhr(body, _this.url, _this._headers, _this.timeoutMillis, resolve, reject);
+             }

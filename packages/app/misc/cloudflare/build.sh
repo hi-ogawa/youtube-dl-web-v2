@@ -22,7 +22,9 @@ if [ -n "${DEBUG:-}" ]; then
   ESBUILD_OPTS=(--sourcemap=inline)
 fi
 esbuild dist/server/index.js "${ESBUILD_OPTS[@]}" --outfile=dist/cloudflare/index.js --metafile=dist/esbuild-metafile.json \
-  --bundle --format=esm --platform=browser --external:__STATIC_CONTENT_MANIFEST
+  --bundle --format=esm --platform=browser \
+  --external:__STATIC_CONTENT_MANIFEST \
+  --external:node:async_hooks
 
 # dist/cloudflare/bucket
 cp -r dist/client/assets dist/cloudflare/bucket/assets
