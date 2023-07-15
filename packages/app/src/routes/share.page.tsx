@@ -6,16 +6,11 @@ import { getThumbnailUrl } from "../utils/youtube-utils";
 
 export function Component() {
   const assetsQuery = useInfiniteQuery({
-    ...rpcClientQuery.listAssets.infiniteQueryOptions(
-      { limit: 5 },
-      {
-        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-        setPageParam: (input, pageParam) => ({
-          ...input,
-          cursor: pageParam as any,
-        }),
-      }
-    ),
+    ...rpcClientQuery.listAssets.infiniteQueryOptions((context) => ({
+      limit: 5,
+      cursor: context?.pageParam as any,
+    })),
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
   const assets = assetsQuery.data?.pages.flatMap((page) => page.assets);
 
