@@ -1,0 +1,13 @@
+diff --git a/wrangler-dist/cli.js b/wrangler-dist/cli.js
+index 30c7c2c925c768da6c0760c2801211210b6dabc0..71357a9363d44f98d72839da81ef60a4738a7327 100644
+--- a/wrangler-dist/cli.js
++++ b/wrangler-dist/cli.js
+@@ -125436,7 +125436,7 @@ var ModuleTypeToRuleType = flipObject(RuleTypeToModuleType);
+ var DEFAULT_MODULE_RULES = [
+   { type: "Text", globs: ["**/*.txt", "**/*.html"] },
+   { type: "Data", globs: ["**/*.bin"] },
+-  { type: "CompiledWasm", globs: ["**/*.wasm", "**/*.wasm?module"] }
++  // { type: "CompiledWasm", globs: ["**/*.wasm", "**/*.wasm?module"] }
+ ];
+ function parseRules(userRules = []) {
+   const rules = [...userRules, ...DEFAULT_MODULE_RULES];
