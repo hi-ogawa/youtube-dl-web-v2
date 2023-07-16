@@ -22,7 +22,7 @@ export function Component() {
 function PageInner() {
   return (
     <div className="flex flex-col relative">
-      <div className="top-0 sticky antd-body">
+      <div className="top-0 sticky antd-body z-1">
         <PageHeader />
       </div>
       <div className="flex flex-col">
