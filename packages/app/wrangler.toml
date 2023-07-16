@@ -7,6 +7,14 @@ no_bundle = true
 compatibility_date = "2023-04-20"
 compatibility_flags = [ "nodejs_compat" ]
 
+# counter default rule https://github.com/cloudflare/workers-sdk/blob/113fb7fe86cde0c43a7efa7fc2e58ec8c55d8267/packages/wrangler/src/module-collection.ts#L43
+# to avoid wrangler confusing client wasm as server module and uploading it to worker
+# TODO: such config not allowed by wrangler anyway?
+[[rules]]
+type = "CompiledWasm"
+globs = []
+fallthrough = false
+
 # npx wrangler kv:namespace create kv
 # npx wrangler kv:namespace create kv --env staging
 # npx wrangler kv:namespace create kv --env staging --preview
