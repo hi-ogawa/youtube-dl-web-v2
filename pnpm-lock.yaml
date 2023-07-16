@@ -52,9 +52,6 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.332.0
         version: 3.332.0
-      '@cloudflare/kv-asset-handler':
-        specifier: ^0.3.0
-        version: 0.3.0
       '@floating-ui/react-dom-interactions':
         specifier: ^0.10.3
         version: 0.10.3(@types/react@18.0.23)(react-dom@18.2.0)(react@18.2.0)
@@ -1466,12 +1463,6 @@ packages:
     dependencies:
       mime: 3.0.0
     dev: true
-
-  /@cloudflare/kv-asset-handler@0.3.0:
-    resolution: {integrity: sha512-9CB/MKf/wdvbfkUdfrj+OkEwZ5b7rws0eogJ4293h+7b6KX5toPwym+VQKmILafNB9YiehqY0DlNrDcDhdWHSQ==}
-    dependencies:
-      mime: 3.0.0
-    dev: false
 
   /@cloudflare/workerd-darwin-64@1.20230628.0:
     resolution: {integrity: sha512-ndtsGCR3WKcNvq2eE2teQXcE+r7PwMh3jnyxPuc4/Fed4q3DQC++da4zNn8f+D+dLd7myifGeygbHic86vh4OA==}
@@ -4095,6 +4086,7 @@ packages:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
     hasBin: true
+    dev: true
 
   /mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
