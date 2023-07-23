@@ -1,3 +1,4 @@
+import { themeScriptPlugin } from "@hiogawa/theme-script/dist/vite";
 import globRoutesPlugin from "@hiogawa/vite-glob-routes";
 import importIndexHtmlPlugin from "@hiogawa/vite-import-index-html";
 import vaviteConnect from "@vavite/connect";
@@ -11,6 +12,10 @@ export default defineConfig((ctx) => ({
     react(),
     globRoutesPlugin({ root: "/src/routes" }),
     importIndexHtmlPlugin(),
+    themeScriptPlugin({
+      storageKey: "youtube-dl-web:theme",
+      defaultTheme: "dark",
+    }),
     vaviteConnect({
       standalone: false,
       serveClientAssetsInDev: true,
