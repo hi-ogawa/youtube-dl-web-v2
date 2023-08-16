@@ -71,8 +71,8 @@ importers:
         specifier: 0.1.1-pre.3
         version: 0.1.1-pre.3
       '@hiogawa/tiny-rpc':
-        specifier: ^0.2.2
-        version: 0.2.2(zod@3.21.4)
+        specifier: ^0.2.3-pre.5
+        version: 0.2.3-pre.5
       '@hiogawa/utils-experimental':
         specifier: ^0.1.0
         version: 0.1.0
@@ -2040,15 +2040,8 @@ packages:
         optional: true
     dev: false
 
-  /@hiogawa/tiny-rpc@0.2.2(zod@3.21.4):
-    resolution: {integrity: sha512-G+ebk/OV8/i2P/8/QSQTsn94l2gArHUZqc43CPHve4wG3AaIqo34xMgxNQax5kgbwzkK+NusPcbQxBI3mMm0dg==}
-    peerDependencies:
-      zod: '*'
-    peerDependenciesMeta:
-      zod:
-        optional: true
-    dependencies:
-      zod: 3.21.4
+  /@hiogawa/tiny-rpc@0.2.3-pre.5:
+    resolution: {integrity: sha512-CtJAJsX0Mrcf0KD18uLgGk9/+BHX+QSc7Ew/mAVQDFPQ2C7GNaWZiIX/WoJlJbKcgfn/vNc1t0p6cQ/SXAq8yA==}
     dev: false
 
   /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.53.5)(unocss@0.46.5):

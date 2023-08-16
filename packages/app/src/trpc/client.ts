@@ -1,11 +1,14 @@
 import { createFnRecordQueryProxy } from "@hiogawa/query-proxy";
-import { createTinyRpcClientProxy } from "@hiogawa/tiny-rpc";
+import { httpClientAdapter, proxyTinyRpc } from "@hiogawa/tiny-rpc";
 import { rpcRoutes } from "./server";
 
 export const RPC_ENDPOINT = "/trpc";
 
-export const rpcClient = createTinyRpcClientProxy<typeof rpcRoutes>({
-  endpoint: RPC_ENDPOINT,
+export const rpcClient = proxyTinyRpc<typeof rpcRoutes>({
+  adapter: httpClientAdapter({
+    url: RPC_ENDPOINT,
+    method: "POST",
+  }),
 });
 
 export const rpcClientQuery = createFnRecordQueryProxy(rpcClient);
