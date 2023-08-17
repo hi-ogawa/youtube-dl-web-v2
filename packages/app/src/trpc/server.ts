@@ -1,12 +1,18 @@
-import { TinyRpcRoutes } from "@hiogawa/tiny-rpc";
-import { zodFn } from "@hiogawa/tiny-rpc/dist/zod";
+import { RequestHandler } from "@hattip/compose";
+import {
+  TinyRpcRoutes,
+  exposeTinyRpc,
+  httpServerAdapter,
+  validateFn,
+} from "@hiogawa/tiny-rpc";
 import { tinyassert } from "@hiogawa/utils";
 import { z } from "zod";
 import { listAssets } from "../utils/asset-utils";
 import { fetchVideoInfo, parseVideoId } from "../utils/youtube-utils";
+import { RPC_ENDPOINT } from "./client";
 
 export const rpcRoutes = {
-  getVideoMetadata: zodFn(
+  getVideoMetadata: validateFn(
     z.object({
       id: z.string(),
     })
@@ -18,7 +24,7 @@ export const rpcRoutes = {
     return { videoInfo };
   }),
 
-  listAssets: zodFn(
+  listAssets: validateFn(
     z.object({
       cursor: z.string().optional(),
       limit: z.number().int().min(1).max(10),
@@ -27,3 +33,16 @@ export const rpcRoutes = {
     return listAssets(input);
   }),
 } satisfies TinyRpcRoutes;
+
+export function rpcHandler(): RequestHandler {
+  return exposeTinyRpc({
+    routes: rpcRoutes,
+    adapter: httpServerAdapter({
+      endpoint: RPC_ENDPOINT,
+      method: "POST",
+      onError(e) {
+        console.error(e);
+      },
+    }),
+  });
+}
