@@ -33,7 +33,7 @@ test("basic", async ({ page }) => {
   await page.getByRole("button", { name: "Download" }).click();
 
   // success message
-  await page.waitForSelector("'successfully downloaded'");
+  await page.waitForSelector("'Successfully downloaded'");
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe(
     "VULFPECK - Animal Spirits ___ Live at Madison Square Garden.opus"
@@ -41,7 +41,7 @@ test("basic", async ({ page }) => {
 
   // upload to share
   await page.getByRole("button", { name: "Upload to share" }).click();
-  await page.getByText("successfully uploaded").click();
+  await page.getByText("Successfully uploaded").click();
 
   // check uploaded file
   await page.getByRole("banner").getByRole("button").first().click();
