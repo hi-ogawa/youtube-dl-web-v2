@@ -32,6 +32,7 @@
     "@hiogawa/query-proxy": "0.1.1-pre.3",
     "@hiogawa/theme-script": "^0.0.3",
     "@hiogawa/tiny-rpc": "^0.2.3-pre.5",
+    "@hiogawa/tiny-toast": "0.1.1-pre.7",
     "@hiogawa/utils-experimental": "^0.1.0",
     "@hiogawa/utils-react": "1.2.1-pre.4",
     "@opentelemetry/api": "^1.4.1",
@@ -48,7 +49,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.35.0",
-    "react-hot-toast": "^2.4.0",
     "react-remove-scroll": "^2.5.5",
     "react-router-dom": "^6.13.0",
     "zod": "^3.21.4"

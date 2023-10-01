@@ -2,9 +2,9 @@ import { tinyassert } from "@hiogawa/utils";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { PLACEHOLDER_IMAGE } from "../components/video-card";
 import { ignoreFormEnter } from "../utils/misc";
+import { toast } from "../utils/toast";
 import {
   extractCoverArt,
   extractMetadata,
@@ -53,9 +53,7 @@ export function Component() {
       },
       onError: () => {
         form.setValue("fileList", undefined);
-        toast.error("failed to read file", {
-          id: "probeMutation.onError",
-        });
+        toast.error("Failed to read file");
       },
     }
   );
@@ -82,12 +80,10 @@ export function Component() {
     },
     {
       onSuccess: () => {
-        toast.success("successfully converted");
+        toast.success("Successfully converted");
       },
       onError: () => {
-        toast.error("failed to convert", {
-          id: "convertMutation.onError",
-        });
+        toast.error("Failed to convert");
       },
     }
   );

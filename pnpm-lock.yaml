@@ -76,6 +76,9 @@ importers:
       '@hiogawa/tiny-rpc':
         specifier: ^0.2.3-pre.5
         version: 0.2.3-pre.5
+      '@hiogawa/tiny-toast':
+        specifier: 0.1.1-pre.7
+        version: 0.1.1-pre.7(react@18.2.0)
       '@hiogawa/utils-experimental':
         specifier: ^0.1.0
         version: 0.1.0
@@ -124,9 +127,6 @@ importers:
       react-hook-form:
         specifier: ^7.35.0
         version: 7.38.0(react@18.2.0)
-      react-hot-toast:
-        specifier: ^2.4.0
-        version: 2.4.0(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
       react-remove-scroll:
         specifier: ^2.5.5
         version: 2.5.5(@types/react@18.0.23)(react@18.2.0)
@@ -2036,6 +2036,17 @@ packages:
     resolution: {integrity: sha512-CtJAJsX0Mrcf0KD18uLgGk9/+BHX+QSc7Ew/mAVQDFPQ2C7GNaWZiIX/WoJlJbKcgfn/vNc1t0p6cQ/SXAq8yA==}
     dev: false
 
+  /@hiogawa/tiny-toast@0.1.1-pre.7(react@18.2.0):
+    resolution: {integrity: sha512-Qjp/sFedLhvhb2B69X/CyaU4d+fd+OWlPCh08WvWL3NUcH1zGbfz7wceLoTNVM7ye8TqtgK5UmjFJ7adeEz14g==}
+    peerDependencies:
+      react: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@hiogawa/unocss-preset-antd@2.2.1-pre.2(@unocss/preset-uno@0.53.5)(unocss@0.46.5):
     resolution: {integrity: sha512-IyLBst49BiscFZ+lcO1d2fJ7S7YhEK+ikgZNymtgbcMYhIbgzY6Qju4FW5BpBivQ3csMblzvgz+sfJDaXC0viw==}
     peerDependencies:
@@ -3074,10 +3085,6 @@ packages:
   /csstype@3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
-  /csstype@3.1.2:
-    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-    dev: false
-
   /data-uri-to-buffer@2.0.2:
     resolution: {integrity: sha512-ND9qDTLc6diwj+Xe5cdAgVTbLVdXbtxTJRXRhli8Mowuaan+0EJOtdqJ0QCHNSSPyoXGx9HX2/VMnKeC34AChA==}
     dev: true
@@ -3676,14 +3683,6 @@ packages:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
     dev: true
-
-  /goober@2.1.11(csstype@3.1.2):
-    resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
-    peerDependencies:
-      csstype: ^3.0.10
-    dependencies:
-      csstype: 3.1.2
-    dev: false
 
   /gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
@@ -4463,20 +4462,6 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /react-hot-toast@2.4.0(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      goober: 2.1.11(csstype@3.1.2)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - csstype
     dev: false
 
   /react-refresh@0.14.0:
