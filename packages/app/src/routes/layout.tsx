@@ -6,17 +6,14 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
-import { Toaster, toast } from "react-hot-toast";
 import { NavLink, Outlet, useLocation, useRouteError } from "react-router-dom";
 import { Drawer } from "../components/drawer";
 import { ThemeSelect } from "../components/theme-select";
+import { toast } from "../utils/toast";
 
 export function Component() {
-  return (
-    <Compose
-      elements={[<QueryClientWrapper />, <ToastWrapper />, <PageInner />]}
-    />
-  );
+  React.useEffect(() => toast.render(), []);
+  return <Compose elements={[<QueryClientWrapper />, <PageInner />]} />;
 }
 
 function PageInner() {
@@ -109,14 +106,14 @@ function QueryClientWrapper(props: React.PropsWithChildren) {
           mutations: {
             onError: (error) => {
               console.error("mutation error", error);
-              toast.error("something went wrong...");
+              toast.error("Something went wrong...");
             },
           },
         },
         queryCache: new QueryCache({
           onError(error, _query) {
             console.error("query error", error);
-            toast.error("something went wrong...");
+            toast.error("Something went wrong...");
           },
         }),
       })
@@ -126,15 +123,6 @@ function QueryClientWrapper(props: React.PropsWithChildren) {
       {props.children}
       {import.meta.env.DEV && <ReactQueryDevtools />}
     </QueryClientProvider>
-  );
-}
-
-function ToastWrapper(props: React.PropsWithChildren) {
-  return (
-    <>
-      <Toaster />
-      {props.children}
-    </>
   );
 }
 

@@ -5,7 +5,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { pick, sortBy, uniqBy } from "lodash";
 import React from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "../components/popover";
 import { rpcClientQuery } from "../trpc/client";
@@ -26,6 +25,7 @@ import {
   ignoreFormEnter,
   parseTimestamp,
 } from "../utils/misc";
+import { toast } from "../utils/toast";
 import { useReadableStream } from "../utils/use-readable-stream";
 import { webmToOpus } from "../utils/worker-client";
 import { VideoInfo, getThumbnailUrl } from "../utils/youtube-utils";
@@ -47,9 +47,7 @@ export function Component() {
   const metadataQuery = useMutation({
     ...rpcClientQuery.getVideoMetadata.mutationOptions(),
     onError: () => {
-      toast.error("failed to fetch video info", {
-        id: "metadataQuery.onError",
-      });
+      toast.error("Failed to fetch video info");
     },
   });
 
@@ -130,7 +128,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   React.useEffect(() => {
     if (formats.length === 0) {
       // haven't seen such case but it might be possible
-      toast.error("unsupported video (valid audio format is not found)");
+      toast.error("Unsupported video (valid audio format is not found)");
     }
   }, [formats]);
 
@@ -158,7 +156,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
   const thumbnailQuery = useQuery({
     ...fetchProxyQueryOptions({ url: getThumbnailUrl(videoInfo.id) }),
     onError: () => {
-      toast.error("failed to fetch thumbnail data");
+      toast.error("Failed to fetch thumbnail data");
     },
   });
 
@@ -200,7 +198,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       }
     },
     onError: () => {
-      toast.error("failed to download", { id: "useReadableStream.onError" });
+      toast.error("Failed to download");
     },
   });
 
@@ -221,14 +219,12 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
     },
     {
       onSuccess: ({ filename, output }) => {
-        toast.success("successfully downloaded");
+        toast.success("Successfully downloaded");
         const href = URL.createObjectURL(new Blob([output])); // TODO: URL.revokeObjectURL
         triggerDownloadClick({ href, download: filename });
       },
       onError: () => {
-        toast.error("failed to create an opus file", {
-          id: "processFileMutation.onError",
-        });
+        toast.error("Failed to create an opus file");
       },
     }
   );
@@ -253,7 +249,7 @@ function MainForm({ videoInfo }: { videoInfo: VideoInfo }) {
       tinyassert(res.ok);
     },
     onSuccess: () => {
-      toast.success("successfully uploaded");
+      toast.success("Successfully uploaded");
     },
   });
 
