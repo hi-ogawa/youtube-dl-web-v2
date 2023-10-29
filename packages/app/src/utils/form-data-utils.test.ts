@@ -4,10 +4,7 @@ import { createFormData, parseFormData } from "./form-data-utils";
 it("basic", () => {
   const formData = createFormData({
     metadata: { key: "value" },
-    files: [
-      new Blob(["abc"]),
-      new Blob(["defghi"]),
-    ],
+    files: [new Blob(["abc"]), new Blob(["defghi"])],
   });
   expect(formData).toMatchInlineSnapshot(`
     FormData {
