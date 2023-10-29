@@ -6,31 +6,32 @@ it("basic", () => {
     metadata: { key: "value" },
     files: [new Blob(["abc"]), new Blob(["defghi"])],
   });
-  expect(formData).toMatchInlineSnapshot(`
-    FormData {
-      Symbol(state): [
-        {
-          "name": "metadata",
-          "value": "{\\"key\\":\\"value\\"}",
-        },
-        {
-          "name": "files",
-          "value": File {
-            Symbol(kHandle): Blob {},
-            Symbol(kLength): 3,
-            Symbol(kType): "",
-          },
-        },
-        {
-          "name": "files",
-          "value": File {
-            Symbol(kHandle): Blob {},
-            Symbol(kLength): 6,
-            Symbol(kType): "",
-          },
+
+  let entries: any[] = [];
+  formData.forEach((v, k) => entries.push([k, v]));
+  expect(entries).toMatchInlineSnapshot(`
+    [
+      [
+        "metadata",
+        "{\\"key\\":\\"value\\"}",
+      ],
+      [
+        "files",
+        File {
+          Symbol(kHandle): Blob {},
+          Symbol(kLength): 3,
+          Symbol(kType): "",
         },
       ],
-    }
+      [
+        "files",
+        File {
+          Symbol(kHandle): Blob {},
+          Symbol(kLength): 6,
+          Symbol(kType): "",
+        },
+      ],
+    ]
   `);
 
   const parsed = parseFormData(formData);
