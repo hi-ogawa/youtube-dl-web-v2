@@ -5,8 +5,8 @@ it("basic", () => {
   const formData = createFormData({
     metadata: { key: "value" },
     files: [
-      new File(["abc"], "test1.txt", { lastModified: 1 }),
-      new File(["defghi"], "test2.txt", { lastModified: 2 }),
+      new Blob(["abc"]),
+      new Blob(["defghi"]),
     ],
   });
   expect(formData).toMatchInlineSnapshot(`
@@ -19,8 +19,6 @@ it("basic", () => {
         {
           "name": "files",
           "value": File {
-            "_lastModified": 1,
-            "_name": "test1.txt",
             Symbol(kHandle): Blob {},
             Symbol(kLength): 3,
             Symbol(kType): "",
@@ -29,8 +27,6 @@ it("basic", () => {
         {
           "name": "files",
           "value": File {
-            "_lastModified": 2,
-            "_name": "test2.txt",
             Symbol(kHandle): Blob {},
             Symbol(kLength): 6,
             Symbol(kType): "",
@@ -45,15 +41,11 @@ it("basic", () => {
     {
       "files": [
         File {
-          "_lastModified": 1,
-          "_name": "test1.txt",
           Symbol(kHandle): Blob {},
           Symbol(kLength): 3,
           Symbol(kType): "",
         },
         File {
-          "_lastModified": 2,
-          "_name": "test2.txt",
           Symbol(kHandle): Blob {},
           Symbol(kLength): 6,
           Symbol(kType): "",
