@@ -10,7 +10,7 @@ export function createFormData({
   files,
 }: {
   metadata: unknown;
-  files: File[];
+  files: Blob[];
 }): FormData {
   const formData = new FormData();
   formData.set(KEY.metadata, JSON.stringify(metadata));
@@ -26,9 +26,9 @@ export function parseFormData(formData: FormData) {
   const metadata: unknown = JSON.parse(metadataRaw);
 
   const filesRaw = formData.getAll(KEY.files);
-  const files: File[] = [];
+  const files: Blob[] = [];
   for (const file of filesRaw) {
-    tinyassert(file instanceof File);
+    tinyassert(file instanceof Blob);
     files.push(file);
   }
 

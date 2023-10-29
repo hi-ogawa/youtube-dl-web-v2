@@ -4,40 +4,34 @@ import { createFormData, parseFormData } from "./form-data-utils";
 it("basic", () => {
   const formData = createFormData({
     metadata: { key: "value" },
-    files: [
-      new File(["abc"], "test1.txt", { lastModified: 1 }),
-      new File(["defghi"], "test2.txt", { lastModified: 2 }),
-    ],
+    files: [new Blob(["abc"]), new Blob(["defghi"])],
   });
-  expect(formData).toMatchInlineSnapshot(`
-    FormData {
-      Symbol(state): [
-        {
-          "name": "metadata",
-          "value": "{\\"key\\":\\"value\\"}",
-        },
-        {
-          "name": "files",
-          "value": File {
-            "_lastModified": 1,
-            "_name": "test1.txt",
-            Symbol(kHandle): Blob {},
-            Symbol(kLength): 3,
-            Symbol(kType): "",
-          },
-        },
-        {
-          "name": "files",
-          "value": File {
-            "_lastModified": 2,
-            "_name": "test2.txt",
-            Symbol(kHandle): Blob {},
-            Symbol(kLength): 6,
-            Symbol(kType): "",
-          },
+
+  let entries: any[] = [];
+  formData.forEach((v, k) => entries.push([k, v]));
+  expect(entries).toMatchInlineSnapshot(`
+    [
+      [
+        "metadata",
+        "{\\"key\\":\\"value\\"}",
+      ],
+      [
+        "files",
+        File {
+          Symbol(kHandle): Blob {},
+          Symbol(kLength): 3,
+          Symbol(kType): "",
         },
       ],
-    }
+      [
+        "files",
+        File {
+          Symbol(kHandle): Blob {},
+          Symbol(kLength): 6,
+          Symbol(kType): "",
+        },
+      ],
+    ]
   `);
 
   const parsed = parseFormData(formData);
@@ -45,15 +39,11 @@ it("basic", () => {
     {
       "files": [
         File {
-          "_lastModified": 1,
-          "_name": "test1.txt",
           Symbol(kHandle): Blob {},
           Symbol(kLength): 3,
           Symbol(kType): "",
         },
         File {
-          "_lastModified": 2,
-          "_name": "test2.txt",
           Symbol(kHandle): Blob {},
           Symbol(kLength): 6,
           Symbol(kType): "",
