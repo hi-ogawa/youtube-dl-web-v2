@@ -62,7 +62,6 @@
     "@miniflare/kv": "^2.14.0",
     "@miniflare/storage-file": "^2.14.0",
     "@playwright/test": "^1.31.2",
-    "@remix-run/web-file": "^3.0.2",
     "@types/lodash": "^4.14.186",
     "@types/node": "^18",
     "@types/react": "^18.0.20",
