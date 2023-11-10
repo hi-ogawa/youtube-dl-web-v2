@@ -1,4 +1,4 @@
-import type { KVNamespace } from "@miniflare/kv";
+import type { KVNamespace } from "@cloudflare/workers-types";
 import { wrapTraceAsync } from "./opentelemetry";
 
 export let env: {
@@ -32,15 +32,11 @@ async function setWorkerEnvLocal() {
     modules: true,
     script: `export default { fetch: () => new Response(null, { status: 404 }) }`,
     kvNamespaces: ["kv"],
+    // TODO: different storage for "NODE_ENV=test"
     kvPersist: ".wrangler/.vite-dev",
   });
   const bindings = await miniflare.getBindings();
   Object.assign(env, bindings);
-
-  // TODO: different storage for "NODE_ENV=test"
-  // const { KVNamespace } = await import("@miniflare/kv");
-  // const { FileStorage } = await import("@miniflare/storage-file");
-  // env.kv = new KVNamespace(new FileStorage(".wrangler/.vite-dev"));
 }
 
 // prettier-ignore
