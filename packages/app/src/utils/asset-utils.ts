@@ -26,15 +26,11 @@ export async function putAsset(
   metadata: AssetMetadata,
   data: ReadableStream
 ) {
-  await env.kv.put(
-    name,
-    data as import("node:stream/web").ReadableStream, // workaround stream typing
-    {
-      metadata,
-      // auto delete in a week
-      expirationTtl: 7 * 24 * 60 * 60,
-    }
-  );
+  await env.kv.put(name, data as any, {
+    metadata,
+    // auto delete in a week
+    expirationTtl: 7 * 24 * 60 * 60,
+  });
 }
 
 export async function getAsset(key: string) {
