@@ -24,6 +24,7 @@ async function setWorkerEnvLocal() {
   const process = await import("node:process");
   Object.assign(env, process.env);
 
+  // https://github.com/cloudflare/miniflare/blob/master/packages/miniflare/README.md
   // https://github.com/cloudflare/miniflare/pull/639
   // https://github.com/honojs/vite-plugins/blob/main/packages/dev-server/src/dev-server.ts
 
