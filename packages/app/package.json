@@ -69,6 +69,7 @@
     "@unocss/reset": "^0.46.1",
     "@vavite/connect": "^1.8.1",
     "@vitejs/plugin-react": "^4.0.1",
+    "miniflare": "^3.20231025.1",
     "react-router": "^6.13.0",
     "undici": "^5.22.1",
     "unocss": "0.46.5",

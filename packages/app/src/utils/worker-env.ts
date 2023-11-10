@@ -24,10 +24,23 @@ async function setWorkerEnvLocal() {
   const process = await import("node:process");
   Object.assign(env, process.env);
 
+  // https://github.com/cloudflare/miniflare/pull/639
+  // https://github.com/honojs/vite-plugins/blob/main/packages/dev-server/src/dev-server.ts
+
+  const { Miniflare } = await import("miniflare");
+  const miniflare = new Miniflare({
+    modules: true,
+    script: `export default { fetch: () => new Response(null, { status: 404 }) }`,
+    kvNamespaces: ["kv"],
+    kvPersist: ".wrangler/.vite-dev",
+  });
+  const bindings = await miniflare.getBindings();
+  Object.assign(env, bindings);
+
   // TODO: different storage for "NODE_ENV=test"
-  const { KVNamespace } = await import("@miniflare/kv");
-  const { FileStorage } = await import("@miniflare/storage-file");
-  env.kv = new KVNamespace(new FileStorage(".wrangler/.vite-dev"));
+  // const { KVNamespace } = await import("@miniflare/kv");
+  // const { FileStorage } = await import("@miniflare/storage-file");
+  // env.kv = new KVNamespace(new FileStorage(".wrangler/.vite-dev"));
 }
 
 // prettier-ignore
