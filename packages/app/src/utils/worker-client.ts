@@ -2,7 +2,9 @@ import EMSCRIPTEN_MODULE_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00
 import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.wasm?url";
 import { once, tinyassert } from "@hiogawa/utils";
 import { transfer, wrap } from "comlink";
-import WORKER_URL from "../worker/build/ffmpeg.js?url";
+// import WORKER_URL from "../worker/build/ffmpeg.js?url";
+// @ts-ignore forcing type=classic not officially supported
+import WORKER_URL from "../worker/ffmpeg.ts?worker&url&type=classic";
 import type { FFmpegWorker } from "../worker/ffmpeg";
 
 // prefetch assets before instantiating emscripten worker

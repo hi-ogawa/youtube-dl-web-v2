@@ -3,7 +3,9 @@ import EMSCRIPTEN_WASM_URL from "@hiogawa/ffmpeg/build/emscripten/Release/ex01-e
 import type { SimpleMetadata } from "@hiogawa/ffmpeg/build/tsc/cpp/ex01-emscripten-types";
 import { once, tinyassert } from "@hiogawa/utils";
 import { transfer, wrap } from "comlink";
-import WORKER_URL from "../worker/build/libwebm.js?url";
+// import WORKER_URL from "../worker/build/libwebm.js?url";
+// @ts-ignore forcing type=classic not officially supported
+import WORKER_URL from "../worker/libwebm.ts?worker&url&type=classic";
 import type { LibwebmWorker } from "../worker/libwebm";
 
 // prefetch assets before instantiating emscripten worker
