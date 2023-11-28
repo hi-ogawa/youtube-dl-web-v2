@@ -29,5 +29,8 @@ export default defineConfig((ctx) => ({
     outDir: ctx.ssrBuild ? "dist/server" : "dist/client",
     sourcemap: true,
   },
+  // optimizeDeps: {
+  //   include: ["@hiogawa/ffmpeg", "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.js"]
+  // },
   clearScreen: false,
 }));

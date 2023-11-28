@@ -8,6 +8,8 @@ import { METADATA_BLOCK_PICTURE, encode } from "@hiogawa/flac-picture";
 import { tinyassert } from "@hiogawa/utils";
 import { expose } from "comlink";
 import { parseTimestamp } from "../utils/misc";
+// @ts-ignore
+import initModule from "@hiogawa/ffmpeg/build/emscripten/Release/ex00-emscripten.js";
 
 export type { FFmpegWorker };
 
@@ -15,10 +17,11 @@ let Module: EmscriptenModule;
 
 class FFmpegWorker {
   async initialize(moduleUrl: string, wasmUrl: string): Promise<void> {
-    importScripts(moduleUrl);
-    const init: EmscriptenInit = (self as any)["Module"];
-    tinyassert(init);
-    Module = await init({ locateFile: () => wasmUrl });
+    Module = await initModule({ locateFile: () => wasmUrl });
+    // importScripts(moduleUrl);
+    // const init: EmscriptenInit = (self as any)["Module"];
+    // tinyassert(init);
+    // Module = await init({ locateFile: () => wasmUrl });
   }
 
   async webmToOpus(

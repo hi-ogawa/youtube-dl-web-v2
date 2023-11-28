@@ -4,14 +4,14 @@ import { once, tinyassert } from "@hiogawa/utils";
 import { transfer, wrap } from "comlink";
 // import WORKER_URL from "../worker/build/ffmpeg.js?url";
 // @ts-ignore forcing type=classic not officially supported
-import WORKER_URL from "../worker/ffmpeg.ts?worker&url&type=classic";
+import WORKER_URL from "../worker/ffmpeg.ts?worker&url";
 import type { FFmpegWorker } from "../worker/ffmpeg";
 
 // prefetch assets before instantiating emscripten worker
 export const WORKER_ASSET_URLS = [EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL];
 
 const getWorker = once(async () => {
-  const worker = new Worker(WORKER_URL);
+  const worker = new Worker(WORKER_URL, { type: "module" });
   const workerImpl = wrap<FFmpegWorker>(worker);
   await workerImpl.initialize(EMSCRIPTEN_MODULE_URL, EMSCRIPTEN_WASM_URL);
   return workerImpl;
