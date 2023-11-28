@@ -28,15 +28,6 @@ export default defineConfig((ctx) => ({
   build: {
     outDir: ctx.ssrBuild ? "dist/server" : "dist/client",
     sourcemap: true,
-    rollupOptions: {
-      external: ["__STATIC_CONTENT_MANIFEST"],
-    },
-  },
-  ssr: {
-    optimizeDeps: {
-      // workaround transitive cjs deps by aws-sdk
-      include: ["fast-xml-parser"],
-    },
   },
   clearScreen: false,
 }));
