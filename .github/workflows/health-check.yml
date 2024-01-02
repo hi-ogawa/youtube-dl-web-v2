@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: GET /healthz
         run: |
-          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/healthz
+          curl -sf https://youtube-dl-web.hiro18181.workers.dev/healthz
       - name: POST /api/metadata
         run: |
-          curl -sf https://youtube-dl-web-v2-hiro18181.vercel.app/trpc/getVideoMetadata -H 'content-type: application/json' --data-raw '{ "id": "https://www.youtube.com/watch?v=rv4wf7bzfFE" }' | jq -r --exit-status '.result.data.videoInfo.title'
+          curl -sf https://youtube-dl-web.hiro18181.workers.dev/trpc/getVideoMetadata -H 'content-type: application/json' --data-raw '[{ "id": "https://www.youtube.com/watch?v=rv4wf7bzfFE" }]' | jq -r --exit-status '.value.videoInfo.title'
