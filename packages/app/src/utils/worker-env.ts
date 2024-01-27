@@ -14,29 +14,18 @@ export function setWorkerEnv(v: any) {
 }
 
 export async function initailizeWorkerEnv() {
-  if (!import.meta.env.PROD) {
+  if (import.meta.env.DEV) {
     await setWorkerEnvLocal();
   }
   setupTrace();
 }
 
 async function setWorkerEnvLocal() {
-  const process = await import("node:process");
-  Object.assign(env, process.env);
-
-  // https://github.com/cloudflare/miniflare/blob/master/packages/miniflare/README.md
-  // https://github.com/cloudflare/miniflare/pull/639
-  // https://github.com/honojs/vite-plugins/blob/main/packages/dev-server/src/dev-server.ts
-
-  const { Miniflare } = await import("miniflare");
-  const miniflare = new Miniflare({
-    modules: true,
-    script: `export default { fetch: () => new Response(null, { status: 404 }) }`,
-    kvNamespaces: ["kv"],
-    // TODO: different storage for "NODE_ENV=test"
-    kvPersist: ".wrangler/.vite-dev",
+  const { getBindingsProxy } = await import("wrangler");
+  const { bindings } = await getBindingsProxy({
+    configPath: "./wrangler.dev.toml",
   });
-  const bindings = await miniflare.getBindings();
+  console.log(bindings);
   Object.assign(env, bindings);
 }
 

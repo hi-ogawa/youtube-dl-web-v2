@@ -1,0 +1,10 @@
+# for getBindingsProxy({ configPath: "./wrangler.dev.toml" })
+
+[[kv_namespaces]]
+binding = "kv"
+id = "b69d95156a074661b3f2e7bac4a644ca"
+
+# [vars]
+# OTEL_SERVICE_NAME = "youtube-dl-web-dev"
+# OTEL_TRACES_EXPORTER = "otlp"
+# OTEL_EXPORTER_OTLP_ENDPOINT = ""
