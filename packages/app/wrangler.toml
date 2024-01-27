@@ -8,7 +8,6 @@ compatibility_flags = [ "nodejs_compat" ]
 
 # npx wrangler kv:namespace create kv
 # npx wrangler kv:namespace create kv --env staging
-# npx wrangler kv:namespace create kv --env staging --preview
 [[kv_namespaces]]
 binding = "kv"
 id = "b69d95156a074661b3f2e7bac4a644ca"
@@ -19,8 +18,7 @@ id = "329c9104766d4e7289f879aef5a93d4f"
 
 [[env.local.kv_namespaces]]
 binding = "kv"
-id = "__dummy-unused"
-preview_id = "dd598af7e7764ea49de46a5ca794de04"
+id = "b69d95156a074661b3f2e7bac4a644ca"
 
 [vars]
 OTEL_SERVICE_NAME = "youtube-dl-web"
