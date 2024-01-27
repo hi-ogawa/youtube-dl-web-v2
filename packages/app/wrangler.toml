@@ -16,6 +16,10 @@ id = "b69d95156a074661b3f2e7bac4a644ca"
 binding = "kv"
 id = "329c9104766d4e7289f879aef5a93d4f"
 
+[[env.local.kv_namespaces]]
+binding = "kv"
+id = "b69d95156a074661b3f2e7bac4a644ca"
+
 [vars]
 OTEL_SERVICE_NAME = "youtube-dl-web"
 OTEL_TRACES_EXPORTER = "otlp"

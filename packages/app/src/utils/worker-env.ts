@@ -21,12 +21,11 @@ export async function initailizeWorkerEnv() {
 }
 
 async function setWorkerEnvLocal() {
+  // TODO: dispose
   const { getBindingsProxy } = await import("wrangler");
-  const { bindings } = await getBindingsProxy({
-    configPath: "./wrangler.dev.toml",
-  });
-  console.log(bindings);
+  const { bindings } = await getBindingsProxy();
   Object.assign(env, bindings);
+  env.OTEL_TRACES_EXPORTER = ""; // disable it for now
 }
 
 // prettier-ignore
