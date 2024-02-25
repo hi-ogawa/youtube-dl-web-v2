@@ -4,6 +4,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
+  retries: process.env.CI ? 2 : 0,
   use: {
     baseURL: `http://localhost:15173`,
     trace: process.env["E2E_TRACE"] ? "on" : "off",
