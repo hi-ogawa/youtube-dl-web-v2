@@ -125,7 +125,6 @@ export async function fetchVideoInfoRaw(videoId: string): Promise<any> {
       "content-type": "application/json",
     }
   });
-  console.log([res.ok, res.status, res])
   tinyassert(res.ok);
   tinyassert(res.headers.get("content-type")?.startsWith("application/json"));
   return JSON.parse(await res.text());
