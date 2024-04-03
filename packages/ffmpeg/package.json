@@ -34,10 +34,10 @@
     "build:emscripten:examples": "pnpm emscripten meson setup build/emscripten/Release --cross-file meson-cross-file-emscripten.ini --buildtype release && pnpm emscripten meson compile -C build/emscripten/Release",
     "build:js": "esbuild ./src/index.ts ./src/cli.ts --outdir=build/esbuild --bundle --format=cjs --out-extension:.js=.cjs --platform=node",
     "build:dts": "tsc --noEmit false --emitDeclarationOnly",
-    "emscripten": "DOCKER_USER=$(id -u):$(id -g) docker-compose run --rm emscripten",
-    "emscripten:clean": "docker-compose down -v --remove-orphans",
+    "emscripten": "DOCKER_USER=$(id -u):$(id -g) docker compose run --rm emscripten",
+    "emscripten:clean": "docker compose down -v --remove-orphans",
     "ts": "node --experimental-loader ../../misc/esbuild-register-loader.mjs -r esbuild-register",
-    "clang": "DOCKER_USER=$(id -u):$(id -g) docker-compose run clang",
+    "clang": "DOCKER_USER=$(id -u):$(id -g) docker compose run clang",
     "lint": "pnpm -s clang clang-format -style=file -i $(find src -type f -name '*.cpp' -o -name '*.hpp')",
     "lint-check": "pnpm -s clang clang-format -style=file --dry-run --Werror $(find src -type f -name '*.cpp' -o -name '*.hpp')",
     "release": "npm publish --access public"
