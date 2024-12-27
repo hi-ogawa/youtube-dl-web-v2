@@ -100,6 +100,7 @@ export async function fetchVideoInfo(videoId: string): Promise<VideoInfo> {
 }
 
 // cf. https://gist.github.com/hi-ogawa/23f6d0b212f51c2b1b255339c642e9b9
+// https://github.com/yt-dlp/yt-dlp/blob/0b6b7742c2e7f2a1fcb0b54ef3dd484bab404b3f/yt_dlp/extractor/youtube.py#L202
 export async function fetchVideoInfoRaw(videoId: string): Promise<any> {
   // prettier-ignore
   const res = await fetch("https://www.youtube.com/youtubei/v1/player", {
@@ -108,20 +109,21 @@ export async function fetchVideoInfoRaw(videoId: string): Promise<any> {
       videoId,
       context: {
         client: {
-          clientName: "ANDROID",
-          clientVersion: "19.29.37",
-          androidSdkVersion: 30,
-          hl: "en",
-          timeZone: "UTC",
-          utcOffsetMinutes: 0,
+          'clientName': 'IOS',
+          'clientVersion': '19.45.4',
+          'deviceMake': 'Apple',
+          'deviceModel': 'iPhone16,2',
+          'userAgent': 'com.google.ios.youtube/19.45.4 (iPhone16,2; U; CPU iOS 18_1_0 like Mac OS X;)',
+          'osName': 'iPhone',
+          'osVersion': '18.1.0.22B83',
         },
       },
     }),
     headers: {
-      "X-YouTube-Client-Name": "3",
-      "X-YouTube-Client-Version": "19.29.37",
+      "X-YouTube-Client-Name": "5",
+      "X-YouTube-Client-Version": "19.45.4",
       "Origin": "https://www.youtube.com",
-      "User-Agent": "com.google.android.youtube/19.29.37 (Linux; U; Android 11) gzip",
+      "User-Agent": "com.google.ios.youtube/19.45.4 (iPhone16,2; U; CPU iOS 18_1_0 like Mac OS X;)",
       "content-type": "application/json",
     }
   });
