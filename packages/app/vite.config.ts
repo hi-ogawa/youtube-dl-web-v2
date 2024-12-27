@@ -27,7 +27,8 @@ export default defineConfig((ctx) => ({
   ],
   build: {
     outDir: ctx.ssrBuild ? "dist/server" : "dist/client",
-    sourcemap: true,
+    minify: false,
+    // sourcemap: true,
   },
   clearScreen: false,
 }));
